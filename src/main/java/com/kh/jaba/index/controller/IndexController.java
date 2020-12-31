@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.jaba.client.model.domain.Client;
+
 @Controller
 public class IndexController {
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
@@ -37,8 +39,6 @@ public class IndexController {
 //		기존에 만들었을 때에는 현재 로그인상태를 확인하기위해서 첨에 페이지 로드됐을때 
 //		기존에 했을때는 서블릿에서 out.print ? 여기에 KeepLogin 이라는 정보를 보내서 체크를 했어요 ..KeepLogin 
 		if (loginCheck(request)) {
-			// check 용
-			System.out.println("loginCheckDo 메소드안에 있는 if절");
 			// client_id가 있다는 소리
 			// 뭔가 처리를 해줘야하는데 ...................
 			out.print("KeepLogin");
@@ -54,10 +54,11 @@ public class IndexController {
 		// 않고 그냥 null을 반환합니다.
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			String client_id = (String) session.getAttribute("client_id");
+			Client client  = (Client)session.getAttribute("client");
+			
 			// client_id에 value 값이 있으면 false 를 return
-			if (client_id != null) {
-				System.out.println("현재 접속되어있는 client_id : " + client_id);
+			if (client != null) {
+				System.out.println("현재 접속되어있는 client_id : " + client.getClient_id());
 				return true;
 			} else {
 				System.out.println("현재 접속되어있는 client_id가 없음");
