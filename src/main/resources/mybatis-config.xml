@@ -7,8 +7,14 @@
 	<typeAliases>
 		<typeAlias type="com.kh.jaba.client.model.domain.Client"
 			alias="Client" />
+		<typeAlias type="com.kh.jaba.admin.model.domain.Admin"
+			alias="Admin" />
+		<typeAlias type="com.kh.jaba.biz.model.domain.Biz"
+			alias="Store" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
+		<mapper resource="mappers/admin-mapper.xml" />
+		<mapper resource="mappers/store-mapper.xml" />
 	</mappers> 
 </configuration>

@@ -926,14 +926,11 @@ function displayMarker(locPosition, message) {
          if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
          $.ajax({
             url:"client/clientRegister.do",
-            data:{ user_name: $("#name").val(),
-                  user_phone: $("#mobile").val(),
-                  user_id: $("#emailRegister").val(),
-                  user_pw: $("#passwordRegister").val()},
-            success: function(res){   // 회원가입 완료, 혹은 못했을때 작업 
-               console.log(res);   // 서블릿에서 가져온 메세지분석
-               var succ = "registerOk";
-               var fail = "registerFail";
+            data:{ client_name: $("#name").val(),
+            	client_phone: $("#mobile").val(),
+            	client_id: $("#emailRegister").val(),
+            	client_pw: $("#passwordRegister").val()},
+            success: function(){   // 회원가입 완료시 창닫기
                document.getElementById("signupCloseBtn").click();
             }
          });

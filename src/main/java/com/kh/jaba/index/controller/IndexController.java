@@ -49,6 +49,7 @@ public class IndexController {
 		out.close();
 	}
 
+	// 로그인 체크 메소드
 	public boolean loginCheck(HttpServletRequest request) {
 		// 파라미터를 false 로 쓰는이유 -- HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로 생성하지
 		// 않고 그냥 null을 반환합니다.
