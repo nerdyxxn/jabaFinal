@@ -74,9 +74,4 @@ public class Client {
 		this.client_birth = client_birth;
 	}
 	
-	
-	
-	
-	
-
 }

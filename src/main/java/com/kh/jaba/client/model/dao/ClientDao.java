@@ -18,7 +18,6 @@ public class ClientDao {
 	// client 회원가입
 	public int insertClient(Client c) {
 		return sqlSession.insert("Client.insertClient", c);
-		
 	}
 	
 	// client 중복체크

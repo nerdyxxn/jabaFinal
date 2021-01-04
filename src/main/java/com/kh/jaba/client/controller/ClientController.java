@@ -63,10 +63,6 @@ public class ClientController {
 				}
 			}
 		}
-		// 여기서 호출을 해서 쓴다는건데..
-		// 그러면 추가적인 작업이 있으면 다 컨트롤러에서 관리를 하나여?
-		// 예를들어... 맨처음에 client 테이블 탐색, store테이블탐색, admin테이블탐색
-		// --> 아무것도 없으면 일치하는 회원정보 없음
 		out.flush();
 		out.close();
 	}
@@ -74,8 +70,7 @@ public class ClientController {
 	// 클라이언트 로그아웃
 	@RequestMapping(value = "/client/clientLogout.do", method = RequestMethod.GET)
 	public void clientLogout(HttpServletRequest request) {
-		// if client가 있다면 ~~~~
-		// session에서 로그아웃 기능 제대로 작동 그러나 jsp가 작동을 하지않음
+		//TODO if client가 있다면 ~~~~
 		request.getSession().removeAttribute("client");
 		System.out.println("클라이언트 로그아웃");
 	}
@@ -89,7 +84,6 @@ public class ClientController {
 		} else {
 			System.out.println("회원가입 실패");
 		}
-
 	}
 
 	// ID중복체크
@@ -110,5 +104,26 @@ public class ClientController {
 		out.flush();
 		out.close();
 	}
+	
+	// 내정보 조회 페이지 이동
+	@RequestMapping(value = "/client/editProfile.do", method = RequestMethod.GET)
+	public ModelAndView editProfile(ModelAndView mv) {
+		System.out.println("updatePw 페이지 진입");
+		mv.setViewName("editProfile");
+		return mv;
+	}
+	
+	// client 비밀번호 변경 페이지 이동
+	@RequestMapping(value = "/client/updatePw.do", method = RequestMethod.GET)
+	public ModelAndView updatePw(ModelAndView mv) {
+		System.out.println("updatePw 페이지 진입");
+		mv.setViewName("updatePw");
+		return mv;
+	}
+	
+	// client 수정
+	
+	// client 비밀번호 수정
+	
 
 }

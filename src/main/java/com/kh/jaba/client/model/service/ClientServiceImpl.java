@@ -15,7 +15,6 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired
 	private Client client;
 	
-	
 	// client 로그인 
 	@Override
 	public Client loginClient(String client_id, String client_pw) {

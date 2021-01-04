@@ -2,6 +2,7 @@ package com.kh.jaba.biz.model.domain;
 
 import org.springframework.stereotype.Component;
 
+//STORE
 //STORE_ID          NOT NULL VARCHAR2(100) 
 //STORE_PW                   VARCHAR2(50)  
 //STORE_ADDR                 VARCHAR2(200) 
