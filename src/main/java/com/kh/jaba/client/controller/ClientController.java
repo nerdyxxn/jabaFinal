@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.jaba.admin.model.domain.Admin;
@@ -68,31 +69,28 @@ public class ClientController {
 		out.close();
 	}
 
-	// 클라이언트 로그아웃
-	// ?? 뭐지
-	// out 을 넣으니까 왜 되지..?
 	@RequestMapping(value = "client/clientLogout.do", method = RequestMethod.GET)
-	public void clientLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		//TODO if client가 있다면 ~~~~
-		PrintWriter out = response.getWriter();
-		request.getSession().removeAttribute("client");
-		System.out.println("클라이언트 로그아웃");
-		out.flush();
-		out.close();
+	@ResponseBody
+	public void clientLogout(HttpServletRequest request) {
+		// 만약 client 애트리뷰트가 있다면 client 애트리뷰트를 remove
+		if(request.getSession().getAttribute("client") != null) {
+			request.getSession().removeAttribute("client");
+			System.out.println("클라이언트 로그아웃");
+		}else{
+			System.out.println("로그아웃할 client 가 없습니다.");
+		}
 	}
 
 	// 회원가입
 	@RequestMapping(value = "/client/clientRegister.do", method = RequestMethod.GET)
-	public void clientRegister(Client c, HttpServletResponse response) throws IOException {
-		PrintWriter out = response.getWriter();
+	@ResponseBody
+	public void clientRegister(Client c) {
 		int result = clientService.insertClient(c);
 		if (result == 1) {
 			System.out.println("회원가입 성공 client_id : " + c.getClient_id());
 		} else {
 			System.out.println("회원가입 실패");
 		}
-		out.flush();
-		out.close();
 	}
 
 	// ID중복체크

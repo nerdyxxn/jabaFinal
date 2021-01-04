@@ -525,7 +525,7 @@ function displayMarker(locPosition, message) {
            
            $(".brand_img").on("click", function(){
         var getId=$(this).attr("id");
-           frm.action="<%=ctxPath%>/store/storeSearch.do?brand="+getId;
+           frm.action="<%=ctxPath%>/explore/searchBrand.do?brand="+getId;
            frm.method="post";
            frm.submit();
            });

@@ -13,11 +13,11 @@ public class BizDao {
 	
 	// biz 로그인
 	public Biz loginBiz(Biz b) {
-		return sqlSession.selectOne("Store.loginStore", b);
+		return sqlSession.selectOne("Biz.loginStore", b);
 	}
 
 	// biz 중복체크
 	public int bizCheckId(String store_id) {
-		return sqlSession.selectOne("Store.storeCheckId", store_id);
+		return sqlSession.selectOne("Biz.storeCheckId", store_id);
 	}
 }
