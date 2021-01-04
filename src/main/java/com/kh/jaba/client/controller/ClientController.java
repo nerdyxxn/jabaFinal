@@ -59,6 +59,7 @@ public class ClientController {
 					out.print("Admin");
 					// id와 pw 정보가 없는 경우
 				} else {
+					System.out.println("로그인실패 , 일치하는 회원정보가 없습니다.");
 					out.print("NotExist");
 				}
 			}
@@ -68,22 +69,30 @@ public class ClientController {
 	}
 
 	// 클라이언트 로그아웃
-	@RequestMapping(value = "/client/clientLogout.do", method = RequestMethod.GET)
-	public void clientLogout(HttpServletRequest request) {
+	// ?? 뭐지
+	// out 을 넣으니까 왜 되지..?
+	@RequestMapping(value = "client/clientLogout.do", method = RequestMethod.GET)
+	public void clientLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//TODO if client가 있다면 ~~~~
+		PrintWriter out = response.getWriter();
 		request.getSession().removeAttribute("client");
 		System.out.println("클라이언트 로그아웃");
+		out.flush();
+		out.close();
 	}
 
 	// 회원가입
 	@RequestMapping(value = "/client/clientRegister.do", method = RequestMethod.GET)
-	public void clientRegister(Client c) {
+	public void clientRegister(Client c, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
 		int result = clientService.insertClient(c);
 		if (result == 1) {
 			System.out.println("회원가입 성공 client_id : " + c.getClient_id());
 		} else {
 			System.out.println("회원가입 실패");
 		}
+		out.flush();
+		out.close();
 	}
 
 	// ID중복체크
@@ -106,10 +115,18 @@ public class ClientController {
 	}
 	
 	// 내정보 조회 페이지 이동
+	// 이상태에서 이미 session에 client 정보가 담겨있음 
+	// 만약 정보가 없다면에 대한 처리도 해야함 
 	@RequestMapping(value = "/client/editProfile.do", method = RequestMethod.GET)
-	public ModelAndView editProfile(ModelAndView mv) {
-		System.out.println("updatePw 페이지 진입");
-		mv.setViewName("editProfile");
+	public ModelAndView editProfile(ModelAndView mv, HttpServletRequest request) {
+		// 세션에 담겨있는 client 를 확인하고 만약 세션에 담겨있지않으면 index페이지로 보낸다.
+		Client client = (Client)request.getSession().getAttribute("client");
+		if(client != null) {
+			System.out.println("editProfile 페이지 진입");
+			mv.setViewName("client/editProfile");
+		}else {
+			mv.setViewName("index");
+		}
 		return mv;
 	}
 	
@@ -117,7 +134,7 @@ public class ClientController {
 	@RequestMapping(value = "/client/updatePw.do", method = RequestMethod.GET)
 	public ModelAndView updatePw(ModelAndView mv) {
 		System.out.println("updatePw 페이지 진입");
-		mv.setViewName("updatePw");
+		mv.setViewName("client/updatePw");
 		return mv;
 	}
 	

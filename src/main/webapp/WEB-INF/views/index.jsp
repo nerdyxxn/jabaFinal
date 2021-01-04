@@ -554,7 +554,7 @@ function displayMarker(locPosition, message) {
       $.ajax({
          url:"client/clientLogin.do",
          data: { email: $("#email").val(),
-               pwd: $("#pwd").val()},
+               pw: $("#pwd").val()},
          success: function(res1){
             console.log(res1);
             var biz = "BizPartner";
@@ -580,41 +580,40 @@ function displayMarker(locPosition, message) {
       });
    });
    
-   
+   // 로그아웃
    $("#logoutBtn").on("click",function(){
       $.ajax({
          url:"client/clientLogout.do",
-         data:   {},
-         success: function(){
+         success: function(res){
+        	console.log("succ 작동")
             $(".menu_btn").show();
             $("#logoutBtn").hide();
             $("#dropdownMenuButton").hide();
             $("#MuiAvatar-root-id").css("visibility","hidden");
+         },
+         error: function(request,status,error){
+        	 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
          }
       });
    });
    
    $("#signup").on("click",function(){
-      // 각종 유효성 체크 추가해야함 
-         if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
-         $.ajax({
-            url:"client/clientRegister.do",
-            data:{ user_name: $("#name").val(),
-                  user_phone: $("#mobile").val(),
-                  user_id: $("#emailRegister").val(),
-                  user_pw: $("#passwordRegister").val()},
-            success: function(res){   // 회원가입 완료, 혹은 못했을때 작업 
-               console.log(res);   // 서블릿에서 가져온 메세지분석
-               var succ = "registerOk";
-               var fail = "registerFail";
-               document.getElementById("signupCloseBtn").click();
-            }
-         });
-      }else{
-         alert("모두 입력해주세요.");
-      }
-   });
-   
+	      // 각종 유효성 체크 추가해야함 
+	         if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
+	         $.ajax({
+	            url:"client/clientRegister.do",
+	            data:{ client_name: $("#name").val(),
+	            	client_phone: $("#mobile").val(),
+	            	client_id: $("#emailRegister").val(),
+	            	client_pw: $("#passwordRegister").val()},
+	            success: function(res){   // 회원가입 완료시 창닫기
+	               document.getElementById("signupCloseBtn").click();
+	            }
+	         });
+	      }else{
+	         alert("모두 입력해주세요.");
+	      }
+	   });
    
    // 아이디 중복체크 
    $("#emailRegister").change(function(){
@@ -669,23 +668,16 @@ function displayMarker(locPosition, message) {
                    $("#dropdownMenuButton").show();
                    $("#MuiAvatar-root-id").css("visibility","visible");
                    $("#logoutBtn").show();
-                  
                }
             }
          });
       });
    </script>
    <script>
-   	// My account 클릭시 My_account_profile 페이지로 이동
-   	$("#My_account_profile").click(function(){
-   		$.ajax({
-            url:"member/myPageList.do",
-            data:{ },
-            success: function(res1){
-            	location.href="./My_account_profile.jsp";
-               }
-   		});
-   	});
+  	// My account 클릭시 editProfile 페이지로 이동
+  	$("#My_account_profile").click(function(){
+  		location.href="client/editProfile.do";
+  	});
    
    </script>
 

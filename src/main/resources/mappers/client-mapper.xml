@@ -29,6 +29,9 @@
 	</select>
 	
 	<!-- client 프로필 수정 -->
+	<update id="updateClient" parameterType="Client">
+		update client set client_name=#{client_name},client_phone=#{client_phone},client_gender=#{client_gender},client_birth=#{client_birth} where client_id=#{client_id}
+	</update>
 	
 	<!-- client 비밀번호 수정 -->
 	
