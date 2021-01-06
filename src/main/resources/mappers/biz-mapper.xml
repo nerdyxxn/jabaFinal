@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Biz">
+	<resultMap type="Biz" id="resultBiz">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<id property="store_id" column="store_id" />
+		<result property="store_pw" column="store_pw" />
+		<result property="store_addr" column="store_addr" />
+		<result property="store_name" column="store_name" />
+		<result property="store_time" column="store_time" />
+		<result property="store_img" column="store_img" />
+		<result property="store_description" column="store_description" />
+		<result property="store_lat" column="store_lat" />
+		<result property="store_lng" column="store_lng" />
+		<result property="store_distance" column="store_distance" />
+	</resultMap>
+	
+	<!-- 접속한 client_id 가 DB에 있는지 확인 -->
+	<select id="loginStore" parameterType="Biz" resultType="Biz">
+		select * from store where store_id=#{store_id} and store_pw=#{store_pw}
+	</select>
+	
+	<!-- Store id 중복체크 -->
+	<select id="storeCheckId" parameterType="String" resultType="int">
+		select count(*) from store where store_id=#{store_id}
+	</select>
+	
+</mapper>

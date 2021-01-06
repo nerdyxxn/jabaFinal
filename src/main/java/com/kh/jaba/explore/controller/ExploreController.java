@@ -25,9 +25,9 @@ public class ExploreController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
-	// 단지 index페이지를 띄워주는행동만 함
+	// brand-badge 검색 시 해당 브랜드 list 출력
 	@RequestMapping(value = "/explore/searchBrand.do", method = RequestMethod.POST)
-	public ModelAndView explore(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView searchBrand(ModelAndView mv, HttpServletRequest request) {
 		logger.info("----- Brand 검색 진입 -----");
 		String brand = request.getParameter("brand");
 		String lat2Str = request.getParameter("lat2");
@@ -39,8 +39,49 @@ public class ExploreController {
 
 		if (brand != null) {
 			System.out.println(brand);
-			System.out.println("storeList--explore 연결 서블릿 : brand명 검색");
+			System.out.println("storeList--explore 연결 : brand명 검색");
 			List<Search> searchBrandList = searchService.searchBrand(brand);
+			
+			for (int i = 0; i < searchBrandList.size(); i++) {
+				Search vo = searchBrandList.get(i);
+				double lat1 = Double.parseDouble(vo.getStore_lat());
+				double lon1 = Double.parseDouble(vo.getStore_lng());
+				double d = Math.round(getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) * 10) / 10.0;
+				vo.setStore_distance(d);
+				// dList.add(d);
+			}
+			
+			System.out.println("aaa:" + searchBrandList);
+			Collections.sort(searchBrandList); // 오름차순 정리
+			System.out.println("bbb:" + searchBrandList);
+			
+			request.getSession().setAttribute("storeList", searchBrandList); // StoreList를 세션으로 넘김
+		}
+		mv.setViewName("explore/explore");
+		return mv;
+	}
+	
+	// 주소 검색 시 해당 주소에 속한 store list 출력
+	@RequestMapping(value = "/explore/searchAddr.do", method = RequestMethod.POST)
+	public ModelAndView searchAddr(ModelAndView mv, HttpServletRequest request) {
+		logger.info("----- Addr 검색 진입 -----");
+		//index.jsp에서 주소 검색 input text 속 value가 addr로 들어온다.
+		String addr = request.getParameter("addr");
+		//값을 잘 들고 들어오나 log 확인
+		System.out.println(addr);
+
+
+		String lat2Str = request.getParameter("lat2");
+		String lon2Str = request.getParameter("lon2");
+		System.out.println("현재위치 : " + lat2Str);
+		System.out.println("현재위치 : " + lon2Str);
+		double lat2 = Double.parseDouble(lat2Str);
+		double lon2 = Double.parseDouble(lon2Str);
+
+		if (addr != null) {
+			System.out.println(addr);
+			System.out.println("storeList--explore 연결  : 주소명 검색");
+			List<Search> searchBrandList = searchService.searchAddr(addr);
 			
 			for (int i = 0; i < searchBrandList.size(); i++) {
 				Search vo = searchBrandList.get(i);

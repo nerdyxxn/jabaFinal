@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,16 +13,24 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.jaba.client.model.domain.Client;
+import com.kh.jaba.explore.model.domain.Search;
+import com.kh.jaba.explore.model.service.SearchService;
 
 @Controller
 public class IndexController {
+	
+	@Autowired
+	private SearchService searchService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
 	// 단지 index페이지를 띄워주는행동만 함
@@ -66,6 +75,29 @@ public class IndexController {
 			}
 		}
 		return false;
+	}
+	
+	// 주소 검색 시 미완성된 주소들을 온전한 주소로 변경 
+	// 이루어져야할 것들 > search버튼 클릭시 event 발생 (최초 이벤트)
+	// 그 이벤트는 > dropdown으로 '유사' 주소들이 리스트로 출력
+	// 그럼 이 리스트들은?
+	// 실제 db에 들어가 있는 매장들의 주소 중 "서울시 종로구 ~동"까지 추출해서 출력 > 해당 주소에 매장이 없다는 오류 페이지를 만들 필요도 없다. 대신 dropdown은 만들어야할듯? - 검색
+	// 어떻게 db에 있는 주소를 일부만 발췌해서 가져올 것인가?
+	// select substr(store_addr, 1, 12) from store like '%'||'#{store_addr}'||'%' 
+	// 
+	@RequestMapping(value = "/addrCheck.do", method = RequestMethod.GET)
+	@ResponseBody
+	public void addrCheck(ModelAndView mv, HttpServletRequest request) {
+		String addr = request.getParameter("addr");
+		// 요거 될 지, 안 될 지 모르겠다,,,,,,,,
+		// 참고한 블로그는 param을 model로 불러서 model.addAttribute로 넣었는데, 우리는 하던 대로 진행
+		List<Search> checkAddr = searchService.checkAddr(addr);
+		if(checkAddr != null) {
+			for(int i=0; i<checkAddr.size();i++) {
+				System.out.println(checkAddr.get(i).getStore_addr());
+			}
+		}
+		request.getSession().setAttribute("getAddrList", checkAddr);
 	}
 
 }

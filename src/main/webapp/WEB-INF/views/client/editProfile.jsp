@@ -16,28 +16,22 @@
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
 <!-- MODAL -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- RESET -->
-<link href="./css/html5_reset.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- HEADER CSS -->
-<link href="./css/header.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
-<link href="./css/section.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/section.css" rel="stylesheet">
 <!-- FOOTER CSS -->
-<link href="./css/footer.css" rel="stylesheet">
-
-<style type="text/css"></style>
-
+<link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
+<!-- editProfile CSS -->
+<link href="<%=ctxPath%>/resources/css/editProfile.css" rel="stylesheet">
 
 <script>
 $(function(){
@@ -53,193 +47,13 @@ $(function(){
 })
 </script>
 
-<style>
-body {
-	font-family: 'Inter', 'Noto Sans KR', sans-serif;
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	line-height: 1.43;
-}
-
-div {
-	display: block;
-}
-
-input { 
-	/* border: none; */ /*여기 지웠어요*/
-	width: 100%;
-}
-</style>
-<!-- HEADER -->
-<style>
-</style>
-<!-- MAIN -->
-<style>
-main {
-	width: 100%;
-	max-width: 100vw;
-}
-</style>
-<!--NAVIGATOR -->
-<style>
-</style>
-<!-- SECTION -->
-<style>
-#home {
-	height: 210px;
-}
-
-#info .container{
-	height: 600px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	flex: 1 1 40%;
-	justify-content: flex-start;
-}
-
-.category {
-	font-weight: bold;
-	width: 100px;
-	padding: 40px 80px;
-}
-
-.list {
-	width: 100%;
-	box-sizing: content-box;
-	font: inherit;
-	padding: 40px 80px;
-	margin-left: 100px;
-}
-
-</style>
-
-<!-- ASIDE -->
-
-<style>
-</style>
-
-<!-- ASIDE -->
-<style>
-</style>
-<!--Modal-->
-<style>
-</style>
-<!-- FOOTER -->
-<!-- FOOTER -->
-<style>
-</style>
-<!-- MODAL -->
-<style>
-/* 모달 전체 세팅 */
-.modal-dialog.modal-size {
-	width: 444px;
-	height: auto;
-	margin: 0;
-	padding: 0;
-}
-
-.modal-content.modal-size {
-	height: auto;
-	min-height: 100%;
-	border-radius: 16px;
-}
-
-.modal {
-	text-align: center;
-}
-
-@media screen and (min-width: 768px) {
-	.modal:before {
-		display: inline-block;
-		vertical-align: middle;
-		content: " ";
-		height: 100%;
-	}
-}
-
-.modal-dialog.modal-size {
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
-}
-
-/* 모달 header 세팅 */
-.modal-header {
-	padding: 32px;
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border-bottom: 1px solid rgba(20, 23, 26, .08);
-	text-align: center;
-}
-
-.header-icon {
-	display: inline-flex;
-	padding: 16px;
-	border-radius: 16px;
-	margin-bottom: 16px;
-}
-
-.close {
-	color: rgba(0, 0, 0, 0.54);
-	position: absolute !important;
-	top: 25px;
-	right: 25px;
-}
-
-/* 모달 body 세팅 */
-.modal-body {
-	flex: 1 1 auto;
-	padding: 32px 32px 16px 32px;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
-}
-
-/* 모달 footer 세팅 */
-.modal-footer {
-	flex: 0 0 auto;
-	display: flex;
-	padding: 16px 32px 32px 32px;
-	align-items: center;
-	justify-content: center;
-	border-top: 0;
-}
-
-.btnChk {
-	width: 100%;
-	padding: 16px 24px;
-	background-color: #89BDBB;
-	color: white;
-	border-radius: 40px;
-	border: 0;
-	font-weight: bold;
-	font-size: 0.9rem;
-}
-
-
-.btnChk:hover {
-	background: #36727C;
-	color:white;
-	opacity: 10.3;
-    border-color: white;
-    border-width: 1px;
-}
-
-
-
-</style>
 </head>
 <body>
 	<!-- HEADER -->
 	<header>
 		<div class="header_container">
 			<div class="logo">
-				<a href="<%=ctxPath%>/index.jsp"><img
-					src="<%=ctxPath%>/images/jaba_english_white.png"></a>
+				<a href="<%=ctxPath%>/index.jsp"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:53px; height:41px;"></a>
 			</div>
 			<div class="menu">
 			</div>
@@ -319,7 +133,7 @@ main {
 		<div class="container">
 			<div class="row">
 				<div class="footer_logo">
-					<img src="images/jaba_english_white.png">
+					<img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:53px; height:41px;">
 				</div>
 				<div class="footer_links">
 					<ul>

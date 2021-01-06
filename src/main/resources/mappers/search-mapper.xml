@@ -16,8 +16,19 @@
 	</resultMap>
 	
 	<!-- 브랜드명으로 List<Store> 출력 -->
-	<select id="selectStoresByBrand" parameterType="String" resultType="arraylist" resultMap="resultSearch" >
+	<select id="selectStoresByBrand" parameterType="string" resultType="arraylist" resultMap="resultSearch" >
 		select * from store where store_name LIKE '%'||#{store_name}||'%'
 	</select>
 	
+	<!--  주소 검색시 List<Store> 출력 -->
+	<select id="selectStoresByAddr" parameterType="string" resultType="arraylist" resultMap="resultSearch">
+		select * from store where store_addr LIKE '%'||#{store_addr}||'%'
+	</select>
+	
+	<!--  dropdown으로 뽑아낼 간소화된 주소 출력 -->
+	<!--  null 값이 들어오는데, nvl 이런 걸로 처리해버리면 되지 않을까? 싶습니다. -->
+	<!--  db세팅에 addr not null로 -->
+	<select id="checkAddr" parameterType="string" resultType="arraylist" resultMap="resultSearch">
+		select  distinct nvl(substr(store_addr, 1, instr(store_addr, ' ', 1, 3)),'오류') as store_addr from store where store_addr like '%'||#{store_addr}||'%'
+	</select>
 </mapper>

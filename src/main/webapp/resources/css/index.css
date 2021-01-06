@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 body {
+   font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
    margin: 0;
    width: 100%;
    height: 100%;
    line-height: 1.43;
-	font-family: Inter, sans-serif;
 }
 
 div {
@@ -14,168 +14,176 @@ div {
 
 input {
    border: none;
-	width: 378px;
+   width: 378px;
 }
 
-a{
-color: black;
+a {
+   color: black;
 }
 
 /* HEADER */
 /* dropdown 메뉴 세팅 */
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 8px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    color: #212529;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
+   position: absolute;
+   top: 100%;
+   left: 0;
+   z-index: 1000;
+   display: none;
+   float: left;
+   min-width: 160px;
+   padding: 8px 0;
+   margin: 2px 0 0;
+   font-size: 14px;
+   color: #212529;
+   text-align: left;
+   list-style: none;
+   background-color: #fff;
+   background-clip: padding-box;
+   border: 1px solid rgba(0, 0, 0, .15);
+   border-radius: 4px;
 }
+
 .menu-item__icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+   width: 20px;
+   height: 20px;
+   margin-right: 10px;
 }
+
 .dropdown-itemss span {
-  margin: auto;
-  width: 50%;
+   margin: auto;
+   width: 50%;
 }
+
 .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 4px 24px;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-    
-    font-family: Inter,sans-serif;
+   display: block;
+   width: 100%;
+   padding: 4px 24px;
+   clear: both;
+   font-weight: 400;
+   color: #212529;
+   text-align: inherit;
+   white-space: nowrap;
+   background-color: transparent;
+   border: 0;
+   font-family: Inter, sans-serif;
    font-size: 14px;
    font-weight: 400;
-    line-height: 1.75;
+   line-height: 1.75;
 }
 
 /* 원형 아이콘 */
 .jss98 {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    font-size: 10px;
-    align-items: center;
-    flex-shrink: 0;
-    font-family: Inter,sans-serif;
-    user-select: none;
-    border-radius: 50%;
-    justify-content: center;
-    
-    font-size: 10px;
-    font-weight: 700;
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
+   width: 32px;
+   height: 32px;
+   display: flex;
+   overflow: hidden;
+   position: relative;
+   font-size: 10px;
+   align-items: center;
+   flex-shrink: 0;
+   font-family: Inter, sans-serif;
+   user-select: none;
+   border-radius: 50%;
+   justify-content: center;
+   font-size: 10px;
+   font-weight: 700;
+   color: rgb(255, 255, 255);
+   background-color: rgb(0, 0, 0);
 }
 
 .MuiAvatar-root {
-    width: 32px;
-    height: 32px;
-    display: inline-flex;
-    overflow: hidden;
-    position: relative;
-    font-size: 10px;
-    align-items: center;
-    flex-shrink: 0;
-    font-family: Inter,sans-serif;
-    user-select: none;
-    border-radius: 50%;
-    justify-content: center;
+   width: 32px;
+   height: 32px;
+   display: inline-flex;
+   overflow: hidden;
+   position: relative;
+   font-size: 10px;
+   align-items: center;
+   flex-shrink: 0;
+   font-family: Inter, sans-serif;
+   user-select: none;
+   border-radius: 50%;
+   justify-content: center;
 }
 
 /* 화살표 아이콘 버튼 */
 .jss99 {
-    width: 32px;
-    height: 32px;
-    padding: 0;
+   width: 32px;
+   height: 32px;
+   padding: 0;
 }
+
 .MuiIconButton-sizeSmall {
-    padding: 3px;
-    font-size: 1.125rem;
+   padding: 3px;
+   font-size: 1.125rem;
 }
+
 .MuiIconButton-root {
-    flex: 0 0 auto;
-    color: rgba(0, 0, 0, 0.54);
-    padding: 12px;
-    overflow: visible;
-    font-size: 1.5rem;
-    text-align: center;
-    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    border-radius: 50%;
+   flex: 0 0 auto;
+   color: rgba(0, 0, 0, 0.54);
+   padding: 12px;
+   overflow: visible;
+   font-size: 1.5rem;
+   text-align: center;
+   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+   border-radius: 50%;
 }
+
 .MuiButtonBase-root {
-    color: inherit;
-    border: 0;
-    cursor: pointer;
-    margin: 0;
-    display: inline-flex;
-    outline: 0;
-    padding: 0;
-    position: relative;
-    align-items: center;
-    user-select: none;
-    border-radius: 0;
-    vertical-align: middle;
-    -moz-appearance: none;
-    justify-content: center;
-    text-decoration: none;
-    background-color: transparent;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
+   color: inherit;
+   border: 0;
+   cursor: pointer;
+   margin: 0;
+   display: inline-flex;
+   outline: 0;
+   padding: 0;
+   position: relative;
+   align-items: center;
+   user-select: none;
+   border-radius: 0;
+   vertical-align: middle;
+   -moz-appearance: none;
+   justify-content: center;
+   text-decoration: none;
+   background-color: transparent;
+   -webkit-appearance: none;
+   -webkit-tap-highlight-color: transparent;
 }
+
 .MuiIconButton-label {
-    width: 100%;
-    display: flex;
-    align-items: inherit;
-    justify-content: inherit;
+   width: 100%;
+   display: flex;
+   align-items: inherit;
+   justify-content: inherit;
 }
+
 .MuiIconButton-sizeSmall {
-    padding: 3px;
-    font-size: 1.125rem;
+   padding: 3px;
+   font-size: 1.125rem;
 }
+
 .MuiSvgIcon-root {
-    fill: currentColor;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    font-size: 1.5rem;
-    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    flex-shrink: 0;
-    user-select: none;
+   fill: currentColor;
+   width: 1em;
+   height: 1em;
+   display: inline-block;
+   font-size: 1.5rem;
+   transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+   flex-shrink: 0;
+   user-select: none;
 }
+
 .MuiTouchRipple-root {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    z-index: 0;
-    overflow: hidden;
-    position: absolute;
-    border-radius: inherit;
-    pointer-events: none;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: block;
+   z-index: 0;
+   overflow: hidden;
+   position: absolute;
+   border-radius: inherit;
+   pointer-events: none;
 }
 
 /* MAIN */
@@ -192,48 +200,67 @@ main {
 }
 
 .brand_img {
- width: 130px;
- height: 80px;
- border: none;
- border-radius: 12px;
+   width: 130px;
+   height: 80px;
+   border: none;
+   border-radius: 12px;
    filter: grayscale(100%);
 }
 
 .brand_img:hover {
-  filter: grayscale(0%);
+   filter: grayscale(0%);
 }
 
 #searchBtn {
-    border-radius: 6px;
-    padding: 15px 40px;
-    font-size: 12px;
+   border-radius: 6px;
+   padding: 15px 40px;
+   font-size: 12px;
+}
+
+#searchDrop {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 442px;
+    padding: 8px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
 }
 
 .MuiInputBase-root {
-    color: rgba(0, 0, 0, 0.87);
-    cursor: text;
-    display: inline-flex;
-    position: relative;
-    font-size: 1rem;
-    box-shadow: inset 0 1px 0 1px rgba(20, 23, 26, 0.04);
-    box-sizing: border-box;
-    align-items: center;
-    font-family: Inter,sans-serif;
-    border-radius: 6px;
-    background-color: #FFFFFF;
+   color: rgba(0, 0, 0, 0.87);
+   cursor: text;
+   display: inline-flex;
+   position: relative;
+   font-size: 1rem;
+   box-shadow: 0px 9px 20px rgba(75, 72, 72, 0.3);
+   box-sizing: border-box;
+   align-items: center;
+   font-family: Inter, sans-serif;
+   border-radius: 6px;
+   background-color: #FFFFFF;
 }
 
 .jss38 svg {
-    min-width: 14px!important;
-    max-width: 14px;
-    max-height: 14px;
+   min-width: 14px !important;
+   max-width: 14px;
+   max-height: 14px;
 }
 
 .search_text {
-padding-left: 12px;
-font-size: 14px;
+   padding-left: 12px;
+   font-size: 14px;
 }
-
 
 /* 모달 전체 세팅 */
 .modal-dialog.modal-size {
@@ -323,14 +350,14 @@ font-size: 14px;
    font-size: 18px;
 }
 
-#logoutBtn{
-   display:none;
+#logoutBtn {
+   display: none;
 }
 
-#dropdownMenuButton{
-	display:none;
+#dropdownMenuButton {
+   display: none;
 }
 
-#MuiAvatar-root-id{
-	visibility:hidden;
+#MuiAvatar-root-id {
+   visibility: hidden;
 }

@@ -18,5 +18,15 @@ public class SearchDao {
 		return sqlSession.selectList("selectStoresByBrand", store_name);
 	}
 	
+	// index에서 dropdown으로 뿌려줄 addr list
+	public List<Search> checkAddr(String store_addr){
+		return sqlSession.selectList("checkAddr", store_addr);
+	}
+	
+	// 주소 검색시 store array list
+	public List<Search> searchAddr(String store_addr){
+		return sqlSession.selectList("selectStoresByAddr", store_addr);
+	}
+	
 	
 }

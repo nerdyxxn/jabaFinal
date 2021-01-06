@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String ctxPath = request.getContextPath();
-String brandName = request.getParameter("brand");
-if(brandName==null) {
-	brandName = "스타벅스";  // 예외처리  
+	String brandName = request.getParameter("brand");
+	if(brandName==null) {
+		brandName = "스타벅스";  // 예외처리  
 }
 %>
 <%
@@ -19,13 +19,19 @@ if(brandName==null) {
 <title>explore</title>
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
 <!-- RESET -->
-<link href="<%=ctxPath%>/css/html5_reset.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- HEADER CSS -->
-<link href="<%=ctxPath%>/css/header.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
-<link href="<%=ctxPath%>/css/section.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/section.css" rel="stylesheet">
 <!-- FOOTER CSS -->
-<link href="<%=ctxPath%>/css/footer.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
+<!-- EXPLORE CSS -->
+<link href="<%=ctxPath%>/resources/css/explore.css" rel="stylesheet">
+
 <script>
 $(function(){
    $(window).scroll(function(){
@@ -46,168 +52,13 @@ $(function(){
  })
 })
 </script>
-
-<style>
-a{
-	color:black;
-}
-body {
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	line-height: 1.43;
-	color: rgba(0, 0, 0, 0.87);
-	margin: 0;
-	font-size: 0.875rem;
-	font-family: Inter, sans-serif;
-	font-weight: 400;
-	line-height: 1.43;
-}
-
-div {
-	display: block;
-}
-
-input {
-	border: none;
-}
-</style>
-<!-- MAIN -->
-<style>
-main {
-	width: 100%;
-	max-width: 100vw;
-}
-
-section {
-	padding: 45px 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-	background: #f9fafc;
-	z-index: 0;
-}
-
-#home {
-	height: 350px;
-}
-
-a {
-	text-decoration: none;
-}
-</style>
-<!-- SECTION 2 -->
-<style type="text/css">
-.mini {
-	padding: 3px 0;
-	background-color: white;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 55px;
-	z-index: 999;
-}
-
-.mini .container {
-	width: 80%;
-}
-
-.mini_row {
-	display: flex;
-	flex-direction: row;
-	padding: 3px 0;
-}
-
-.mini_row button {
-	border: 1px solid rgba(132, 146, 166, .2) !important;
-	color: black;
-	margin: 0 8px 0 0;
-	font-weight: normal;
-}
-
-.search-term {
-	display: inline-flex;
-	align-items: center;
-	text-align: center;
-	flex-direction: row;
-	position: relative
-}
-
-.search-term button {
-	width: 34px; -
-	-verticalPadding: 0; -
-	-horizontalPadding: 0;
-	height: 34px;
-}
-
-.search-term svg {
-	width: 20px;
-	height: 20px;
-	padding: 0 auto;
-}
-
-.search-term {
-	border-radius: 50px;
-}
-
-#hidden_term {
-	visibility: hidden;
-}
-</style>
-
-<!-- SECTION 3 -->
-<style>
-#sth {
-	width: 100%;
-}
-
-#sth .container {
-	width: 80%;
-	margin: 0 auto;
-	padding-top: 15px;
-}
-
-section#store-list {
-	padding-top: 65px;
-}
-
-section .container .store_list_grid {
-	display: grid;
-	grid-column-gap: 30px;
-	grid-row-gap: 30px;
-	grid-template-rows: auto;
-	min-height: 0;
-	min-width: 0;
-	grid-template-columns: repeat(3, 1fr);
-}
-
-.store_card_image img {
-	height: 210px;
-	border-radius: 6px;
-	width: 100%;
-	background: #ebf3fe;
-	border: 0;
-	position: relative;
-	transition: .2s ease-in-out;
-	height: 160px;
-}
-
-#logoutBtn{
-	display:none;
-}
-</style>
-
-
-
-
 </head>
 <body>
 	<!-- HEADER -->
 	<header>
 		<div class="header_container">
 			<div class="logo">
-				<a href="<%=ctxPath%>/index.jsp"><img
-					src="<%=ctxPath%>/images/jaba_english_white.png"></a>
+				<a href="index.jsp"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
 			</div>
 			<div class="menu">
 				<button id="logoutBtn">LOGOUT</button>
@@ -221,9 +72,7 @@ section .container .store_list_grid {
 			<h1>
 				<%=brand %><br> <br>
 			</h1>
-
 		</div>
-
 	</section>
 	<!-- SECTION 2 -->
 	<section id="search" class="mini">
@@ -398,7 +247,7 @@ function displayMarker(place) {
 		<div class="container">
 			<div class="row">
 				<div class="footer_logo">
-					<img src="<%=ctxPath%>/images/jaba_english_white.png">
+					<img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;">
 				</div>
 				<div class="footer_links">
 					<ul>

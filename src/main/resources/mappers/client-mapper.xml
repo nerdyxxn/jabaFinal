@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Client">
+	<resultMap type="Client" id="resultClient">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<id property="client_id" column="client_id" />
+		<result property="client_pw" column="client_pw" />
+		<result property="client_name" column="client_name" />
+		<result property="client_phone" column="client_phone" />
+		<result property="client_gender" column="client_gender" />
+		<result property="client_birth" column="client_birth" />
+	</resultMap>
+	
+	<!-- 접속한 client_id 가 DB에 있는지 확인 -->
+	<select id="loginClient" parameterType="Client" resultType="Client">
+		select * from client where client_id=#{client_id} and client_pw=#{client_pw}
+	</select>
+
+	<!-- client 회원가입 -->
+	<insert id="insertClient" parameterType="Client"
+		flushCache="true" statementType="PREPARED">
+		insert into client(client_id, client_pw, client_name, client_phone) values
+		(#{client_id}, #{client_pw}, #{client_name}, #{client_phone})
+	</insert>
+	
+	<!-- client id 중복체크 -->
+	<select id="clientCheckId" parameterType="String" resultType="int">
+		select count(*) from client where client_id=#{client_id}
+	</select>
+	
+	<!-- client 프로필 수정 -->
+	<update id="updateClient" parameterType="Client">
+		update client set client_name=#{client_name},client_phone=#{client_phone},client_gender=#{client_gender},client_birth=#{client_birth} where client_id=#{client_id}
+	</update>
+	
+	<!-- client 비밀번호 수정 -->
+	
+</mapper>
