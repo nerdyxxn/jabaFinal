@@ -10,7 +10,7 @@
    
 %>
 <%
-	String avenue = request.getParameter("city");
+   String avenue = request.getParameter("city");
 
 %>
 <html>
@@ -65,6 +65,12 @@ $(function(){
                   function() {
                      $('#searchDrop').toggle();
                   });
+         function aTagPost(){
+      	   var getId=$(this).attr("id");
+             frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
+             frm.method="post";
+             frm.submit();
+             };
          });
    //외부영역 클릭시 dropdown 닫기
       $(document).mouseup(function (e){
@@ -80,69 +86,69 @@ $(function(){
 <body>
    <!-- HEADER -->
    <header>
-		<div class="header_container">
-			<div class="logo">
-				<a href="index.jsp"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
-			</div>
-			<div class="dropdown">
-				<div class="menu">
-					<div class="MuiAvatar-root jss98" id="MuiAvatar-root-id"
-						style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">ZK</div>
-					<button
-						class="MuiButtonBase-root MuiIconButton-root jss99 logo__navigation MuiIconButton-sizeSmall"
-						tabindex="0" type="button" id="dropdownMenuButton"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						style="color: rgb(0, 0, 0);">
-						<span class="MuiIconButton-label"><svg
-								class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24"
-								aria-hidden="true" role="presentation">
-								<path
-									d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
-								<path fill="none" d="M0 0h24v24H0V0z"></path></svg></span><span
-							class="MuiTouchRipple-root"></span>
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#" id="My_account_profile"><div class="dropdown-itemss">
-								<svg class="menu-item__icon">
-									<g id="\u2192-Assets" stroke="none" stroke-width="1"
-										fill="none" fill-rule="evenodd">
-									<g id="ic-account" fill="#14171A">
-									<path
-										d="M7,12 L13,12 C15.7614237,12 18,14.2385763 18,17 C18,17.5522847 17.5522847,18 17,18 C16.4871642,18 16.0644928,17.6139598 16.0067277,17.1166211 L15.9949073,16.8237272 C15.9070404,15.3072462 14.6927538,14.0929596 13.1762728,14.0050927 L13,14 L7,14 C5.34314575,14 4,15.3431458 4,17 C4,17.5522847 3.55228475,18 3,18 C2.44771525,18 2,17.5522847 2,17 C2,14.3112453 4.12230671,12.1181819 6.78311038,12.0046195 L7,12 L13,12 L7,12 Z M10,2 C12.7614237,2 15,4.23857625 15,7 C15,9.76142375 12.7614237,12 10,12 C7.23857625,12 5,9.76142375 5,7 C5,4.23857625 7.23857625,2 10,2 Z M10,4 C8.34314575,4 7,5.34314575 7,7 C7,8.65685425 8.34314575,10 10,10 C11.6568542,10 13,8.65685425 13,7 C13,5.34314575 11.6568542,4 10,4 Z"
-										id="Icon-Color"></path></g></g></svg>
-								<span>My account</span>
-							</div></a> <a class="dropdown-item" href="#"><svg
-								class="menu-item__icon">
-								<g id="\u2192-Assets" stroke="none" stroke-width="1" fill="none"
-									fill-rule="evenodd">
-								<g id="ic-order_history" fill="#14171A">
-								<path
-									d="M10,2 C14.418278,2 18,5.581722 18,10 C18,14.418278 14.418278,18 10,18 C5.581722,18 2,14.418278 2,10 C2,5.581722 5.581722,2 10,2 Z M10,4 C6.6862915,4 4,6.6862915 4,10 C4,13.3137085 6.6862915,16 10,16 C13.3137085,16 16,13.3137085 16,10 C16,6.6862915 13.3137085,4 10,4 Z M10,6 C10.5128358,6 10.9355072,6.38604019 10.9932723,6.88337887 L11,7 L11,9.58578644 L12.7071068,11.2928932 C13.0976311,11.6834175 13.0976311,12.3165825 12.7071068,12.7071068 C12.3466228,13.0675907 11.7793918,13.0953203 11.3871006,12.7902954 L11.2928932,12.7071068 L9.29289322,10.7071068 C9.1366129,10.5508265 9.03740171,10.3481451 9.00867243,10.131444 L9,10 L9,7 C9,6.44771525 9.44771525,6 10,6 Z"
-									id="Icon-Color"></path></g></g></svg>Order history</a> <a class="dropdown-item"
-							href="<%=ctxPath%>/qna/qnaList.do"><svg class="menu-item__icon">
-								<g id="\u2192-Assets" stroke="none" stroke-width="1" fill="none"
-									fill-rule="evenodd">
-								<g id="ic-help_center" fill="#14171A">
-								<path
-									d="M10,2 C14.418278,2 18,5.581722 18,10 C18,14.418278 14.418278,18 10,18 C5.581722,18 2,14.418278 2,10 C2,5.581722 5.581722,2 10,2 Z M10,14 C9.44771525,14 9,14.4477153 9,15 C9,15.5522847 9.44771525,16 10,16 C10.5522847,16 11,15.5522847 11,15 C11,14.4477153 10.5522847,14 10,14 Z M10,4 C11.6568542,4 13,5.34314575 13,7 C13,7.54060402 12.7972,7.95243249 12.4324938,8.33695441 L12.3049846,8.46425623 L11.6976805,9.00562265 C11.227883,9.46313853 11,9.98493642 11,11 C11,11.5128358 10.6139598,11.9355072 10.1166211,11.9932723 L10,12 C9.44771525,12 9,11.5522847 9,11 L9.00528561,10.712882 C9.05455619,9.40117173 9.44742455,8.4787716 10.1475931,7.73055006 L10.3023195,7.57280447 L10.5268503,7.36697752 L10.9833325,6.9652856 C10.9940344,6.95806514 10.9983381,6.95876504 10.9999034,6.9646777 L10.991185,6.86663987 C10.9259877,6.37740496 10.5070677,6 10,6 C9.48716416,6 9.06449284,6.38604019 9.00672773,6.88337887 L8.99327227,7.11662113 C8.93550716,7.61395981 8.51283584,8 8,8 C7.44771525,8 7,7.55228475 7,7 C7,5.34314575 8.34314575,4 10,4 Z"
-									id="Icon-Color"></path></g></g></svg>Help center</a>
-					</div>
-				</div>
-				<button class="menu_btn" value="LOG IN" type="button"
-					class="btn btn-primary" data-toggle="modal"
-					data-target="#LoginModal">
-					<span>LOG IN</span>
-				</button>
+      <div class="header_container">
+         <div class="logo">
+            <a href="index.jsp"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
+         </div>
+         <div class="dropdown">
+            <div class="menu">
+               <div class="MuiAvatar-root jss98" id="MuiAvatar-root-id"
+                  style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">ZK</div>
+               <button
+                  class="MuiButtonBase-root MuiIconButton-root jss99 logo__navigation MuiIconButton-sizeSmall"
+                  tabindex="0" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  style="color: rgb(0, 0, 0);">
+                  <span class="MuiIconButton-label"><svg
+                        class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24"
+                        aria-hidden="true" role="presentation">
+                        <path
+                           d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                        <path fill="none" d="M0 0h24v24H0V0z"></path></svg></span><span
+                     class="MuiTouchRipple-root"></span>
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#" id="My_account_profile"><div class="dropdown-itemss">
+                        <svg class="menu-item__icon">
+                           <g id="\u2192-Assets" stroke="none" stroke-width="1"
+                              fill="none" fill-rule="evenodd">
+                           <g id="ic-account" fill="#14171A">
+                           <path
+                              d="M7,12 L13,12 C15.7614237,12 18,14.2385763 18,17 C18,17.5522847 17.5522847,18 17,18 C16.4871642,18 16.0644928,17.6139598 16.0067277,17.1166211 L15.9949073,16.8237272 C15.9070404,15.3072462 14.6927538,14.0929596 13.1762728,14.0050927 L13,14 L7,14 C5.34314575,14 4,15.3431458 4,17 C4,17.5522847 3.55228475,18 3,18 C2.44771525,18 2,17.5522847 2,17 C2,14.3112453 4.12230671,12.1181819 6.78311038,12.0046195 L7,12 L13,12 L7,12 Z M10,2 C12.7614237,2 15,4.23857625 15,7 C15,9.76142375 12.7614237,12 10,12 C7.23857625,12 5,9.76142375 5,7 C5,4.23857625 7.23857625,2 10,2 Z M10,4 C8.34314575,4 7,5.34314575 7,7 C7,8.65685425 8.34314575,10 10,10 C11.6568542,10 13,8.65685425 13,7 C13,5.34314575 11.6568542,4 10,4 Z"
+                              id="Icon-Color"></path></g></g></svg>
+                        <span>My account</span>
+                     </div></a> <a class="dropdown-item" href="#"><svg
+                        class="menu-item__icon">
+                        <g id="\u2192-Assets" stroke="none" stroke-width="1" fill="none"
+                           fill-rule="evenodd">
+                        <g id="ic-order_history" fill="#14171A">
+                        <path
+                           d="M10,2 C14.418278,2 18,5.581722 18,10 C18,14.418278 14.418278,18 10,18 C5.581722,18 2,14.418278 2,10 C2,5.581722 5.581722,2 10,2 Z M10,4 C6.6862915,4 4,6.6862915 4,10 C4,13.3137085 6.6862915,16 10,16 C13.3137085,16 16,13.3137085 16,10 C16,6.6862915 13.3137085,4 10,4 Z M10,6 C10.5128358,6 10.9355072,6.38604019 10.9932723,6.88337887 L11,7 L11,9.58578644 L12.7071068,11.2928932 C13.0976311,11.6834175 13.0976311,12.3165825 12.7071068,12.7071068 C12.3466228,13.0675907 11.7793918,13.0953203 11.3871006,12.7902954 L11.2928932,12.7071068 L9.29289322,10.7071068 C9.1366129,10.5508265 9.03740171,10.3481451 9.00867243,10.131444 L9,10 L9,7 C9,6.44771525 9.44771525,6 10,6 Z"
+                           id="Icon-Color"></path></g></g></svg>Order history</a> <a class="dropdown-item"
+                     href="<%=ctxPath%>/qna/qnaList.do"><svg class="menu-item__icon">
+                        <g id="\u2192-Assets" stroke="none" stroke-width="1" fill="none"
+                           fill-rule="evenodd">
+                        <g id="ic-help_center" fill="#14171A">
+                        <path
+                           d="M10,2 C14.418278,2 18,5.581722 18,10 C18,14.418278 14.418278,18 10,18 C5.581722,18 2,14.418278 2,10 C2,5.581722 5.581722,2 10,2 Z M10,14 C9.44771525,14 9,14.4477153 9,15 C9,15.5522847 9.44771525,16 10,16 C10.5522847,16 11,15.5522847 11,15 C11,14.4477153 10.5522847,14 10,14 Z M10,4 C11.6568542,4 13,5.34314575 13,7 C13,7.54060402 12.7972,7.95243249 12.4324938,8.33695441 L12.3049846,8.46425623 L11.6976805,9.00562265 C11.227883,9.46313853 11,9.98493642 11,11 C11,11.5128358 10.6139598,11.9355072 10.1166211,11.9932723 L10,12 C9.44771525,12 9,11.5522847 9,11 L9.00528561,10.712882 C9.05455619,9.40117173 9.44742455,8.4787716 10.1475931,7.73055006 L10.3023195,7.57280447 L10.5268503,7.36697752 L10.9833325,6.9652856 C10.9940344,6.95806514 10.9983381,6.95876504 10.9999034,6.9646777 L10.991185,6.86663987 C10.9259877,6.37740496 10.5070677,6 10,6 C9.48716416,6 9.06449284,6.38604019 9.00672773,6.88337887 L8.99327227,7.11662113 C8.93550716,7.61395981 8.51283584,8 8,8 C7.44771525,8 7,7.55228475 7,7 C7,5.34314575 8.34314575,4 10,4 Z"
+                           id="Icon-Color"></path></g></g></svg>Help center</a>
+               </div>
+            </div>
+            <button class="menu_btn" value="LOG IN" type="button"
+               class="btn btn-primary" data-toggle="modal"
+               data-target="#LoginModal">
+               <span>LOG IN</span>
+            </button>
 
-				<button class="menu_btn" value="SIGN UP" class="btn btn-primary"
-					data-toggle="modal" data-target="#registerModal">
-					<span>SIGN UP</span>
-				</button>
-				<button id="logoutBtn">LOGOUT</button>
-			</div>
-		</div>
+            <button class="menu_btn" value="SIGN UP" class="btn btn-primary"
+               data-toggle="modal" data-target="#registerModal">
+               <span>SIGN UP</span>
+            </button>
+            <button id="logoutBtn">LOGOUT</button>
+         </div>
+      </div>
 
-	</header>
+   </header>
    <!-- MODAL -->
    <!-- LOG IN -->
    <!-- Modal Basic -->
@@ -281,20 +287,26 @@ $(function(){
          
          <div class="search-bar" style="margin-top:10px;">
             <div class="MuiInputBase-root jss38">
-               <svg viewBox="0 0 14 16"><path d="M7 0C3.504.004.6707 2.8373.6667 6.3333c0 4.3647 4.3586 8.3254 5.694 9.4354a.9993.9993 0 001.278 0c1.3333-1.11 5.6946-5.072 5.6946-9.436C13.3287 2.8367 10.496.004 7 0zm0 9.6667c-1.8407 0-3.3333-1.4927-3.3333-3.3334C3.6667 4.4927 5.1593 3 7 3s3.3333 1.4927 3.3333 3.3333c0 1.8407-1.4926 3.3334-3.3333 3.3334z" fill="currentColor" fill-rule="nonzero"></path></svg>
+               <svg viewBox="0 0 14 16">
+                  <path d="M7 0C3.504.004.6707 2.8373.6667 6.3333c0 4.3647 4.3586 8.3254 5.694 9.4354a.9993.9993 0 001.278 0c1.3333-1.11 5.6946-5.072 5.6946-9.436C13.3287 2.8367 10.496.004 7 0zm0 9.6667c-1.8407 0-3.3333-1.4927-3.3333-3.3334C3.6667 4.4927 5.1593 3 7 3s3.3333 1.4927 3.3333 3.3333c0 1.8407-1.4926 3.3334-3.3333 3.3334z" fill="currentColor" fill-rule="nonzero"></path></svg>
                <input type="text" class="search_text" id="addr_search" name="city" placeholder="Enter your address">
+              
+               <div class="searchDropWrap">
                   <ul id="searchDrop" class="dropdown-menu">
-                  <c:if test="${not empty getAddrList}">
-                  <c:forEach items="${getAddrList}" var="addr" varStatus="status">
-                  	<li><a href="#">${addr.store_addr}</a></li>
-                  </c:forEach>
-                  </c:if>
-                  <li>현재 위치로 검색하기</li>
-              </ul>
+                     <c:if test="${not empty getAddrList}">
+                        <c:forEach items="${getAddrList}" var="addr" varStatus="status">
+                           <li class="addr_store_addr" ><a href="javascript:aTag();" class="addr_store_anchor" id="${addr.store_addr}">${addr.store_addr}</a></li>
+                           <!-- 리스트의 첫 번째 id만 가능하다,,,, -->
+                        </c:forEach>
+                       
+                     </c:if>
+                     <li class="addr_store_addr">현재 위치로 검색하기</li>
+                  </ul>
+               </div>
                
-            </div>  
+            </div>
          </div>
-		
+      
          <div class="search-button">
             <button id="searchBtn" type="button">SEARCH</button>
          </div>
@@ -556,6 +568,9 @@ function displayMarker(locPosition, message) {
            console.log(frm.lat2.value);
            console.log(frm.lon2.value);
            
+           
+           
+           
            $(".brand_img").on("click", function(){
         var getId=$(this).attr("id");
            frm.action="<%=ctxPath%>/explore/searchBrand.do?brand="+getId;
@@ -571,49 +586,77 @@ function displayMarker(locPosition, message) {
                   frm.method="post";
                   frm.submit();
                   });
+        	$("#searchDrop").children().on("click", function(){
+        		var getId=$(this).attr("id");
+        		frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
+        		frm.method="post";
+        		frm.submit();
+        	})
            
            //추후 수정, searchBtn 클릭 시 해당 기능 (내일 01/06)
            // searchBtn 클릭하면 ajax를 통해서 데이터 리스트를 session에 담아서 가져오고
            // 해당부분 reload? 를 시켜줘야할것같아여.. --> el 태그로 불러와서 뿌려주는거라서.. 
-        		   // 자바스크립트만으로는 session에 담긴값을 얻어올수가 없기떄문에.. 
+                 // 자바스크립트만으로는 session에 담긴값을 얻어올수가 없기떄문에.. 
            $("#searchBtn").click(function(){
-        	   var getInputValue = $("#addr_search").val();
-        	   $.ajax({
-        		   url: "addrCheck.do",
-        		   data:	{
-        			   addr : getInputValue
-        		   },
-        		   success:	function(res){
-        			   console.log("받아오는건 잘 작동");
-        			   $("#addr_search #searchDrop").load(location.href + " #addr_search #searchDrop");
-        			   // 주소 목록 부분 리스트 로드
-        			  // $("주소목록부분").load(location.href + " 주소목록부분");
-        			   // 버튼을 클릭하면 주소 목록 부분이 보여짐
+              var getInputValue = $("#addr_search").val();
+              $.ajax({
+                 url: "addrCheck.do",
+                 data:   {
+                    addr : getInputValue
+                 },
+                 success:   function(res){
+                    console.log("받아오는건 잘 작동");
+                    $(".searchDropWrap ul").load(location.href + " .searchDropWrap ul .addr_store_addr");
+                    // 주소 목록 부분 리스트 로드
+                   // $("주소목록부분").load(location.href + " 주소목록부분");
+                    // 버튼을 클릭하면 주소 목록 부분이 보여짐
                      //  $("#머시기").show();
-        			   
-        		   },
-        		   error: function(request,status,error){
-        	        	 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-        	         }
-        	   }); 
-        	   
+                 },
+                 error: function(request,status,error){
+                       alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                   }
+              }); 
+              
            });
            
-           
-           
-           
            // 리스트를 클릭했을때 이동하는 기능
-<%--           	   
-        	   frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getInputValue;
+<%--                 
+              frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getInputValue;
                frm.method="post";
                /* frm.submit(); */
            }); --%>
            
           /*  $("#dropdownMenu").click(function(){
-        	  var getInputValue 
+             var getInputValue 
            }); */
        })
    };
+</script>
+<!-- a tag href javascript function -->
+<script>
+function aTag(){
+var frm = document.frm;
+// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+     navigator.geolocation.getCurrentPosition(function(position) {
+    lat2 = position.coords.latitude, // 현재 위치의 위도
+    lon2 = position.coords.longitude; // 현재 위치의 경도
+    console.log(frm.lat2.value);
+    console.log(frm.lon2.value);
+    frm.lat2.value = lat2;
+    frm.lon2.value = lon2;
+    console.log(frm.lat2.value);
+    console.log(frm.lon2.value);
+    $(".addr_store_anchor").on("click", function(){
+    	var getId=$(this).attr("id");
+        frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
+        frm.method="post";
+        frm.submit();
+    })
+    
+    });
+}
+
+
 </script>
 
 <!--  로그인 스크립트 ajax 통신  -->
@@ -633,7 +676,7 @@ function displayMarker(locPosition, message) {
            if(res1 == admin){
                location.href="./adminMain.jsp";
             }else if(res1==client){
-            	
+               
                $(".menu_btn").hide();
                $("#logoutBtn").show();
                $("#dropdownMenuButton").show();
@@ -641,7 +684,7 @@ function displayMarker(locPosition, message) {
                document.getElementById("loginCloseBtn").click();
                
             }else if(res1 == 'NotExist'){
-            	alert("일치하는 회원정보가 없습니다.");
+               alert("일치하는 회원정보가 없습니다.");
             }else{ //bizPartner일 경우, user_id받아와서 해당 페이지로 이동하게끔
                 location.href="<%=ctxPath%>/biz/menuList.do?storeId="+res1;
              }
@@ -654,35 +697,35 @@ function displayMarker(locPosition, message) {
       $.ajax({
          url:"client/clientLogout.do",
          success: function(res){
-        	console.log("succ 작동")
+           console.log("succ 작동")
             $(".menu_btn").show();
             $("#logoutBtn").hide();
             $("#dropdownMenuButton").hide();
             $("#MuiAvatar-root-id").css("visibility","hidden");
          },
          error: function(request,status,error){
-        	 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
          }
       });
    });
    
    $("#signup").on("click",function(){
-	      // 각종 유효성 체크 추가해야함 
-	         if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
-	         $.ajax({
-	            url:"client/clientRegister.do",
-	            data:{ client_name: $("#name").val(),
-	            	client_phone: $("#mobile").val(),
-	            	client_id: $("#emailRegister").val(),
-	            	client_pw: $("#passwordRegister").val()},
-	            success: function(res){   // 회원가입 완료시 창닫기
-	               document.getElementById("signupCloseBtn").click();
-	            }
-	         });
-	      }else{
-	         alert("모두 입력해주세요.");
-	      }
-	   });
+         // 각종 유효성 체크 추가해야함 
+            if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
+            $.ajax({
+               url:"client/clientRegister.do",
+               data:{ client_name: $("#name").val(),
+                  client_phone: $("#mobile").val(),
+                  client_id: $("#emailRegister").val(),
+                  client_pw: $("#passwordRegister").val()},
+               success: function(res){   // 회원가입 완료시 창닫기
+                  document.getElementById("signupCloseBtn").click();
+               }
+            });
+         }else{
+            alert("모두 입력해주세요.");
+         }
+      });
    
    // 아이디 중복체크 
    $("#emailRegister").change(function(){
@@ -733,7 +776,7 @@ function displayMarker(locPosition, message) {
             data:{ },
             success: function(res1){
                if(res1 == 'KeepLogin'){
-            	   $(".menu_btn").hide();
+                  $(".menu_btn").hide();
                    $("#dropdownMenuButton").show();
                    $("#MuiAvatar-root-id").css("visibility","visible");
                    $("#logoutBtn").show();
@@ -743,10 +786,10 @@ function displayMarker(locPosition, message) {
       });
    </script>
    <script>
-  	// My account 클릭시 editProfile 페이지로 이동
-  	$("#My_account_profile").click(function(){
-  		location.href="client/editProfile.do";
-  	});
+     // My account 클릭시 editProfile 페이지로 이동
+     $("#My_account_profile").click(function(){
+        location.href="client/editProfile.do";
+     });
    
    </script>
 

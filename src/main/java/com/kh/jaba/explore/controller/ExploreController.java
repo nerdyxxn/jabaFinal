@@ -26,7 +26,7 @@ public class ExploreController {
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	// brand-badge 검색 시 해당 브랜드 list 출력
-	@RequestMapping(value = "/explore/searchBrand.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/explore/searchBrand.do", method = RequestMethod.GET)
 	public ModelAndView searchBrand(ModelAndView mv, HttpServletRequest request) {
 		logger.info("----- Brand 검색 진입 -----");
 		String brand = request.getParameter("brand");

@@ -87,7 +87,7 @@ public class IndexController {
 	// 
 	@RequestMapping(value = "/addrCheck.do", method = RequestMethod.GET)
 	@ResponseBody
-	public void addrCheck(ModelAndView mv, HttpServletRequest request) {
+	public void addrCheck(HttpServletRequest request) {
 		String addr = request.getParameter("addr");
 		// 요거 될 지, 안 될 지 모르겠다,,,,,,,,
 		// 참고한 블로그는 param을 model로 불러서 model.addAttribute로 넣었는데, 우리는 하던 대로 진행
