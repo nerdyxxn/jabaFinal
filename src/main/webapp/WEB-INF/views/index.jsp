@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%
    String ctxPath = request.getContextPath();
@@ -28,15 +27,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- RESET -->
-<link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
+<link href="./css/html5_reset.css" rel="stylesheet">
 <!-- HEADER CSS -->
-<link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
+<link href="./css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
-<link href="<%=ctxPath%>/resources/css/section.css" rel="stylesheet">
+<link href="./css/section.css" rel="stylesheet">
 <!-- FOOTER CSS -->
-<link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
-<!-- INDEX CSS -->
-<link href="<%=ctxPath%>/resources/css/index.css" rel="stylesheet">
+<link href="./css/footer.css" rel="stylesheet">
+
+<style type="text/css"></style>
+
 
 <script>
 $(function(){
@@ -53,13 +53,333 @@ $(function(){
 })
 </script>
 
+
+<style>
+body {
+   margin: 0;
+   width: 100%;
+   height: 100%;
+   line-height: 1.43;
+}
+
+div {
+   display: block;
+}
+
+input {
+   border: none;
+}
+</style>
+<!-- HEADER -->
+<style>
+/* dropdown 메뉴 세팅 */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 8px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+}
+.menu-item__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.dropdown-itemss span {
+  margin: auto;
+  width: 50%;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 4px 24px;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    
+    font-family: Inter,sans-serif;
+   font-size: 14px;
+   font-weight: 400;
+    line-height: 1.75;
+}
+
+/* 원형 아이콘 */
+.jss98 {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    font-size: 10px;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: Inter,sans-serif;
+    user-select: none;
+    border-radius: 50%;
+    justify-content: center;
+    
+    font-size: 10px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
+
+.MuiAvatar-root {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    overflow: hidden;
+    position: relative;
+    font-size: 10px;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: Inter,sans-serif;
+    user-select: none;
+    border-radius: 50%;
+    justify-content: center;
+}
+
+/* 화살표 아이콘 버튼 */
+.jss99 {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+}
+.MuiIconButton-sizeSmall {
+    padding: 3px;
+    font-size: 1.125rem;
+}
+.MuiIconButton-root {
+    flex: 0 0 auto;
+    color: rgba(0, 0, 0, 0.54);
+    padding: 12px;
+    overflow: visible;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 50%;
+}
+.MuiButtonBase-root {
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    align-items: center;
+    user-select: none;
+    border-radius: 0;
+    vertical-align: middle;
+    -moz-appearance: none;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.MuiIconButton-label {
+    width: 100%;
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+}
+.MuiIconButton-sizeSmall {
+    padding: 3px;
+    font-size: 1.125rem;
+}
+.MuiSvgIcon-root {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+}
+.MuiTouchRipple-root {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+    overflow: hidden;
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+}
+</style>
+<!-- MAIN -->
+<style>
+main {
+   width: 100%;
+   max-width: 100vw;
+}
+</style>
+<!--NAVIGATOR -->
+<style>
+</style>
+<!-- SECTION -->
+<style>
+@media only screen and (min-width: 1200px) {
+   .container {
+      width: 980px;
+   }
+}
+
+.brand_img {
+ width: 130px;
+ height: 80px;
+ border: none;
+ border-radius: 12px;
+}
+
+</style>
+
+<!-- ASIDE -->
+
+<style>
+</style>
+
+<!-- ASIDE -->
+<style>
+</style>
+<!--Modal-->
+<style>
+</style>
+<!-- FOOTER -->
+<!-- FOOTER -->
+<style>
+</style>
+<!-- MODAL -->
+<style>
+/* 모달 전체 세팅 */
+.modal-dialog.modal-size {
+   width: 444px;
+   height: auto;
+   margin: 0;
+   padding: 0;
+}
+
+.modal-content.modal-size {
+   height: auto;
+   min-height: 100%;
+   border-radius: 16px;
+}
+
+.modal {
+   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+   .modal:before {
+      display: inline-block;
+      vertical-align: middle;
+      content: " ";
+      height: 100%;
+   }
+}
+
+.modal-dialog.modal-size {
+   display: inline-block;
+   text-align: left;
+   vertical-align: middle;
+}
+
+/* 모달 header 세팅 */
+.modal-header {
+   padding: 32px;
+   display: flex;
+   width: 100%;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-bottom: 1px solid rgba(20, 23, 26, .08);
+   text-align: center;
+}
+
+.header-icon {
+   display: inline-flex;
+   padding: 16px;
+   border-radius: 16px;
+   margin-bottom: 16px;
+}
+
+.close {
+   color: rgba(0, 0, 0, 0.54);
+   position: absolute !important;
+   top: 25px;
+   right: 25px;
+}
+
+/* 모달 body 세팅 */
+.modal-body {
+   flex: 1 1 auto;
+   padding: 32px 32px 16px 32px;
+   overflow-y: auto;
+   -webkit-overflow-scrolling: touch;
+}
+
+/* 모달 footer 세팅 */
+.modal-footer {
+   flex: 0 0 auto;
+   display: flex;
+   padding: 16px 32px 32px 32px;
+   align-items: center;
+   justify-content: center;
+   border-top: 0;
+}
+
+.btnChk {
+   width: 100%;
+   height: 50px;
+   background-color: #36727C;
+   color: white;
+   border-radius: 12px;
+   border: 0;
+   font-weight: bold;
+   font-size: 1.5rem;
+}
+
+#logoutBtn{
+   display:none;
+}
+
+#dropdownMenuButton{
+	display:none;
+}
+
+#MuiAvatar-root-id{
+	visibility:hidden;
+}
+
+</style>
 </head>
 <body>
    <!-- HEADER -->
    <header>
 		<div class="header_container">
 			<div class="logo">
-				<a href="index.jsp"><img src="<%=ctxPath%>/resources/images/plogo2.png" style="width:53px; height:41px;"></a>
+				<a href="index.jsp"><img src="./images/jaba_english_white.png"></a>
 			</div>
 			<div class="dropdown">
 				<div class="menu">
@@ -159,7 +479,7 @@ $(function(){
                   <br> <span style="font-weight: bold;"> Password </span> <span style="float: right"> <a href="#" style="font-weight: normal;">Forgot&nbsp;password?</a>
 
 
-                  </span> <input type="password" class="signin-input" id="pwd" name="pwd">
+                  </span> <input type="password" class="signin-input" id="pw" name="pw">
                </div>
             </div>
 
@@ -249,27 +569,27 @@ $(function(){
    <nav></nav>
    <!-- SECTION -->
 
-   <section id="home" style="background-image: url(<%=ctxPath%>/resources/images/c3.png), url(<%=ctxPath%>/resources/images/c5.png); background-repeat:no-repeat; background-position: left bottom, right center;">
+   <section id="home">
       <div class="container">
          <h1>
-            Favourites at<br>your fingertips.<br>
+            GRAB whatever<br> you want<br>
          </h1>
-<!--         <p style="font-size:14px; color:#111111; font-weight:bold;">order from amazing cafes.</p> -->
+         <p>order from amazing cafes.</p>
          
-         <div class="search-bar" style="margin-top:10px;">
-            <div class="MuiInputBase-root jss38">
-               <svg viewBox="0 0 14 16"><path d="M7 0C3.504.004.6707 2.8373.6667 6.3333c0 4.3647 4.3586 8.3254 5.694 9.4354a.9993.9993 0 001.278 0c1.3333-1.11 5.6946-5.072 5.6946-9.436C13.3287 2.8367 10.496.004 7 0zm0 9.6667c-1.8407 0-3.3333-1.4927-3.3333-3.3334C3.6667 4.4927 5.1593 3 7 3s3.3333 1.4927 3.3333 3.3333c0 1.8407-1.4926 3.3334-3.3333 3.3334z" fill="currentColor" fill-rule="nonzero"></path></svg>
-               <input type="text" class="search_text" id="addr_search" name="city" placeholder="Enter your address">
+         <div class="search-bar">
+            <div class="jss38">
+               <input type="text" class="search_text" id="addr_search" name="city">
             </div>
          </div>
 
          <div class="search-button">
-            <button id="searchBtn">SEARCH</button>
+            <button  id="searchBtn">검색</button>
          </div>
          
       </div>
 
    </section>
+
    <!-- SECTION -->
    <section id="brands">
       <div class="container">
@@ -279,42 +599,42 @@ $(function(){
          <div data-index="0" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
             <div>
                <div class="brand-badge">
-                  <img src="<%=ctxPath%>/resources/images/logo_starbucks.jpg" class="active brand_img" id="스타벅스">
+                  <img src="./images/logo_starbucks.jpg" class="active brand_img" id="스타벅스" >
                </div>
             </div>
          </div>
          <div data-index="1" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_coffeebean.png" class="active brand_img" id="커피빈">
+                  <img src="./images/logo_coffeebean.png" class="active brand_img" id="커피빈">
                </div>
             </div>
          </div>
          <div data-index="2" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_duckes.png" class="active brand_img" id="듁스" >
+                  <img src="./images/logo_duckes.png" class="active brand_img" id="듁스">
                </div>
             </div>
          </div>
          <div data-index="3" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_ant.png" class="active brand_img" id="앤드러사이트">
+                  <img src="./images/logo_ant.png" class="active brand_img" id="앤드러사이트">
                </div>
             </div>
          </div>
          <div data-index="4" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_paul.png" class="active brand_img" id="폴바셋">
+                  <img src="./images/logo_paul.png" class="active brand_img" id="폴바셋">
                </div>
             </div>
          </div>
          <div data-index="5" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_hollys.png" class="active brand_img">
+                  <img src="./images/logo_hollys.png" class="active brand_img">
                </div>
             </div>
          </div>
@@ -448,7 +768,7 @@ function displayMarker(locPosition, message) {
       <div class="container">
          <div class="row">
             <div class="footer_logo">
-               <img src="<%=ctxPath%>/resources/images/jaba_english_white.png">
+               <img src="images/jaba_english_white.png">
             </div>
             <div class="footer_links">
                <ul>
@@ -510,6 +830,7 @@ function displayMarker(locPosition, message) {
       <input type="hidden" name="lon2">      
    </form>
    <script>
+   
    if (navigator.geolocation) {
       var frm = document.frm;
        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -522,10 +843,11 @@ function displayMarker(locPosition, message) {
            frm.lon2.value = lon2;
            console.log(frm.lat2.value);
            console.log(frm.lon2.value);
+          
            
            $(".brand_img").on("click", function(){
         var getId=$(this).attr("id");
-           frm.action="<%=ctxPath%>/explore/searchBrand.do?brand="+getId;
+           frm.action="<%=ctxPath%>/store/storeSearch.do?brand="+getId;
            frm.method="post";
            frm.submit();
            });
@@ -543,18 +865,23 @@ function displayMarker(locPosition, message) {
                frm.method="post";
                frm.submit();
            });
+     
+          
+           
        })
    };
-</script>
+   
+   
+   </script>
 
-<!--  로그인 스크립트 ajax 통신  -->
+   <!--  로그인 스크립트 ajax 통신  -->
 <script>
    console.log();
    $("#signin").on("click",function(){
       $.ajax({
          url:"client/clientLogin.do",
          data: { email: $("#email").val(),
-               pw: $("#pwd").val()},
+               pw: $("#pw").val()},
          success: function(res1){
             console.log(res1);
             var biz = "BizPartner";
@@ -563,7 +890,7 @@ function displayMarker(locPosition, message) {
             // res1 이 BizPartner 이면 BizPartner 페이지로 이동.
            if(res1 == admin){
                location.href="./adminMain.jsp";
-            }else if(res1==client){
+            }else if(res1 == client){
             	
                $(".menu_btn").hide();
                $("#logoutBtn").show();
@@ -580,40 +907,38 @@ function displayMarker(locPosition, message) {
       });
    });
    
-   // 로그아웃
+   
    $("#logoutBtn").on("click",function(){
       $.ajax({
          url:"client/clientLogout.do",
-         success: function(res){
-        	console.log("succ 작동")
+         data:   {},
+         success: function(){
             $(".menu_btn").show();
             $("#logoutBtn").hide();
             $("#dropdownMenuButton").hide();
             $("#MuiAvatar-root-id").css("visibility","hidden");
-         },
-         error: function(request,status,error){
-        	 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
          }
       });
    });
    
    $("#signup").on("click",function(){
-	      // 각종 유효성 체크 추가해야함 
-	         if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
-	         $.ajax({
-	            url:"client/clientRegister.do",
-	            data:{ client_name: $("#name").val(),
-	            	client_phone: $("#mobile").val(),
-	            	client_id: $("#emailRegister").val(),
-	            	client_pw: $("#passwordRegister").val()},
-	            success: function(res){   // 회원가입 완료시 창닫기
-	               document.getElementById("signupCloseBtn").click();
-	            }
-	         });
-	      }else{
-	         alert("모두 입력해주세요.");
-	      }
-	   });
+      // 각종 유효성 체크 추가해야함 
+         if($("#emailRegister").val() != "" && $("#passwordRegister").val() !== ""){
+         $.ajax({
+            url:"client/clientRegister.do",
+            data:{ client_name: $("#name").val(),
+            	client_phone: $("#mobile").val(),
+            	client_id: $("#emailRegister").val(),
+            	client_pw: $("#passwordRegister").val()},
+            success: function(){   // 회원가입 완료시 창닫기
+               document.getElementById("signupCloseBtn").click();
+            }
+         });
+      }else{
+         alert("모두 입력해주세요.");
+      }
+   });
+   
    
    // 아이디 중복체크 
    $("#emailRegister").change(function(){
@@ -668,16 +993,23 @@ function displayMarker(locPosition, message) {
                    $("#dropdownMenuButton").show();
                    $("#MuiAvatar-root-id").css("visibility","visible");
                    $("#logoutBtn").show();
+                  
                }
             }
          });
       });
    </script>
    <script>
-  	// My account 클릭시 editProfile 페이지로 이동
-  	$("#My_account_profile").click(function(){
-  		location.href="client/editProfile.do";
-  	});
+   	// My account 클릭시 My_account_profile 페이지로 이동
+   	$("#My_account_profile").click(function(){
+   		$.ajax({
+            url:"member/myPageList.do",
+            data:{ },
+            success: function(res1){
+            	location.href="./My_account_profile.jsp";
+               }
+   		});
+   	});
    
    </script>
 
