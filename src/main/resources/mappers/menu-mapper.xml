@@ -32,13 +32,13 @@
 		
 		<!-- store_id과 menu_name을 통해 menu '하나'를 출력 -->
 		<!-- menu_name 역시 unique -->
-		<select id="selectOneMenu" parameterType="string" resultType="arraylist" resultMap="resultMenu">
-			select * from menu where store_id='%'||#{store_id}||'%' and menu_name='%'||#{menu_name}||'%'
+		<select id="selectOneMenu" parameterType="Menu" resultType="Menu">
+			select * from menu where store_id=#{store_id} and menu_name=#{menu_name}
 		</select>
 		
 		<!-- menu_id -> menu_name  -->
 		<select id="selectMenuName" parameterType="string" resultType="string">
-			select menu_name from menu where menu_id='%'||#{menu_id}||'%'
+			select menu_name from menu where menu_id=#{menu_id}
 		</select>
 		
 </mapper>

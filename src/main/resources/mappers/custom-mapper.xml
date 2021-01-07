@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Custom">
+   <resultMap type="Custom" id="resultCustom">
+      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+      <id property="custom_id" column="custom_id" />
+      <result property="menu_id" column="menu_id" />
+      <result property="custom_name" column="custom_name" />
+      <result property="custom_price" column="custom_price" />
+      <result property="custom_category" column="custom_category" />
+   </resultMap>
+   
+      
+      <!-- distinct를  통해 메뉴 카테고리의 중복을 제거하고, 카테고리 개수와 이름을 출력-->
+      <!-- 왠지 오류가 날것같은 resultMap="resultMenu" 을 일단 빼봄 -->
+      <select id="selectCustomCategoryList" parameterType="string" resultType="arraylist" resultMap="resultCustom">
+         select distinct custom_category, menu_id from custom WHERE menu_id=#{menu_id} order by custom_category asc
+      </select>
+      
+      <!-- menu_id와 CUSTOM_CATEGORY를 통해 menu list를 출력 -->
+      <select id="selectListByCustomCategory" parameterType="Custom" resultType="arraylist" resultMap="resultCustom">
+         select * from custom where menu_id=#{menu_id} and custom_category=#{custom_category}
+      </select>
+      
+
+      
+</mapper>

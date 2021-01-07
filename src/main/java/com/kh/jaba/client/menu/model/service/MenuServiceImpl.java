@@ -34,6 +34,12 @@ public class MenuServiceImpl implements MenuService{
 		return menuDao.selectListByCategory(m);
 	}
 
+	// selectOneMenu
+	@Override
+	public Menu selectOneMenu(Menu m) {
+		return menuDao.selectOneMenu(m);
+	}
+
 	
 
 	

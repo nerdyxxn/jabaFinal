@@ -61,4 +61,9 @@ public class MenuDao {
 		return sqlSession.selectList("Menu.selectListByCategory", m);
 	}
 	
+	// selectOneMenu
+	public Menu selectOneMenu(Menu m) {
+		return sqlSession.selectOne("Menu.selectOneMenu", m);
+	}
+	
 }

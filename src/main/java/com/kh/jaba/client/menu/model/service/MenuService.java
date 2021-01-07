@@ -16,5 +16,8 @@ public interface MenuService {
 	// 카테고리 이름이 똑같은 메뉴들끼리 List를 만드는 메소드 
 	public List<Menu> selectListByCategory(Menu m);
 	
+	// selectOneMenu
+	public Menu selectOneMenu(Menu m);
+	
 
 }

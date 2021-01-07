@@ -41,6 +41,16 @@ public class Biz {
 		this.store_lng = store_lng;
 		this.store_distance = store_distance;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Biz [store_id=" + store_id + ", store_pw=" + store_pw + ", store_addr=" + store_addr + ", store_name="
+				+ store_name + ", store_time=" + store_time + ", store_img=" + store_img + ", store_description="
+				+ store_description + ", store_lat=" + store_lat + ", store_lng=" + store_lng + ", store_distance="
+				+ store_distance + "]";
+	}
+	
 	public String getStore_id() {
 		return store_id;
 	}

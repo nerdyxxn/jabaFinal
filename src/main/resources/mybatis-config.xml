@@ -15,6 +15,8 @@
 			alias="Search" />
 		<typeAlias type="com.kh.jaba.client.menu.model.domain.Menu"
 			alias="Menu" />
+		<typeAlias type="com.kh.jaba.client.custom.model.domain.Custom"
+			alias="Custom" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
@@ -22,5 +24,6 @@
 		<mapper resource="mappers/biz-mapper.xml" />
 		<mapper resource="mappers/search-mapper.xml" />
 		<mapper resource="mappers/menu-mapper.xml" />
+		<mapper resource="mappers/custom-mapper.xml" />
 	</mappers> 
 </configuration>

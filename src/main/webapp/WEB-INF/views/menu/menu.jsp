@@ -459,7 +459,7 @@
          var aa = $(obj).children("div").children(".product_name").children().children("span").text();
         // 메뉴 모달창 하단 - + 버튼
          $.ajax({
-            url: "<%=ctxPath%>/menu/menuDetailView.do",
+            url: "<%=ctxPath%>/menu/selectMenu.do",
             data : {
                menu_name : aa
             },
