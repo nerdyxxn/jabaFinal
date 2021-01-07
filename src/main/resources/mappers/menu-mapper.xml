@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Menu">
+	<resultMap type="Menu" id="resultMenu">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<id property="menu_id" column="menu_id" />
+		<result property="store_id" column="store_id" />
+		<result property="menu_name" column="menu_name" />
+		<result property="menu_price" column="menu_price" />
+		<result property="menu_img" column="menu_img" />
+		<result property="menu_description" column="menu_description" />
+		<result property="menu_category" column="menu_category" />
+		<result property="menu_available" column="menu_available" />
+	</resultMap>
+	
+		<!-- store 페이지 진입 시, 해당 store의 전체 menu list 출력 -->
+		<!-- store_name을 통해 store_id를 뽑아내는 과정이 필요 -->
+		<select id="selectMenuList" parameterType="string" resultType="arraylist" resultMap="resultMenu">
+			select * from menu where store_id='%'||#{store_id}||'%'
+		</select>
+		
+		<!-- distinct를  통해 메뉴 카테고리의 중복을 제거하고, 카테고리 개수와 이름을 출력-->
+		<select id="selectCategoryList" parameterType="string" resultType="arraylist" resultMap="resultMenu">
+			select distinct menu_category from menu where store_id='%'||#{store_id}||'%'
+		</select>
+		
+		<!-- store_id와 menu_category를 통해 menu list를 출력 -->
+		<select id="selectListByCategory" parameterType="string" resultType="arraylist" resultMap="resultMenu">
+			select * from menu where store_id='%'||#{store_id}||'%' and menu_category='%'||#{menu_category}||'%'
+		</select>
+		
+		<!-- store_id과 menu_name을 통해 menu '하나'를 출력 -->
+		<!-- menu_name 역시 unique -->
+		<select id="selectOneMenu" parameterType="string" resultType="arraylist" resultMap="resultMenu">
+			select * from menu where store_id='%'||#{store_id}||'%' and menu_name='%'||#{menu_name}||'%'
+		</select>
+		
+		<!-- menu_id -> menu_name  -->
+		<select id="selectMenuName" parameterType="string" resultType="string">
+			select menu_name from menu where menu_id='%'||#{menu_id}||'%'
+		</select>
+		
+</mapper>
