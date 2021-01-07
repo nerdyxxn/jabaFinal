@@ -25,6 +25,11 @@
 <!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- MODAL -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- HEADER CSS -->
 <link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
@@ -33,6 +38,8 @@
 <link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
 <!-- EXPLORE CSS -->
 <link href="<%=ctxPath%>/resources/css/explore.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <script>
 $(function(){
@@ -53,6 +60,19 @@ $(function(){
    
  })
 })
+
+function searchToggle(obj, evt){
+    var container = $(obj).closest('.search-wrapper');
+        if(!container.hasClass('active')){
+            container.addClass('active');
+            evt.preventDefault();
+        }
+        else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
+            container.removeClass('active');
+            // clear input
+            container.find('.search-input').val('');
+        }
+}
 </script>
 </head>
 <body>
@@ -71,9 +91,7 @@ $(function(){
 	<!-- SECTION -->
 	<section id="home">
 		<div class="container">
-			<h1>
-				No pickup line.<br> <br>
-			</h1>
+			<span class="homeSpan">No pickup line.</span>
 		</div>
 	</section>
 	<!-- SECTION 2 -->
@@ -86,29 +104,10 @@ $(function(){
 				<div class="search_loc">
 					<button id="avenue"><%=avenue%></button>
 				</div>
-				<div class="search-term">
-					<button
-						class="MuiButtonBase-root MuiIconButton-root search-term__icon  MuiIconButton-sizeSmall jss263"
-						tabindex="0" type="button">
-						<span class="MuiIconButton-label"> <svg
-								class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24"
-								aria-hidden="true" role="presentation">
-				<path
-									d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-				</path>
-				</svg>
-						</span>
-						<div class="MuiTouchRipple-root"></div>
-					</button>
-				</div>
-				<div id="hidden_term">
-					<button class="hidden_term_all">
-						<div id="hidden_input">
-							<input type="text" placeholder="Acai or Latte">
-						</div>
-						<button class="hidden_term_close">X</button>
-					</button>
-
+				<div class="searchBar">
+				<form action="">
+					<input type="text"><i class="fa fa-search align-self-center"></i>
+				</form>
 				</div>
 			</div>
 		</div>

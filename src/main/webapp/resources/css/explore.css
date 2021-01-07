@@ -7,8 +7,7 @@ body {
 	line-height: 1.43;
 	color: rgba(0, 0, 0, 0.87);
 	margin: 0;
-	font-size: 0.875rem;
-	font-family: Inter, sans-serif;
+    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
 	font-weight: 400;
 	line-height: 1.43;
 }
@@ -50,6 +49,11 @@ section {
 a {
 	text-decoration: none;
 }
+
+.homeSpan {
+	font-size: 44px;
+	font-weight: bold;
+}
 	
 /* SECTION 2 */
 .mini {
@@ -72,10 +76,9 @@ a {
 }
 
 .mini_row button {
-	border: 1px solid rgba(132, 146, 166, .2) !important;
-	color: black;
 	margin: 0 8px 0 0;
-	font-weight: normal;
+	font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+	font-size: 12px;
 }
 
 .search-term {
@@ -145,4 +148,82 @@ section .container .store_list_grid {
 
 #logoutBtn{
 	display:none;
+}
+
+.store_card_info {
+	font-size: 12px;
+}
+
+/* search bar 세팅 */
+form{
+    position: relative;
+    transition: all 1s;
+    width: 34.45px;
+    height: 34.45px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+i {
+    position: relative;
+    transition: all 1s;
+    width: 34.45px;
+    height: 34.45px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+    vertical-align:middle;
+}
+
+input{
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 100%;;
+    height: 34.45px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    border-radius: 20px;
+    padding: 0 20px;
+    background-color: #112732;
+}
+
+.fa{
+    box-sizing: border-box;
+/*     padding: 10px; */
+    width: 34.35px;
+    height: 34.35px;
+    position: absolute;
+    top: -4px;
+    right: 0;
+    border-radius: 50%;
+    border-color: transparent;
+    color: #112732;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+form:hover{
+    width: 200px;
+    cursor: pointer;
+}
+
+form:hover input{
+    display: block;
+}
+
+form:hover .fa{
+    background: #112732;
+    color: white;
 }
