@@ -125,7 +125,7 @@ $(function(){
 					<c:if test="${not empty storeList}">
 						<c:forEach items="${storeList}" var="storeVO" varStatus="s">
 							<!--  주소부분 정확하게 확인하고 수정해야함 -->
-							<a href="<%=ctxPath%>/menu/explore.do?storename=${storeVO.store_name}">
+							<a href="<%=ctxPath%>/menu/menuList.do?storename=${storeVO.store_name}">
 								<div class="store_card">
 									<div class="store_card_image">
 										<img src="<%=ctxPath%>${storeVO.store_img}">

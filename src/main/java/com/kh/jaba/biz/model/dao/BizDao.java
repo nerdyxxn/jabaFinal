@@ -20,4 +20,9 @@ public class BizDao {
 	public int bizCheckId(String store_id) {
 		return sqlSession.selectOne("Biz.storeCheckId", store_id);
 	}
+	
+	// 스토어 name 으로 Biz를 반환 
+	public Biz selectStoreByName(String store_name) {
+		return sqlSession.selectOne("Biz.selectStore",store_name);
+	}
 }

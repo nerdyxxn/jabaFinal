@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.jaba.explore.model.domain.Search;
 import com.kh.jaba.explore.model.service.SearchService;
-import com.kh.jaba.index.controller.IndexController;
 
 @Controller
 public class ExploreController {
@@ -23,10 +22,10 @@ public class ExploreController {
 	@Autowired
 	private SearchService searchService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExploreController.class);
 	
 	// brand-badge 검색 시 해당 브랜드 list 출력
-	@RequestMapping(value = "/explore/searchBrand.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/explore/searchBrand.do", method = RequestMethod.POST)
 	public ModelAndView searchBrand(ModelAndView mv, HttpServletRequest request) {
 		logger.info("----- Brand 검색 진입 -----");
 		String brand = request.getParameter("brand");

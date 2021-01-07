@@ -20,6 +20,11 @@
 		select * from store where store_id=#{store_id} and store_pw=#{store_pw}
 	</select>
 	
+	<!-- 선택한 store_name을 통해서 유일한 store의 정보를 반환 -->
+	<select id="selectStore" parameterType="String" resultType="Biz">
+		select * from store where store_name =#{store_name}
+	</select>
+	
 	<!-- Store id 중복체크 -->
 	<select id="storeCheckId" parameterType="String" resultType="int">
 		select count(*) from store where store_id=#{store_id}

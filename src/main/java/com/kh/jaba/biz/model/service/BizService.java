@@ -9,4 +9,8 @@ public interface BizService {
 	
 	// biz 중복체크
 	public int bizCheckId(String store_id);
+	
+	// 스토어 name 으로 Biz를 반환 
+	public Biz selectStoreByName(String store_name);
+	
 }

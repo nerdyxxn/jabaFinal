@@ -568,9 +568,6 @@ function displayMarker(locPosition, message) {
            console.log(frm.lat2.value);
            console.log(frm.lon2.value);
            
-           
-           
-           
            $(".brand_img").on("click", function(){
         var getId=$(this).attr("id");
            frm.action="<%=ctxPath%>/explore/searchBrand.do?brand="+getId;
@@ -586,12 +583,6 @@ function displayMarker(locPosition, message) {
                   frm.method="post";
                   frm.submit();
                   });
-        	$("#searchDrop").children().on("click", function(){
-        		var getId=$(this).attr("id");
-        		frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
-        		frm.method="post";
-        		frm.submit();
-        	})
            
            //추후 수정, searchBtn 클릭 시 해당 기능 (내일 01/06)
            // searchBtn 클릭하면 ajax를 통해서 데이터 리스트를 session에 담아서 가져오고
@@ -619,16 +610,6 @@ function displayMarker(locPosition, message) {
               
            });
            
-           // 리스트를 클릭했을때 이동하는 기능
-<%--                 
-              frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getInputValue;
-               frm.method="post";
-               /* frm.submit(); */
-           }); --%>
-           
-          /*  $("#dropdownMenu").click(function(){
-             var getInputValue 
-           }); */
        })
    };
 </script>
@@ -646,12 +627,14 @@ var frm = document.frm;
     frm.lon2.value = lon2;
     console.log(frm.lat2.value);
     console.log(frm.lon2.value);
+    	
     $(".addr_store_anchor").on("click", function(){
     	var getId=$(this).attr("id");
         frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
         frm.method="post";
         frm.submit();
-    })
+    });
+        
     
     });
 }

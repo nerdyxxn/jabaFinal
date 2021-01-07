@@ -29,4 +29,11 @@ public class BizServiceImpl implements BizService{
 		return bizDao.bizCheckId(store_id);
 	}
 
+	// 스토어 name 으로 Biz를 반환 
+	@Override
+	public Biz selectStoreByName(String store_name) {
+		// TODO Auto-generated method stub
+		return bizDao.selectStoreByName(store_name);
+	}
+
 }
