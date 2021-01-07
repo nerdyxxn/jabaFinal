@@ -9,8 +9,10 @@
 }
 %>
 <%
-	String avenue = request.getParameter("city");
-	String brand = request.getParameter("brand");
+	String avenue = request.getParameter("addr");
+	if(avenue==null){
+		avenue=request.getParameter("brand");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -70,7 +72,7 @@ $(function(){
 	<section id="home">
 		<div class="container">
 			<h1>
-				<%=brand %><br> <br>
+				No pickup line.<br> <br>
 			</h1>
 		</div>
 	</section>
@@ -116,8 +118,7 @@ $(function(){
 		<div id="store_list">
 			<div class="container">
 				<div class="row-head">
-					<h2>
-						PICK UP near <%=avenue%></h2>
+					
 				</div>
 			</div>
 			<div class="container">
