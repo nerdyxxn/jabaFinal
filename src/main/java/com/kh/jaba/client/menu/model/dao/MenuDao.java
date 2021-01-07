@@ -39,10 +39,26 @@ public class MenuDao {
 	<select id="selectMenuName" parameterType="string" resultType="string">
 		select menu_name from menu where menu_id='%'||#{menu_id}||'%'
 	</select>*/
-	// store 진입 시 해당 store menu list
+	
+	// 처음에 해당매장에있는 메뉴의 카테고리 리스트를 불러오고 
+	// 카테고리 리스트에 해당하는 메뉴의 리스트들을 각각 불러와여 
+	// List -- 카테고리별로 분류~~ --> List 각각 카테고리별로 분류된 메뉴리스트 
+	
+	
+	// store_id 로 해당메장의 모든 메뉴의 리스트를 불러오는 메소드 
 	public List<Menu> selectMenuList(String store_id){
-		return sqlSession.selectList("selectMenuList", store_id);
+		return sqlSession.selectList("Menu.selectMenuList", store_id);
 	}
 	
+	// 카테고리 이름을 가지고와서 List를 만드는 메소드
+	// --> List<Menu> 
+	public List<Menu> selectCategoryList(String store_id){
+		return sqlSession.selectList("Menu.selectCategoryList", store_id);
+	}
+
+	// 카테고리 이름이 똑같은 메뉴들끼리 List를 만드는 메소드 
+	public List<Menu> selectListByCategory(Menu m){
+		return sqlSession.selectList("Menu.selectListByCategory", m);
+	}
 	
 }

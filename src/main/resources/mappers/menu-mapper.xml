@@ -20,13 +20,14 @@
 		</select>
 		
 		<!-- distinct를  통해 메뉴 카테고리의 중복을 제거하고, 카테고리 개수와 이름을 출력-->
+		<!-- 왠지 오류가 날것같은 resultMap="resultMenu" 을 일단 빼봄 -->
 		<select id="selectCategoryList" parameterType="string" resultType="arraylist" resultMap="resultMenu">
-			select distinct menu_category from menu where store_id='%'||#{store_id}||'%'
+			select distinct menu_category, store_id from menu where store_id=#{store_id} order by menu_category asc
 		</select>
 		
 		<!-- store_id와 menu_category를 통해 menu list를 출력 -->
-		<select id="selectListByCategory" parameterType="string" resultType="arraylist" resultMap="resultMenu">
-			select * from menu where store_id='%'||#{store_id}||'%' and menu_category='%'||#{menu_category}||'%'
+		<select id="selectListByCategory" parameterType="Menu" resultType="arraylist" resultMap="resultMenu">
+			select * from menu where store_id=#{store_id} and menu_category=#{menu_category}
 		</select>
 		
 		<!-- store_id과 menu_name을 통해 menu '하나'를 출력 -->

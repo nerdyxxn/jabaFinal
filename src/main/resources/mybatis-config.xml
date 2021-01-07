@@ -13,11 +13,14 @@
 			alias="Biz" />
 		<typeAlias type="com.kh.jaba.explore.model.domain.Search"
 			alias="Search" />
+		<typeAlias type="com.kh.jaba.client.menu.model.domain.Menu"
+			alias="Menu" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
 		<mapper resource="mappers/admin-mapper.xml" />
 		<mapper resource="mappers/biz-mapper.xml" />
 		<mapper resource="mappers/search-mapper.xml" />
+		<mapper resource="mappers/menu-mapper.xml" />
 	</mappers> 
 </configuration>
