@@ -44,12 +44,13 @@ section {
 
 #home {
 	height: 350px;
+	padding: 0;
 }
 
 a {
 	text-decoration: none;
 }
-
+	
 /* SECTION 2 */
 .mini {
 	padding: 3px 0;
