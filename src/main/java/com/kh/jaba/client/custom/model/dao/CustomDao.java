@@ -20,5 +20,9 @@ public class CustomDao {
 	public List<Custom> selectListByCustomCategory(Custom c){
 		return sqlSession.selectList("Custom.selectListByCustomCategory", c);
 	}
+	
+	public Custom selectOneCustom(Custom c) {
+		return sqlSession.selectOne("Custom.selectOneCustom", c);
+	}
 
 }

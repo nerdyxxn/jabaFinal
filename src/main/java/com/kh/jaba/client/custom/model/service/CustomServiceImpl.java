@@ -26,5 +26,10 @@ public class CustomServiceImpl implements CustomService {
 	public List<Custom> selectListByCustomCategory(Custom c) {
 		return customDao.selectListByCustomCategory(c);
 	}
+
+	@Override
+	public Custom selectOneCustom(Custom c) {
+		return customDao.selectOneCustom(c);
+	}
 	
 }

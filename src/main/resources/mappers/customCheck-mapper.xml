@@ -9,7 +9,7 @@
    </resultMap>
 
 
-   <insert id="insertCustomCheck" parameterType="resultCustomCheck"
+   <insert id="insertCustomCheck" parameterType="CustomCheck"
       flushCache="true" statementType="PREPARED">
       insert into Custom_check (custom_check_id, custom_id, order_id) values (('K'
       || LPAD(CUSTOM_SEQ.nextval, 5, 0)),#{custom_id},#{order_id})

@@ -73,8 +73,6 @@ public class OrderController {
 				out.print("OrderFail");
 			}
 		
-		
-		
 		out.flush();
 		out.close();
 	}

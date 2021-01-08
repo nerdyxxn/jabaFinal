@@ -587,11 +587,12 @@
             var customCheckName = $(".chkbox").eq(i).next().text();
 
             $.ajax({
-               url: "<%=ctxPath%>/menu/customChekcInsert.do",
+               url: "<%=ctxPath%>/order/insertCustomCheck.do",
                async:false,
                 data : {
                    customCheckName : customCheckName
                 },
+                method : "post",
                 success : function(res){
                    console.log("커스텀체크부분 ajax 통신 잘됨");
                 }
@@ -610,6 +611,7 @@
         data : {
         	cart_total_price : totalPrice
         },
+        method : "post",
         success : function(res){
            console.log("cart부분 ajax제대로 동작");
         }
@@ -627,6 +629,7 @@
              async:false,
              data : {
              },
+             method : "post",
              success : function(res){
                 console.log("ajax통신 잘됨");
 		         // 클릭되면 슬라이드바 안쪽에 있는애들이 refresh 되어야함 

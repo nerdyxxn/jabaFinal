@@ -9,6 +9,6 @@ public interface CustomService {
 	
 	List<Custom> selectListByCustomCategory(Custom c);
 	
-	
+	public Custom selectOneCustom(Custom c);
 
 }
