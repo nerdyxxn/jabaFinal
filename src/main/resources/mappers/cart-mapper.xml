@@ -11,9 +11,9 @@
    </resultMap>
 
    <!-- cart 에 insert -->
-   <insert id="insertCart" parameterType="CustomCheck"
+   <insert id="insertCart" parameterType="Cart"
       flushCache="true" statementType="PREPARED">
-      insert into CART (order_id, cart_id, store_id, cart_total_price) values (#{order_id},#{cart_id},#{store_id},#{cart_total_price})";
+      insert into CART (order_id, cartno_id, store_id, cart_total_price) values (#{order_id},#{cartno_id},#{store_id},#{cart_total_price})
    </insert>
 
 

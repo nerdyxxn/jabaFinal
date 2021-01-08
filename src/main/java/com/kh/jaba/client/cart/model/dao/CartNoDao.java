@@ -13,15 +13,15 @@ public class CartNoDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertCartNo(CartNo cn) {
-		return sqlSession.insert("CartNo.insertCartNo", cn);
+	public int insertCartNo() {
+		return sqlSession.insert("CartNo.insertCartNo");
 	};
 	
 	public CartNo currentCartId() {
 		return sqlSession.selectOne("CartNo.currentCartId");
 	}
 	
-	public Order selectOneCartNo(String cartno_id){
+	public CartNo selectOneCartNo(String cartno_id){
 		return sqlSession.selectOne("CartNo.selectOneCartNo", cartno_id);
 	}
 

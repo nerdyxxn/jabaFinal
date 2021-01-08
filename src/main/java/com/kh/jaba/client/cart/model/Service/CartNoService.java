@@ -4,9 +4,9 @@ import com.kh.jaba.client.cart.model.domain.CartNo;
 import com.kh.jaba.client.order.model.domain.Order;
 
 public interface CartNoService {
-	public int insertCartNo(CartNo cn);
+	public int insertCartNo();
 	
 	public CartNo currentCartId();
 	
-	public Order selectOneCartNo(String cartno_id);
+	public CartNo selectOneCartNo(String cartno_id);
 }

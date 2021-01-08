@@ -607,7 +607,7 @@
 	  var totalPrice = (parseInt($("#custom-add-price").text()) * parseInt($("#numberUpDown").text()));
 	  console.log("총가격 !!  : " + (parseInt($("#custom-add-price").text()) * parseInt($("#numberUpDown").text())));
       $.ajax({
-          url: "<%=ctxPath%>/cart/cartInsert.do",
+          url: "<%=ctxPath%>/cart/insertCart.do",
         data : {
         	cart_total_price : totalPrice
         },

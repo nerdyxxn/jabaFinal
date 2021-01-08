@@ -7,7 +7,7 @@
    </resultMap>
    
    <insert id="insertCartNo" flushCache="true" statementType="PREPARED">
-      insert into CARTNO (CART_ID) values (('N' || LPAD(CARTNO_SEQ.nextval, 5, 0)))
+      insert into CARTNO (cartno_id) values (('N' || LPAD(CARTNO_SEQ.nextval, 5, 0)))
    </insert>
    
    <select id="currentCartId" resultType="CartNo">
@@ -16,7 +16,7 @@
 
    <!-- INSERT한 다음, 생성된 order_id로 OrderVO를 가져오는 메소드 -->
    <select id="selectOneCartNo" parameterType="string"
-      resultType="Order">
+      resultType="CartNo">
       select * from cartNo where cartno_id = #{cartno_id}
    </select>
 

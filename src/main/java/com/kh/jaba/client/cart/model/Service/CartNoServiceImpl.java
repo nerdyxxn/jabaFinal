@@ -14,8 +14,8 @@ public class CartNoServiceImpl implements CartNoService {
 	private CartNoDao cartNoDao;
 	
 	@Override
-	public int insertCartNo(CartNo cn) {
-		return cartNoDao.insertCartNo(cn);
+	public int insertCartNo() {
+		return cartNoDao.insertCartNo();
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class CartNoServiceImpl implements CartNoService {
 	}
 
 	@Override
-	public Order selectOneCartNo(String cartno_id) {
+	public CartNo selectOneCartNo(String cartno_id) {
 		return cartNoDao.selectOneCartNo(cartno_id);
 	}
 
