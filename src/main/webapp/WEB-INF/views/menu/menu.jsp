@@ -459,6 +459,8 @@
 
    function clickProductCard(obj){
          var aa = $(obj).children("div").children(".product_name").children().children("span").text();
+         currentMenuPrice = 0;
+         num = 1;
         // 메뉴 모달창 하단 - + 버튼
          $.ajax({
              url: "<%=ctxPath%>/menu/selectMenu.do",

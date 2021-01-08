@@ -19,6 +19,12 @@
 			alias="Custom" />
 		<typeAlias type="com.kh.jaba.client.order.model.domain.Order"
 			alias="Order" />
+		<typeAlias type="com.kh.jaba.client.order.model.domain.CustomCheck"
+			alias="CustomCheck" />
+		<typeAlias type="com.kh.jaba.client.cart.model.domain.Cart"
+			alias="Cart" />
+		<typeAlias type="com.kh.jaba.client.cart.model.domain.CartNo"
+			alias="CartNo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
@@ -28,5 +34,8 @@
 		<mapper resource="mappers/menu-mapper.xml" />
 		<mapper resource="mappers/custom-mapper.xml" />
 		<mapper resource="mappers/order-mapper.xml" />
+		<mapper resource="mappers/customCheck-mapper.xml" />
+		<mapper resource="mappers/cart-mapper.xml" />
+		<mapper resource="mappers/cartNo-mapper.xml" />
 	</mappers> 
 </configuration>

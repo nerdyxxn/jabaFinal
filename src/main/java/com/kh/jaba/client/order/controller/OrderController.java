@@ -26,12 +26,13 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/insertOrder.do", method = RequestMethod.POST)
 	public void insertOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {	
-		PrintWriter out = response.getWriter();//요거 써서 @ResponseBody안쓰는 거거든
-
-		try {
-			int result = 0;
-			Client client = (Client)request.getSession().getAttribute("client");
-			String client_id = client.getClient_id();
+		PrintWriter out = response.getWriter();// 요거 써서 @ResponseBody안쓰는 거거든
+	      String client_id = null;
+	      int result = 0;
+	      Client client = (Client) request.getSession().getAttribute("client");
+	      if(client != null) {
+	         client_id = client.getClient_id();
+	      }
 			
 			Menu menu = (Menu)request.getSession().getAttribute("menuVo");
 			
@@ -40,9 +41,9 @@ public class OrderController {
 				int order_quantity = Integer.parseInt(request.getParameter("quantity"));
 				
 				// user_id와 menu_id 제대로 긁어오는지 테스트
-				System.out.println("orderInsert서블릿 user_id : " + client_id);
-				System.out.println("orderInsert서블릿 menu_id : " + menu_id);
-				System.out.println("orderInsert서블릿 order_quantity : " + order_quantity);
+				System.out.println("orderController user_id : " + client_id);
+				System.out.println("orderController menu_id : " + menu_id);
+				System.out.println("orderController order_quantity : " + order_quantity);
 				// 확인완료
 				
 				order.setClient_id(client_id);
@@ -71,9 +72,7 @@ public class OrderController {
 				System.out.println("user_id가 없어서 orderInsert 실행하지 않음");
 				out.print("OrderFail");
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 		
 		
 		out.flush();
