@@ -21,6 +21,8 @@ a {
    color: black;
 }
 
+
+
 /* HEADER */
 /* dropdown 메뉴 세팅 */
 .dropdown-menu {
@@ -236,6 +238,7 @@ main {
     border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 4px;
 }
+
 
 .MuiInputBase-root {
    color: rgba(0, 0, 0, 0.87);

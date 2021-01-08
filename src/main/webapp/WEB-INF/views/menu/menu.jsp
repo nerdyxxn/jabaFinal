@@ -5,12 +5,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
    String ctxPath = request.getContextPath();
+	String storename = request.getParameter("storename");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>store_menu</title>
+<title><%=storename%></title>
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -454,6 +455,7 @@
    // 메뉴가격 전역변수
    var menu_price = 0;
    var currunetMenuPrice = 0;
+   var num = 1;
 
    function clickProductCard(obj){
          var aa = $(obj).children("div").children(".product_name").children().children("span").text();
@@ -476,7 +478,8 @@
                 $(".header-image").load(location.href + " .header-image");
                 $(".modal-body").load(location.href + " .modal-body");
                 $(".modal-footer").load(location.href + " .modal-footer");
- /*                $("#custom-add-price").html(currunetMenuPrice);
+
+                /* $("#custom-add-price").html(currunetMenuPrice);
                 $(".modal-footer").load(location.href + " .modal-footer"); */
 
             }
@@ -486,25 +489,46 @@
 
    function QuantityDownFunc(){
                var stat = $('#numberUpDown').text();
-               var num = parseInt(stat, 10);
+               num = parseInt(stat, 10);
                num--;
                if (num <= 0) {
                   num = 1;
                }
                //$("#custom-add-price").text(num * menu_price);
                $('#numberUpDown').text(num);
+               var sum = currunetMenuPrice;
+               var count = $(".chkbox").length;
+               for(var i=0; i < count; i++ ){
+                   if( $(".chkbox")[i].checked == true ){
+                    sum += parseInt($(".chkbox")[i].value);
+                   }
+               }
+               sum = sum * num;
+               //html 을 text로
+               $("#custom-add-price").text(sum);
    }
    
    function QuantityUpFunc(){
                var stat = $('#numberUpDown').text();
-               var num = parseInt(stat, 10);
+               num = parseInt(stat, 10);
                num++;
                //$("#custom-add-price").text(num * menu_price);
                $('#numberUpDown').text(num);
+               var sum = currunetMenuPrice;
+               var count = $(".chkbox").length;
+               for(var i=0; i < count; i++ ){
+                   if( $(".chkbox")[i].checked == true ){
+                    sum += parseInt($(".chkbox")[i].value);
+                   }
+               }
+               sum = sum * num;
+               //html 을 text로
+               $("#custom-add-price").text(sum);
    }
    
    // 체크박스 선택 시 합계 금액 바꿔주는 메소드
      function itemSum(){
+    	$('#numberUpDown').text(num);
        var sum = currunetMenuPrice;
        var count = $(".chkbox").length;
        for(var i=0; i < count; i++ ){
@@ -512,8 +536,10 @@
             sum += parseInt($(".chkbox")[i].value);
            }
        }
+  		var stat = $('#numberUpDown').text();
+       
        //html 을 text로
-       $("#custom-add-price").text(sum);
+       $("#custom-add-price").text(sum * stat);
     } 
       
    </script>
@@ -527,10 +553,11 @@
          
          // user_id, menuVo.menuid값를 가지고 ajax 통신 -- data 부분 없어도 될것같음, 세션에 다 저장되어있기때문에
          $.ajax({
-            url: "<%=ctxPath%>/order/orderInsert.do",
+            url: "<%=ctxPath%>/order/insertOrder.do",
             data : {
                quantity : order_quantity
             },
+            method: "post",
             success : function(res){
                var orderStatus = "OrderFail";
                if(res == orderStatus){

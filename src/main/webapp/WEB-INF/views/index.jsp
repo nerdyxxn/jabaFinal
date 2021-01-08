@@ -295,7 +295,7 @@ $(function(){
                   <ul id="searchDrop" class="dropdown-menu">
                      <c:if test="${not empty getAddrList}">
                         <c:forEach items="${getAddrList}" var="addr" varStatus="status">
-                           <li class="addr_store_addr" ><a href="javascript:aTag();" class="addr_store_anchor" id="${addr.store_addr}">${addr.store_addr}</a></li>
+                           <li class="addr_store_addr"><a href="javascript:aTag();" class="addr_store_anchor" id="${addr.store_addr}">${addr.store_addr}</a></li>
                            <!-- 리스트의 첫 번째 id만 가능하다,,,, -->
                         </c:forEach>
                        
@@ -654,6 +654,10 @@ var frm = document.frm;
     })
     
     });
+}
+
+function click(obj){
+	$(obj).css("background-color", "red");
 }
 
 

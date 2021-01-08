@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Order">
+	<resultMap type="Order" id="resultOrder">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<id property="order_id" column="order_id" />
+		<result property="client_id" column="client_id" />
+		<result property="menu_id" column="menu_id" />
+		<result property="order_quantity" column="order_quantity" />
+	</resultMap>
+
+	<!-- insert Order -->
+	<insert id="insertOrder" parameterType="Order" flushCache="true"
+		statementType="PREPARED">
+		insert into menu_order(order_id, client_id, menu_id, order_quantity) values
+		(('O' || LPAD(ORDER_SEQ.nextval, 5, 0)), #{client_id}, #{menu_id}, #{order_quantity})
+	</insert>
+
+	<!-- 현재 order_id를 가져오는 메소드 -->
+	<select id="currentOrderId" resultType="Order">
+		select ('O' || LPAD(ORDER_SEQ.CURRVAL, 5, 0)) as order_id from dual
+	</select>
+
+	<!-- INSERT한 다음, 생성된 order_id로 OrderVO를 가져오는 메소드 -->
+	<select id="selectOneOrder" parameterType="string"
+		resultType="Order">
+		select * from menu_order where order_id = #{order_id}
+	</select>
+
+</mapper>
