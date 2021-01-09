@@ -25,6 +25,8 @@
 			alias="Cart" />
 		<typeAlias type="com.kh.jaba.client.cart.model.domain.CartNo"
 			alias="CartNo" />
+		<typeAlias type="com.kh.jaba.client.payment.model.domain.Pay"
+			alias="Pay" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
@@ -37,5 +39,6 @@
 		<mapper resource="mappers/customCheck-mapper.xml" />
 		<mapper resource="mappers/cart-mapper.xml" />
 		<mapper resource="mappers/cartNo-mapper.xml" />
+		<mapper resource="mappers/pay-mapper.xml" />
 	</mappers> 
 </configuration>

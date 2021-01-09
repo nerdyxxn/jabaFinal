@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Pay">
+	<resultMap type="Pay" id="resultPay">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<id property="pay_id" column="pay_id" />
+		<result property="cartno_id" column="cartno_id" />
+		<result property="pay_total_price" column="pay_total_price" />
+		<result property="pay_time" column="pay_time" />
+		<result property="pay_request" column="pay_request" />
+		<result property="pickup_time" column="pickup_time" />
+	</resultMap>
+	
+</mapper>
+	
