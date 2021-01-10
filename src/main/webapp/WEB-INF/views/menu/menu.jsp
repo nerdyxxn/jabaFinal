@@ -650,7 +650,7 @@
       
       // checkOutBtn 클릭시 checkout 페이지로 이동
       function checkOutBtnFnc(){
-    	  location.href="<%=ctxPath%>/checkout.jsp";
+    	  location.href="<%=ctxPath%>/payment/checkout.do";
       }
    // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
 	  $("#logoutBtn").on("click",function(){
