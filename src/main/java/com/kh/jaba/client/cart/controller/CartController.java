@@ -116,6 +116,8 @@ public class CartController {
 	@ResponseBody
 	public void cartSelectDo(HttpServletRequest request) {
 		List<Cart> cartList = null;
+		List<CartView> cartViewList = null;
+		List<List<String>> cartViewCustomList = null;
 		int total_price = 0;
 		// 세션에 담긴 cartNo를 받아온다.
 		// cartNo를 통해 List<CartVO> cartList 를 받아와서 세션에 저장한다.
@@ -132,9 +134,6 @@ public class CartController {
 			System.out.println("카트에 들어있는 카트리스트");
 			// menu.jsp 에서 cartList 가 있는지 없는지 확인하기 위해 사용
 			request.getSession().setAttribute("cartList", cartList);
-
-			List<CartView> cartViewList = null;
-			List<List<String>> cartViewCustomList = null;
 
 			cartViewList = cartViewList(cartList);
 			if (cartViewList != null) {
@@ -180,20 +179,28 @@ public class CartController {
 			System.out.println((i + 1) + "번째 order의 cart");
 			order_id = cartList.get(i).getOrder_id();
 			cart_total_price = cartList.get(i).getCart_total_price();
-
+			
+//			CartView cartView = new CartView();	// autowired 를 쓰면 이상하게 나오는 오류 해결해야함
+			cartView = new CartView();
 			cartView.setCart_total_price(cart_total_price);
+			System.out.println("cart_total_price : " + cart_total_price);
 
 			// order_id 들고 order에 갔다오면 order 하나가 나올거고
 			// order를 참고하면 바로 order_quantity를 얻을 수 있음
 			order = orderService.selectOneOrder(order_id);
 			cartView.setOrder_quantity(order.getOrder_quantity());
-
+			System.out.println("order.getOrder_quantity() : " + order.getOrder_quantity());
 			// menu_id를 가지고 menu_name을 뽑아내는 메소드
 			String menu_name = menuService.selectMenuName(order.getMenu_id());
+			System.out.println("menu_name : " +  menu_name);
 			cartView.setMenu_name(menu_name);
 
 			cartViewList.add(cartView);
 		}
+		for(int i=0; i<cartViewList.size(); i++) {
+			System.out.println("메뉴이름 : " + cartViewList.get(i).getMenu_name());
+		}
+		
 		return cartViewList;
 	}
 

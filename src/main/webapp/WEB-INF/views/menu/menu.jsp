@@ -604,8 +604,8 @@
    
    // cartNo 를 1증가시키고 해당 cartNo로 cart에 추가
    function cartAjax(res){
-	  var totalPrice = (parseInt($("#custom-add-price").text()) * parseInt($("#numberUpDown").text()));
-	  console.log("총가격 !!  : " + (parseInt($("#custom-add-price").text()) * parseInt($("#numberUpDown").text())));
+	  var totalPrice = (parseInt($("#custom-add-price").text()));
+	  console.log("총가격 !!  : " + (parseInt($("#custom-add-price").text())));
       $.ajax({
           url: "<%=ctxPath%>/cart/insertCart.do",
         data : {
