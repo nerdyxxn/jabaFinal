@@ -31,5 +31,10 @@ public class CustomServiceImpl implements CustomService {
 	public Custom selectOneCustom(Custom c) {
 		return customDao.selectOneCustom(c);
 	}
+
+	@Override
+	public Custom selectOneCustomByCustomId(String custom_id) {
+		return customDao.selectOneCustomByCustomId(custom_id);
+	}
 	
 }

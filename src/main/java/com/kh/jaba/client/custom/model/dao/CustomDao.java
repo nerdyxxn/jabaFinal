@@ -25,4 +25,7 @@ public class CustomDao {
 		return sqlSession.selectOne("Custom.selectOneCustom", c);
 	}
 
+	public Custom selectOneCustomByCustomId(String custom_id) {
+		return sqlSession.selectOne("Custom.selectOneCustomByCustomId", custom_id);
+	}
 }

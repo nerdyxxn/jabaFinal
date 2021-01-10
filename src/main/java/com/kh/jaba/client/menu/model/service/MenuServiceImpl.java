@@ -40,10 +40,11 @@ public class MenuServiceImpl implements MenuService{
 		return menuDao.selectOneMenu(m);
 	}
 
-	
+	// selectMenuName menu_id 를 가지고 menu_name을 가져오는 메소드
+	@Override
+	public String selectMenuName(String menu_id) {
+		return menuDao.selectMenuName(menu_id);
+	}
 
-	
-	
-	
 
 }

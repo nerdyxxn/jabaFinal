@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Cart">
-   <resultMap type="Cart" id="resultCart">
-      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
-      <id property="order_id" column="order_id" />
-      <result property="cartno_id" column="cartno_id" />
-      <result property="store_id" column="store_id" />
-      <result property="cart_total_price" column="cart_total_price" />
-      <result property="cart_check" column="cart_check" />
-   </resultMap>
+	<resultMap type="Cart" id="resultCart">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<id property="order_id" column="order_id" />
+		<result property="cartno_id" column="cartno_id" />
+		<result property="store_id" column="store_id" />
+		<result property="cart_total_price" column="cart_total_price" />
+		<result property="cart_check" column="cart_check" />
+	</resultMap>
 
-   <!-- cart 에 insert -->
-   <insert id="insertCart" parameterType="Cart"
-      flushCache="true" statementType="PREPARED">
-      insert into CART (order_id, cartno_id, store_id, cart_total_price) values (#{order_id},#{cartno_id},#{store_id},#{cart_total_price})
-   </insert>
+	<!-- cart 에 insert -->
+	<insert id="insertCart" parameterType="Cart" flushCache="true"
+		statementType="PREPARED">
+		insert into CART (order_id, cartno_id, store_id, cart_total_price) values
+		(#{order_id},#{cartno_id},#{store_id},#{cart_total_price})
+	</insert>
+
+	<!-- cartno_id로 cart 테이블을 조회해서 List를 뽑아오는 메소드 -->
+	<select id="selectCartList" parameterType="String"
+		resultType="arraylist" resultMap="resultCart">
+		select * from cart where cartno_id = #{cartno_id}
+	</select>
 
 
 </mapper>

@@ -10,5 +10,7 @@ public interface CustomService {
 	List<Custom> selectListByCustomCategory(Custom c);
 	
 	public Custom selectOneCustom(Custom c);
+	
+	public Custom selectOneCustomByCustomId(String custom_id);
 
 }

@@ -625,7 +625,7 @@
          $("#cart-menu,.page_cover,html").addClass("open");
          window.location.hash = "#open";
          $.ajax({
-             url: "<%=ctxPath%>/cart/cartList.do",
+             url: "<%=ctxPath%>/cart/selectCart.do",
              async:false,
              data : {
              },

@@ -1,5 +1,7 @@
 package com.kh.jaba.client.order.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ public class CustomCheckServiceImpl implements CustomCheckService {
 	@Override
 	public int insertCustomCheck(CustomCheck cc) {
 		return customCheckDao.insertCustomCheck(cc);
+	}
+
+	@Override
+	public List<CustomCheck> selectCustomCheckListByOrderId(String order_id) {
+		return customCheckDao.selectCustomCheckListByOrderId(order_id);
 	}
 
 }
