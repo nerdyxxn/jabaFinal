@@ -120,7 +120,7 @@ public class CartController {
 		List<List<String>> cartViewCustomList = null;
 		int total_price = 0;
 		// 세션에 담긴 cartNo를 받아온다.
-		// cartNo를 통해 List<CartVO> cartList 를 받아와서 세션에 저장한다.
+		// cartNo를 통해 List<Cart> cartList 를 받아와서 세션에 저장한다.
 		String cartno_id = (String) request.getSession().getAttribute("cartId");
 		// cartno_id가 있을경우에만 실행
 		if (cartno_id != null) {
@@ -167,6 +167,20 @@ public class CartController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/cart/deleteCart.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateCartCheckDo(HttpServletRequest request) {
+		// order_id 를 어떻게 찾아올건가 .. ? 
+		String order_id = request.getParameter("orderId");
+		// order_id를 찾아서 cart 테이블의 cart_check 를 2로 바꾼다.
+		cartService.updateCartCheck(order_id);
+		System.out.println(order_id + "의 주문을 cart에서 삭제했습니다.");
+		// updateCartCheckDo
+	}
+	
+	
+	
 
 	// cartList 를 참고하여 cartViewList 를 만드는 메소드
 	public List<CartView> cartViewList(List<Cart> cartList) {
@@ -183,29 +197,25 @@ public class CartController {
 //			CartView cartView = new CartView();	// autowired 를 쓰면 이상하게 나오는 오류 해결해야함
 			cartView = new CartView();
 			cartView.setCart_total_price(cart_total_price);
-			System.out.println("cart_total_price : " + cart_total_price);
-
 			// order_id 들고 order에 갔다오면 order 하나가 나올거고
 			// order를 참고하면 바로 order_quantity를 얻을 수 있음
 			order = orderService.selectOneOrder(order_id);
 			cartView.setOrder_quantity(order.getOrder_quantity());
-			System.out.println("order.getOrder_quantity() : " + order.getOrder_quantity());
+			// order를 참고하면 바로 order_id를 얻을 수 있음
+			cartView.setOrder_id(order.getOrder_id());
 			// menu_id를 가지고 menu_name을 뽑아내는 메소드
 			String menu_name = menuService.selectMenuName(order.getMenu_id());
-			System.out.println("menu_name : " +  menu_name);
+			System.out.println("메뉴이름 : " +  menu_name);
 			cartView.setMenu_name(menu_name);
 
 			cartViewList.add(cartView);
-		}
-		for(int i=0; i<cartViewList.size(); i++) {
-			System.out.println("메뉴이름 : " + cartViewList.get(i).getMenu_name());
 		}
 		
 		return cartViewList;
 	}
 
-	// List<List<String>> cartViewCustomList 를 List<CartViewVO> cartViewVoList,
-	// List<CartVO> cartList 로 뽑아내는 메소드
+	// List<List<String>> cartViewCustomList 를 List<CartView> cartViewVoList,
+	// List<Cart> cartList 로 뽑아내는 메소드
 	public List<List<String>> cartViewCustomList(List<CartView> cartViewList, List<Cart> cartList) {
 		List<List<String>> cartViewCustomList = null;
 

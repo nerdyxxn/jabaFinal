@@ -91,7 +91,7 @@ $(document).ready(function() {
 	<header>
 		<div class="header_container">
 			<div class="logo">
-				<a href="index.jsp"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
+				<a href="<%=ctxPath%>/"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
 			</div>
 			<div class="menu">
 				<button id="logoutBtn">LOGOUT</button>

@@ -24,4 +24,10 @@ public class CartDao {
 		return sqlSession.selectList("Cart.selectCartList", cartno_id);
 	}
 	
+	//  x 버튼 클릭하면 cart_check를 2로 update 하여 카트목록에서 안보이게함
+	public int updateCartCheck(String order_id) {
+		return sqlSession.update("Cart.updateCartCheck", order_id);
+	}
+	
+	
 }
