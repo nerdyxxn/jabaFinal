@@ -121,29 +121,29 @@ a {
 	padding-top: 15px;
 }
 
-section#store-list {
-	padding-top: 65px;
+#store_list {
+	width: 100%;
 }
 
 section .container .store_list_grid {
-	display: grid;
-	grid-column-gap: 30px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+/*  	grid-column-gap: 30px;
 	grid-row-gap: 30px;
-	grid-template-rows: auto;
-	min-height: 0;
-	min-width: 0;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;  
+ 	grid-template-columns: repeat(3, 1fr); */
+	min-width: 100%;
 }
 
 .store_card_image img {
-	height: 210px;
+	width: 250px;
+	height: 160px;
 	border-radius: 6px;
-	width: 100%;
 	background: #ebf3fe;
 	border: 0;
 	position: relative;
 	transition: .2s ease-in-out;
-	height: 160px;
 }
 
 #logoutBtn{
@@ -152,6 +152,17 @@ section .container .store_list_grid {
 
 .store_card_info {
 	font-size: 12px;
+	margin-top: 10px;
+}
+
+.store_card_info_name h3 {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+}
+
+.frm {
+	display: none;
 }
 
 /* search bar 세팅 */
@@ -226,4 +237,9 @@ form:hover input{
 form:hover .fa{
     background: #112732;
     color: white;
+}
+
+.countDiv {
+	display: inline-block;
+	text-align: center;
 }

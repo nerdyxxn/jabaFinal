@@ -73,6 +73,17 @@ function searchToggle(obj, evt){
             container.find('.search-input').val('');
         }
 }
+//searchbar 검색 기능
+$(document).ready(function() {
+	 $("#keyword").keyup(function() {
+         var k = $(this).val();
+         $(".store_card").css('display','none');		
+         
+         var temp = $(".store_card > .store_card_info > .store_card_info_name > h3:contains('" + k + "')");
+         $(temp).parent().parent().parent().show();
+         $('.count').text(temp.length);  
+     })
+})
 </script>
 </head>
 <body>
@@ -106,8 +117,11 @@ function searchToggle(obj, evt){
 				</div>
 				<div class="searchBar">
 				<form action="">
-					<input type="text"><i class="fa fa-search align-self-center"></i>
+					<input type="text" name="keyword" id="keyword"><i class="fa fa-search align-self-center" onclick="searchList();"></i>
 				</form>
+				</div>
+				<div class="countDiv">
+					개수 : <span class="count"></span>
 				</div>
 			</div>
 		</div>
