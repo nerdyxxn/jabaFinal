@@ -38,7 +38,6 @@
 	$(function() {
 		$(window).scroll(function() {
 			var navbar = $(this).scrollTop();
-			console.log(navbar);
 			var $header = $('header');
 			if (navbar > 0) {
 				$header.addClass('activated');
@@ -51,13 +50,17 @@
 
 <script>
 	// 모달창 script
+	$(document).ready(function(){
+		$('#later_time').hide();
+	});
+	 
 	function setDisplay() {
 		if ($('input:radio[id=asap]').is(':checked')) {
 			$('#later_time').hide();
 		} else {
 			$('#later_time').show();
 		}
-	}
+	
 </script>
 </head>
 <body>
@@ -81,17 +84,15 @@
 			<div class="checkout_title">
 				<p style="font-size: 35px; color: white; margin-top: 30px;">
 					CHECKOUT</p>
-				<p>Your order from ${storeVo.store_name} for Pick up, ASAP</p>
+				<p>Your order from ${storeVo.store_name}</p>
 			</div>
 
 			<div class="checkout_info">
-				<p>Open until 8:00pm</p>
-				<P>Shop 3, 91-93 McIntosh Road, Narraweena New South Wales 2099
-					• 82873344</p>
+				<p>${storeVo.store_time}</p>
+				<P>${storeVo.store_addr}</p>
 			</div>
 		</div>
 	</section>
-
 
 	<!-- SECTION -->
 	<section id="info">
@@ -118,7 +119,7 @@
 												</p>
 											</div>
 											<div>
-												<p>ASAP (40-55 분 소요 예정)</p>
+												<p id="pickUp">ASAP</p>
 											</div>
 										</div>
 										<div class="address_tab" style="margin-top: 10px;">
@@ -134,33 +135,8 @@
 							<input type="text" id="personal_name" name="personal_name"
 								placeholder="이름"><br>
 							<h2 style="padding-top: 5px;">전화번호</h2>
-							<input type="text" id="personal_pwd" name="personal_pwd"
+							<input type="text" id="personal_tel" name="personal_tel"
 								placeholder="010-XXXX-XXXX">
-						</div>
-
-						<div class="payment_tab">
-							<form id="payment_way" action="#" method="get">
-								<table>
-									<tr>
-										<td>
-												<h2>Payment method</h2>
-											<div class="payment_method icheck-material-teal">
-												<input type="radio" id="payment_method" name="teal"
-													value="agree" onchange="setDisplay()">
-												<label for="payment_method" style="font-weight: normal;">&nbsp;Pay
-													with Card</label>
-												<div id="card_section">
-													<input type="text" id="card_name" name="card_name"
-														placeholder="카드주인이름"><br>
-													<div class="border-spacer"></div>
-													<input type="text" id="card_pwd" name="card_pwd"
-														placeholder="카드 번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM/YY&nbsp;&nbsp;CVC">
-												</div>
-											</div>
-										</td>
-									</tr>
-								</table>
-							</form>
 						</div>
 					</div>
 				</div>
@@ -232,11 +208,6 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-
-					<div class="header-icon">
-						<button type="button" class="modalBtnChk" id="btn_pickup"
-							name="btn_pickup" style="font-size: 15px;">Pick Up</button>
-					</div>
 				</div>
 
 				<!-- modal-body -->
@@ -260,14 +231,13 @@
 							</tr>
 
 							<tr id="later_time">
-								<td><select name="pickup_time" class="pickup_time">
-										<option value="">Select Pick Up Time</option>
-										<option value="30">10:00</option>
-										<option value="31">10:30</option>
-										<option value="31">11:30</option>
-										<option value="31">11:30</option>
-										<option value="31">12:00</option>
-										<option value="31">12:30</option>
+								<td><select id="pickup_time" name="pickup_time" class="pickup_time">
+										<option value="30 minute Later">30 minute Later</option>
+										<option value="60 minute Later">60 minute Later</option>
+										<option value="90 minute Later">90 minute Later</option>
+										<option value="120 minute Later">120 minute Later</option>
+										<option value="150 minute Later">150 minute Later</option>
+										<option value="180 minute Later">180 minute Later</option>
 								</select></td>
 							</tr>
 						</table>
@@ -276,9 +246,9 @@
 				<!-- modal-footer -->
 				<div class="modal-footer">
 					<button type="button" class="modalBtnChk" data-dismiss="modal"
-						aria-label="Close" id="btnChk_footer"
+						aria-label="Close" id="btnChk_cancel"
 						name="btnChk_cancel">Cancel</button>
-					<button type="button" class="modalBtnChk" id="btnChk_footer"
+					<button type="button" class="modalBtnChk" id="btnChk_confirm"
 						name="btnChk_confirm">Confirm</button>
 				</div>
 			</div>
@@ -354,7 +324,7 @@
 		</div>
 	</footer>
 	
-	<script>
+<script>
 	// 페이지 로드 시 '가맹점 식별 코드' 호출
 		// place_order 버튼을 눌렀을때 입력된 값으로 payment 테이블에 데이터 추가
 		$("#place_order").click(function(){
@@ -362,6 +332,9 @@
 			IMP.init('imp88711661'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 			var name = $('.item_name').eq(0).text();
 			var amount = $('.price_all_total').text();
+	        var buyer = $('#personal_name').val();
+	        var buyerTel = $('#personal_tel').val();
+
 			amount *= 1;
 			
 			IMP.request_pay({
@@ -371,8 +344,8 @@
 			    name : name,
 			    amount : amount,
 			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
+			    buyer_name : buyer,
+			    buyer_tel : buyerTel,
 			    buyer_addr : '서울특별시 강남구 삼성동',
 			    buyer_postcode : '123-456'
 			}, function(rsp) {
@@ -382,16 +355,45 @@
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+					var pay_request = $("#pay_request").val();
+					var pick_time = $("#pickUp").text();
+					console.log(pay_request);
+					 $.ajax({
+						  url: "<%=ctxPath%>/payment/pay.do",
+				             data : {
+				            	 pay_request : pay_request,
+				            	 pick_time : pick_time
+				             },
+				             method: "post",
+				             success : function(res){
+						    	alert(msg);
+				                location.href="<%=ctxPath%>/";
+				             }
+					}); 
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
+			    	alert(msg);
 			    }
 
-			    alert(msg);
 			}); 
 		});
+</script>
+<script>
+	// pickUp time 변경 
+	$("#btnChk_confirm").on("click", function(){
+		var radioVal = $('input[name="teal"]:checked').val();
+		if(radioVal == "denial"){
+			// asap 이 아니라 later 선택시 
+			$("#pickUp").text($("#pickup_time option:selected").val());
+		}else{
+			$("#pickUp").text("ASAP");
+		}
+		$("#btnChk_cancel").click();
+	});
 	
 	
-	</script>
+</script>
 </body>
 </html>

@@ -187,7 +187,18 @@ main {
 	font-size: 1.5rem;
 }
 
-#btnChk_footer {
+#btnChk_cancel {
+	justify-content: flex-end;
+	width: 85px;
+	height: 40px;
+	background-color: #36727C;
+	color: white;
+	border-radius: 12px;
+	border: 0;
+	font-size: 13px;
+}
+
+#btnChk_confirm {
 	justify-content: flex-end;
 	width: 85px;
 	height: 40px;
@@ -261,7 +272,7 @@ main {
 	height: 32px;
 }
 
-.personal_info #personal_pwd {
+.personal_info #personal_tel {
 	padding-left: 10px;
 	border-radius: 7px;
 	border: 1px solid rgba(20, 23, 26, 0.40);

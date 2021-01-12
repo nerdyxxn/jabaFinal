@@ -10,6 +10,12 @@
 		<result property="pay_request" column="pay_request" />
 		<result property="pickup_time" column="pickup_time" />
 	</resultMap>
-	
+
+	<insert id="insertPayment" parameterType="Pay">
+		insert into PAYMENT (pay_id, cartno_id, pay_total_price, pay_request)
+		values(('P' || LPAD(PAYMENT_SEQ.nextval, 5, 0)), #{cartno_id},
+		#{pay_total_price}, #{pay_request})
+	</insert>
+
 </mapper>
 	
