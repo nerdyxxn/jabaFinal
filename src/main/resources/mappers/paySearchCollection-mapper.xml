@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PaySearchCollection">
+   <resultMap type="MenuCollection" id="resultMenuCollection">
+    <id property="menu_name" column="menu_name"/>
+    <result property="menu_quantity" column="menu_quantity"/>
+	<result property="order_id" column="order_id"/>
+	<result property="pay_id" column="pay_id"/>
+	<collection property="CustomCollection" ofType="CustomCollection" column="order_id=order_id" javaType="List" select ="getCustomList"/>
+   </resultMap>
+   
+   <resultMap type="PaySearchCollection" id="resultPaySearchCollection">
+      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+      <result property="pay_id" column="pay_id" />
+      <result property="client_id" column="client_id" />
+      <result property="pay_time" column="pay_time" />
+      <result property="store_name" column="store_name" />
+      <result property="pickup_time" column="pickup_time" />
+      <result property="pay_request" column="pay_request" />
+      <result property="pay_total_price" column="pay_total_price" />
+     <collection property="MenuCollection" ofType="MenuCollection" column="pay_id=pay_id" javaType="List" select = "getMenuList"/>
+ 	</resultMap>
+   
+   
+   
+   <!-- 현재 필요한 column : pickup_time,  -->
+   <select id="getPaySearchList" resultMap="resultPaySearchCollection">
+		SELECT client_id, pay_id, pay_time, store_name, pickup_time, pay_request, pay_total_price FROM paysearchcollection WHERE client_id = #{client_id}
+	</select>	
+   
+   
+	<select id="getMenuList" resultMap="resultMenuCollection">
+	 	SELECT * FROM menucollection WHERE pay_id IN (#{pay_id}) ORDER BY order_id
+	</select>
+   
+   <select id="getCustomList" resultType="CustomCollection">
+		SELECT * FROM customcollection WHERE order_id = #{order_id}
+	</select>
+	
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PaySearch">
+   <resultMap type="PaySearch" id="resultPaySearch">
+      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+      <result property="menu_name" column="menu_name" />
+      <result property="custom_name" column="custom_name" />
+      <result property="pay_total_price" column="pay_total_price" />
+      <result property="store_name" column="store_name" />
+      <result property="client_id" column="client_id" />
+      <result property="order_quantity" column="order_quantity" />
+      <result property="pay_time" column="pay_time" />
+      <result property="pickup_time" column="pickup_time" />
+      <result property="pay_id" column="pay_id" />
+      <result property="pay_request" column="pay_request" />
+      <result property="order_id" column="order_id" />
+   </resultMap>
+   
+   <!-- 현재 필요한 column : pickup_time,  -->
+   
+   <!-- 각 클라이언트의 paySearch 테이블 조회  -->
+   <select id="selectPaySearch" parameterType="String" resultType="arraylist" resultMap="resultPaySearch" >
+      select * from paysearch where client_id=#{client_id} order by pay_id
+   </select>
+   
+</mapper>

@@ -13,7 +13,7 @@ import com.kh.jaba.client.payment.model.domain.Pay;
 import com.kh.jaba.client.payment.model.service.PayService;
 
 @Controller
-public class PayContorller {
+public class PayController {
 
 	@Autowired
 	private PayService payService;

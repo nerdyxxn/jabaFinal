@@ -15,8 +15,12 @@
 			alias="Search" />
 		<typeAlias type="com.kh.jaba.client.menu.model.domain.Menu"
 			alias="Menu" />
+		<typeAlias type="com.kh.jaba.client.menu.model.domain.MenuCollection"
+			alias="MenuCollection" />
 		<typeAlias type="com.kh.jaba.client.custom.model.domain.Custom"
 			alias="Custom" />
+		<typeAlias type="com.kh.jaba.client.custom.model.domain.CustomCollection"
+			alias="CustomCollection" />
 		<typeAlias type="com.kh.jaba.client.order.model.domain.Order"
 			alias="Order" />
 		<typeAlias type="com.kh.jaba.client.order.model.domain.CustomCheck"
@@ -27,6 +31,10 @@
 			alias="CartNo" />
 		<typeAlias type="com.kh.jaba.client.payment.model.domain.Pay"
 			alias="Pay" />
+		<typeAlias type="com.kh.jaba.client.paysearch.model.domain.PaySearch"
+			alias="PaySearch" />
+		<typeAlias type="com.kh.jaba.client.paysearch.model.domain.PaySearchCollection"
+			alias="PaySearchCollection" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
@@ -40,5 +48,7 @@
 		<mapper resource="mappers/cart-mapper.xml" />
 		<mapper resource="mappers/cartNo-mapper.xml" />
 		<mapper resource="mappers/pay-mapper.xml" />
+		<mapper resource="mappers/paySearch-mapper.xml" />
+		<mapper resource="mappers/paySearchCollection-mapper.xml" />
 	</mappers> 
 </configuration>
