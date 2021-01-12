@@ -68,12 +68,11 @@
 	<!-- HEADER -->
 	<header>
 		<div class="header_container">
-			<div class="logo">
-				<a href="<%=ctxPath%>/"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:53px; height:41px;"></a>
-			</div>
+         <div class="logo">
+            <a href="<%=ctxPath%>/"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
+         </div>
 			<div class="menu"></div>
 		</div>
-
 	</header>
 
 	<!-- NAVIGATOR -->

@@ -18,18 +18,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>explore</title>
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
-<!-- RESET -->
-<link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- MODAL -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- RESET -->
+<link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- HEADER CSS -->
 <link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
@@ -38,7 +39,7 @@
 <link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
 <!-- EXPLORE CSS -->
 <link href="<%=ctxPath%>/resources/css/explore.css" rel="stylesheet">
-
+<!-- SEARCH BAR CSS -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <script>
@@ -60,7 +61,7 @@ $(function(){
    
  })
 })
-
+//searchbar 생성
 function searchToggle(obj, evt){
     var container = $(obj).closest('.search-wrapper');
         if(!container.hasClass('active')){
@@ -77,13 +78,19 @@ function searchToggle(obj, evt){
 $(document).ready(function() {
 	 $("#keyword").keyup(function() {
          var k = $(this).val();
-         $(".store_card").css('display','none');		
+         $(".cardA").css('display','none');		
          
-         var temp = $(".store_card > .store_card_info > .store_card_info_name > h3:contains('" + k + "')");
-         $(temp).parent().parent().parent().show();
+         var temp = $(".cardA .store_card > .store_card_info > .store_card_info_name > h3:contains('" + k + "')");
+         $(temp).parent().parent().parent().parent().show();
+         // 개수 확인용
          $('.count').text(temp.length);  
      })
 })
+
+// mapForm 숨기기
+$(document).ready(function() {
+	$('#mapForm').css('display','none');
+});
 </script>
 </head>
 <body>
@@ -116,13 +123,13 @@ $(document).ready(function() {
 					<button id="avenue"><%=avenue%></button>
 				</div>
 				<div class="searchBar">
-				<form action="">
-					<input type="text" name="keyword" id="keyword"><i class="fa fa-search align-self-center" onclick="searchList();"></i>
+				<form action="" onsubmit="return false;">
+					<input type="text" name="keyword" id="keyword"><i class="fa fa-search align-self-center"></i>
 				</form>
 				</div>
-				<div class="countDiv">
+<!-- 			<div class="countDiv">
 					개수 : <span class="count"></span>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>
@@ -139,7 +146,7 @@ $(document).ready(function() {
 					<c:if test="${not empty storeList}">
 						<c:forEach items="${storeList}" var="storeVO" varStatus="s">
 							<!--  주소부분 정확하게 확인하고 수정해야함 -->
-                     		<a href="<%=ctxPath%>/menu/menuList.do?storename=${storeVO.store_name}">
+                     		<a href="<%=ctxPath%>/menu/menuList.do?storename=${storeVO.store_name}" class="cardA">
 								<div class="store_card">
 									<div class="store_card_image">
 										<img src="<%=ctxPath%>${storeVO.store_img}">
@@ -162,12 +169,12 @@ $(document).ready(function() {
 				</div>
 			</div>
 		</div>
-		<!-- 현재 위치의 좌표 Servlet으로 넘기기 위한 form -->
-		<form name="frm">
-		<input type="hidden" name="lat2">
-		<input type="hidden" name="lon2">		
-	</form>
-	</section>
+<!-- 현재 위치의 좌표 Servlet으로 넘기기 위한 form -->
+<form name="frm" id="mapForm">
+<input type="hidden" name="lat2">
+<input type="hidden" name="lon2">		
+</form>
+</section>
 	
 <div id="map"></div>
 
@@ -293,7 +300,7 @@ function displayMarker(place) {
 			<hr>
 			<div class="row">
 				<div class="footer__disclaimer">
-					<strong>JABA connects customers with popular cafe brands.</strong>
+					<p>JABA connects customers with popular cafe brands.</p>
 					<p>We believe that time is precious. We strive to create
 						beautiful technology that helps you save time and make ordering
 						easy, both sides of the counter. Order from JABA with the best
@@ -351,7 +358,5 @@ function displayMarker(place) {
 		});
 	});
 </script>
-	
-
 </body>
 </html>

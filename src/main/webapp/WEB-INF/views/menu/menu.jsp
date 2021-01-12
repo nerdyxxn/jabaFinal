@@ -4,8 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-   String ctxPath = request.getContextPath();
-   String storename = request.getParameter("storename");
+	String ctxPath = request.getContextPath();
+	String brandName = request.getParameter("brand");
+	String storename = request.getParameter("storename");
+	
+	String avenue = request.getParameter("storename");
+	if(avenue==null){
+		avenue=request.getParameter("brand");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -30,6 +36,8 @@
 <link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
 <!-- MENU CSS -->
 <link href="<%=ctxPath%>/resources/css/menu.css" rel="stylesheet">
+<!-- SEARCH BAR CSS -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- 체크박스 라디오버튼 CSS -->
 <link href="<%=ctxPath%>/resources/css/icheck-material.css" rel="stylesheet" type="text/css">
 
@@ -78,6 +86,31 @@
          }
       });
    });
+   //searchbar 생성
+   function searchToggle(obj, evt){
+       var container = $(obj).closest('.search-wrapper');
+           if(!container.hasClass('active')){
+               container.addClass('active');
+               evt.preventDefault();
+           }
+           else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
+               container.removeClass('active');
+               // clear input
+               container.find('.search-input').val('');
+           }
+   }
+   //searchbar 검색 기능
+   $(document).ready(function() {
+   	 $("#keyword").keyup(function() {
+            var k = $(this).val();
+            $(".product_card").css('display','none');		
+            
+            var temp = $(".category > .category_products > .product_card > .product_card_detail > .product_name:contains('" + k + "')");
+            $(temp).parent().parent().show();
+            // 개수 확인용
+            $('.count').text(temp.length);  
+        })
+   })
 </script>
 
 </head>
@@ -108,43 +141,27 @@
       <img>
 
    </section>
-   <!-- SECTION 2 -->
-   <section id="search" class="mini">
-      <div class="container">
-         <div class="mini_row">
-            <div class="time">
-               <button>Pick up, ASAP</button>
-            </div>
-            <div class="search_loc">
-               <button>AVENUE</button>
-            </div>
-            <div class="search-term">
-               <button
-                  class="MuiButtonBase-root MuiIconButton-root search-term__icon  MuiIconButton-sizeSmall jss263"
-                  tabindex="0" type="button">
-                  <span class="MuiIconButton-label"> <svg
-                        class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24"
-                        aria-hidden="true" role="presentation">
-            <path
-                           d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-            </path>
-            </svg>
-                  </span>
-                  <div class="MuiTouchRipple-root"></div>
-               </button>
-            </div>
-            <div id="hidden_term">
-               <button class="hidden_term_all">
-                  <div id="hidden_input">
-                     <input type="text" placeholder="Acai or Latte">
-                  </div>
-                  <button class="hidden_term_close">X</button>
-               </button>
-
-            </div>
-         </div>
-      </div>
-   </section>
+	<!-- SECTION 2 -->
+	<section id="search" class="mini">
+		<div class="container">
+			<div class="mini_row">
+				<div class="time">
+					<button>Pick up, ASAP</button>
+				</div>
+				<div class="search_loc">
+					<button id="avenue"><%=avenue%></button>
+				</div>
+				<div class="searchBar">
+				<form action="" onsubmit="return false;">
+					<input type="text" name="keyword" id="keyword"><i class="fa fa-search align-self-center"></i>
+				</form>
+				</div>
+<!-- 			<div class="countDiv">
+					개수 : <span class="count"></span>
+				</div> -->
+			</div>
+		</div>
+	</section>
    <!-- SECTION 3 -->
     <!-- SECTION1 Store_info -->
    <section id="store_info">

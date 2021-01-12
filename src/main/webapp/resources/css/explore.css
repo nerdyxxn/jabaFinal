@@ -25,6 +25,7 @@ color: black;
 text-decoration: none;
 }
 
+
 /* MAIN */
 main {
 	width: 100%;
@@ -67,6 +68,7 @@ a {
 
 .mini .container {
 	width: 80%;
+	max-width: 1024px;
 }
 
 .mini_row {
@@ -119,6 +121,7 @@ a {
 	width: 80%;
 	margin: 0 auto;
 	padding-top: 15px;
+	max-width: 1024px;
 }
 
 #store_list {
@@ -126,18 +129,19 @@ a {
 }
 
 section .container .store_list_grid {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-/*  	grid-column-gap: 30px;
+ 	display: grid;
+  	grid-column-gap: 30px;
 	grid-row-gap: 30px;
 	grid-template-rows: auto;  
- 	grid-template-columns: repeat(3, 1fr); */
-	min-width: 100%;
+ 	grid-template-columns: repeat(3, 1fr);  
+ 	justify-items: center;
+}
+
+.cardA {
 }
 
 .store_card_image img {
-	width: 250px;
+	width: 300px;
 	height: 160px;
 	border-radius: 6px;
 	background: #ebf3fe;
@@ -242,4 +246,25 @@ form:hover .fa{
 .countDiv {
 	display: inline-block;
 	text-align: center;
+}
+
+@media screen and ( max-width : 1080px) {
+	#home {
+		height: 250px;
+	}
+	.homeSpan {
+		font-size: 36px;
+	}
+	.container {
+    	width: 990px;
+	}
+	section .container .store_list_grid {
+		display: grid;
+		grid-column-gap: 30px;
+		grid-row-gap: 30px;
+		grid-template-rows: auto;
+		/* 	grid-template-columns: repeat(2, 1fr); */
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		justify-items: center;
+	}
 }
