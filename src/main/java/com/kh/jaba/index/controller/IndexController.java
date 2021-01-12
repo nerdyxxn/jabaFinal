@@ -40,6 +40,14 @@ public class IndexController {
 		mv.setViewName("index");
 		return mv;
 	}
+	
+	// 단지 index페이지를 띄워주는행동만 함
+		@RequestMapping(value = "/pay/kakaoPay", method = RequestMethod.GET)
+		public ModelAndView kakaopay(ModelAndView mv) {
+			logger.info("----- index 진입 -----");
+			mv.setViewName("/pay/kakaoPay");
+			return mv;
+		}
 
 	@RequestMapping(value = "/client/loginCheck.do", method = RequestMethod.GET)
 	public void loginCheckDo(HttpServletRequest request, HttpServletResponse response, ModelAndView mv)
