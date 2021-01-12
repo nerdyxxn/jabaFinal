@@ -34,18 +34,26 @@ public class PayContorller {
 	public void insertPayDo(HttpServletRequest request) {
 		String pay_request = request.getParameter("pay_request");
 		String cartno_id = (String) request.getSession().getAttribute("cartId");
+		String pickup_time = request.getParameter("pickup_time");
 		int pay_total_price = (int) request.getSession().getAttribute("total_price");
+		int result = 0;
 
-		if ((pay_request != null) && (cartno_id != null) && (pay_total_price != 0)) {
+		if ((pay_request != null) && (cartno_id != null) && (pay_total_price != 0) && (pickup_time != null)) {
 			System.out.println("cart_id : " +  cartno_id);
 			System.out.println("총가격 : " + pay_total_price);
 			System.out.println("요청사항 : " + pay_request);
+			System.out.println("Pickup Time : " + pickup_time);
 			
 			pay.setCartno_id(cartno_id);
 			pay.setPay_request(pay_request);
 			pay.setPay_total_price(pay_total_price);
-			payService.insertPayment(pay);
-		
+			pay.setPickup_time(pickup_time);
+			result = payService.insertPayment(pay);
+			if(result == 1) {
+				System.out.println(cartno_id + "의 결제가 완료되었습니다.");
+			}else {
+				System.out.println(cartno_id + "의 결제가 실패되었습니다.");
+			}
 			// cartId, total_price,storeVo,cartViewList,cartList,cartViewVoList REMOVE
 			request.getSession().removeAttribute("cartId");
 			request.getSession().removeAttribute("total_price");

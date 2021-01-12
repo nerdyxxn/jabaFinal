@@ -49,18 +49,19 @@
 </script>
 
 <script>
-	// 모달창 script
-	$(document).ready(function(){
+	// Pick up 변경 모달창 script
+	$(document).ready(function() {
 		$('#later_time').hide();
 	});
-	 
-	function setDisplay() {
-		if ($('input:radio[id=asap]').is(':checked')) {
-			$('#later_time').hide();
-		} else {
+
+	$(function() {
+		$(".later").click(function() {
 			$('#later_time').show();
-		}
-	
+		});
+		$(".asap").click(function() {
+			$('#later_time').hide();
+		});
+	});
 </script>
 </head>
 <body>
@@ -219,12 +220,12 @@
 								<td>
 									<div class="asap icheck-material-teal">
 										<input type="radio" id="asap" name="teal" value="agree"
-											checked="checked" onchange="setDisplay()"> <label
+											checked="checked"> <label
 											for="asap" style="font-weight: normal;">&nbsp;&nbsp;ASAP</label>
 									</div>
 									<div class="later icheck-material-teal">
 										<input type="radio" id="later" name="teal" value="denial"
-											onchange="setDisplay()" style="font-weight: 15px;"> <label
+											style="font-weight: 15px;"> <label
 											for="later" style="font-weight: normal;">&nbsp;&nbsp;LATER</label>
 									</div>
 								</td>
@@ -357,13 +358,13 @@
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
 					var pay_request = $("#pay_request").val();
-					var pick_time = $("#pickUp").text();
+					var pickup_time = $("#pickUp").text();
 					console.log(pay_request);
 					 $.ajax({
 						  url: "<%=ctxPath%>/payment/pay.do",
 				             data : {
 				            	 pay_request : pay_request,
-				            	 pick_time : pick_time
+				            	 pickup_time : pickup_time
 				             },
 				             method: "post",
 				             success : function(res){
@@ -392,7 +393,6 @@
 		}
 		$("#btnChk_cancel").click();
 	});
-	
 	
 </script>
 </body>

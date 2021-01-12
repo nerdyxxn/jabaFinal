@@ -19,6 +19,8 @@ input {
 
 a {
    color: black;
+   font-size: 14px;
+   font-weight: normal;
 }
 
 
@@ -363,4 +365,8 @@ main {
 
 #MuiAvatar-root-id {
    visibility: hidden;
+}
+
+.city_name{
+	font-size: 16px;
 }

@@ -52,13 +52,7 @@ $(function(){
    }
  })
 })
-  // 서치바 클릭 시 --> hide
-/*      $(document).ready(
-         function() {$("#addr_search").click(
-                  function() {
-                     $('#searchDrop').css('display','none');
-                  });
-         });   */
+
    // search 버튼 클릭 시 dropdown 동작 slideToggle
     $(document).ready(
          function() {$("#searchBtn").click(
@@ -185,7 +179,7 @@ $(function(){
                </div>
 
                <div class="text-box">
-                  <br> <span style="font-weight: bold;"> Password </span> <span style="float: right"> <a href="#" style="font-weight: normal;">Forgot&nbsp;password?</a>
+                  <br><span style="font-weight: bold;"> Password </span> <span style="float: right"><a href="#">Forgot&nbsp;password?</a>
 
 
                   </span> <input type="password" class="signin-input" id="pwd" name="pwd">
@@ -233,31 +227,31 @@ $(function(){
 
             <!-- modal-body -->
             <div class="modal-body">
-               <div class="text-box" style="font-weight: bold; font-size: 13px;">
+               <div class="text-box" style="font-weight: bold; font-size: 14px;">
                   <p>Name</p>
                   <input type="text" class="signin-input" id="name" name="name">
                </div>
 
                <div class="text-box">
                   <br>
-                  <div class="text-box" style="font-weight: bold; font-size: 13px;">
+                  <div class="text-box" style="font-weight: bold; font-size: 14px;">
                      <p>Mobile number</p>
                      <input type="text" class="signin-input" id="mobile" name="mobile">
                   </div>
 
                   <div class="text-box">
                      <br>
-                     <div class="text-box" style="font-weight: bold; font-size: 13px;">
+                     <div class="text-box" style="font-weight: bold; font-size: 14px;">
                         <p>Email address</p>
                         <input type="text" class="signin-input" id="emailRegister" name="emailRegister"> <span id="emailCheckResult"></span>
                      </div>
 
                      <div class="text-box">
                         <br>
-                        <div class="text-box" style="font-weight: bold; font-size: 13px;">
+                        <div class="text-box" style="font-weight: bold; font-size: 14px;">
                            <p>Password</p>
                            <input type="password" class="signin-input" id="passwordRegister" name="passwordRegister"> <span id="passwordRegisterResult"></span><br>
-                           <p style="font-size: 11px; font-weight: normal; padding-top: 3px">Password must be at least 8 characters</p>
+                           <p style="font-size: 12px; font-weight: normal; padding-top: 5px">Password must be at least 8 characters</p>
                         </div>
 
                      </div>
