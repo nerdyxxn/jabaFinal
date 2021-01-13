@@ -75,19 +75,22 @@ section#home .container h1 {
 	line-height: 3.2rem;
 }
 
-
-
 #brands {
 	width: 100%;
-	padding-top: 85px;
-	padding-bottom: 30px;
-	height: 200px;
+	padding-top: 40px;
 	background-color: white;
 	
 }
+
 #brands .container{
 	margin: 0 auto;
 }
+
+.brand-badge-list {
+ 	display:flex;
+	justify-content: space-between;
+}
+
 div .brands {
 	display: inline-block;
 	
@@ -97,6 +100,10 @@ div .brands {
 	width: 100%;
 	height: 150px;
 	
+}
+.city-badge-list {
+	display:flex;
+	justify-content: space-between;
 }
 div .cities{
 	display: inline-block;
@@ -158,11 +165,6 @@ button:active {
 	}
 }
 .brand-badge {  
- 
-  top: 50%;
-  left: 50%;
-  height: 180px;
-  width: 180px;
   line-height: 180px;
   text-align: center;
   text-transform: uppercase;
@@ -183,11 +185,6 @@ button:active {
 }
 
 .city-badge{
-
-  top: 50%;
-  left: 50%;
-  height: 80px;
-  width: 180px;
   line-height: 80px;
   text-align: center;
   text-transform: uppercase;

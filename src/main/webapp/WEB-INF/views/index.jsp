@@ -42,7 +42,6 @@
 $(function(){
    $(window).scroll(function(){
    var navbar = $(this).scrollTop();
-  
    var $header = $('header');
    if(navbar > 0){
        $header.addClass('activated');
@@ -51,7 +50,6 @@ $(function(){
    }
  })
 })
-
    // search 버튼 클릭 시 dropdown 동작 slideToggle
     $(document).ready(
          function() {$("#searchBtn").click(
@@ -59,7 +57,7 @@ $(function(){
                      $('#searchDrop').toggle();
                   });
          function aTagPost(){
-            var getId=$(this).attr("id");
+      	   var getId=$(this).attr("id");
              frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
              frm.method="post";
              frm.submit();
@@ -72,9 +70,29 @@ $(function(){
                container.css('display','none');
     }
   }); 
-
+   
+      // search 버튼 클릭 시 dropdown 동작 slideToggle
+      $(document).ready(
+           function() {$("#searchBtn").click(
+                    function() {
+                       $('#searchDrop').toggle();
+                    });
+           function aTagPost(){
+        	   var getId=$(this).attr("id");
+               frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
+               frm.method="post";
+               frm.submit();
+               };
+           });
+      
+      // 모달창 닫혔을 때 페이지 reload 시켜주기
+      $(document).ready(
+            function() {
+            	$('.modal').on('hidden.bs.modal', function () {
+       				location.reload();
+     	})
+     });
 </script>
-
 </head>
 <body>
    <!-- HEADER -->
@@ -165,12 +183,12 @@ $(function(){
                </div>
                <div class="header-subtitle">
                   <p>
-                     Don't have an account?<a href="#">&nbsp;sign up here</a>
+                     Don't have an account?&nbsp;<a href="javascript:signUpNow();" class="register">Sign up now</a>
                   </p>
                </div>
             </div>
 
-            <!-- modal-body -->
+  			<!-- modal-body -->
             <div class="modal-body">
                <div class="text-box" style="font-weight: bold;">
                   <p>Email address</p>
@@ -183,7 +201,6 @@ $(function(){
                </div>
               
             </div>
-           
 
             <!-- modal-footer -->
             <div class="modal-footer">
@@ -192,12 +209,12 @@ $(function(){
             
              <div class="modal-body" id="lostPw-body" style="display: none">
                <div class="text-box" style="font-weigh: bold;">
-               	<span style="font-weight: bold;">Email address</span><span style="float: right"> <a href="javascript:returnLogin();">return to login</a></span>
-               	<input type="text" class="signin-input" id="lostemail" name="lostemail">
+                  <span style="font-weight: bold;">Email address</span><span style="float: right"> <a href="javascript:returnLogin();">return to login</a></span>
+                  <input type="text" class="signin-input" id="lostemail" name="lostemail">
                </div>
                </div>
                <div class="modal-footer" id="lostPw-footer" style="display: none">
-               <button type="button" class="btnChk" id="sendPw">Send a temporary Password</button>
+               <button type="button" class="btnChk" id="Send a new PassWord">Send a temporary Password</button>
                </div>
          </div>
       </div>
@@ -323,47 +340,49 @@ $(function(){
          <div>
             <h2>Browse By Brand</h2>
          </div>
-         <div data-index="0" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div class="brand-badge-list">
+         <div data-index="0" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge">
                   <img src="<%=ctxPath%>/resources/images/logo_starbucks.jpg" class="active brand_img" id="스타벅스">
                </div>
             </div>
          </div>
-         <div data-index="1" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="1" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
                   <img src="<%=ctxPath%>/resources/images/logo_coffeebean.png" class="active brand_img" id="커피빈">
                </div>
             </div>
          </div>
-         <div data-index="2" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="2" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
                   <img src="<%=ctxPath%>/resources/images/logo_duckes.png" class="active brand_img" id="듁스" >
                </div>
             </div>
          </div>
-         <div data-index="3" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="3" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
                   <img src="<%=ctxPath%>/resources/images/logo_ant.png" class="active brand_img" id="앤드러사이트">
                </div>
             </div>
          </div>
-         <div data-index="4" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="4" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
                   <img src="<%=ctxPath%>/resources/images/logo_paul.png" class="active brand_img" id="폴바셋">
                </div>
             </div>
          </div>
-         <div data-index="5" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="5" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
                   <img src="<%=ctxPath%>/resources/images/logo_hollys.png" class="active brand_img">
                </div>
             </div>
+         </div>
          </div>
       </div>
    </section>
@@ -374,49 +393,50 @@ $(function(){
          <div>
             <h2>Browse By City</h2>
          </div>
-         <div data-index="0" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div class="city-badge-list">
+         <div data-index="0" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
                   <a class="city_name" id="서울시 종로구 종로">JongRo</a>
                </div>
             </div>
          </div>
-         <div data-index="1" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="1" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
                   <a class="city_name" id="서울시 종로구 청진동">CheongJin</a>
                </div>
             </div>
          </div>
-         <div data-index="2" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="2" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
                   <a class="city_name" id="서울시 종로구 관철동">GuanCheol</a>
                </div>
             </div>
          </div>
-         <div data-index="3" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="3" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
                   <a class="city_name" id="강남구청">GangNam</a>
                </div>
             </div>
          </div>
-         <div data-index="4" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="4" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
                   <a class="city_name" id="양천로55길 55">GangSeo</a>
                </div>
             </div>
          </div>
-         <div data-index="5" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 146px;">
+         <div data-index="5" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
                   <a class="city_name" id="인천시청">Incheon</a>
                </div>
             </div>
          </div>
-
+		</div>
       </div>
 
    </section>
@@ -589,12 +609,12 @@ function displayMarker(locPosition, message) {
                   frm.method="post";
                   frm.submit();
                   });
-           $("#searchDrop").children().on("click", function(){
-              var getId=$(this).attr("id");
-              frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
-              frm.method="post";
-              frm.submit();
-           })
+        	$("#searchDrop").children().on("click", function(){
+        		var getId=$(this).attr("id");
+        		frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
+        		frm.method="post";
+        		frm.submit();
+        	})
            
            //추후 수정, searchBtn 클릭 시 해당 기능 (내일 01/06)
            // searchBtn 클릭하면 ajax를 통해서 데이터 리스트를 session에 담아서 가져오고
@@ -650,7 +670,7 @@ var frm = document.frm;
     console.log(frm.lat2.value);
     console.log(frm.lon2.value);
     $(".addr_store_anchor").on("click", function(){
-       var getId=$(this).attr("id");
+    	var getId=$(this).attr("id");
         frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
         frm.method="post";
         frm.submit();
@@ -660,7 +680,7 @@ var frm = document.frm;
 }
 
 function click(obj){
-   $(obj).css("background-color", "red");
+	$(obj).css("background-color", "red");
 }
 
 
@@ -792,49 +812,34 @@ function click(obj){
          });
       });
    </script>
-   <script>
+	<script>
    //비밀번호 찾기
-	function lostPw(){
-  		$("#LoginModal .modal-body").hide();
-  		$("#LoginModal .modal-footer").hide();
+   function lostPw(){
+       $("#LoginModal .modal-body").hide();
+       $("#LoginModal .modal-footer").hide();
        $("#lostPw-body").show();
        $("#lostPw-footer").show();
-	   
+      
    }
    //로그인 창으로 되돌리기
    function returnLogin(){
-	   $("#LoginModal .modal-body").show();
- 		$("#LoginModal .modal-footer").show();
+      $("#LoginModal .modal-body").show();
+      $("#LoginModal .modal-footer").show();
       $("#lostPw-body").hide();
       $("#lostPw-footer").hide();
    }
-   	
    </script>
-   
-   <script>
-   // 임시 비밀번호 보내기
-   $("#sendPw").on("click", function(){
-	   console.log("click됐따ㅏㅏㅏㅏ");
-	   var lostemail = $("#lostemail").val();
-         $.ajax({
-            url:"client/sendpw.do",
-            data:{
-            	lostemail : lostemail
-            },
-            success: function(res1){
-               	if(res1=="NotExistError"){
-            	alert("존재하지 않는 이메일입니다.");
-               		
-               	} else {
-            	alert("해당 이메일로 임시 비밀번호를 전송했습니다.");
-                $("#loginCloseBtn").click();
-               	}
-            }
-         });
-      });
-  
-   
-   </script>
-
+	<script>
+	function signUpNow() {
+	  //기존 모달창 닫기
+	  $("#LoginModal").hide();
+	  //signUp 모달창 오픈
+	  $("#registerModal").modal();
+	  
+	  $('.modal').on('hidden.bs.modal', function () {
+		  location.reload();
+		})
+	}
+	</script>
 </body>
 </html>

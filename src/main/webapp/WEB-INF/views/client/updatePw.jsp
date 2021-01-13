@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
-   String ctxPath = request.getContextPath();
+	String ctxPath = request.getContextPath();
 
 %>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>JABA</title>
 <meta name="viewport"
-   content="width=device-width,initial-scale=1,maximum-scale=1,minimal-ui" />
+	content="width=device-width,initial-scale=1,maximum-scale=1,minimal-ui" />
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
 <!-- MODAL -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,96 +32,105 @@
 <link href="<%=ctxPath%>/resources/css/updatePw.css" rel="stylesheet">
 
 <script>
-$(function(){
-   $(window).scroll(function(){
-   var navbar = $(this).scrollTop();
-   var $header = $('header');
-   if(navbar > 0){
-       $header.addClass('activated');
-   }else{
-       $header.removeClass('activated');
-   }
+$(function() {
+    $(window).scroll(function() {
+       var navbar = $(this).scrollTop();
+       var $header = $('header');
+       if (navbar > 0) {
+          $header.addClass('activated');
+       } else {
+          $header.removeClass('activated');
+       }
+    })
  })
-})
-
+   // 페이지 로딩되었을때 로그인이 되어있는지 확인
+   $(document).ready(function() {
+      $.ajax({
+         url : "<%=ctxPath%>/client/loginCheck.do",
+         data : {},
+         success : function(res1) {
+            if (res1 == 'KeepLogin') {
+               $("#logoutBtn").show();
+            }
+         }
+      });
+   });
 </script>
 </head>
 <body>
-   <!-- HEADER -->
-   <header>
-      <div class="header_container">
-         <div class="logo">
-            <a href="<%=ctxPath%>/index.jsp"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:53px; height:41px;"></a>
+	<!-- HEADER -->
+	<header>
+		<div class="header_container">
+         <div class="logo" >
+            <a href="<%=ctxPath%>/"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
          </div>
-         <div class="menu"></div>
-      </div>
+			<div class="menu">
+				<button id="logoutBtn">LOGOUT</button>
+			</div>
+		</div>
+	</header>
+	
+	<!-- HEADER-SECTION -->
+	<section id="home">
+		<div class="container">
+			<p class="homeTitle">My account</p>
+		</div>
+	</section>
+	
+	<!-- SECTION -->
+	<section id="info">
+		<div class="container">
+			<div class="category">
+				<p>
+					<a href="<%=ctxPath%>/client/myPage.do" class="profile"
+						style="text-decoration: none; color: grey;">Profile</a>
+				</p>
+				<br>
+				<p>
+					<a href="<%=ctxPath%>/client/updatePw.do" class="password"
+						style="text-decoration: none; color: grey;">Password</a>
+				</p>
+			</div>
+			<div class="list" style="width: 500px;">
+				<div class="text-box">
+					<p style="font-weight: bold; margin: 0 0 15px;">Change Password</p>
+				</div>
+				<div class="text-box">
+					<input type="password" class="signin-input" id="pwd_change"
+						name="pwd_change"
+						style="font-weight: normal; padding: 12px 12px 10px;"
+						placeholder="새로운 비밀번호를 입력해주세요">
+				</div>
+				<div class="text-box">
+					<br>
+					<div class="text-box">
+						<input type="password" class="signin-input" id="pwd_confirm"
+							name="pwd_confirm"
+							style="font-weight: normal; padding: 12px 12px 10px; margin-top: -10px;"
+							placeholder="비밀번호를 한번 더 입력해주세요">
+					</div>
+				</div>
+				<br>
+				<button type="button" class="btnChk" id="btn_pwd" name="btn_pwd"
+					style="font-weight: normal; font-size: 12px;">CHANGE
+					PASSWORD</button>
+			</div>
+		</div>
+	</section>
 
-   </header>
-   <!-- NAVIGATOR -->
-   <nav></nav>
-   <!-- SECTION -->
-   <section id="home">
-      <div class="container" style="text-align: left; padding: 0px 20px;">
-         <p style="font-size: 35px; color: white; margin-top: 30px;">My
-            account</p>
-      </div>
-   </section>
-
-
-   <!-- SECTION -->
-   <section id="info">
-      <div class="container">
-         <div class="category">
-            <p>
-               <a href="<%=ctxPath%>/client/myPage.do" class="profile"
-                  style="text-decoration: none; color: grey;">Profile</a>
-            </p>
-            <br>
-            <p>
-               <a href="<%=ctxPath %>/client/updatePw.do" class="password"
-                  style="text-decoration: none; color: grey;">Password</a>
-            </p>
-         </div>
-         <div class="list" style="width: 500px;">
-            <div class="text-box">
-               <p style="font-weight: bold; margin: 0 0 15px;">Change Password</p>
-            </div>
-            <div class="text-box">
-               <input type="password" class="signin-input" id="pwd_change"
-                  name="pwd_change"
-                  style="font-weight: normal; padding: 12px 12px 10px;"
-                  placeholder="새로운 비밀번호를 입력해주세요">
-            </div>
-            <div class="text-box">
-               <br>
-               <div class="text-box">
-                  <input type="password" class="signin-input" id="pwd_confirm"
-                     name="pwd_confirm"
-                     style="font-weight: normal; padding: 12px 12px 10px; margin-top: -10px;"
-                     placeholder="비밀번호를 한번 더 입력해주세요">
-               </div>
-            </div>
-            <br>
-            <button type="button" class="btnChk" id="btn_pwd" name="btn_pwd"
-               style="font-weight: normal; font-size: 12px;">CHANGE
-               PASSWORD</button>
-         </div>
-      </div>
-   </section>
-
-   <!-- ASIDE -->
-   <aside></aside>
+	<!-- ASIDE -->
+	<aside></aside>
 
    <!-- FOOTER -->
    <footer>
       <div class="container">
          <div class="row">
             <div class="footer_logo">
-               <img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:53px; height:41px;">
+               <img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;">
             </div>
             <div class="footer_links">
                <ul>
-                  <li class="links_head">JABA for YOUNG&amp;RICH</li>
+                  <li class="links_head">JABA for YOUNG&RICH</li>
                   <li>WHY JABA?</li>
                   <li>PRICING</li>
                   <li><a href='#'>PARTNER LOGIN</a></li>
@@ -149,7 +158,7 @@ $(function(){
          <hr>
          <div class="row">
             <div class="footer__disclaimer">
-               <strong>JABA connects customers with popular cafe brands.</strong>
+               <p>JABA connects customers with popular cafe brands.</p>
                <p>We believe that time is precious. We strive to create
                   beautiful technology that helps you save time and make ordering
                   easy, both sides of the counter. Order from JABA with the best
@@ -180,41 +189,42 @@ $(function(){
          </div>
       </div>
    </footer>
-   <script>
-   $("#pwd_change").change(function(){
-      var pw = $("#pwd_change").val();
-       var num = pw.search(/[0-9]/g);
-       var eng = pw.search(/[a-z]/ig);
-       var spe = pw.search(/[`~!@@#$%^&*]/gi);
-       if(pw.length < 8 || pw.length > 20){
-        alert("8자리 ~ 20자리 이내로 입력해주세요.");
-        $("#pwd_change").val("");
-        return false;
-       }else if(pw.search(/\s/) != -1){
-        alert("비밀번호는 공백 없이 입력해주세요.");
-        $("#pwd_change").val("");
-        return false;
-       }else if(num < 0 || eng < 0 || spe < 0 ){
-        alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-        $("#pwd_change").val("");
-        return false;
-       }else {
-         console.log("통과"); 
-          return true;
-       }
-   })
    
-   $("#pwd_confirm").change(function(){
-      var pwCh = $("#pwd_change").val();
-      var pwCf = $("#pwd_confirm").val();
-      if(pwCh!=pwCf){
-         alert("비밀번호가 일치하지 않습니다.");
-          $("#pwd_confirm").val("");
-      } else {
-         alert("비밀번호가 일치합니다.");
-      }
-   })
-   </script>
+	<script>
+	$("#pwd_change").change(function(){
+		var pw = $("#pwd_change").val();
+		 var num = pw.search(/[0-9]/g);
+		 var eng = pw.search(/[a-z]/ig);
+		 var spe = pw.search(/[`~!@@#$%^&*]/gi);
+		 if(pw.length < 8 || pw.length > 20){
+		  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+		  $("#pwd_change").val("");
+		  return false;
+		 }else if(pw.search(/\s/) != -1){
+		  alert("비밀번호는 공백 없이 입력해주세요.");
+		  $("#pwd_change").val("");
+		  return false;
+		 }else if(num < 0 || eng < 0 || spe < 0 ){
+		  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+		  $("#pwd_change").val("");
+		  return false;
+		 }else {
+			console.log("통과"); 
+		    return true;
+		 }
+	})
+	
+	$("#pwd_confirm").change(function(){
+		var pwCh = $("#pwd_change").val();
+		var pwCf = $("#pwd_confirm").val();
+		if(pwCh!=pwCf){
+			alert("비밀번호가 일치하지 않습니다.");
+			 $("#pwd_confirm").val("");
+		} else {
+			alert("비밀번호가 일치합니다.");
+		}
+	})
+	</script>
    <script>
       $("#btn_pwd").click(function(){
          $.ajax({
@@ -228,5 +238,17 @@ $(function(){
          });
       });
    </script>
+	<script>
+	// 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
+    $("#logoutBtn").on("click",function(){
+        $.ajax({
+           url:"<%=ctxPath%>/client/clientLogout.do",
+           data:   {},
+           success: function(){
+              $("#logoutBtn").hide();
+           }
+        });
+        });
+	</script>
 </body>
 </html>
