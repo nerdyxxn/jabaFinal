@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Qna">
+   <resultMap type="Qna" id="resultQna">
+      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+      <id property="qna_no" column="qna_no" />
+      <result property="admin_id" column="admin_id" />
+      <result property="qna_title" column="qna_title" />
+      <result property="qna_content" column="qna_content" />
+      <result property="qna_time" column="qna_time" />
+   </resultMap>
+
+   <!-- INSERT한 다음, 생성된 order_id로 OrderVO를 가져오는 메소드 -->
+   <select id="selectQnaList" resultType="arraylist" resultMap="resultQna">
+      select * from qna
+   </select>
+
+</mapper>
+
+
+
+

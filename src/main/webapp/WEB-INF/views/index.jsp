@@ -59,7 +59,7 @@ $(function(){
                      $('#searchDrop').toggle();
                   });
          function aTagPost(){
-      	   var getId=$(this).attr("id");
+            var getId=$(this).attr("id");
              frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
              frm.method="post";
              frm.submit();
@@ -101,7 +101,7 @@ $(function(){
                      class="MuiTouchRipple-root"></span>
                </button>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#" id="My_account_profile"><div class="dropdown-itemss">
+                  <a class="dropdown-item" href="<%=ctxPath%>/client/myPage.do" id="My_account_profile"><div class="dropdown-itemss">
                         <svg class="menu-item__icon">
                            <g id="\u2192-Assets" stroke="none" stroke-width="1"
                               fill="none" fill-rule="evenodd">
@@ -165,7 +165,7 @@ $(function(){
                </div>
                <div class="header-subtitle">
                   <p>
-                     Don't have an account?&nbsp;<a href="#" class="register">Sign up now</a>
+                     Don't have an account?<a href="#">&nbsp;sign up here</a>
                   </p>
                </div>
             </div>
@@ -178,17 +178,27 @@ $(function(){
                </div>
 
                <div class="text-box">
-                  <br><span style="font-weight: bold;"> Password </span> <span style="float: right"><a href="#">Forgot&nbsp;password?</a>
-
-
+                  <br><span style="font-weight: bold;"> Password </span> <span style="float: right"><a href="javascript:lostPw();">Forgot&nbsp;password?</a>
                   </span> <input type="password" class="signin-input" id="pwd" name="pwd">
                </div>
+              
             </div>
+           
 
             <!-- modal-footer -->
             <div class="modal-footer">
                <button type="button" class="btnChk" id="signin" name="signin">Sign in</button>
             </div>
+            
+             <div class="modal-body" id="lostPw-body" style="display: none">
+               <div class="text-box" style="font-weigh: bold;">
+               	<span style="font-weight: bold;">Email address</span><span style="float: right"> <a href="javascript:returnLogin();">return to login</a></span>
+               	<input type="text" class="signin-input" id="lostemail" name="lostemail">
+               </div>
+               </div>
+               <div class="modal-footer" id="lostPw-footer" style="display: none">
+               <button type="button" class="btnChk" id="sendPw">Send a temporary Password</button>
+               </div>
          </div>
       </div>
    </div>
@@ -579,12 +589,12 @@ function displayMarker(locPosition, message) {
                   frm.method="post";
                   frm.submit();
                   });
-        	$("#searchDrop").children().on("click", function(){
-        		var getId=$(this).attr("id");
-        		frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
-        		frm.method="post";
-        		frm.submit();
-        	})
+           $("#searchDrop").children().on("click", function(){
+              var getId=$(this).attr("id");
+              frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
+              frm.method="post";
+              frm.submit();
+           })
            
            //추후 수정, searchBtn 클릭 시 해당 기능 (내일 01/06)
            // searchBtn 클릭하면 ajax를 통해서 데이터 리스트를 session에 담아서 가져오고
@@ -640,7 +650,7 @@ var frm = document.frm;
     console.log(frm.lat2.value);
     console.log(frm.lon2.value);
     $(".addr_store_anchor").on("click", function(){
-    	var getId=$(this).attr("id");
+       var getId=$(this).attr("id");
         frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
         frm.method="post";
         frm.submit();
@@ -650,7 +660,7 @@ var frm = document.frm;
 }
 
 function click(obj){
-	$(obj).css("background-color", "red");
+   $(obj).css("background-color", "red");
 }
 
 
@@ -783,10 +793,46 @@ function click(obj){
       });
    </script>
    <script>
-     // My account 클릭시 editProfile 페이지로 이동
-     $("#My_account_profile").click(function(){
-        location.href="client/editProfile.do";
-     });
+   //비밀번호 찾기
+	function lostPw(){
+  		$("#LoginModal .modal-body").hide();
+  		$("#LoginModal .modal-footer").hide();
+       $("#lostPw-body").show();
+       $("#lostPw-footer").show();
+	   
+   }
+   //로그인 창으로 되돌리기
+   function returnLogin(){
+	   $("#LoginModal .modal-body").show();
+ 		$("#LoginModal .modal-footer").show();
+      $("#lostPw-body").hide();
+      $("#lostPw-footer").hide();
+   }
+   	
+   </script>
+   
+   <script>
+   // 임시 비밀번호 보내기
+   $("#sendPw").on("click", function(){
+	   console.log("click됐따ㅏㅏㅏㅏ");
+	   var lostemail = $("#lostemail").val();
+         $.ajax({
+            url:"client/sendpw.do",
+            data:{
+            	lostemail : lostemail
+            },
+            success: function(res1){
+               	if(res1=="NotExistError"){
+            	alert("존재하지 않는 이메일입니다.");
+               		
+               	} else {
+            	alert("해당 이메일로 임시 비밀번호를 전송했습니다.");
+                $("#loginCloseBtn").click();
+               	}
+            }
+         });
+      });
+  
    
    </script>
 

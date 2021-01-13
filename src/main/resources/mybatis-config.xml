@@ -35,6 +35,8 @@
 			alias="PaySearch" />
 		<typeAlias type="com.kh.jaba.client.paysearch.model.domain.PaySearchCollection"
 			alias="PaySearchCollection" />
+		<typeAlias type="com.kh.jaba.client.qna.model.domain.Qna"
+			alias="Qna" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/client-mapper.xml" />
@@ -50,5 +52,6 @@
 		<mapper resource="mappers/pay-mapper.xml" />
 		<mapper resource="mappers/paySearch-mapper.xml" />
 		<mapper resource="mappers/paySearchCollection-mapper.xml" />
+		<mapper resource="mappers/qna-mapper.xml" />
 	</mappers> 
 </configuration>
