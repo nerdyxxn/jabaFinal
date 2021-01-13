@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.jaba.client.custom.model.domain.Custom;
+import com.kh.jaba.client.menu.model.domain.MenuCollection;
 import com.kh.jaba.client.model.domain.Client;
 import com.kh.jaba.client.order.model.domain.CustomCheck;
 import com.kh.jaba.client.paysearch.model.domain.PaySearch;
@@ -36,6 +38,20 @@ public class PaySearchController {
 //			//sortPaySearchCustomName(paySearchListByPayId(paySearchList));
 //		}
 		List<PaySearchCollection> paySearchList = paySearchService.getPaySearchList(client_id);
+//		List<MenuCollection> menuCollection = null;
+//		List<List<MenuCollection>> menuList = null;
+//		List<Custom> customCollection = null;
+//		List<List<Custom>> customList = null;
+//		for(int i = 0; i < paySearchList.size(); i++) {
+//			String pay_id = paySearchList.get(i).getPay_id();
+//			menuCollection = paySearchService.getMenuList(pay_id);
+//			menuList.add(menuCollection);
+//			for(int j = 0; j < paySearchList.get(i).getMenuCollection().size(); j++) {
+//				String order_id = menuCollection.get(j).getOrder_id();
+//				customCollection = paySearchService.getCustomList(order_id); 
+//				customList.add(customCollection);		
+//			}
+//		}
 		
 		System.out.println(paySearchList);
 	      for(int i = 0 ; i<paySearchList.size(); i++) {
@@ -50,6 +66,8 @@ public class PaySearchController {
 	          }
 	       }
 		request.getSession().setAttribute("paySearchList", paySearchList);
+//		request.getSession().setAttribute("menuList", menuList);
+//		request.getSession().setAttribute("customList", customList);
 		mv.setViewName("client/myOrderList");
 		return mv;
 	}
