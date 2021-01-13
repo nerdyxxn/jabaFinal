@@ -38,21 +38,17 @@ public class PaySearchController {
 		List<PaySearchCollection> paySearchList = paySearchService.getPaySearchList(client_id);
 		
 		System.out.println(paySearchList);
-		for(int i = 0 ; i<paySearchList.size(); i++) {
-			System.out.println("Pay 아이디: " + paySearchList.get(i).getPay_id());
-			System.out.println("i : " + i);
-			for(int j = 0; j < paySearchList.get(i).getMenuCollection().size(); j++) {
-				System.out.println("메뉴 아이디: " + paySearchList.get(i).getMenuCollection().get(j).getOrder_id());
-				System.out.println("메뉴 이름: " + paySearchList.get(i).getMenuCollection().get(j).getMenu_name());
-				System.out.println("j : " + j);
-				for(int k = 0; k < paySearchList.get(i).getMenuCollection().get(j).getCustomCollection().size(); k++) {
-					System.out.println("커스텀 이름: " + paySearchList.get(i).getMenuCollection().get(j).getCustomCollection().get(k).getCustom_name());
-					System.out.println("k : " + k);
-					
-				}
-			}
-			
-		}
+	      for(int i = 0 ; i<paySearchList.size(); i++) {
+	          System.out.println("Pay 아이디: " + paySearchList.get(i).getPay_id());
+	          for(int j = 0; j < paySearchList.get(i).getMenuCollection().size(); j++) {
+	             System.out.println("메뉴 아이디: " + paySearchList.get(i).getMenuCollection().get(j).getOrder_id());
+	             System.out.println("메뉴 이름: " + paySearchList.get(i).getMenuCollection().get(j).getMenu_name());
+	             for(int k = 0; k < paySearchList.get(i).getMenuCollection().get(j).getCustomCollection().size(); k++) {
+	                System.out.println("커스텀 이름: " + paySearchList.get(i).getMenuCollection().get(j).getCustomCollection().get(k).getCustom_name());
+//	                System.out.println("i, j, k : " + i + ", " + j + ", "+ k);
+	             }
+	          }
+	       }
 		request.getSession().setAttribute("paySearchList", paySearchList);
 		mv.setViewName("client/myOrderList");
 		return mv;

@@ -59,7 +59,7 @@ a {
 /* SECTION 2 */
 .mini {
 	padding: 3px 0;
-	background-color: white;
+	background-color: transparent;
 	position: -webkit-sticky;
 	position: sticky;
 	top: 55px;

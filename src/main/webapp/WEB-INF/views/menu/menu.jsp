@@ -152,8 +152,8 @@
 					<button id="avenue"><%=avenue%></button>
 				</div>
 				<div class="searchBar">
-				<form action="" onsubmit="return false;">
-					<input type="text" name="keyword" id="keyword"><i class="fa fa-search align-self-center"></i>
+				<form action="" onsubmit="return false;" id="searchForm">
+					<input type="text" name="keyword" id="keyword"><i class="fa fa-search align-self-center" id="searchI"></i>
 				</form>
 				</div>
 <!-- 			<div class="countDiv">
@@ -162,9 +162,8 @@
 			</div>
 		</div>
 	</section>
-   <!-- SECTION 3 -->
-    <!-- SECTION1 Store_info -->
-   <section id="store_info">
+   <!-- SECTION 3-1 Store_info -->
+   <div id="store_info">
       <c:if test="${not empty storeVo }">
          <div class="container" id="container_store_info">
             <!--매장 이름-->
@@ -180,8 +179,8 @@
             </span>
          </div>
       </c:if>
-   </section>
-   <!-- SECTION2 menu_info -->
+   </div>
+   <!-- SECTION 3-2 menu_info -->
    <section id="menu_info">
       <div class="container" id="container_menu_info">
          <c:if test="${not empty sortList }">
@@ -203,7 +202,7 @@
                                  </div>
                                  <div class="product_desc">${menuVo.menu_description}</div>
                                  <div class="product_price">
-                                    <p>${menuVo.menu_price}원</p>
+                                    <p><fmt:formatNumber value="${menuVo.menu_price}" pattern="#,###" />원</p>
                                  </div>
                               </div>
                               <div class="product_card_image">
@@ -275,7 +274,7 @@
                                        class="customClick">${sortCustomList.custom_name}</label>
                                     <div>
                                        <span class="custom-charge">+</span><span
-                                          class="custom-charge-jstl">${sortCustomList.custom_price}</span><span
+                                          class="custom-charge-jstl"><fmt:formatNumber value="${sortCustomList.custom_price}" pattern="#,###" /></span><span
                                           class="custom-charge"> 원</span>
                                     </div>
                                  </div>
@@ -287,7 +286,7 @@
                </c:if>
             </div>
             <!-- modal-footer -->
-            <div class="modal-footer product-modal__actions">
+            <div class="product-modal__actions">
                <div class="quantity">
                   <button
                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary Mui-disabled Mui-disabled"
@@ -436,7 +435,7 @@
          <hr>
          <div class="row">
             <div class="footer__disclaimer">
-               <strong>JABA connects customers with popular cafe brands.</strong>
+               <p>JABA connects customers with popular cafe brands.</p>
                <p>We believe that time is precious. We strive to create
                   beautiful technology that helps you save time and make ordering
                   easy, both sides of the counter. Order from JABA with the best
@@ -496,7 +495,7 @@
                 $(".header-subtitle").load(location.href + " .header-subtitle");
                 $(".header-image").load(location.href + " .header-image");
                 $(".modal-body").load(location.href + " .modal-body");
-                $(".modal-footer").load(location.href + " .modal-footer");
+                $(".product-modal__actions").load(location.href + " .product-modal__actions");
 
                 /* $("#custom-add-price").html(currunetMenuPrice);
                 $(".modal-footer").load(location.href + " .modal-footer"); */
@@ -558,6 +557,7 @@
         var stat = $('#numberUpDown').text();
        
        //html 을 text로
+       var r = sum * stat;
        $("#custom-add-price").text(sum * stat);
     } 
       

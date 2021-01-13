@@ -9,7 +9,7 @@ import com.kh.jaba.client.custom.model.domain.CustomCollection;
 @Component
 public class MenuCollection {
 	private String menu_name;
-	private int menu_quantity;
+	private int order_quantity;
 	private String order_id;
 	private String pay_id;
 	private List<CustomCollection> CustomCollection;
@@ -31,7 +31,7 @@ public class MenuCollection {
 	
 	@Override
 	public String toString() {
-		return "MenuCollection [menu_name=" + menu_name + ", menu_quantity=" + menu_quantity + ", order_id=" + order_id
+		return "MenuCollection [menu_name=" + menu_name + ", order_quantity=" + order_quantity + ", order_id=" + order_id
 				+ ", pay_id=" + pay_id + ", CustomCollection=" + CustomCollection + "]";
 	}
 	public String getMenu_name() {
@@ -40,11 +40,11 @@ public class MenuCollection {
 	public void setMenu_name(String menu_name) {
 		this.menu_name = menu_name;
 	}
-	public int getMenu_quantity() {
-		return menu_quantity;
+	public int getOrder_quantity() {
+		return order_quantity;
 	}
-	public void setMenu_quantity(int menu_quantity) {
-		this.menu_quantity = menu_quantity;
+	public void setOrder_quantity(int order_quantity) {
+		this.order_quantity = order_quantity;
 	}
 	public String getOrder_id() {
 		return order_id;
