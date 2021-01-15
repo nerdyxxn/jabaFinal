@@ -110,57 +110,60 @@
             <!--매장 이름-->
             <h1>${storeVo.store_name}</h1>
             <span id="store_description"> <!-- 매장 설명--> ${storeVo.store_description}
-            </span> <span> <!-- 최근 게시판부분--> <c:if test="${not empty dboardList}">
-                  <c:forEach items="${dboardList }" var="bvo" varStatus="s">
-                     <div class="bossFinalNotice">${bvo.bcontent }</div>
-                  </c:forEach>
+            </span> <span> <!-- 최근 게시판부분--> <c:if test="${not empty boardList}">
+                     <div class="bossFinalNotice">${boardList[0].store_board_title }</div>
                </c:if>
             </span>
          </div>
       </c:if>
    </div>
 
-   <!-- SECTION 3-2 menu_info -->
-   <section id="menu_info">
-      <div class="container" id="container_menu_info">
-         <c:if test="${not empty sortList }">
-            <c:forEach items="${sortList}" var="sortList" varStatus="s">
-               <div class="category">
-                  <div class="category_name">
-                     <h2>${sortList[0].menu_category}</h2>
-                  </div>
-                  <div class="category_products">
-                     <c:if test="${not empty sortList}">
-                        <c:forEach items="${sortList}" var="menuVo" varStatus="s">
-                           <div class="product_card" onclick="clickProductCard(this);">
-                              <div class="product_card_detail">
-                                 <div class="product_name">
-                                    <p>
-                                       <span>${menuVo.menu_name}</span>&nbsp;&nbsp;
-                                       <button class="sold_out_btn">Sold out</button>
-                                    </p>
-                                 </div>
-                                 <div class="product_desc">${menuVo.menu_description}</div>
-                                 <div class="product_price">
-                                    <p>
-                                       <fmt:formatNumber value="${menuVo.menu_price}" pattern="#,###" />
-                                       원
-                                    </p>
-                                 </div>
-                              </div>
-                              <div class="product_card_image">
-                                 <img src="<%=ctxPath %>${menuVo.menu_img }" alt="Affogato">
-                              </div>
-                           </div>
-                        </c:forEach>
-                     </c:if>
-                  </div>
-                  <!--category 끝 -->
-               </div>
-            </c:forEach>
-         </c:if>
-      </div>
-   </section>
+	<!-- SECTION 3-2 menu_info -->
+	<section id="menu_info">
+		<div class="container" id="container_menu_info">
+			<c:if test="${not empty sortList }">
+				<c:forEach items="${sortList}" var="sortList" varStatus="s">
+					<div class="category">
+						<div class="category_name">
+							<h2>${sortList[0].menu_category}</h2>
+						</div>
+						<div class="category_products">
+							<c:if test="${not empty sortList}">
+								<c:forEach items="${sortList}" var="menuVo" varStatus="s">
+									<c:if test="${menuVo.menu_available == 1 }">
+										<div class="product_card">
+									</c:if>
+									<c:if test="${menuVo.menu_available == 2}">
+										<div class="product_card" style="opacity:0.3; "> 
+									</c:if>
+									<div class="product_card_detail">
+										<div class="product_name">
+											<p>
+												<span>${menuVo.menu_name}</span>&nbsp;&nbsp;
+												<button class="sold_out_btn">Sold out</button>
+												<input type="hidden" id="${menuVo.menu_id}" value="${menuVo.menu_available}">
+											</p>
+										</div>
+										<div class="product_desc">${menuVo.menu_description}</div>
+										<div class="product_price">
+											<p>
+												<fmt:formatNumber value="${menuVo.menu_price}" pattern="#,###" />
+												원
+											</p>
+										</div>
+									</div>
+									<div class="product_card_image">
+										<img src="<%=ctxPath %>${menuVo.menu_img }" alt="Affogato">
+									</div>
+						</div></c:forEach>
+							</c:if>
+						</div>
+						<!--category 끝 -->
+					</div>
+				</c:forEach>
+			</c:if>
+		</div>
+	</section>
 
    <!-- modal -->
 
@@ -200,20 +203,20 @@
                         <!-- 삭제버튼크기만큼 위치를 잡아줌 -->
                         <div class="th-btn"></div>
                      </div>
-                     <c:if test="${not empty dboardAllList}">
-                        <c:forEach items="${dboardAllList}" var="vo" varStatus="s">
+                     <c:if test="${not empty boardList}">
+                        <c:forEach items="${boardList}" var="boardList" varStatus="s">
                            <div id="table-tr-wrap">
                               <!-- 테이블 tr 부분 데이터 갯수만큼 출력 -->
                               <div class="notice-table-tr">
                                  <div class="th-text-wrap">
                                     <div class="td-no">
-                                       <span>${vo.bno }</span>
+                                       <span>${boardList.board_no }</span>
                                     </div>
                                     <div class="td-content">
-                                       <span>${vo.bcontent }</span>
+                                       <span>${boardList.store_board_title }</span>
                                     </div>
                                     <div class="td-date">
-                                       <span>${vo.bdate }</span>
+                                       <span>${boardList.store_board_time }</span>
                                     </div>
                                  </div>
                                  <div class="th-btn">
@@ -232,23 +235,19 @@
 
                   <div id="insert-inputbox">
                      <div id="inputtextinput">
-                        <form enctype="multipart/form-data" method="post" action="<%=request.getContextPath()%>/boardInsert.lo" onsubmit="return writefrm_submit();">
-                           <c:if test="${not empty storeVo }">
+                        <form enctype="multipart/form-data" method="post" action="<%=ctxPath%>/biz/board/insertBizBoard.do" onsubmit="return writefrm_submit();">
+                           <c:if test="${not empty boardList }">
                               <table border="1">
                                  <tr style="display: none">
                                     <td>
                                        <input type="text" name="bno" value="<%=bno%>">
-                                       <!-- 0은 새글, 그외 댓글인 경우는 읽고 있던 글의 bno를 넣어주기로 함. -->
-                                       <input type="text" name="bref" value="<%=bref%>">
-                                       <input type="text" name="bre_step" value="<%=bre_step%>">
-                                       <input type="text" name="bre_level" value="<%=bre_level%>">
                                        <input type="text" name="bsubject" value="<%=bno %>">
                                        <input type="text" name="bwriter" value="${storeVo.store_name}">
                                     </td>
                                  </tr>
                                  <tr>
                                     <td>
-                                       <input type="text" name="bcontent" id="bcontent" style="padding: 5px;" placeholder="내용을 입력해주세요.">
+                                       <input type="text" name="store_board_title" id="store_board_title" style="padding: 5px;" placeholder="내용을 입력해주세요.">
                                     </td>
 
 
@@ -430,16 +429,30 @@
       });
    });
    $(".sold_out_btn").on("click",function(){
-      var soldOutCheck = $(this).parent().parent().parent().parent().css("opacity");
-      if(soldOutCheck == "0.3"){
-         $(this).parent().parent().parent().parent().css("opacity","1");
-      }else{
-         $(this).parent().parent().parent().parent().css("opacity","0.3");
-      }
-      // ajax menu_available cloum 을 바꿔줌 
-      
-   });
-   
- </script>
+	   var soldOutCheck = $(this).parent().parent().parent().parent().css("opacity");
+	   if(soldOutCheck == "0.3"){
+		   $(this).parent().parent().parent().parent().css("opacity","1");
+	   }else{
+		   $(this).parent().parent().parent().parent().css("opacity","0.3");
+	   }
+	   var menu_id = $(this).next().attr("id");
+	   var menu_available = $(this).next().attr("value");
+	   // ajax menu_available cloum 을 바꿔줌 
+	 	  $.ajax({
+	          url:"<%=ctxPath%>/biz/soldOut.do",
+	          data:{ 
+	        	  menu_id : menu_id,
+	        	  menu_available : menu_available
+	          },
+	          success: function(res){
+	          }
+	 	  });
+		if (menu_available == 1) {
+			$(this).next().val(2);
+		} else {
+			$(this).next().val(1);
+		}
+	});
+	</script>
 </body>
 </html>

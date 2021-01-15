@@ -71,4 +71,9 @@ public class MenuDao {
 		return sqlSession.selectOne("Menu.selectMenuName", menu_id);
 	}
 	
+	// updateMenuAvailable
+	public int updateMenuAvailable(Menu m) {
+		return sqlSession.update("Menu.updateMenuAvailable", m);
+	}
+	
 }

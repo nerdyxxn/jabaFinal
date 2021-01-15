@@ -204,7 +204,7 @@ section .container .store_list_grid {
 }
 
 .product_name .sold_out_btn {
-	background-color: #36727C;
+	background-color: #112732;
 	border: 1px solid rgb(230, 233, 237);
 	color: white;
 	padding: 2px 10px 2px;
@@ -245,7 +245,7 @@ section .container .store_list_grid {
 	font-weight: 500;
 	display: flex;
 	align-items: center;
-	color: #36727C;
+	color: #112732;
 }
 
 .product_card_image {
@@ -494,7 +494,7 @@ section .container .store_list_grid {
 }
 
 .MuiSvgIcon-root {
-	fill: #36727C;
+	fill: #112732;
 	width: 16px;
 	height: 16px;
 	display: inline-block;
@@ -520,7 +520,7 @@ section .container .store_list_grid {
 	cursor: pointer;
 	line-height: 1.75;
 	height: 50px;
-	background-color: #36727C;
+	background-color: #112732;
 	color: white;
 	border-radius: 28px;
 	border: 0;
@@ -962,8 +962,8 @@ transform:translateY(-10px)
 }
 
 .MuiButtonBase-root.MuiButton-root.jss135 {
-	color: #36727C;
-	border: 1px solid #36727C;
+	color: #112732;
+	border: 1px solid #112732;
 	padding: 12px 15px 12px 15px;
 	font-size: 14px;
 	background: #ffffff;
@@ -1153,7 +1153,7 @@ h3 {
 
 .MuiButton-containedPrimary {
 	color: #ffffff;
-	background-color: #36727C;
+	background-color: #112732;
 }
 
 .MuiButton-label.MuiButton-contained {

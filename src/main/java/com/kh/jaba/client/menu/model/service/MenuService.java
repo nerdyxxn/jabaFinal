@@ -21,5 +21,8 @@ public interface MenuService {
 	
 	// selectMenuName menu_id 를 가지고 menu_name을 가져오는 메소드
 	public String selectMenuName(String menu_id);
+	
+	// updateMenuAvailable
+	public int updateMenuAvailable(Menu m);
 
 }

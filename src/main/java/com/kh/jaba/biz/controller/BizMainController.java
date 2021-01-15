@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.jaba.biz.board.model.domain.BizBoard;
+import com.kh.jaba.biz.board.model.service.BizBoardService;
 import com.kh.jaba.biz.model.domain.Biz;
 import com.kh.jaba.biz.model.service.BizService;
 import com.kh.jaba.client.menu.model.domain.Menu;
@@ -26,10 +28,13 @@ public class BizMainController {
 	private Menu menu;
 	
 	@Autowired
-	private Biz biz;
+	private MenuService menuService;
 	
 	@Autowired
-	private MenuService menuService;
+	private Biz biz;
+
+	@Autowired
+	private BizBoardService bizBoardService;
 	
 	// 단지 Bizindex페이지를 띄워주는행동만 함
 	@RequestMapping(value = "/biz/bizIndex.do", method = RequestMethod.GET)
@@ -51,6 +56,13 @@ public class BizMainController {
 		request.getSession().setAttribute("sortList", sortList);
 		
 		// 매장 게시판 관련
+		store_id = biz.getStore_id();
+		
+		List<BizBoard> boardList = new ArrayList<BizBoard>();
+		boardList = bizBoardService.selectBizBoardList(store_id);
+		System.out.println("현재 공지사항 글 개수 : "+boardList.size());
+		
+		request.getSession().setAttribute("boardList", boardList);
 		// bizMain jsp 파일 가져와야(혹은 생성) 하고 매장 open 스위치 관련 해결해야하고 js와 css 가져와야함
 		// 
 		
@@ -80,6 +92,33 @@ public class BizMainController {
 			System.out.println("매장 상태 변경 에러");
 		}
 		
+	}
+	
+	// 메뉴 가능 상태 update 
+	@RequestMapping(value = "/biz/soldOut.do", method = RequestMethod.GET)
+	@ResponseBody
+	public void menuSoldOutDo(HttpServletRequest request) {
+		int menu_available = Integer.parseInt(request.getParameter("menu_available"));
+		String menu_id = request.getParameter("menu_id");
+		int result = 0;
+		// menu_available 을 확인하고 1이면 2 , 2이면 1로 변경
+		if(menu_available == 1) {
+			menu_available = 2;
+		}else {
+			menu_available = 1;
+		}
+		menu.setMenu_id(menu_id);
+		menu.setMenu_available(menu_available);
+		result = menuService.updateMenuAvailable(menu);
+		if(result == 1) {
+			if(menu_available == 2) {
+				System.out.println(menu_id + "의 MenuAvailable 변경 : 품절" );
+			}else {
+				System.out.println(menu_id + "의 MenuAvailable 변경 : 재고있음" );
+			}
+		}else {
+			System.out.println("MenuAvailable 변경 실패");
+		}
 	}
 	
 	// 메뉴를 불러와서 카테고리 별로 메뉴들을 분류

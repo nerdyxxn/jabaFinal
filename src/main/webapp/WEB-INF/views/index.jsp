@@ -160,7 +160,7 @@ $(function(){
                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="loginCloseBtn">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <div class="header-icon" style="stroke: rgb(54, 114, 124); background-color: rgba(54, 114, 124, 0.12);">
+               <div class="header-icon" style="stroke: #112732; background-color: rgba(17, 39, 50, 0.12);">
                   <svg height="32" viewBox="0 0 32 32" width="32">
                      <path
                         d="m28 2.66666667-2.6666667 2.66666666m-10.1466666 10.14666667c1.8732867 1.8483505 2.6125307 4.5587607 1.9370876 7.1022582-.6754432 2.5434974-2.6619987 4.5300529-5.2054961 5.2054961-2.54349751.6754431-5.25390769-.0638009-7.1022582-1.9370876-2.77912954-2.8774452-2.73938408-7.4512884.08933045-10.2800029 2.82871452-2.8287145 7.40255775-2.86846 10.28000285-.0893305zm0 0 5.48-5.48m0 0 4 4 4.6666666-4.66666667-4-4m-4.6666666 4.66666667 4.6666666-4.66666667"
@@ -219,10 +219,10 @@ $(function(){
                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="signupCloseBtn">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <div class="header-icon" style="stroke: rgb(54, 114, 124); background-color: rgba(54, 114, 124, 0.12);">
+               <div class="header-icon" style="stroke: #112732; background-color: rgba(17, 39, 50, 0.12);">
                   <svg height="32" viewBox="0 0 32 32" width="32">
                      <g
-                        style="fill: none; fill-rule: evenodd; stroke-linecap: round; stroke-linejoin: round; stroke: rgb(54, 114, 124); stroke-width: 2.66667;">
+                        style="fill: none; fill-rule: evenodd; stroke-linecap: round; stroke-linejoin: round; stroke: rgba(17, 39, 50); stroke-width: 2.66667;">
                      <path
                         d="m21.3333333 28v-2.6666667c0-2.9455186-2.3878146-5.3333333-5.3333333-5.3333333h-9.33333333c-2.94551867 0-5.33333334 2.3878147-5.33333334 5.3333333v2.6666667"></path>
                      <circle cx="11.333333" cy="9.333333" r="5.333333"></circle>

@@ -11,6 +11,8 @@
 			alias="Admin" />
 		<typeAlias type="com.kh.jaba.biz.model.domain.Biz"
 			alias="Biz" />
+		<typeAlias type="com.kh.jaba.biz.board.model.domain.BizBoard"
+			alias="BizBoard" />
 		<typeAlias type="com.kh.jaba.explore.model.domain.Search"
 			alias="Search" />
 		<typeAlias type="com.kh.jaba.client.menu.model.domain.Menu"
@@ -42,6 +44,7 @@
 		<mapper resource="mappers/client-mapper.xml" />
 		<mapper resource="mappers/admin-mapper.xml" />
 		<mapper resource="mappers/biz-mapper.xml" />
+		<mapper resource="mappers/bizBoard-mapper.xml" />
 		<mapper resource="mappers/search-mapper.xml" />
 		<mapper resource="mappers/menu-mapper.xml" />
 		<mapper resource="mappers/custom-mapper.xml" />
