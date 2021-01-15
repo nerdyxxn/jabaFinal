@@ -25,4 +25,8 @@ public class BizDao {
 	public Biz selectStoreByName(String store_name) {
 		return sqlSession.selectOne("Biz.selectStore",store_name);
 	}
+	// 스토어 open close 
+	public int updateStoreStatus(Biz b) {
+		return sqlSession.selectOne("Biz.updateStoreStatus", b);
+	}
 }

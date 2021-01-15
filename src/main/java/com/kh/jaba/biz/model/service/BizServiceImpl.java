@@ -36,4 +36,11 @@ public class BizServiceImpl implements BizService{
 		return bizDao.selectStoreByName(store_name);
 	}
 
+	// 스토어 open close 
+	@Override
+	public int updateStoreStatus(Biz b) {
+		return bizDao.updateStoreStatus(b);
+	}
+	
+
 }

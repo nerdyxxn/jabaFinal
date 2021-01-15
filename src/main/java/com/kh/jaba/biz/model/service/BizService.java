@@ -13,4 +13,6 @@ public interface BizService {
 	// 스토어 name 으로 Biz를 반환 
 	public Biz selectStoreByName(String store_name);
 	
+	// 스토어 open close 
+	public int updateStoreStatus(Biz b);
 }
