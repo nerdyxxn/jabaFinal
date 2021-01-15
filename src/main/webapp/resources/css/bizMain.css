@@ -180,7 +180,6 @@ section .container .store_list_grid {
 	overflow: hidden;
 	background-color: white;
 	max-height: 145px;
-	cursor: pointer;
 }
 
 .product_card:hover {
@@ -297,6 +296,7 @@ section .container .store_list_grid {
 	height: auto;
 	min-height: 100%;
 	border-radius: 16px;
+
 }
 
 .modal-dialog.modal-dialog-centered {

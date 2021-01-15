@@ -27,13 +27,19 @@ public class BizBoardController {
 	@Autowired
 	private BizBoard bb;
 	
+	@Autowired
+	private Biz biz;
+	
 	
 	@RequestMapping(value="/biz/board/insertBizBoard.do", method=RequestMethod.POST)
 	public void insertBizBoard(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
 		int result = 0;
 		PrintWriter out = response.getWriter();
-		BizBoard bb = (BizBoard)request.getSession().getAttribute("BizBoard");
+		String store_board_title = (String) request.getParameter("store_board_title");
+		bb.setStore_board_title(store_board_title);
+		Biz biz = (Biz) request.getSession().getAttribute("biz");
+		String store_id = biz.getStore_id();
+		bb.setStore_id(store_id);
 		if(bb != null) {
 			result = bizBoardService.insertBizBoard(bb);
 		}
@@ -45,6 +51,8 @@ public class BizBoardController {
 			out.print("insertFail");
 		}
 		
+		out.flush();
+		out.close();
 
 	}
 	
@@ -53,9 +61,7 @@ public class BizBoardController {
 		String board_no = null;
 		int result = 0;
 		PrintWriter out = response.getWriter();
-		
-		BizBoard bb = (BizBoard)request.getSession().getAttribute("BizBoard");
-		board_no = bb.getBoard_no();
+		board_no = request.getParameter("board_no");
 		if(board_no != null) {
 			result = bizBoardService.deleteBizBoard(board_no);
 		}
@@ -66,8 +72,11 @@ public class BizBoardController {
 			System.out.println("board 삭제 실패");
 			out.print("deleteFail");
 		}
+		
+		
+	
+	out.flush();
+	out.close();
 	}
-	
-	
 
 }

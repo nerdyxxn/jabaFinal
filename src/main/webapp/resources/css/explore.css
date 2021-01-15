@@ -83,6 +83,7 @@ a {
 	font-size: 12px;
 }
 
+
 /* SECTION 3 */
 #sth {
 	width: 100%;
@@ -99,6 +100,9 @@ a {
 	max-width: 1024px;
 }
 
+#store_list {
+	width: 100%;
+}
 
 section .container .store_list_grid {
  	display: grid;

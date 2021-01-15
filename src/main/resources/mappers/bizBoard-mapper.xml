@@ -16,8 +16,8 @@
 	
 	<!-- 매장 게시판에 글쓰기 -->
 	<insert id="insertBizBoard" parameterType="BizBoard" flushCache="true" statementType="PREPARED">
-		insert into store_board(board_no, store_id, store_board_title, store_board_time) values
-      (('B' || LPAD(BIZ_BOARD_SEQ.nextval, 5, 0)), #{store_id}, #{store_board_title}, #{store_board_time})
+		insert into store_board(board_no, store_id, store_board_title) values
+      (('B' || LPAD(BIZ_BOARD_SEQ.nextval, 5, 0)), #{store_id}, #{store_board_title})
 	</insert>
 	
 	<!-- 매장 게시판 글 삭제 -->
