@@ -63,15 +63,16 @@ $(function(){
              frm.submit();
              };
          });
-         
-      // 외부영역 클릭시 dropdown 닫기
+   //외부영역 클릭시 dropdown 닫기
       $(document).mouseup(function (e){
        var container = $('#searchDrop');
           if( container.has(e.target).length === 0){
                container.css('display','none');
     }
   }); 
-         
+   
+  
+      
       // 모달창 닫혔을 때 페이지 reload 시켜주기
       $(document).ready(
             function() {
@@ -91,7 +92,7 @@ $(function(){
          <div class="dropdown">
             <div class="menu">
                <div class="MuiAvatar-root jss98" id="MuiAvatar-root-id"
-                  style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">ZK</div>
+                  style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">${client.client_name }</div>
                <button
                   class="MuiButtonBase-root MuiIconButton-root jss99 logo__navigation MuiIconButton-sizeSmall"
                   tabindex="0" type="button" id="dropdownMenuButton"
@@ -700,7 +701,7 @@ function click(obj){
             }else if(res1 == 'NotExist'){
                alert("일치하는 회원정보가 없습니다.");
             }else{ //bizPartner일 경우, user_id받아와서 해당 페이지로 이동하게끔
-                location.href="<%=ctxPath%>/biz/menuList.do?storeId="+res1;
+                location.href="<%=ctxPath%>/biz/bizIndex.do";
              }
          }
       });

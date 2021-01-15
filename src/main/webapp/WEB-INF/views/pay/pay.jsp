@@ -333,8 +333,8 @@
 			var name = $('.item_name').eq(0).text();
 			var amount = $('.price_all_total').text();
 	        var buyer = $('#personal_name').val();
-
 	        var buyerTel = $('#personal_tel').val();
+
 			amount *= 1;
 			
 			IMP.request_pay({

@@ -52,7 +52,7 @@ public class PaySearchController {
 //				customList.add(customCollection);		
 //			}
 //		}
-		// boardAll = patSearchList
+		
 		System.out.println(paySearchList);
 	      for(int i = 0 ; i<paySearchList.size(); i++) {
 	          System.out.println("Pay 아이디: " + paySearchList.get(i).getPay_id());
@@ -66,6 +66,8 @@ public class PaySearchController {
 	          }
 	       }
 		request.getSession().setAttribute("paySearchList", paySearchList);
+//		request.getSession().setAttribute("menuList", menuList);
+//		request.getSession().setAttribute("customList", customList);
 		mv.setViewName("client/myOrderList");
 		return mv;
 	}

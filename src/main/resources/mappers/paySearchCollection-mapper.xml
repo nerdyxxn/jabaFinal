@@ -24,7 +24,7 @@
    
    <!-- 현재 필요한 column : pickup_time,  -->
    <select id="getPaySearchList" resultMap="resultPaySearchCollection">
-      SELECT distinct pay_id, client_id, pay_time, store_name, pickup_time, pay_request, pay_total_price FROM paysearchcollection WHERE client_id = #{client_id} ORDER BY pay_id DESC
+      SELECT distinct pay_id, client_id, pay_time, store_name, pickup_time, pay_request, pay_total_price FROM paysearchcollection WHERE client_id = #{client_id}
    </select>   
    
    

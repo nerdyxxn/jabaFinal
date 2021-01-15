@@ -50,7 +50,7 @@ public class ClientController {
          if (biz != null) {
             System.out.println("로그인 성공 biz_id : " + biz.getStore_id());
             request.getSession().setAttribute("biz", biz);
-            out.print("BizPartner");
+            out.print(client_id);
          } else {
             Admin admin = adminService.loginAdmin(client_id, client_pw);
             // id와 pw 정보가 admin에 있는경우
@@ -75,12 +75,14 @@ public class ClientController {
       // 만약 client 애트리뷰트가 있다면 client 애트리뷰트를 remove
       if(request.getSession().getAttribute("client") != null) {
          request.getSession().removeAttribute("client");
-         System.out.println("클라이언트 로그아웃");
-      }else{
-         System.out.println("로그아웃할 client 가 없습니다.");
-      }
+         System.out.println("client 로그아웃");
+      }else if (request.getSession().getAttribute("biz")!=null){
+    	  request.getSession().removeAttribute("biz");
+    	  System.out.println("biz 로그아웃");
+      } else {
+      System.out.println("로그아웃할 계정이 없습니다.");
    }
-
+   }
    // 회원가입
    @RequestMapping(value = "/client/clientRegister.do", method = RequestMethod.GET)
    @ResponseBody

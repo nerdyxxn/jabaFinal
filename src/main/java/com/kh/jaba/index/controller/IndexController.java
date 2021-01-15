@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.jaba.biz.model.domain.Biz;
 import com.kh.jaba.client.model.domain.Client;
 import com.kh.jaba.explore.model.domain.Search;
 import com.kh.jaba.explore.model.service.SearchService;
@@ -65,13 +66,16 @@ public class IndexController {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			Client client  = (Client)session.getAttribute("client");
-			
+			Biz biz = (Biz)session.getAttribute("biz");
 			// client_id에 value 값이 있으면 false 를 return
 			if (client != null) {
 				System.out.println("현재 접속되어있는 client_id : " + client.getClient_id());
 				return true;
+			} else if (biz != null){
+				System.out.println("현재 접속되어있는 store_id :" + biz.getStore_id());
+				return true;
 			} else {
-				System.out.println("현재 접속되어있는 client_id가 없음");
+				System.out.println("현재 접속되어있는 id가 없음");
 			}
 		}
 		return false;
