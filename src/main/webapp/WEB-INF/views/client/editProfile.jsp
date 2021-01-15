@@ -16,6 +16,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 <!-- RESET -->
 <link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
 <!-- FONT -->
@@ -54,6 +59,15 @@ $(function(){
          }
       });
    });
+</script>
+<script>
+	// 생년월일 달력 설정
+	$(function(){
+	    $("#dateP").datepicker({
+	    	dateFormat: "yymmdd"
+	    });
+	});
+
 </script>
 
 </head>
@@ -115,8 +129,7 @@ $(function(){
 				<br>
 				<div class="account_items">
 					<p style="font-weight: bold; margin: 0 0 8px;">Date of Birth</p>
-					<input type="text" class="signin-input" id="birthday_profile"
-						name="birthday_profile" style="height: 38px; padding: 15px 18px;" value="${client.client_birth }">
+					<input type="text" name="date" id="dateP" size="12" style="height: 38px; padding: 15px 18px;" value="${client.client_birth }">
 				</div>
 
 				<br>
@@ -211,7 +224,11 @@ $(function(){
       $("#btn_save").click(function(){
          // 숫자확인 정규표현식
          var regExp = /^[0-9]*$/
-         var birth = $("#birthday_profile").val();
+         var birth = $("#dateP").val();
+         console.log(birth);
+         birth *= 1;
+         console.log("연산 후 : " + birth);
+         
          if(!regExp.test(birth)){
             alert("Date of Birth는 숫자만입력하세요.");
          }else{
@@ -221,7 +238,7 @@ $(function(){
                   data:{ 
                      client_name: $("#name_profile").val(),
                      client_phone: $("#mobile_profile").val(),
-                     client_birth: $("#birthday_profile").val(),
+                     client_birth: birth,
                      client_gender: $("#gender_profile").val(),
                   },
                   success: function(res1){

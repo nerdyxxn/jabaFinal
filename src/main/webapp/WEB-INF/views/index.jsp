@@ -63,28 +63,15 @@ $(function(){
              frm.submit();
              };
          });
-   //외부영역 클릭시 dropdown 닫기
+         
+      // 외부영역 클릭시 dropdown 닫기
       $(document).mouseup(function (e){
        var container = $('#searchDrop');
           if( container.has(e.target).length === 0){
                container.css('display','none');
     }
   }); 
-   
-      // search 버튼 클릭 시 dropdown 동작 slideToggle
-      $(document).ready(
-           function() {$("#searchBtn").click(
-                    function() {
-                       $('#searchDrop').toggle();
-                    });
-           function aTagPost(){
-        	   var getId=$(this).attr("id");
-               frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
-               frm.method="post";
-               frm.submit();
-               };
-           });
-      
+         
       // 모달창 닫혔을 때 페이지 reload 시켜주기
       $(document).ready(
             function() {

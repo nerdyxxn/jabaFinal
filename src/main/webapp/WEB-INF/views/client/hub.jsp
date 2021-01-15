@@ -56,9 +56,11 @@ $('.hub-slider-slides ul').hubSlider({
 }
 
 .hub-slider ul li {
- 	width: 600px;
-	background: #112732;
-	color: white;
+	width: 500px;
+	height: 300px;
+	background: #DA4453;
+	color: #fff;
+	line-height: 300px;
 	text-align: center;
 	position: absolute;
 	border-radius: 5px;
@@ -77,7 +79,7 @@ $('.hub-slider-slides ul').hubSlider({
 	width: 40px;
 	height: 40px;
 	border: none;
-	background: #FFA618;
+	background: #34BC9D;
 	color: #fff;
 	font-weight: bold;
 }
@@ -88,44 +90,11 @@ $('.hub-slider-slides ul').hubSlider({
 		<div class="hub-slider">
 			<div class="hub-slider-slides">
 				<ul>
-				<c:if test="${not empty paySearchList }">
-               <c:forEach items="${paySearchList}" var="paySearchList" varStatus="c">
-
-					<li>
-                  <div class="product_card">
-                     <div class="product_card_detail">
-                     <div class="orderPay">
-                        <div style="font-weight:700; margin-bottom:10px;">${paySearchList.pay_time }</div>
-                        <div>${paySearchList.store_name }</div>
-                        <div>${paySearchList.pickup_time }</div>
-                        <div style="margin-bottom:20px;">${paySearchList.pay_request }</div>
-                     </div>
-                     <div class="orderMenu">   
-                        <c:forEach items="${paySearchList.menuCollection}" var="menu"
-                           varStatus="m">
-                           <div class="product_name">
-                                 <!-- 여기는 menu_name -->
-                                 <div class="orderMenuItems">
-                                 <span style="font-size:16px; font-weight:700;">${menu.menu_name}</span>
-                                 <span style="font-size:16px; font-weight:700;">&times;${menu.order_quantity }</span>
-                                 </div>
-                                 <div>
-                                 <c:forEach items="${menu.customCollection}" var="custom" varStatus="c">
-                                    <!-- 여기가 custom_name -->
-                                    <div class="orderCustomItems" style="font-size:16px; font-weight:700;">+&nbsp;${custom.custom_name}</div>
-                                 </c:forEach>
-                                 </div>
-                           </div>
-                        </c:forEach>
-                        </div>
-                        <div class="orderPrice" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${paySearchList.pay_total_price }" pattern="#,###" />원</div>
-                     </div>
-                  </div>
-					</li>
-
-
-			</c:forEach>
-            </c:if>
+					<li>Slide 1</li>
+					<li>Slide 2</li>
+					<li>Slide 3</li>
+					<li>Slide 4</li>
+					<li>Slide 5</li>
 				</ul>
 			</div>
 			<div class="hub-slider-controls">
