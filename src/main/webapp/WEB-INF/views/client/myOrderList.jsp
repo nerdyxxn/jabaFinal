@@ -17,12 +17,47 @@ if (avenue == null) {
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hublabs Slider Example</title>
+<title>My Order List</title>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="<%=ctxPath%>/resources/js/hubslider.js"></script>
+<!-- RESET -->
+<link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- HEADER CSS -->
+<link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
+<!-- myOrderList CSS -->
+<link href="<%=ctxPath%>/resources/css/myOrderList.css" rel="stylesheet">
+
+<script>
+$(function(){
+   $(window).scroll(function(){
+   var navbar = $(this).scrollTop();
+   var $header = $('header');
+   if(navbar > 0){
+       $header.addClass('activated');
+   }else{
+       $header.removeClass('activated');
+   }
+ })
+})
+   // 페이지 로딩되었을때 로그인이 되어있는지 확인
+   $(document).ready(function() {
+      $.ajax({
+         url : "<%=ctxPath%>/client/loginCheck.do",
+         data : {},
+         success : function(res1) {
+            if (res1 == 'KeepLogin') {
+               $("#logoutBtn").show();
+            }
+         }
+      });
+   });
+</script>
 <script type="text/javascript">
         $(function () {
 
@@ -41,49 +76,26 @@ $('.hub-slider-slides ul').hubSlider({
         })
     </script>
 <style>
-
-.container {
-	width: 500px;
-	margin: 350px auto;
-}
-
-.hub-slider {
-	position: relative;
-}
-
-.hub-slider ul {
-	list-style: none;
-}
-
-.hub-slider ul li {
- 	width: 600px;
-	background: #112732;
-	color: white;
-	text-align: center;
-	position: absolute;
-	border-radius: 5px;
-	left: 0;
-	top: 0;
-}
-
-.hub-slider-controls {
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 1000;
-}
-
-.hub-slider-arrow {
-	width: 40px;
-	height: 40px;
-	border: none;
-	background: #FFA618;
-	color: #fff;
-	font-weight: bold;
+html {
+	width: auto;
+	height: auto;
 }
 </style>
 </head>
 <body>
+   <!-- HEADER -->
+   <header>
+      <div class="header_container">
+         <div class="logo" >
+            <a href="<%=ctxPath%>/"><img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;"></a>
+         </div>
+         <div class="menu">
+            <button id="logoutBtn">LOGOUT</button>
+         </div>
+      </div>
+   </header>
+   
+   <!-- 주문 내역 조회 카드 -->
 	<div class="container">
 		<div class="hub-slider">
 			<div class="hub-slider-slides">
@@ -95,11 +107,12 @@ $('.hub-slider-slides ul').hubSlider({
                   <div class="product_card">
                      <div class="product_card_detail">
                      <div class="orderPay">
-                        <div style="font-weight:700; margin-bottom:10px;">${paySearchList.pay_time }</div>
-                        <div>${paySearchList.store_name }</div>
-                        <div>${paySearchList.pickup_time }</div>
-                        <div style="margin-bottom:20px;">${paySearchList.pay_request }</div>
+                        <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">${paySearchList.pay_time }</div>
+                        <div class="orderPayItems">${paySearchList.store_name }</div>
+                        <div class="orderPayItems">${paySearchList.pickup_time }</div>
+                        <div class="orderPayItems" style="margin-bottom:20px;">${paySearchList.pay_request }</div>
                      </div>
+                     <hr>
                      <div class="orderMenu">   
                         <c:forEach items="${paySearchList.menuCollection}" var="menu"
                            varStatus="m">
@@ -108,22 +121,19 @@ $('.hub-slider-slides ul').hubSlider({
                                  <div class="orderMenuItems">
                                  <span style="font-size:16px; font-weight:700;">${menu.menu_name}</span>
                                  <span style="font-size:16px; font-weight:700;">&times;${menu.order_quantity }</span>
-                                 </div>
-                                 <div>
                                  <c:forEach items="${menu.customCollection}" var="custom" varStatus="c">
                                     <!-- 여기가 custom_name -->
-                                    <div class="orderCustomItems" style="font-size:16px; font-weight:700;">+&nbsp;${custom.custom_name}</div>
+                                    <span class="orderCustomItems" style="font-size:16px; font-weight:700;">+&nbsp;${custom.custom_name}</span>
                                  </c:forEach>
                                  </div>
                            </div>
                         </c:forEach>
                         </div>
+                        <hr>
                         <div class="orderPrice" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${paySearchList.pay_total_price }" pattern="#,###" />원</div>
                      </div>
                   </div>
 					</li>
-
-
 			</c:forEach>
             </c:if>
 				</ul>
@@ -134,5 +144,18 @@ $('.hub-slider-slides ul').hubSlider({
 			</div>
 		</div>
 	</div>
+	<script>
+   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
+    $("#logoutBtn").on("click",function(){
+        $.ajax({
+           url:"<%=ctxPath%>/client/clientLogout.do",
+           data:   {},
+           success: function(){
+              $("#logoutBtn").hide();
+              location.href="<%=ctxPath%>/";
+           }
+        });
+        });
+   </script>
 </body>
 </html>

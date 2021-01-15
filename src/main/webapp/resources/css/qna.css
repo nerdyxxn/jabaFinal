@@ -28,95 +28,51 @@ main {
 }
 
 section {
-	padding: 45px 0;
+	padding: 45px 0 100px 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;
 	background: #f9fafc;
 	z-index: 0;
+	
 }
 
 #home {
-	height: 350px;
+	height: 150px;
 }
 
 a {
 	text-decoration: none;
 }
 
-/* SECTION 2 */
-.mini {
-	padding: 3px 0;
-	background-color: white;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 55px;
-	z-index: 999;
+/* TITLE-SECTION */
+#titleInfo {
+	padding-top : 40px;
 }
 
-.mini .container {
-	width: 80%;
+#container_titleInfo {
+	background-color: rgb(249, 250, 252);
+    width: 80%;
+    max-width: 1024px;
 }
 
-.mini_row {
-	display: flex;
-	flex-direction: row;
-	padding: 3px 0;
+#titleInfo h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
 }
 
-.mini_row button {
-	border: 1px solid rgba(132, 146, 166, .2) !important;
-	color: black;
-	margin: 0 8px 0 0;
-	font-weight: normal;
-}
-
-.search-term {
-	display: inline-flex;
-	align-items: center;
-	text-align: center;
-	flex-direction: row;
-	position: relative
-}
-
-.search-term button {
-	width: 34px; -
-	-verticalPadding: 0; -
-	-horizontalPadding: 0;
-	height: 34px;
-}
-
-.search-term svg {
-	width: 20px;
-	height: 20px;
-	padding: 0 auto;
-}
-
-.search-term {
-	border-radius: 50px;
-}
-
-#hidden_term {
-	visibility: hidden;
-}
-
-/* SECTION 3 */
-#qna {
+/* SECTION */
+#faq {
 	width: 100%;
 }
 
-#qna .container {
+#faq .container {
 	width: 80%;
 	margin: 0 auto;
 	padding-top: 15px;
-}
+	max-width: 1024px;
 
-#faq {
-	padding: 10px 0 120px
-}
-
-#faq .content {
 	border-top: 1px solid #262626;
 	border-bottom: 1px solid #262626;
 	padding: 0
@@ -162,4 +118,14 @@ a {
 #faq .faq-item.active {
 	background-color: #f1f1f1;
 	border: 1px solid #ff7949
+}
+
+
+@media screen and (max-width : 1080px) {
+	#home {
+		height: 150px;
+	}
+	.container {
+    	width: 990px;
+	}
 }

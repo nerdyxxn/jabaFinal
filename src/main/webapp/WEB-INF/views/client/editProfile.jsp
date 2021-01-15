@@ -67,7 +67,6 @@ $(function(){
           dateFormat: "yymmdd"
        });
    });
-
 </script>
 
 </head>

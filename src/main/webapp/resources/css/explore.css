@@ -83,37 +83,12 @@ a {
 	font-size: 12px;
 }
 
-.search-term {
-	display: inline-flex;
-	align-items: center;
-	text-align: center;
-	flex-direction: row;
-	position: relative
-}
-
-.search-term button {
-	width: 34px; -
-	-verticalPadding: 0; -
-	-horizontalPadding: 0;
-	height: 34px;
-}
-
-.search-term svg {
-	width: 20px;
-	height: 20px;
-	padding: 0 auto;
-}
-
-.search-term {
-	border-radius: 50px;
-}
-
-#hidden_term {
-	visibility: hidden;
-}
-
 /* SECTION 3 */
 #sth {
+	width: 100%;
+}
+
+#store_list {
 	width: 100%;
 }
 
@@ -124,9 +99,6 @@ a {
 	max-width: 1024px;
 }
 
-#store_list {
-	width: 100%;
-}
 
 section .container .store_list_grid {
  	display: grid;

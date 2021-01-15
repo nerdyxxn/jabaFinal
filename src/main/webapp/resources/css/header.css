@@ -1,3 +1,24 @@
+button {
+    --borderWidth: 1;
+    --boxShadowDepth: 8;
+    --buttonColor: #FFA618;
+    --horizontalPadding: 16;
+    --verticalPadding: 8;
+    background-color: #FFA618;
+    border: calc(var(--borderWidth) * 1px) solid var(--buttonColor);
+    color: white;
+    cursor: pointer;
+    font-size: calc(var(--fontSize) * 1rem);
+    font-weight: 700;
+    outline: 1px;
+    padding: calc(var(--verticalPadding) * 1px) calc(var(--horizontalPadding) * 1px);
+    transition: box-shadow 0.15s ease;
+    border-color: #FFA618;
+    border-width: 1px;
+    border-radius: 20px;
+    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+}
+
 header {
 	display: flex;
 	top: 0;
@@ -11,6 +32,7 @@ header {
 	background-color: #112732;
 	box-shadow: none;
 	border-bottom: 1px solid transparent;
+	font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
 }
 header.activated{
   background-color:#112732;
@@ -51,6 +73,7 @@ header.activated{
 	height: 30px;
 	font-size: 10px;
 	border-radius: 28px;
+	font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
 }
 
 #cart-selector {
