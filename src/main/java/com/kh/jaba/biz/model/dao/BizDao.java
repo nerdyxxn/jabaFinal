@@ -27,6 +27,6 @@ public class BizDao {
 	}
 	// 스토어 open close 
 	public int updateStoreStatus(Biz b) {
-		return sqlSession.selectOne("Biz.updateStoreStatus", b);
+		return sqlSession.update("Biz.updateStoreStatus", b);
 	}
 }

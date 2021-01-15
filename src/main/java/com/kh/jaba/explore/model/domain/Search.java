@@ -26,11 +26,13 @@ public class Search implements Comparable<Search>{
 	private String store_lat;
 	private String store_lng;
 	private double store_distance;
+	private int store_status;
 	
 	public Search() {}
-	
+
 	public Search(String store_id, String store_pw, String store_addr, String store_name, String store_time,
-			String store_img, String store_description, String store_lat, String store_lng, double store_distance) {
+			String store_img, String store_description, String store_lat, String store_lng, double store_distance,
+			int store_status) {
 		super();
 		this.store_id = store_id;
 		this.store_pw = store_pw;
@@ -42,6 +44,7 @@ public class Search implements Comparable<Search>{
 		this.store_lat = store_lat;
 		this.store_lng = store_lng;
 		this.store_distance = store_distance;
+		this.store_status = store_status;
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public class Search implements Comparable<Search>{
 		return "Search [store_id=" + store_id + ", store_pw=" + store_pw + ", store_addr=" + store_addr
 				+ ", store_name=" + store_name + ", store_time=" + store_time + ", store_img=" + store_img
 				+ ", store_description=" + store_description + ", store_lat=" + store_lat + ", store_lng=" + store_lng
-				+ ", store_distance=" + store_distance + "]";
+				+ ", store_distance=" + store_distance + ", store_status=" + store_status + "]";
 	}
 
 	public String getStore_id() {
@@ -130,6 +133,14 @@ public class Search implements Comparable<Search>{
 
 	public void setStore_distance(double store_distance) {
 		this.store_distance = store_distance;
+	}
+	
+	public int getStore_status() {
+		return store_status;
+	}
+
+	public void setStore_status(int store_status) {
+		this.store_status = store_status;
 	}
 	
 	@Override 

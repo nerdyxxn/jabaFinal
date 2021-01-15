@@ -58,18 +58,29 @@ public class BizMainController {
 		mv.setViewName("biz/bizMain");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/biz/openClose.do", method = RequestMethod.GET)
 	@ResponseBody
 	public void openCloseDo(HttpServletRequest request) {
-		request.getSession().getAttribute("store_status");
+		// view 에서 변경할 status 상태를 받아옴
+		int store_status = Integer.parseInt(request.getParameter("store_status"));
 		biz = (Biz)request.getSession().getAttribute("biz");
+		biz.setStore_status(store_status);
 		
-		
+		// store_status 변경 
+		int result = bizService.updateStoreStatus(biz);
+		if(result != 1) {
+			System.out.println("updateStoreStatus 실패 !");
+		}
+		if (store_status == 1) {
+			System.out.println("매장 상태 변경 : OPEN");
+		} else if (store_status == 2) {
+			System.out.println("매장 상태 변경 : CLOSE");
+		} else {
+			System.out.println("매장 상태 변경 에러");
+		}
 		
 	}
-	
-	
 	
 	// 메뉴를 불러와서 카테고리 별로 메뉴들을 분류
 	public List<List<Menu>> selectMenuListList(String store_id) {

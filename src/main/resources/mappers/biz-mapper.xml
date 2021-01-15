@@ -13,7 +13,7 @@
 		<result property="store_lat" column="store_lat" />
 		<result property="store_lng" column="store_lng" />
 		<result property="store_distance" column="store_distance" />
-<result property="store_status" column="store_status" />
+		<result property="store_status" column="store_status" />
 	</resultMap>
 	
 	<!-- 접속한 client_id 가 DB에 있는지 확인 -->

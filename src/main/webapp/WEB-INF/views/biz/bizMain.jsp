@@ -71,7 +71,6 @@
             </button>
          </div>
       </div>
-
    </header>
 	<section id="home">
 	<img>
@@ -86,11 +85,18 @@
             </div>
             <div id="openBtnWrap">
                 <span id="openSwitch">
-                    <!-- 오픈 스위치 -->
-                    <input type="checkbox" class="js-switch" id="store_open_switch" checked />
+                <c:if test="${not empty storeVo}">
+                	<c:if test="${biz.store_status == 1 }">
+	                    <!-- 오픈 스위치 -->
+	                    <input type="checkbox" class="js-switch" id="store_open_switch" checked />
+                	</c:if>
+                	<c:if test="${biz.store_status == 2 }">
+	                    <!-- 오픈 스위치 -->
+	                    <input type="checkbox" class="js-switch" id="store_open_switch"/>
+                	</c:if>
+                </c:if>
                 </span>
             </div>
-
         </div>
     </nav>
   <!-- SECTION 3-1 Store_info -->
@@ -658,9 +664,30 @@
          });
       });
    </script>
-   <script>
+	<script>
    // 매장 상태 on / off 버튼
-   $(document).ready
+   $(document).ready(function(){
+	   $("#store_open_switch").change(function(){
+		   var store_status;
+	       if($("#store_open_switch").is(":checked")){
+	        	store_status = 1;
+	       }else{
+	        	store_status = 2;
+	        }
+	 	  $.ajax({
+	          url:"<%=ctxPath%>/biz/openClose.do",
+	          data:{ 
+	        	  store_status : store_status
+	          },
+	          success: function(res){
+	             
+	          }
+		  }); 
+		   
+	   });
+	   
+	  
+   });
    </script>
 </body>
 </html>
