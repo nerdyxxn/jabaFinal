@@ -72,14 +72,44 @@ public class BizMainController {
 		request.getSession().setAttribute("boardList", boardList);
 		
 		//매장 매출 조회 관련
-		List<PaySearchCollection> salesList = paySearchService.getSalesList(store_name);
-		request.getSession().setAttribute("salesList", salesList);
+		// 음... 이게 뭔지 잘모르겠어요 나중에 설명받을필요 있음
+		// List<PaySearchCollection> salesList = paySearchService.getSalesList(store_name);
+		// request.getSession().setAttribute("salesList", salesList);
+		
 		// bizMain jsp 파일 가져와야(혹은 생성) 하고 매장 open 스위치 관련 해결해야하고 js와 css 가져와야함
 		// 
 		mv.setViewName("biz/bizMain");
 		return mv;
 	}
 	
+	@RequestMapping(value = "/biz/bizOrderview.do", method = RequestMethod.GET)
+	public ModelAndView bizOrderview(ModelAndView mv, HttpServletRequest request) {
+		//여기서 기존 biz의 세션값을 가져와야함.
+		
+		String store_id = null;
+		String store_name = null;
+		
+		biz = (Biz)request.getSession().getAttribute("biz");
+		if(biz != null) {
+			request.getSession().setAttribute("storeVo", biz); // 찾아온 값을 menu.jsp로 넘겨주기위해 세션에 설정해줌
+			store_id = biz.getStore_id();
+			store_name = biz.getStore_name();
+		}else {
+			System.out.println("해당 biz의 정보를 불러오지 못했습니다.");
+		}
+		
+		// 매장 게시판 관련
+		store_id = biz.getStore_id();
+		
+		List<BizBoard> boardList = new ArrayList<BizBoard>();
+		boardList = bizBoardService.selectBizBoardList(store_id);
+		System.out.println("현재 공지사항 글 개수 : "+boardList.size());
+		
+		request.getSession().setAttribute("boardList", boardList);
+		
+		mv.setViewName("biz/bizOrderView");
+		return mv;
+	}
 	
 
 	@RequestMapping(value = "/biz/openClose.do", method = RequestMethod.GET)

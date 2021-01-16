@@ -24,6 +24,8 @@ public class BizSalesController {
 	@Autowired
 	private BizSalesService bizSalesService;
 	
+	@Autowired
+	private BizSales bs;
 	
 	//판매액 조회로 이동
 		@RequestMapping(value = "/biz/bizSalesView.do", method = RequestMethod.GET)
@@ -35,20 +37,25 @@ public class BizSalesController {
 			if(biz != null) {
 				request.getSession().setAttribute("storeVo", biz); // 찾아온 값을 menu.jsp로 넘겨주기위해 세션에 설정해줌
 				store_name = biz.getStore_name();
+				
+				// 매출액 조회 관련
+				bs.setStore_name(store_name);
+				
+				// 
+				// bs.setPay_time(pay_time);
+				
+				List<BizSales> bizSalesList = bizSalesService.getBizSales(bs);
+				
+				for(int i=0; i<bizSalesList.size(); i++) {
+					System.out.println(bizSalesList.get(i).getPay_time() + " 매출 : " + bizSalesList.get(i).getPay_total_price());
+				}
+				
+				request.getSession().setAttribute("bizSalesList", bizSalesList);
+				
 			}else {
 				System.out.println("해당 biz의 정보를 불러오지 못했습니다.");
 			}
 			
-			// 매출액 조회 관련
-			BizSales bs = null;
-			store_name = biz.getStore_name();
-			bs.setStore_name(store_name);
-			
-			
-			List<BizSales> bizSalesList = new ArrayList<BizSales>();
-			bizSalesList = bizSalesService.getBizSales(bs);
-			
-			request.getSession().setAttribute("bizSalesList", bizSalesList);
 			
 			// bizMain jsp 파일 가져와야(혹은 생성) 하고 매장 open 스위치 관련 해결해야하고 js와 css 가져와야함
 			mv.setViewName("biz/bizSalesView");

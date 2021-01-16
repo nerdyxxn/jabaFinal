@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biz Partner 판매액 조회</title>
+<title>Biz Partner 주문조회</title>
 <!-- Bootstrap -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -35,14 +35,11 @@
 <link href="<%=ctxPath%>/resources/css/section.css" rel="stylesheet">
 <!-- FOOTER CSS -->
 <link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
-<!-- bizSalesView CSS -->
-<link href="<%=ctxPath%>/resources/css/bizSalesView.css" rel="stylesheet">
+<!-- bizOrderView CSS -->
+<link href="<%=ctxPath%>/resources/css/bizOrderView.css" rel="stylesheet">
 <!-- 체크박스 라디오버튼 CSS -->
 <link href="<%=ctxPath%>/resources/css/icheck-material.css"
    rel="stylesheet" type="text/css">
-<!-- 그래프 출력 CDN -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <!-- switchery-->
 <link rel="stylesheet" href="<%=ctxPath%>/resources/css/switchery.css" />
 <script src="<%=ctxPath%>/resources/js/switchery.js"></script>
@@ -50,8 +47,6 @@
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
-
-
 </head>
 
 <body>
@@ -81,6 +76,7 @@
    <section id="home">
       <img>
    </section>
+   
    <!-- NAVIGATOR 버튼부분 -->
    <nav>
       <div class="biz_container" id="container_nav">
@@ -112,6 +108,7 @@
          </div>
       </div>
    </nav>
+   
    <!-- SECTION 3-1 Store_info -->
    <div id="store_info">
       <c:if test="${not empty storeVo }">
@@ -127,28 +124,12 @@
          </div>
       </c:if>
    </div>
-   <!-- 그래프 출력 -->
+   
+   <!-- SECTION -->
    <div class="container" id="container_menu_info">
-   <canvas id="myChart" style="height:30vh; width:50vw"></canvas>
- 
-   <table>
-   	<tr>
-   		<th>날짜</th>
-   		<th>매출 총액</th>
-   		<th>전달 비교</th>		
-   	</tr>
-   	<c:if test="${not empty bizSalesList}">
-	   	<c:forEach items="${bizSalesList}" var="bizSalesList" varStatus="s">
-	   	<tr>
-	   		<td>${bizSalesList.pay_time}</td>
-	   		<td>${bizSalesList.pay_total_price}</td>
-	   		<td>아직모르겠어요</td>
-	   	</tr>>
-	   	</c:forEach>
-   	</c:if>
-   </table>
+		<div>본문 들어가는 곳</div>
    </div>
-
+   
    <!-- Modal Basic -->
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -312,12 +293,7 @@
       </div>
 
    </footer>
-   
-   
 
-   
-   
-   
    <!-- switchery -->
    <script>
         // switchery 
@@ -464,59 +440,5 @@ $(document).ready(function(){
             });
       };
    </script>
-   <!-- 그래프 스크립트 부분 -->
-  <script>
-   //그래프 출력
-      var ctx = document.getElementById('myChart');
-
-	   var day1 = "${bizSalesList[0].pay_time}";
-	   var day1_total = ${bizSalesList[0].pay_total_price};
-	   
-	   var day2 = "${bizSalesList[1].pay_time}";
-	   var day2_total = ${bizSalesList[1].pay_total_price};
-	   
-	   var day3 = "${bizSalesList[2].pay_time}";
-	   var day3_total = ${bizSalesList[2].pay_total_price};
-	   
-	   // 데이터 쌓이면 추가 필요 
-   		
-      var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-              labels: ['aaa', 'www', 'eee', day3, day2, day1],
-              datasets: [{
-                  label: '판매액 조회',
-                  data: [10000, 10000, 10000, day3_total, day2_total, day1_total],
-                  backgroundColor: [
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 2
-              }]
-          },
-          options: {
-              responsive: false,
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true
-                      }
-                  }]
-              },
-          }
-      });
-  </script>
 </body>
 </html>

@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="bizSales">
-   <resultMap type="bizSales" id="resultBizSales">
-      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
-      <result property="pay_time" column="pay_time" />
-      <result property="store_name" column="store_name" />
-      <result property="pay_total_price" column="pay_total_price" />
- 	</resultMap>
-	
-	
-   <!-- 전체 매출 조회  -->
-   <select id="getBizSales" parameterType="bizSales" resultMap="resultBizSales">
-     SELECT sum(pay_total_price) FROM PaySearchCollection WHERE to_char(pay_time, 'yy/mm/dd') = #{pay_time} and store_name =${store_name} ORDER BY pay_time desc;
-   </select>   
-   
+<mapper namespace="BizSales">
+	<resultMap type="BizSales" id="resultBizSales">
+		<!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+		<result property="pay_time" column="pay_time" />
+		<result property="store_name" column="store_name" />
+		<result property="pay_total_price" column="pay_total_price" />
+	</resultMap>
+
+	<!-- 전체 매출 조회 -->
+	<select id="getBizSales" parameterType="bizSales"
+		resultType="arraylist" resultMap="resultBizSales">
+		select pay_time, sum(pay_total_price) as pay_total_price from
+		(select distinct pay_id, to_char(pay_time, 'yy/mm/dd') as pay_time,
+		store_name, pay_total_price from PaySearchCollection)
+		WHERE store_name = #{store_name}
+		group by pay_time ORDER BY pay_time desc
+	</select>
+
+
 </mapper>

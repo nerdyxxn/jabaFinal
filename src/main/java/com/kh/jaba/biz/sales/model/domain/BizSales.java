@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BizSales {
-	private Date pay_time;
+	private String pay_time;
 	private String store_name;
 	private String pay_total_price;
 	@Override
@@ -15,7 +15,7 @@ public class BizSales {
 		return "BizSales [pay_time=" + pay_time + ", store_name=" + store_name + ", pay_total_price=" + pay_total_price
 				+ "]";
 	}
-	public BizSales(Date pay_time, String store_name, String pay_total_price) {
+	public BizSales(String pay_time, String store_name, String pay_total_price) {
 		super();
 		this.pay_time = pay_time;
 		this.store_name = store_name;
@@ -25,10 +25,10 @@ public class BizSales {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Date getPay_time() {
+	public String getPay_time() {
 		return pay_time;
 	}
-	public void setPay_time(Date pay_time) {
+	public void setPay_time(String pay_time) {
 		this.pay_time = pay_time;
 	}
 	public String getStore_name() {

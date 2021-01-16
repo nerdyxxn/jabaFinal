@@ -95,9 +95,11 @@ String bre_level = (request.getParameter("bre_level") != null) ? request.getPara
    <nav>
       <div class="biz_container" id="container_nav">
          <div id="bizBtnWrap">
+         <a href ="<%=ctxPath%>/biz/bizOrderview.do">
             <button class="nav_btn">
                <span>주문조회</span>
             </button>
+         </a>
             <button class="nav_btn" data-toggle="modal"
                data-target="#exampleModal">
                <span>공지사항</span>
