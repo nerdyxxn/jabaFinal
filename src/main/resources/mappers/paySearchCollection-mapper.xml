@@ -20,7 +20,7 @@
       <result property="pay_total_price" column="pay_total_price" />
      <collection property="MenuCollection" ofType="MenuCollection" column="pay_id=pay_id" javaType="List" select = "getMenuList"/>
  	</resultMap>
-   
+ 	
    
    <!-- 현재 필요한 column : pickup_time,  -->
    <select id="getPaySearchList" resultMap="resultPaySearchCollection">
@@ -35,4 +35,6 @@
    <select id="getCustomList" resultType="CustomCollection">
       SELECT * FROM customcollection WHERE order_id = #{order_id}
    </select>
+   
+   
 </mapper>

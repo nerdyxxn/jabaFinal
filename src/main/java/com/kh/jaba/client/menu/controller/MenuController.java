@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.jaba.biz.board.model.domain.BizBoard;
+import com.kh.jaba.biz.board.model.service.BizBoardService;
 import com.kh.jaba.biz.model.domain.Biz;
 import com.kh.jaba.biz.model.service.BizService;
 import com.kh.jaba.client.custom.model.domain.Custom;
@@ -40,6 +42,10 @@ public class MenuController {
 	
 	@Autowired
 	private Custom custom;
+	
+	@Autowired
+	private BizBoardService bizBoardService;
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 
@@ -64,7 +70,13 @@ public class MenuController {
 		// 해당 스토어의 메뉴들을(List<List<MenuVO>> 형태) session에 담는다.
 		// List<List<MenuVO>> sortList = mService.selectmenuListList(store_id);
 
-		// 매장 게시판~~ 관련부분
+		// 매장 게시판 관련
+				
+				List<BizBoard> boardList = new ArrayList<BizBoard>();
+				boardList = bizBoardService.selectBizBoardList(biz.getStore_id());
+				System.out.println("현재 공지사항 글 개수 : "+boardList.size());
+				
+				request.getSession().setAttribute("boardList", boardList);
 
 		mv.setViewName("menu/menu");
 		return mv;

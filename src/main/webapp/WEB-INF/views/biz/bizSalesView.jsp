@@ -7,12 +7,6 @@
    String ctxPath = request.getContextPath();
 %>
 <!-- board INPUT을 위함 -->
-<%
-   String bno = (request.getParameter("bno") != null) ? request.getParameter("bno") : "0";
-String bref = (request.getParameter("bref") != null) ? request.getParameter("bref") : "0";
-String bre_step = (request.getParameter("bre_step") != null) ? request.getParameter("bre_step") : "0";
-String bre_level = (request.getParameter("bre_level") != null) ? request.getParameter("bre_level") : "0";
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +40,9 @@ String bre_level = (request.getParameter("bre_level") != null) ? request.getPara
 <!-- 체크박스 라디오버튼 CSS -->
 <link href="<%=ctxPath%>/resources/css/icheck-material.css"
    rel="stylesheet" type="text/css">
-
+<!-- 그래프 출력 CDN -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <!-- switchery-->
 <link rel="stylesheet" href="<%=ctxPath%>/resources/css/switchery.css" />
 <script src="<%=ctxPath%>/resources/js/switchery.js"></script>
@@ -102,11 +98,9 @@ String bre_level = (request.getParameter("bre_level") != null) ? request.getPara
                data-target="#exampleModal">
                <span>공지사항</span>
             </button>
-            <a href="<%=ctxPath %>/biz/bizSalesView.do">
-            <button class="nav_btn" id="salesView">
+            <button class="nav_btn">
                <span>판매액조회</span>
             </button>
-            </a>
          </div>
          <div id="openBtnWrap">
             <span id="openSwitch"> <c:if test="${not empty storeVo}">
@@ -129,7 +123,7 @@ String bre_level = (request.getParameter("bre_level") != null) ? request.getPara
       <c:if test="${not empty storeVo }">
          <div class="container" id="container_store_info">
             <!--매장 이름-->
-            <h1>${storeVo.store_name}</h1>
+            <h1>${storeVo.store_name} 매출 조회</h1>
             <span id="store_description"> <!-- 매장 설명-->
                ${storeVo.store_description}
             </span> <span> <!-- 최근 게시판부분--> <c:if test="${not empty boardList}">
@@ -139,56 +133,29 @@ String bre_level = (request.getParameter("bre_level") != null) ? request.getPara
          </div>
       </c:if>
    </div>
+   <!-- 그래프 출력 -->
+   <div class="container" id="container_menu_info">
+   <canvas id="myChart" style="height:30vh; width:50vw"></canvas>
+ 
+   
+   
+  
+   <table>
+   	<tr>
+   		<th>날짜</th>
+   		<th>매출 총액</th>
+   		<th>전달 비교</th>		
+   	</tr>
+   	<tr>
+   		<td></td>
+   		<td></td>
+   		<td></td>
+   	</tr>
 
-   <!-- SECTION 3-2 menu_info -->
-   <section id="menu_info">
-      <div class="container" id="container_menu_info">
-         <c:if test="${not empty sortList }">
-            <c:forEach items="${sortList}" var="sortList" varStatus="s">
-               <div class="category">
-                  <div class="category_name">
-                     <h2>${sortList[0].menu_category}</h2>
-                  </div>
-                  <div class="category_products">
-                     <c:if test="${not empty sortList}">
-                        <c:forEach items="${sortList}" var="menuVo" varStatus="s">
-                           <c:if test="${menuVo.menu_available == 1 }">
-                              <div class="product_card">
-                           </c:if>
-                           <c:if test="${menuVo.menu_available == 2}">
-                              <div class="product_card" style="opacity: 0.3;">
-                           </c:if>
-                           <div class="product_card_detail">
-                              <div class="product_name">
-                                 <p>
-                                    <span>${menuVo.menu_name}</span>&nbsp;&nbsp;
-                                    <button class="sold_out_btn">Sold out</button>
-                                    <input type="hidden" id="${menuVo.menu_id}"
-                                       value="${menuVo.menu_available}">
-                                 </p>
-                              </div>
-                              <div class="product_desc">${menuVo.menu_description}</div>
-                              <div class="product_price">
-                                 <p>
-                                    <fmt:formatNumber value="${menuVo.menu_price}"
-                                       pattern="#,###" />
-                                    원
-                                 </p>
-                              </div>
-                           </div>
-                           <div class="product_card_image">
-                              <img src="<%=ctxPath %>${menuVo.menu_img }" alt="Affogato">
-                           </div>
-                  </div>
-            </c:forEach>
-         </c:if>
-      </div>
-      <!--category 끝 -->
-      </div>
-      </c:forEach>
-      </c:if>
-      </div>
-   </section>
+   </table>
+   </div>
+
+   
 
    <!-- modal -->
 
@@ -501,8 +468,91 @@ $(document).ready(function(){
             });
       };
    </script>
-   <script>
-   //판매액 조회 진입
-   </script>
+   <!-- 그래프 스크립트 부분 -->
+  <script>
+   //그래프 출력
+      var ctx = document.getElementById('myChart');
+
+	   var today = new Date();
+	   var month = today.getMonth()+1;
+	   var day = today.getDate();
+
+	   var format = (("00"+month.toString()).slice(-2))+"/"+(("00"+day.toString()).slice(-2));
+	   
+	   var yes = today.getTime() - (1*24*60*60*1000);
+	   today.setTime(yes);
+	   var yesMon = today.getMonth()+1;
+	   var yesDay = today.getDate();
+	   
+	   var yesFormat = (("00"+yesMon.toString()).slice(-2))+"/"+(("00"+yesDay.toString()).slice(-2));
+	
+	   var yes = today.getTime() - (1*24*60*60*1000);
+	   today.setTime(yes);
+	   var yesMon = today.getMonth()+1;
+	   var yesDay = today.getDate();
+	   
+	   var yes2Format = (("00"+yesMon.toString()).slice(-2))+"/"+(("00"+yesDay.toString()).slice(-2));
+		
+	   var yes = today.getTime() - (1*24*60*60*1000);
+	   today.setTime(yes);
+	   var yesMon = today.getMonth()+1;
+	   var yesDay = today.getDate();
+	   
+	   var yes3Format = (("00"+yesMon.toString()).slice(-2))+"/"+(("00"+yesDay.toString()).slice(-2));
+		
+	   var yes = today.getTime() - (1*24*60*60*1000);
+	   today.setTime(yes);
+	   var yesMon = today.getMonth()+1;
+	   var yesDay = today.getDate();
+	   
+	   var yes4Format = (("00"+yesMon.toString()).slice(-2))+"/"+(("00"+yesDay.toString()).slice(-2));
+		
+	   var yes = today.getTime() - (1*24*60*60*1000);
+	   today.setTime(yes);
+	   var yesMon = today.getMonth()+1;
+	   var yesDay = today.getDate();
+	   
+	   var yes5Format = (("00"+yesMon.toString()).slice(-2))+"/"+(("00"+yesDay.toString()).slice(-2));
+
+		
+   		
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: [yes5Format, yes4Format, yes3Format, yes2Format, yesFormat, format],
+              datasets: [{
+                  label: '판매액 조회',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 2
+              }]
+          },
+          options: {
+              responsive: false,
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              },
+          }
+      });
+  </script>
 </body>
 </html>

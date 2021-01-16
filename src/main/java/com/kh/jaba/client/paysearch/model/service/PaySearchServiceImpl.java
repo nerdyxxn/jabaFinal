@@ -35,8 +35,11 @@ public class PaySearchServiceImpl implements PaySearchService {
 	public List<Custom> getCustomList(String order_id) {
 		return paySearchDao.getCustomList(order_id);
 	}
-	
-	
+
+	@Override
+	public List<PaySearchCollection> getSalesList(String store_name) {
+		return paySearchDao.getSalesList(store_name);
+	}	
 	
 	
 

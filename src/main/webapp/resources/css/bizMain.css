@@ -1389,8 +1389,8 @@ form:hover .fa{
            
             display: flex;
             flex-direction: column;
-            border-top: 2px solid #112732;
-            border-bottom: 2px solid #112732;
+            /*border-top: 2px solid #112732;
+            border-bottom: 2px solid #112732;*/
             height: 250px;
             overflow:auto;
         }

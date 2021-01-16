@@ -18,6 +18,8 @@ import com.kh.jaba.biz.model.domain.Biz;
 import com.kh.jaba.biz.model.service.BizService;
 import com.kh.jaba.client.menu.model.domain.Menu;
 import com.kh.jaba.client.menu.model.service.MenuService;
+import com.kh.jaba.client.paysearch.model.domain.PaySearchCollection;
+import com.kh.jaba.client.paysearch.model.service.PaySearchService;
 
 @Controller
 public class BizMainController {
@@ -36,9 +38,14 @@ public class BizMainController {
 	@Autowired
 	private BizBoardService bizBoardService;
 	
+	@Autowired
+	private PaySearchService paySearchService;
+	
 	// 단지 Bizindex페이지를 띄워주는행동만 함
 	@RequestMapping(value = "/biz/bizIndex.do", method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView mv, HttpServletRequest request) {
+		//여기서 기존 biz의 세션값을 가져와야함.
+		
 		String store_id = null;
 		String store_name = null;
 		
@@ -63,13 +70,17 @@ public class BizMainController {
 		System.out.println("현재 공지사항 글 개수 : "+boardList.size());
 		
 		request.getSession().setAttribute("boardList", boardList);
+		
+		//매장 매출 조회 관련
+		List<PaySearchCollection> salesList = paySearchService.getSalesList(store_name);
+		request.getSession().setAttribute("salesList", salesList);
 		// bizMain jsp 파일 가져와야(혹은 생성) 하고 매장 open 스위치 관련 해결해야하고 js와 css 가져와야함
 		// 
-		
-		
 		mv.setViewName("biz/bizMain");
 		return mv;
 	}
+	
+	
 
 	@RequestMapping(value = "/biz/openClose.do", method = RequestMethod.GET)
 	@ResponseBody

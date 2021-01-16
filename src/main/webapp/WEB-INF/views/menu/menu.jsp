@@ -170,12 +170,9 @@
             <h1>${storeVo.store_name}</h1>
             <span id="store_description"> <!-- 매장 설명-->
                ${storeVo.store_description}
-            </span> <span> <!-- 최근 게시판부분-->
-             <c:if test="${not empty dboardList}">
-                   <c:forEach items="${dboardList }" var="bvo" varStatus="s">
-                      <div class="bossFinalNotice">${bvo.bcontent }</div>
-                   </c:forEach>
-                </c:if>
+            </span> <span> <!-- 최근 게시판부분--> <c:if test="${not empty boardList}">
+                  <div class="bossFinalNotice">${boardList[0].store_board_title }</div>
+               </c:if>
             </span>
          </div>
       </c:if>

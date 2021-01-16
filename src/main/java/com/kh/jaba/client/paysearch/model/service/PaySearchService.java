@@ -13,6 +13,8 @@ public interface PaySearchService {
 	
 	public List<PaySearchCollection> getPaySearchList(String client_id);
 	
+	public List<PaySearchCollection> getSalesList(String store_name);
+	
 	public List<MenuCollection> getMenuList(String pay_id);
 	
 	public List<Custom> getCustomList(String order_id);

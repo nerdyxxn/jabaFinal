@@ -25,6 +25,10 @@ public class PaySearchDao {
 		return sqlSession.selectList("PaySearchCollection.getPaySearchList", client_id);
 	}
 	
+	public List<PaySearchCollection> getSalesList(String store_name){
+		return sqlSession.selectList("PaySearchCollection.getPaySearchList", store_name);
+	}
+	
 	public List<MenuCollection> getMenuList(String pay_id){
 		return sqlSession.selectList("PaySearchCollection.getMenuList", pay_id);
 	}
