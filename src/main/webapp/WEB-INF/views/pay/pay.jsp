@@ -323,62 +323,100 @@
 			</div>
 		</div>
 	</footer>
-	
 <script>
 	// 페이지 로드 시 '가맹점 식별 코드' 호출
 		// place_order 버튼을 눌렀을때 입력된 값으로 payment 테이블에 데이터 추가
-		$("#place_order").click(function(){
-			var IMP = window.IMP; // 생략가능
-			IMP.init('imp88711661'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-			var name = $('.item_name').eq(0).text();
-			var amount = $('.price_all_total').text();
-	        var buyer = $('#personal_name').val();
-	        var buyerTel = $('#personal_tel').val();
+		//$(document).ready(function(){
+	    	var store_name = "${storeVo.store_name}";
+	        var ws;
+	        
+	        function openSocket(){
+	            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
+	            {
+	                console.log("WebSocket is already opend.");
+	                return;
+	            } 
+	            
+	            //웹소켓 객체 만드는 코드
+	            ws = new WebSocket('ws://localhost:8090/jaba/echo');
+	            
+	            ws.onopen=function(event){
+	                if(event.data===undefined) return;
+	                // ws open 했을때의 동작 
+	            };
+	            ws.onmessage=function(event){
+	                // 서버에서 메세지가 도착했을때의 동작 
+	            };
+	            ws.onclose=function(event){
+	                console.log("Connection closed");
+	            }
+	        }
+	        function send(){
+	            ws.send(store_name);
+	        }
+	        function closeSocket(){
+	            ws.close();
+	        }
+	        openSocket();
+	        
+			$("#place_order").click(function(){
+				var IMP = window.IMP; // 생략가능
+				IMP.init('imp88711661'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+				var name = $('.item_name').eq(0).text();
+				var amount = $('.price_all_total').text();
+		        var buyer = $('#personal_name').val();
+		        var buyerTel = $('#personal_tel').val();
+		        
+				amount *= 1;
+				
+				IMP.request_pay({
+				    pg : 'html5_inicis',
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : name,
+				    amount : amount,
+				    buyer_email : 'iamport@siot.do',
+				    buyer_name : buyer,
+				    buyer_tel : buyerTel,
+				    buyer_addr : '서울특별시 강남구 삼성동',
+				    buyer_postcode : '123-456'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				        
+						var pay_request = $("#pay_request").val();
+						var pickup_time = $("#pickUp").text();
+						console.log(pay_request);
+						 $.ajax({
+							  url: "<%=ctxPath%>/payment/pay.do",
+					             data : {
+					            	 pay_request : pay_request,
+					            	 pickup_time : pickup_time
+					             },
+					             method: "post",
+					             success : function(res){
+							    	if(confirm(msg)) {
+							    	send();
+							    	closeSocket();
+					                window.location.href="<%=ctxPath%>/";
+							    	}
+					             }
+						}); 
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				    	alert(msg);
+				    }
+				}); 
+			});
+	        
+	        // ready 끝
+		//});
 
-			amount *= 1;
-			
-			IMP.request_pay({
-			    pg : 'html5_inicis',
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : name,
-			    amount : amount,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : buyer,
-			    buyer_tel : buyerTel,
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			        
-					var pay_request = $("#pay_request").val();
-					var pickup_time = $("#pickUp").text();
-					console.log(pay_request);
-					 $.ajax({
-						  url: "<%=ctxPath%>/payment/pay.do",
-				             data : {
-				            	 pay_request : pay_request,
-				            	 pickup_time : pickup_time
-				             },
-				             method: "post",
-				             success : function(res){
-						    	alert(msg);
-				                location.href="<%=ctxPath%>/";
-				             }
-					}); 
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			    	alert(msg);
-			    }
-
-			}); 
-		});
 </script>
 <script>
 	// pickUp time 변경 

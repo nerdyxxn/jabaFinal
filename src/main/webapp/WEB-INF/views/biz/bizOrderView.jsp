@@ -114,7 +114,7 @@
       <c:if test="${not empty storeVo }">
          <div class="container" id="container_store_info">
             <!--매장 이름-->
-            <h1>${storeVo.store_name} 매출 조회</h1>
+            <h1>${storeVo.store_name} 주문 조회</h1>
             <span id="store_description"> <!-- 매장 설명-->
                ${storeVo.store_description}
             </span> <span> <!-- 최근 게시판부분--> <c:if test="${not empty boardList}">
@@ -129,7 +129,7 @@
    <div class="container" id="container_menu_info">
 		<div>
 		<!--  본문 -->
-						<c:if test="${not empty bizOrderList }">
+			<c:if test="${not empty bizOrderList }">
                <c:forEach items="${bizOrderList}" var="bizOrderList" varStatus="c">
                   <div class="product_card">
                      <div class="product_card_detail">
@@ -164,10 +164,6 @@
                   </div>
 			</c:forEach>
             </c:if>
-		
-		
-		
-		
 		</div>
    </div>
    
@@ -253,11 +249,8 @@
                                        value="추가" /></td>
                                  </tr>
                               </table>
-
                      </div>
-
                   </div>
-                 
                </div>
             </div>
          </div>
@@ -340,6 +333,54 @@
         // switchery 
         var elem = document.querySelector('.js-switch');
         var init = new Switchery(elem);
+    </script>
+    <script>
+    	var store_name = "${storeVo.store_name}";
+        var ws;
+        console.log("매장이름 : " + store_name);
+        
+        function openSocket(){
+            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
+            {
+                console.log("WebSocket is already opend.");
+                return;
+            } 
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket('ws://localhost:8090/jaba/echo');
+            
+            ws.onopen=function(event){
+                // ws open 했을때의 동작 
+                console.log("소켓 오픈");
+                if(event.data===undefined) return;
+            };
+            ws.onmessage=function(event){
+                	console.log("onmassage 작동");
+                	console.log(event.data);
+                // 서버에서 메세지가 도착했을때의 동작
+                if(store_name===event.data){
+                	console.log("store_name 똑같음");
+                	location.href="<%=ctxPath%>/biz/bizOrderview.do";
+                }
+            };
+            ws.onclose=function(event){
+                console.log("Connection closed");
+            }
+        }
+        function send(){
+            ws.send(store_name);
+        }
+        function closeSocket(){
+            ws.close();
+        }
+        
+        // 소켓 오픈 
+        openSocket();
+        
+    //$(document).ready(function(){
+    //});
+    
+    
+    
     </script>
   
    <!-- 게시판에 글 추가 -->

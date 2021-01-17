@@ -122,6 +122,15 @@ public class BizMainController {
 		return mv;
 	}
 	
+	
+	@RequestMapping(value = "/biz/header.do", method = RequestMethod.GET)
+	public ModelAndView sockTest(ModelAndView mv) {
+		//여기서 기존 biz의 세션값을 가져와야함.
+		
+		mv.setViewName("biz/header");
+		return mv;
+	}
+	
 
 	@RequestMapping(value = "/biz/openClose.do", method = RequestMethod.GET)
 	@ResponseBody
