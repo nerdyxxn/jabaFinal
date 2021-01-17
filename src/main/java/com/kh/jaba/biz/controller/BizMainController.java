@@ -16,6 +16,8 @@ import com.kh.jaba.biz.board.model.domain.BizBoard;
 import com.kh.jaba.biz.board.model.service.BizBoardService;
 import com.kh.jaba.biz.model.domain.Biz;
 import com.kh.jaba.biz.model.service.BizService;
+import com.kh.jaba.biz.order.domain.BizOrder;
+import com.kh.jaba.biz.order.model.service.BizOrderService;
 import com.kh.jaba.client.menu.model.domain.Menu;
 import com.kh.jaba.client.menu.model.service.MenuService;
 import com.kh.jaba.client.paysearch.model.domain.PaySearchCollection;
@@ -40,6 +42,9 @@ public class BizMainController {
 	
 	@Autowired
 	private PaySearchService paySearchService;
+	
+	@Autowired
+	private BizOrderService bizOrderService;
 	
 	// 단지 Bizindex페이지를 띄워주는행동만 함
 	@RequestMapping(value = "/biz/bizIndex.do", method = RequestMethod.GET)
@@ -91,7 +96,6 @@ public class BizMainController {
 		
 		biz = (Biz)request.getSession().getAttribute("biz");
 		if(biz != null) {
-			request.getSession().setAttribute("storeVo", biz); // 찾아온 값을 menu.jsp로 넘겨주기위해 세션에 설정해줌
 			store_id = biz.getStore_id();
 			store_name = biz.getStore_name();
 		}else {
@@ -101,11 +105,18 @@ public class BizMainController {
 		// 매장 게시판 관련
 		store_id = biz.getStore_id();
 		
-		List<BizBoard> boardList = new ArrayList<BizBoard>();
-		boardList = bizBoardService.selectBizBoardList(store_id);
-		System.out.println("현재 공지사항 글 개수 : "+boardList.size());
+		List<BizBoard> boardList = bizBoardService.selectBizBoardList(store_id);
+		System.out.println("현재 공지사항 글 개수 : " + boardList.size());
 		
 		request.getSession().setAttribute("boardList", boardList);
+		
+		// BizOrder 관련 ...
+		List<BizOrder> bizOrderList = bizOrderService.orderViewList(store_name);
+		request.getSession().setAttribute("bizOrderList", bizOrderList);
+		for(int i=0; i<bizOrderList.size(); i++) {
+			System.out.println("현재 있는 주문 : " + bizOrderList.get(i).getPay_id());
+		}
+		
 		
 		mv.setViewName("biz/bizOrderView");
 		return mv;

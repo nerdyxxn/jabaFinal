@@ -17,4 +17,11 @@ public class PayServiceImpl implements PayService {
 	public int insertPayment(Pay p) {
 		return payDao.insertPayment(p);
 	}
+
+	// paystatus 상태 변경 
+	@Override
+	public int updatePayStatus(Pay p) {
+		return payDao.updatePayStatus(p);
+	}
+
 }

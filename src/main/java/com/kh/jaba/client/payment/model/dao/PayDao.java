@@ -16,5 +16,10 @@ public class PayDao {
 	public int insertPayment(Pay p) {
 		return sqlSession.insert("Pay.insertPayment", p);
 	}
+	
+	// paystatus 상태 변경 
+	public int updatePayStatus(Pay p) {
+		return sqlSession.update("Pay.updatePayStatus", p);
+	}
 
 }

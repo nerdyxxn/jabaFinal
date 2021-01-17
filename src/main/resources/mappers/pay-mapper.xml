@@ -9,13 +9,20 @@
 		<result property="pay_time" column="pay_time" />
 		<result property="pay_request" column="pay_request" />
 		<result property="pickup_time" column="pickup_time" />
+		<result property="pay_status" column="pay_status" />
 	</resultMap>
 
 	<insert id="insertPayment" parameterType="Pay">
-		insert into PAYMENT (pay_id, cartno_id, pay_total_price, pay_request, pickup_time)
+		insert into PAYMENT
+		(pay_id, cartno_id, pay_total_price, pay_request, pickup_time)
 		values(('P' || LPAD(PAYMENT_SEQ.nextval, 5, 0)), #{cartno_id},
 		#{pay_total_price}, #{pay_request}, #{pickup_time})
 	</insert>
+
+	<update id="updatePayStatus" parameterType="Pay">
+		update payment set
+		pay_status = #{pay_status} where pay_id = #{pay_id}
+	</update>
 
 </mapper>
 	

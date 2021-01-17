@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BizOrder">
+   <resultMap type="menuCollection" id="resultMenuCollection">
+    <id property="menu_name" column="menu_name"/>
+    <result property="order_quantity" column="order_quantity"/>
+	<result property="order_id" column="order_id"/>
+	<result property="pay_id" column="pay_id"/>
+	<collection property="CustomCollection" ofType="CustomCollection" column="order_id=order_id" javaType="List" select ="getCustomList"/>
+   </resultMap>
+   
+   <resultMap type="BizOrder" id="resultBizOrder">
+      <!-- property에는 vo의 필드명, column에는 db table의 컬럼명 -->
+      <result property="pay_id" column="pay_id" />
+      <result property="client_id" column="client_id" />
+      <result property="pay_time" column="pay_time" />
+      <result property="store_name" column="store_name" />
+      <result property="pickup_time" column="pickup_time" />
+      <result property="pay_request" column="pay_request" />
+      <result property="pay_total_price" column="pay_total_price" />
+      <result property="pay_status" column="pay_status" />
+     <collection property="menuCollection" ofType="menuCollection" column="pay_id=pay_id" javaType="List" select = "getMenuList"/>
+ 	</resultMap>
+   
+   <!-- 현재 필요한 column : pickup_time,  -->
+   <select id="orderViewList" resultMap="resultBizOrder">
+      SELECT distinct pay_id, client_id, pay_time, store_name, pickup_time, pay_request, pay_total_price, pay_status FROM orderview WHERE store_name = #{store_name} and pay_status=1 ORDER BY pay_id
+   </select>   
+   
+   
+   <select id="getMenuList" resultMap="resultMenuCollection">
+       SELECT distinct order_id,order_quantity,menu_name,pay_id FROM menucollection WHERE pay_id IN (#{pay_id}) ORDER BY order_id
+   </select>
+   
+   <select id="getCustomList" resultType="CustomCollection">
+      SELECT * FROM customcollection WHERE order_id = #{order_id}
+   </select>
+   
+   
+</mapper>

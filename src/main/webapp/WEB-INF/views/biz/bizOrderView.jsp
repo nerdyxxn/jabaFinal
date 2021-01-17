@@ -127,7 +127,48 @@
    
    <!-- SECTION -->
    <div class="container" id="container_menu_info">
-		<div>본문 들어가는 곳</div>
+		<div>
+		<!--  본문 -->
+						<c:if test="${not empty bizOrderList }">
+               <c:forEach items="${bizOrderList}" var="bizOrderList" varStatus="c">
+                  <div class="product_card">
+                     <div class="product_card_detail">
+                     <div class="orderPay">
+                        <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">${bizOrderList.pay_time }</div>
+                        <div class="orderPayItems">${bizOrderList.store_name }</div>
+                        <div class="orderPayItems">${bizOrderList.pickup_time }</div>
+                        <div class="orderPayItems" style="margin-bottom:20px;">${bizOrderList.pay_request }</div>
+                        <div class="orderPayItems" style="margin-bottom:20px;">주문상태 : ${bizOrderList.pay_status }</div>
+                     </div>
+                     <hr>
+                     <div class="orderMenu">   
+                        <c:forEach items="${bizOrderList.menuCollection}" var="menu"
+                           varStatus="m">
+                           <div class="product_name">
+                                 <!-- 여기는 menu_name -->
+                                 <div class="orderMenuItems">
+                                 <span style="font-size:16px; font-weight:700;">${menu.menu_name}</span>
+                                 <span style="font-size:16px; font-weight:700;">&times;${menu.order_quantity }</span>
+                                 <c:forEach items="${menu.customCollection}" var="custom" varStatus="c">
+                                    <!-- 여기가 custom_name -->
+                                    <span class="orderCustomItems" style="font-size:16px; font-weight:700;">+&nbsp;${custom.custom_name}</span>
+                                 </c:forEach>
+                                 </div>
+                           </div>
+                        </c:forEach>
+                        </div>
+                        <hr>
+                        <div class="orderPrice" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${bizOrderList.pay_total_price }" pattern="#,###" />원</div>
+                     	<div><button>메뉴준비완료</button></div>
+                     </div>
+                  </div>
+			</c:forEach>
+            </c:if>
+		
+		
+		
+		
+		</div>
    </div>
    
    <!-- Modal Basic -->
