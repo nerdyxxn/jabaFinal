@@ -15,6 +15,11 @@ public class BizSalesDao {
 	
 	public List<BizSales> getBizSales(BizSales bs){
 		return sqlSession.selectList("BizSales.getBizSales", bs);
-		
 	}
+	
+	// 전체 매장 매출 조회
+	public List<BizSales> selectAllBizSales(){
+		return sqlSession.selectList("BizSales.selectAllBizSales");
+	}
+	
 }

@@ -19,4 +19,7 @@ public interface ClientService {
    
    // 비밀번호 변경
    public int updateClientPw(Client c);
+   
+	// 자바 전체 이용자수
+	public int countTotalClient();
 }

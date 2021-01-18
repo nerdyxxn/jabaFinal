@@ -15,4 +15,7 @@ public interface BizService {
 	
 	// 스토어 open close 
 	public int updateStoreStatus(Biz b);
+	
+	// 전체 매장 수 조회
+	public int countTotalBiz();
 }

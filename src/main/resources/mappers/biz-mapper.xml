@@ -36,4 +36,9 @@
 		flushCache="true" statementType="PREPARED">
 		update store set store_status=#{store_status} where store_id=#{store_id}
 	</update>
+	
+   <!-- 자바 이용 매장수 -->
+   <select id="countTotalBiz" resultType="int">
+      select count(*) from store
+   </select>
 </mapper>

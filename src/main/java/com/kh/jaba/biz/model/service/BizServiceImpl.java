@@ -41,6 +41,12 @@ public class BizServiceImpl implements BizService{
 	public int updateStoreStatus(Biz b) {
 		return bizDao.updateStoreStatus(b);
 	}
+
+	// 전체 매장 수 조회
+	@Override
+	public int countTotalBiz() {
+		return bizDao.countTotalBiz();
+	}
 	
 
 }

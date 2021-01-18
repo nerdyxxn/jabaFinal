@@ -73,17 +73,22 @@ a {
 
 /* SECTION 3 */
 #store_info {
-	padding : 40px 0;
+	padding: 40px 0;
 }
+
 #container_store_info {
 	background-color: rgb(249, 250, 252);
-    width: 80%;
-    max-width: 1024px;
+	width: 80%;
+	max-width: 1024px;
+	display: flex;
+	flex-direction: column;
 }
-#store_info h1{
+
+#store_info h1 {
 	font-size: 1.4rem;
 	font-weight: 700;
 }
+
 #sth {
 	width: 100%;
 }
@@ -96,13 +101,13 @@ a {
 .store_information {
 	flex-dircetion: column;
 }
+
 .bossFinalNotice {
 	border-top: 1px solid #112732;
 	border-bottom: 1px solid #112732;
 	text-align: center;
 	margin-top: 10px;
 	font-size: 100%;
-
 }
 
 #sth .container {
@@ -147,9 +152,9 @@ section .container .store_list_grid {
 #container_menu_info {
 	background-color: rgb(249, 250, 252);
 	width: 80%;
-    margin: 0 auto;
-    padding-top: 15px;
-    max-width: 1024px;
+	margin: 0 auto;
+	padding-top: 15px;
+	max-width: 1024px;
 }
 
 .category h2 {
@@ -223,7 +228,7 @@ section .container .store_list_grid {
 	color: black;
 }
 
-.product_name > p {
+.product_name>p {
 	margin: 0;
 	font-size: 14px;
 	font-weight: 700;
@@ -263,7 +268,6 @@ section .container .store_list_grid {
 	/* 트랜지션 처리*/
 }
 
-
 /* 모달 전체 세팅 */
 .modal {
 	text-align: center;
@@ -296,7 +300,6 @@ section .container .store_list_grid {
 	height: auto;
 	min-height: 100%;
 	border-radius: 16px;
-
 }
 
 .modal-dialog.modal-dialog-centered {
@@ -557,7 +560,6 @@ ul {
 	margin-inline-end: 0px;
 	padding-inline-start: 40px;
 }
-
 
 .MuiButtonBase-root {
 	color: inherit;
@@ -905,14 +907,36 @@ li {
 }
 
 40%{
--webkit-transform:translateY(-20px);
--ms-transform:translateY(-20px);
-transform:translateY(-20px)
+-webkit-transform
+:translateY(-20px)
+;
+
+
+-ms-transform
+:translateY(-20px)
+;
+
+
+transform
+:translateY(-20px)
+
+
 }
 60%{
--webkit-transform:translateY(-10px);
--ms-transform:translateY(-10px);
-transform:translateY(-10px)
+-webkit-transform
+:translateY(-10px)
+;
+
+
+-ms-transform
+:translateY(-10px)
+;
+
+
+transform
+:translateY(-10px)
+
+
 }
 }
 }
@@ -958,7 +982,6 @@ transform:translateY(-10px)
 	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
 		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms
 		cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
 	/*    font-weight: 500; */
 	line-height: 1.75;
 	border-radius: 28px;
@@ -1008,7 +1031,6 @@ h3 {
 }
 
 .order-container .order-details h3 {
-	
 	font-size: 19.2px;
 	font-weight: 600;
 	margin: 0;
@@ -1165,8 +1187,9 @@ h3 {
 	box-shadow: none;
 	font-weight: 600;
 }
-#logoutBtn{
-	display:none;
+
+#logoutBtn {
+	display: none;
 }
 
 /* search bar 세팅 */
@@ -1247,7 +1270,6 @@ form:hover .fa{
 	display: inline-block;
 	text-align: center;
 }  */
-
 @media screen and ( max-width : 1080px) {
 	#home {
 		height: 100px;
@@ -1276,227 +1298,221 @@ form:hover .fa{
 	}
 }
 
+.biz_container {
+	width: 80%;
+	max-width: 1024px;
+	transition: .2s ease-in-out;
+	padding: 0 20px;
+}
 
+/* 모달 전체 세팅 */
+.modal-dialog.modal-size {
+	height: auto;
+	margin: 0;
+	padding: 0;
+	min-width: 800px;
+}
 
-        .biz_container {
-            width: 80%;
-            max-width: 1024px;
-            transition: .2s ease-in-out;
-            padding: 0 20px;
+.modal-content.modal-size {
+	height: auto;
+	min-height: 100%;
+	border-radius: 16px;
+}
 
-        }
+.modal {
+	text-align: center;
+}
 
-        /* 모달 전체 세팅 */
-        .modal-dialog.modal-size {
-            height: auto;
-            margin: 0;
-            padding: 0;
-            min-width: 800px;
-        }
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;
+	}
+}
 
-        .modal-content.modal-size {
-            height: auto;
-            min-height: 100%;
-            border-radius: 16px;
-        }
+.modal-dialog.modal-size {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
 
-        .modal {
-            text-align: center;
-        }
+/* 모달 header 세팅 */
+.modal-header {
+	padding: 32px;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid rgba(20, 23, 26, .08);
+	text-align: center;
+}
 
-        @media screen and (min-width: 768px) {
-            .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-            }
-        }
+.header-icon {
+	display: inline-flex;
+	padding: 16px;
+	border-radius: 16px;
+	margin-bottom: 16px;
+}
 
-        .modal-dialog.modal-size {
-            display: inline-block;
-            text-align: left;
-            vertical-align: middle;
-        }
+.close {
+	color: rgba(0, 0, 0, 0.54);
+	position: absolute !important;
+	top: 25px;
+	right: 25px;
+}
 
-        /* 모달 header 세팅 */
-        .modal-header {
-            padding: 32px;
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid rgba(20, 23, 26, .08);
-            text-align: center;
-        }
+/* 모달 body 세팅 */
+.modal-body {
+	flex: 1 1 auto;
+	padding: 32px 32px 16px 32px;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
 
-        .header-icon {
-            display: inline-flex;
-            padding: 16px;
-            border-radius: 16px;
-            margin-bottom: 16px;
-        }
-
-        .close {
-            color: rgba(0, 0, 0, 0.54);
-            position: absolute !important;
-            top: 25px;
-            right: 25px;
-        }
-
-        /* 모달 body 세팅 */
-        .modal-body {
-            flex: 1 1 auto;
-            padding: 32px 32px 16px 32px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* 모달 footer 세팅 */
-        .modal-footer {
-   flex: 0 0 auto;
-   display: flex;
-   padding: 16px 32px 32px 32px;
-   align-items: center;
-   justify-content: center;
-   border-top: 0;
+/* 모달 footer 세팅 */
+.modal-footer {
+	flex: 0 0 auto;
+	display: flex;
+	padding: 16px 32px 32px 32px;
+	align-items: center;
+	justify-content: center;
+	border-top: 0;
 }
 
 .btnChk {
-   width: 60px;
-   height: 40px;
-   background-color: #112732;
-   color: white;
-   border-radius: 13px;
-   border: 0;
-   font-weight: bold;
-   font-size: 12px;
-   margin: 5px;
+	width: 60px;
+	height: 40px;
+	background-color: #112732;
+	color: white;
+	border-radius: 13px;
+	border: 0;
+	font-weight: bold;
+	font-size: 12px;
+	margin: 5px;
 }
 
+/* 모달 table 셋팅 */
+#notice-table-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 13px;
+	font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+}
 
-        /* 모달 table 셋팅 */
-        #notice-table-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 13px;
-            font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
-        }
-
-        #notice-table-container #notice-table-body {
-           
-            display: flex;
-            flex-direction: column;
-            /*border-top: 2px solid #112732;
+#notice-table-container #notice-table-body {
+	display: flex;
+	flex-direction: column;
+	/*border-top: 2px solid #112732;
             border-bottom: 2px solid #112732;*/
-            height: 250px;
-            overflow:auto;
-        }
+	height: 250px;
+	overflow: auto;
+}
 
+#notice-table-container #notice-table-body .notice-table-th {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 
-        #notice-table-container #notice-table-body .notice-table-th {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
+#notice-table-container #notice-table-body .notice-table-tr {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 
-        #notice-table-container #notice-table-body .notice-table-tr {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
+#notice-table-container #notice-table-body .notice-table-th .th-text-wrap
+	{
+	display: flex;
+	flex: 9;
+	text-align: center;
+	height: 30px;
+}
 
-        #notice-table-container #notice-table-body .notice-table-th .th-text-wrap {
-            display: flex;
-            flex: 9;
-            text-align: center;
-            height: 30px;
-           
-        }
+#notice-table-container #notice-table-body .notice-table-tr .th-text-wrap
+	{
+	display: flex;
+	flex: 9;
+	text-align: center;
+}
 
-        #notice-table-container #notice-table-body .notice-table-tr .th-text-wrap {
-            display: flex;
-            flex: 9;
-            text-align: center;
-        }
+/* no. content. date. 헤더부분 */
+#notice-table-container #notice-table-body .notice-table-th .th-text-wrap .th-no
+	{
+	flex: 1;
+}
 
-        /* no. content. date. 헤더부분 */
-        #notice-table-container #notice-table-body .notice-table-th .th-text-wrap .th-no {
-              
-            flex: 1;
-        }
+#notice-table-container #notice-table-body .notice-table-th .th-text-wrap .th-content
+	{
+	flex: 10;
+}
 
-        #notice-table-container #notice-table-body .notice-table-th .th-text-wrap .th-content {
-           
-            flex: 10;
+#notice-table-container #notice-table-body .notice-table-th .th-text-wrap .th-date
+	{
+	flex: 5;
+}
 
-        }
+/* 삭제버튼 위치 text-wrap 과 th-btn의 위치는 9:1*/
+#notice-table-container #notice-table-body .notice-table-th .th-btn {
+	flex: 1;
+}
 
-        #notice-table-container #notice-table-body .notice-table-th .th-text-wrap .th-date {
-           
-            flex: 5;
+#notice-table-container #notice-table-body .notice-table-tr .th-btn {
+	flex: 1;
+}
 
-        }
+#notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-no
+	{
+	border: solid;
+	border-top-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-color: rgba(20, 23, 26, .08);
+	flex: 1;
+	/* border: 1px solid rgba(20, 23, 26, .08); */
+}
 
-        /* 삭제버튼 위치 text-wrap 과 th-btn의 위치는 9:1*/
-        #notice-table-container #notice-table-body .notice-table-th .th-btn {
-            flex: 1;
+#notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-content
+	{
+	border: solid;
+	border-top-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	overflow: hidden;
+	border-color: rgba(20, 23, 26, .08);
+	flex: 10;
+	/* border: 1px solid rgba(20, 23, 26, .08); */
+	flex: 10;
+}
 
-        }
+#notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-content span
+	{
+	width: 100%;
+	/* 단어가 길어지게 되면 자동으로 줄바꿈을 해주기 위해서  */
+	word-break: break-all;
+}
 
-        #notice-table-container #notice-table-body .notice-table-tr .th-btn {
-            flex: 1;
+#notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-date
+	{
+	border: solid;
+	border-top-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-color: rgba(20, 23, 26, .08);
+	flex: 3;
+	/* border: 1px solid rgba(20, 23, 26, .08); */
+}
 
-        }
-
-        #notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-no {
-            border: solid;
-   border-top-width: 1px;
-   border-bottom-width: 0px;
-   border-left-width: 0px;
-   border-right-width: 0px;
-   border-color:rgba(20, 23, 26, .08);
-   flex: 1;
-   /* border: 1px solid rgba(20, 23, 26, .08); */
-        }
-
-        #notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-content {
-           border: solid;
-   border-top-width: 1px;
-   border-bottom-width: 0px;
-   border-left-width: 0px;
-   border-right-width: 0px;
-   display: flex;
-   flex-wrap: wrap;
-   align-items: stretch;
-   overflow: hidden;
-   border-color:rgba(20, 23, 26, .08);
-   flex: 10;
-   /* border: 1px solid rgba(20, 23, 26, .08); */
-            flex: 10;
-        }
-
-        #notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-content span {
-            width: 100%;
-            /* 단어가 길어지게 되면 자동으로 줄바꿈을 해주기 위해서  */
-            word-break: break-all;
-        }
-
-
-        #notice-table-container #notice-table-body .notice-table-tr .th-text-wrap .td-date {
-            border: solid;
-   border-top-width: 1px;
-   border-bottom-width: 0px;
-   border-left-width: 0px;
-   border-right-width: 0px;
-   border-color:rgba(20, 23, 26, .08);
-   flex: 3;
-   /* border: 1px solid rgba(20, 23, 26, .08); */
-        }
-
-       /* 행삭제 버튼 관련 */
+/* 행삭제 버튼 관련 */
 /* .th-btn {
    display: flex;
    justify-content: center;
@@ -1508,75 +1524,65 @@ form:hover .fa{
    height: 30px;
 }
  */
-
-
-#btn-add-row ,.rowDeleteBtn {
-   background-color: #FFA618;
-   color: white;
-   border-radius: 12px;
-   border: 0;
-   width: 50px;
-   height: 30px;
-   margin: 2px;
+#btn-add-row, .rowDeleteBtn {
+	background-color: #FFA618;
+	color: white;
+	border-radius: 12px;
+	border: 0;
+	width: 50px;
+	height: 30px;
+	margin: 2px;
 }
 
-.rowDeleteBtn{
-   background-color: white;
-   color: #FFA618;
+.rowDeleteBtn {
+	background-color: white;
+	color: #FFA618;
 }
 
-        #notice-table-list {
-            display: flex;
-   justify-content: center;
-   height: 50px;
-   margin: 10px;
-        }
+#notice-table-list {
+	display: flex;
+	justify-content: center;
+	height: 50px;
+	margin: 10px;
+}
 
+#insert-inputbox {
+	/* background-color: rgb(249, 250, 252); */
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	margin-left: 90px;
+	margin-top: 15px;
+}
 
+#insert-inputbox #inputtextinput {
+	background-color: white;
+	flex: 10;
+	display: flex;
+	justify-content: center;
+}
 
+#insert-inputbox #inputtextinput form, table {
+	width: 92%;
+}
 
-        #insert-inputbox {
-            /* background-color: rgb(249, 250, 252); */
-   display: flex;
-   flex-direction: row;
-   align-items: flex-end;
-   margin-left: 90px;
-   margin-top: 15px;
-        }
+#insert-inputbox #inputtextinput input {
+	width: 92%;
+}
 
-        #insert-inputbox #inputtextinput {
-            background-color: white;
-            flex: 10;
-            display: flex;
-            justify-content: center;
-        }
+#insertBtn {
+	background-color: white;
+	flex: 3;
+}
 
-        #insert-inputbox #inputtextinput form, table {
-            width: 92%;
-        }
-        
-        #insert-inputbox #inputtextinput input {
-            width: 92%;
-        }
+#header_biz {
+	color: aliceblue;
+}
 
-        #insertBtn {
-            background-color: white;
-           
-            flex: 3;
-        }
-
-
-
-        #header_biz {
-            color: aliceblue;
-        }
-
-
-      
-	nav {
+nav {
 	width: 100%;
 	justify-content: center;
-	display:flex;
+	display: flex;
 	line-height: 1.43;
 	color: rgba(0, 0, 0, 0.87);
 	margin: 0;
@@ -1584,44 +1590,62 @@ form:hover .fa{
 	font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
 	font-weight: 400;
 	line-height: 1.43;
-	}
-        #container_nav {
-            display: flex;
-            justify-content: center;
-            /* 하위 아이템들 가로축 가운데정렬 */
-            align-items: center;
-            /* 하위 아이템들 세로축 가운데정렬 */
-            border-bottom: 1px solid rgb(225, 229, 235);
-        }
+}
 
-        #container_nav #bizBtnWrap .nav_btn {
-            background-color: white;
-            border: 1px solid rgb(230, 233, 237);
-            color: black;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 30px;
-            outline: 0;
-            /* 테두리 클릭시 없애기 */
-        }
+#container_nav {
+	display: flex;
+	justify-content: center;
+	/* 하위 아이템들 가로축 가운데정렬 */
+	align-items: center;
+	/* 하위 아이템들 세로축 가운데정렬 */
+	border-bottom: 1px solid rgb(225, 229, 235);
+}
 
-        #container_nav #bizBtnWrap .nav_btn:hover {
-            background-color: rgb(235, 235, 235);
-            border: 1px solid rgb(214, 217, 221);
-        }
+#container_nav #bizBtnWrap .nav_btn {
+	background-color: white;
+	border: 1px solid rgb(230, 233, 237);
+	color: black;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 30px;
+	outline: 0;
+	/* 테두리 클릭시 없애기 */
+}
 
+#container_nav #bizBtnWrap .nav_btn:hover {
+	background-color: rgb(235, 235, 235);
+	border: 1px solid rgb(214, 217, 221);
+}
 
+#openBtnWrap {
+	display: flex;
+	justify-content: flex-end;
+	/* 오픈버튼 오른쪽 끝에 붙이기 float:right 와 같은 역할 */
+	flex: 1;
+	/* 남은부분 다 채워줌 */
+}
 
+#myChart {
+	margin: 0 auto;
+}
 
-        #openBtnWrap {
-            display: flex;
-            justify-content: flex-end;
-            /* 오픈버튼 오른쪽 끝에 붙이기 float:right 와 같은 역할 */
-            flex: 1;
-            /* 남은부분 다 채워줌 */
-        }
+ .bizSalesTableDiv {
+	margin: 0 auto;	
+	margin-top: 30px;
+	margin-bottom: 40px;
+} 
 
+.bizSalesTable {
+	width: 100%;
+	border-bottom: 1px soild black;
+}
+
+.SalesTableItems {
+	width: 33%;
+	text-align: center;
+	padding: 5px;
+}

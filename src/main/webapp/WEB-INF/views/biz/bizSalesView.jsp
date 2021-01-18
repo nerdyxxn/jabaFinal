@@ -131,28 +131,29 @@
          </div>
       </c:if>
    </div>
-   <!-- 그래프 출력 -->
-   <div class="container" id="container_menu_info">
-   <canvas id="myChart" style="height:30vh; width:50vw"></canvas>
- 
-   <table>
+<!-- 그래프 출력 -->
+<div class="container" id="container_menu_info">
+	<canvas id="myChart" style="height:30vh; width:50vw;"></canvas>
+
+<div class="bizSalesTableDiv" style="width:50vw;"> 
+   <table class="bizSalesTable">
    	<tr>
-   		<th>날짜</th>
-   		<th>매출 총액</th>
-   		<th>전달 비교</th>		
+   		<th class="SalesTableItems">날짜</th>
+   		<th class="SalesTableItems">매출 총액</th>
+   		<th class="SalesTableItems">전달 비교</th>		
    	</tr>
    	<c:if test="${not empty bizSalesList}">
 	   	<c:forEach items="${bizSalesList}" var="bizSalesList" varStatus="s">
 	   	<tr>
-	   		<td>${bizSalesList.pay_time}</td>
-	   		<td>${bizSalesList.pay_total_price}</td>
-	   		<td>아직모르겠어요</td>
-	   	</tr>>
+	   		<td class="SalesTableItems">${bizSalesList.pay_time}</td>
+	   		<td class="SalesTableItems">${bizSalesList.pay_total_price}</td>
+	   		<td class="SalesTableItems">아직모르겠어요</td>
+	   	</tr>
 	   	</c:forEach>
    	</c:if>
    </table>
    </div>
-
+</div>
    <!-- Modal Basic -->
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -311,14 +312,8 @@
             </div>
          </div>
       </div>
-
    </footer>
-   
-   
 
-   
-   
-   
    <!-- switchery -->
    <script>
         // switchery 
@@ -467,7 +462,7 @@ $(document).ready(function(){
    </script>
    <!-- 그래프 스크립트 부분 -->
   <script>
-   //그래프 출력
+   	//그래프 출력
       var ctx = document.getElementById('myChart');
 
 	   var day1 = "${bizSalesList[0].pay_time}";
@@ -479,15 +474,21 @@ $(document).ready(function(){
 	   var day3 = "${bizSalesList[2].pay_time}";
 	   var day3_total = ${bizSalesList[2].pay_total_price};
 	   
+	   var day4 = "${bizSalesList[3].pay_time}";
+	   var day4_total = ${bizSalesList[3].pay_total_price};
+	   
+	   var day5 = "${bizSalesList[4].pay_time}";
+	   var day5_total = ${bizSalesList[4].pay_total_price};
+	   
 	   // 데이터 쌓이면 추가 필요 
    		
       var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: ['aaa', 'www', 'eee', day3, day2, day1],
+              labels: ['aaa', day5, day4, day3, day2, day1],
               datasets: [{
                   label: '판매액 조회',
-                  data: [10000, 10000, 10000, day3_total, day2_total, day1_total],
+                  data: [10000, day5_total, day4_total, day3_total, day2_total, day1_total],
                   backgroundColor: [
                       'rgba(54, 162, 235, 0.2)',
                       'rgba(255, 99, 132, 0.2)',

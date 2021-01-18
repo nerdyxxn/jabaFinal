@@ -8,7 +8,7 @@
 		<result property="pay_total_price" column="pay_total_price" />
 	</resultMap>
 
-	<!-- 전체 매출 조회 -->
+	<!-- 특정 매장 매출 조회 -->
 	<select id="getBizSales" parameterType="bizSales"
 		resultType="arraylist" resultMap="resultBizSales">
 		select pay_time, sum(pay_total_price) as pay_total_price from
@@ -18,5 +18,13 @@
 		group by pay_time ORDER BY pay_time desc
 	</select>
 
+	<!-- 전체 매장 매출 조회 -->
+	<select id="selectAllBizSales" 
+		resultType="arraylist" resultMap="resultBizSales">
+		select pay_time, sum(pay_total_price) as pay_total_price from
+		(select distinct pay_id, to_char(pay_time, 'yy/mm/dd') as pay_time,
+		store_name, pay_total_price from PaySearchCollection)
+		group by pay_time ORDER BY pay_time desc
+	</select>
 
 </mapper>

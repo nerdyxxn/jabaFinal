@@ -19,4 +19,11 @@ public class BizSalesServiceImpl implements BizSalesService {
 		return bizSalesDao.getBizSales(bs);
 	}
 
+	// 전체 매장 매출 조회
+	@Override
+	public List<BizSales> selectAllBizSales() {
+		// TODO Auto-generated method stub
+		return bizSalesDao.selectAllBizSales();
+	}
+
 }

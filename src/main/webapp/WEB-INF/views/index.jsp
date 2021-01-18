@@ -689,7 +689,7 @@ function click(obj){
             var client = "Client";
             // res1 이 BizPartner 이면 BizPartner 페이지로 이동.
            if(res1 == admin){
-               location.href="./adminMain.jsp";
+               location.href="<%=ctxPath%>/admin/adminMain.do";
             }else if(res1==client){
                
                $(".menu_btn").hide();

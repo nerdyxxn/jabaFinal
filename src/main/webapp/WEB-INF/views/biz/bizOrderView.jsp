@@ -131,24 +131,24 @@
    
    <!-- SECTION -->
    <div class="container" id="container_menu_info">
-		<div>
-		<!--  본문 -->
-			<c:if test="${not empty bizOrderList }">
+      <div id="product_card_wrap">
+      <!--  본문 -->
+         <c:if test="${not empty bizOrderList }">
                <c:forEach items="${bizOrderList}" var="bizOrderList" varStatus="c">
                   <div class="product_card">
                      <div class="product_card_detail">
-                     <div class="orderPay">
-                        <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">${bizOrderList.pay_time }</div>
-                        <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">주문번호 : ${bizOrderList.pay_id }</div>
-                        <div class="orderPayItems">${bizOrderList.store_name }</div>
-                        <div class="orderPayItems">${bizOrderList.pickup_time }</div>
-                        <div class="orderPayItems" style="margin-bottom:20px;">${bizOrderList.pay_request }</div>
-                     </div>
-                     <hr>
-                     <div class="orderMenu">   
-                        <c:forEach items="${bizOrderList.menuCollection}" var="menu"
-                           varStatus="m">
-                           <div class="product_name">
+                        <div class="orderPay orderItemsWrap">
+                           <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">${bizOrderList.pay_time }</div>
+                           <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">주문번호 : ${bizOrderList.pay_id }</div>
+                           <div class="orderPayItems">${bizOrderList.store_name }</div>
+                           <div class="orderPayItems">${bizOrderList.pickup_time }</div>
+                           <div class="orderPayItems" style="margin-bottom:20px;">${bizOrderList.pay_request }</div>
+                        </div>
+                        <hr>
+                        <div class="orderMenu">   
+                           <c:forEach items="${bizOrderList.menuCollection}" var="menu"
+                              varStatus="m">
+                              <div class="product_name">
                                  <!-- 여기는 menu_name -->
                                  <div class="orderMenuItems">
                                  <span style="font-size:16px; font-weight:700;">${menu.menu_name}</span>
@@ -162,16 +162,16 @@
                         </c:forEach>
                         </div>
                         <hr>
-                        <div class="orderPrice" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${bizOrderList.pay_total_price }" pattern="#,###" />원</div>
-                     	<div>
-                     		<button class="menuReady">메뉴준비완료</button>
-                     	    <input type="hidden" id="${bizOrderList.pay_id}">
-                     	</div>
+                         <div class="orderPrice orderItemsWrap" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${bizOrderList.pay_total_price }" pattern="#,###" />원</div>
+                        <div class="orderItemsWrap">
+                           <button class="menuReady">메뉴준비완료</button>
+                            <input type="hidden" id="${bizOrderList.pay_id}">
+                        </div>
                      </div>
                   </div>
-			</c:forEach>
+         </c:forEach>
             </c:if>
-		</div>
+      </div>
    </div>
    
    <!-- Modal Basic -->
@@ -342,7 +342,7 @@
         var init = new Switchery(elem);
     </script>
     <script>
-    	var store_name = "${storeVo.store_name}";
+       var store_name = "${storeVo.store_name}";
         var ws;
         console.log("매장이름 : " + store_name);
         
@@ -361,12 +361,12 @@
                 if(event.data===undefined) return;
             };
             ws.onmessage=function(event){
-                	console.log("onmassage 작동");
-                	console.log(event.data);
+                   console.log("onmassage 작동");
+                   console.log(event.data);
                 // 서버에서 메세지가 도착했을때의 동작
                 if(store_name===event.data){
-                	console.log("store_name 똑같음");
-                	location.href="<%=ctxPath%>/biz/bizOrderview.do";
+                   console.log("store_name 똑같음");
+                   location.href="<%=ctxPath%>/biz/bizOrderview.do";
                 }
             };
             ws.onclose=function(event){
@@ -481,14 +481,14 @@
    </script>
 <script>
 $(document).ready(function(){
-	$("#btn-add-row").on("click", function(){
+   $("#btn-add-row").on("click", function(){
     var store_board_title = $("#store_board_title").val();
     console.log("삽입 버튼 작동");
     alert(store_board_title);
          $.ajax({
              url:"<%=ctxPath%>/biz/board/insertBizBoard.do",
              data:{
-          	   store_board_title : store_board_title
+                store_board_title : store_board_title
              },
              method: "POST",
              success: function(res){
@@ -530,20 +530,20 @@ $(document).ready(function(){
       };
       
       $(".menuReady").on("click",function(){
-    	 var pay_id = $(this).next().attr("id");
-	    	if(confirm("주문번호 " + pay_id + "의 주문을 완료하시겠습니까?")) {
-		         $.ajax({
-		             url:"<%=ctxPath%>/biz/orderStatusChange.do",
-		             data:{
-		            	 pay_id : pay_id
-		             },
-		             method: "POST",
-		             success: function(res){
-		            	 console.log(pay_id + " 메뉴 준비완료");
-		             }
-		         });
-		    	 $(this).parent().parent().parent().remove();
-		    	}
+        var pay_id = $(this).next().attr("id");
+          if(confirm("주문번호 " + pay_id + "의 주문을 완료하시겠습니까?")) {
+               $.ajax({
+                   url:"<%=ctxPath%>/biz/orderStatusChange.do",
+                   data:{
+                      pay_id : pay_id
+                   },
+                   method: "POST",
+                   success: function(res){
+                      console.log(pay_id + " 메뉴 준비완료");
+                   }
+               });
+              $(this).parent().parent().parent().remove();
+             }
       });
    </script>
 </body>

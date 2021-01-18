@@ -46,5 +46,10 @@
       client_pw=#{client_pw}
       where client_id=#{client_id}
    </update>
+   
+   <!-- 자바 이용 회원수 -->
+   <select id="countTotalClient" resultType="int">
+      select count(*) from client
+   </select>
 
 </mapper>

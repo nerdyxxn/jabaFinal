@@ -29,4 +29,10 @@ public class BizDao {
 	public int updateStoreStatus(Biz b) {
 		return sqlSession.update("Biz.updateStoreStatus", b);
 	}
+	
+	// 전체 매장 수 조회
+	public int countTotalBiz() {
+		return sqlSession.selectOne("Biz.countTotalBiz");
+	}
+	
 }
