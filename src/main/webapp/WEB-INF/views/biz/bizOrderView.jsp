@@ -54,7 +54,7 @@
    <header>
       <div class="header_container">
          <div class="logo">
-            <a href="<%=ctxPath%>/"> <img
+            <a href="<%=ctxPath%>/biz/bizIndex.do"> <img
                src="<%=ctxPath%>/resources/images/clogo1.png"
                style="width: 30px; height: 30px;">
             </a>
@@ -81,16 +81,20 @@
    <nav>
       <div class="biz_container" id="container_nav">
          <div id="bizBtnWrap">
+         <a href ="<%=ctxPath%>/biz/bizOrderview.do">
             <button class="nav_btn">
                <span>주문조회</span>
             </button>
+         </a>
             <button class="nav_btn" data-toggle="modal"
                data-target="#exampleModal">
                <span>공지사항</span>
             </button>
-            <button class="nav_btn">
+            <a href="<%=ctxPath %>/biz/bizSalesView.do">
+            <button class="nav_btn" id="salesView">
                <span>판매액조회</span>
             </button>
+            </a>
          </div>
          <div id="openBtnWrap">
             <span id="openSwitch"> <c:if test="${not empty storeVo}">
@@ -135,10 +139,10 @@
                      <div class="product_card_detail">
                      <div class="orderPay">
                         <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">${bizOrderList.pay_time }</div>
+                        <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">주문번호 : ${bizOrderList.pay_id }</div>
                         <div class="orderPayItems">${bizOrderList.store_name }</div>
                         <div class="orderPayItems">${bizOrderList.pickup_time }</div>
                         <div class="orderPayItems" style="margin-bottom:20px;">${bizOrderList.pay_request }</div>
-                        <div class="orderPayItems" style="margin-bottom:20px;">주문상태 : ${bizOrderList.pay_status }</div>
                      </div>
                      <hr>
                      <div class="orderMenu">   
@@ -159,7 +163,10 @@
                         </div>
                         <hr>
                         <div class="orderPrice" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${bizOrderList.pay_total_price }" pattern="#,###" />원</div>
-                     	<div><button>메뉴준비완료</button></div>
+                     	<div>
+                     		<button class="menuReady">메뉴준비완료</button>
+                     	    <input type="hidden" id="${bizOrderList.pay_id}">
+                     	</div>
                      </div>
                   </div>
 			</c:forEach>
@@ -521,6 +528,23 @@ $(document).ready(function(){
                }
             });
       };
+      
+      $(".menuReady").on("click",function(){
+    	 var pay_id = $(this).next().attr("id");
+	    	if(confirm("주문번호 " + pay_id + "의 주문을 완료하시겠습니까?")) {
+		         $.ajax({
+		             url:"<%=ctxPath%>/biz/orderStatusChange.do",
+		             data:{
+		            	 pay_id : pay_id
+		             },
+		             method: "POST",
+		             success: function(res){
+		            	 console.log(pay_id + " 메뉴 준비완료");
+		             }
+		         });
+		    	 $(this).parent().parent().parent().remove();
+		    	}
+      });
    </script>
 </body>
 </html>

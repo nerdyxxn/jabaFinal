@@ -59,7 +59,7 @@
    <header>
       <div class="header_container">
          <div class="logo">
-            <a href="<%=ctxPath%>/"> <img
+            <a href="<%=ctxPath%>/biz/bizIndex.do"> <img
                src="<%=ctxPath%>/resources/images/clogo1.png"
                style="width: 30px; height: 30px;">
             </a>
@@ -85,16 +85,20 @@
    <nav>
       <div class="biz_container" id="container_nav">
          <div id="bizBtnWrap">
+         <a href ="<%=ctxPath%>/biz/bizOrderview.do">
             <button class="nav_btn">
                <span>주문조회</span>
             </button>
+         </a>
             <button class="nav_btn" data-toggle="modal"
                data-target="#exampleModal">
                <span>공지사항</span>
             </button>
-            <button class="nav_btn">
+            <a href="<%=ctxPath %>/biz/bizSalesView.do">
+            <button class="nav_btn" id="salesView">
                <span>판매액조회</span>
             </button>
+            </a>
          </div>
          <div id="openBtnWrap">
             <span id="openSwitch"> <c:if test="${not empty storeVo}">

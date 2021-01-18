@@ -69,7 +69,7 @@ String bre_level = (request.getParameter("bre_level") != null) ? request.getPara
    <header>
       <div class="header_container">
          <div class="logo">
-            <a href="<%=ctxPath%>/"> <img
+            <a href="<%=ctxPath%>/biz/bizIndex.do"> <img
                src="<%=ctxPath%>/resources/images/clogo1.png"
                style="width: 30px; height: 30px;">
             </a>
