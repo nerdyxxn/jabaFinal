@@ -17,5 +17,21 @@ public class QnaDao {
 	public List<Qna> selectQnaList(){
 		return sqlSession.selectList("Qna.selectQnaList");
 	}
+	
+	public int insertQna(Qna q) {
+		return sqlSession.insert("Qna.insertQna", q);
+	}
+	
+	public int deleteQna(String qna_no) {
+		return sqlSession.delete("Qna.deleteQna", qna_no);
+	}
+	
+	public int updateQna(Qna q) {
+		return sqlSession.update("Qna.updateQna", q);
+	}
+	
+	public Qna selectQnaDetail(String qna_no) {
+		return sqlSession.selectOne("Qna.selectQnaDetail", qna_no);
+	}
 
 }

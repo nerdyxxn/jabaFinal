@@ -15,7 +15,7 @@
    <select id="loginClient" parameterType="Client"
       resultType="Client">
       select * from client where client_id=#{client_id} and
-      client_pw=#{client_pw}
+      client_pw=#{client_pw} and client_status = 1
    </select>
 
    <!-- client 회원가입 -->
@@ -51,5 +51,13 @@
    <select id="countTotalClient" resultType="int">
       select count(*) from client
    </select>
+   
+   <!-- 회원 이용 제한 설정 -->
+   <update id="updateClientStatus" parameterType="Client">
+      update client set
+      client_status = #{client_status}
+      where client_id=#{client_id}
+   </update>  
+   
 
 </mapper>

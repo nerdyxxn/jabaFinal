@@ -17,4 +17,6 @@
 		select count(*) from admin where admin_id=#{admin_id}
 	</select>
 	
+
+	
 </mapper>

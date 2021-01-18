@@ -22,4 +22,7 @@ public interface ClientService {
    
 	// 자바 전체 이용자수
 	public int countTotalClient();
+	
+	// 회원 이용 제제
+	public int updateClientStatus(Client c);
 }

@@ -14,7 +14,28 @@
    <select id="selectQnaList" resultType="arraylist" resultMap="resultQna">
       select * from qna
    </select>
-
+   
+   <!-- Admin qnalist 중 하나를 클릭하면 QnaDetail을 select -->
+   <select id="selectQnaDetail" parameterType="string" resultType="Qna">
+   	  select * from qna where qna_no = #{qna_no}
+   </select>
+	
+	<!--  Q&A insert -->
+	<insert id="insertQna" parameterType="Qna" flushCache="true" statementType="PREPARED">
+		insert into qna(qna_no, qna_title, qna_content, admin_id) values(('Q' || LPAD(QNA_SEQ.nextval, 5, 0)), #{qna_title}, #{qna_content}, 'admin')
+	</insert>
+	
+	<!--  Q&A delete -->
+	<delete id="deleteQna" parameterType="String" flushCache="true" statementType="PREPARED">
+		delete from qna where qna_no=#{qna_no}
+	</delete>
+	
+	<!--  Q&A update -->
+	<update id="updateQna" parameterType="Qna">
+		update qna set
+		qna_title = #{qna_title}, qna_content = #{qna_content}
+		where qna_no = #{qna_no}
+	</update> 
 </mapper>
 
 

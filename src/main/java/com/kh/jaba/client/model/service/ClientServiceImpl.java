@@ -57,4 +57,10 @@ public class ClientServiceImpl implements ClientService {
 		return clientDao.countTotalClient();
 	}
 
+	// 회원 이용 제제
+	@Override
+	public int updateClientStatus(Client c) {
+		return clientDao.updateClientStatus(c);
+	}
+	
 }

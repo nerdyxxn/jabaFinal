@@ -76,4 +76,9 @@ public class MenuDao {
 		return sqlSession.update("Menu.updateMenuAvailable", m);
 	}
 	
+	// insertMenu
+	public int insertMenu(Menu m) {
+		return sqlSession.insert("Menu.updateMenuAvailable", m);
+	}
+	
 }

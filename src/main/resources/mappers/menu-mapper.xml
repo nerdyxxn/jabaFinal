@@ -12,12 +12,13 @@
 		<result property="menu_category" column="menu_category" />
 		<result property="menu_available" column="menu_available" />
 	</resultMap>
-
+	
+	<!-- 매장의 메뉴 전체 출력 -->
 	<!-- store 페이지 진입 시, 해당 store의 전체 menu list 출력 -->
 	<!-- store_name을 통해 store_id를 뽑아내는 과정이 필요 -->
 	<select id="selectMenuList" parameterType="string"
 		resultType="arraylist" resultMap="resultMenu">
-		select * from menu where store_id='%'||#{store_id}||'%'
+		select * from menu where store_id=#{store_id}
 	</select>
 
 	<!-- distinct를 통해 메뉴 카테고리의 중복을 제거하고, 카테고리 개수와 이름을 출력 -->
@@ -54,5 +55,14 @@
 		update menu set
 		menu_available=#{menu_available} where menu_id=#{menu_id}
 	</update>
+
+	<!-- 메뉴 추가 -->
+	<insert id="insertMenu" parameterType="Menu" flushCache="true"
+		statementType="PREPARED">
+		insert into menu(menu_id, store_id, menu_name,
+		menu_price, menu_img, menu_description, menu_category) values
+		(('M' || LPAD(ORDER_SEQ.nextval, 5, 0)), #{store_id}, #{menu_name},
+		#{menu_price}, #{menu_img}, #{menu_description}, #{menu_category})
+	</insert>
 
 </mapper>

@@ -52,4 +52,10 @@ public class MenuServiceImpl implements MenuService{
 		return menuDao.updateMenuAvailable(m);
 	}
 
+	// insertMenu
+	@Override
+	public int insertMenu(Menu m) {
+		return menuDao.insertMenu(m);
+	}
+
 }

@@ -41,4 +41,8 @@ public class ClientDao {
 		return sqlSession.selectOne("Client.countTotalClient");
 	}
 
+	// 회원 이용 제제
+	public int updateClientStatus(Client c) {
+		return sqlSession.update("Client.updateClientStatus",c);
+	}
 }

@@ -16,11 +16,12 @@ public class Client {
 	private String client_phone;
 	private int client_gender;
 	private int client_birth;
+	private int client_status;
 	
 	public Client() {}
 	
 	public Client(String client_id, String client_pw, String client_name, String client_phone, int client_gender,
-			int client_birth) {
+			int client_birth, int client_status) {
 		super();
 		this.client_id = client_id;
 		this.client_pw = client_pw;
@@ -28,13 +29,14 @@ public class Client {
 		this.client_phone = client_phone;
 		this.client_gender = client_gender;
 		this.client_birth = client_birth;
+		this.client_status = client_status;
 	}
 	
 	@Override
 	public String toString() {
 		return "Client [client_id=" + client_id + ", client_pw=" + client_pw + ", client_name=" + client_name
 				+ ", client_phone=" + client_phone + ", client_gender=" + client_gender + ", client_birth="
-				+ client_birth + "]";
+				+ client_birth + ", client_status=" + client_status + "]";
 	}
 
 	public String getClient_id() {
@@ -73,5 +75,12 @@ public class Client {
 	public void setClient_birth(int client_birth) {
 		this.client_birth = client_birth;
 	}
-	
+
+	public int getClient_status() {
+		return client_status;
+	}
+
+	public void setClient_status(int client_status) {
+		this.client_status = client_status;
+	}
 }

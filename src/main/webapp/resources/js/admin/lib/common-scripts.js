@@ -118,7 +118,8 @@ var Script = function() {
       var i = $(this).find(".value").html();
       $(this).find(".value").html("");
       $(this).find(".value").animate({
-        height: i
+        height: (i/150000) * 289
+        // max height = 289 
       }, 2000)
     })
   }

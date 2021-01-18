@@ -25,4 +25,6 @@ public interface MenuService {
 	// updateMenuAvailable
 	public int updateMenuAvailable(Menu m);
 
+	// insertMenu
+	public int insertMenu(Menu m);
 }

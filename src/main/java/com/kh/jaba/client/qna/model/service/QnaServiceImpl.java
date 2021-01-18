@@ -19,4 +19,24 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDao.selectQnaList();
 	}
 
+	@Override
+	public int insertQna(Qna q) {
+		return qnaDao.insertQna(q);
+	}
+
+	@Override
+	public int deleteQna(String qna_no) {
+		return qnaDao.deleteQna(qna_no);
+	}
+
+	@Override
+	public int updateQna(Qna q) {
+		return qnaDao.updateQna(q);
+	}
+
+	@Override
+	public Qna selectQnaDetail(String qna_no) {
+		return qnaDao.selectQnaDetail(qna_no);
+	}
+
 }

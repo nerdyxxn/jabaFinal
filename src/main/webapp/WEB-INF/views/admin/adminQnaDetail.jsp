@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <%
@@ -40,6 +38,25 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="<%=ctxPath%>/resources/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="<%=ctxPath%>/resources/css/tableUtil.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=ctxPath%>/resources/css/tableMain.css">
+<!--===============================================================================================-->
 </head>
 
 <body>
@@ -306,249 +323,50 @@
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <div class="row">
-          <div class="col-lg-9 main-chart">
-            <!--CUSTOM CHART START -->
-            <div class="border-head">
-              <h3>TOTAL SALES</h3>
-            </div>
-            <div class="custom-bar-chart">
-              <ul class="y-axis">
-                <li><span>150.000</span></li>
-                <li><span>120.000</span></li>
-                <li><span>90.000</span></li>
-                <li><span>60.000</span></li>
-                <li><span>30.000</span></li>
-                <li><span>0</span></li>
-              </ul>
-              <div class="bar">
-                <div class="title">${bizSalesList[6].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[6].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[6].pay_total_price}</div>
-              </div>
-              <div class="bar ">
-                <div class="title">${bizSalesList[5].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[5].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[5].pay_total_price}</div>
-              </div>
-              <div class="bar ">
-                <div class="title">${bizSalesList[4].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[4].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[4].pay_total_price}</div>
-              </div>
-              <div class="bar ">
-                <div class="title">${bizSalesList[3].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[3].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[3].pay_total_price}</div>
-              </div>
-              <div class="bar">
-                <div class="title">${bizSalesList[2].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[2].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[2].pay_total_price}</div>
-              </div>
-              <div class="bar ">
-                <div class="title">${bizSalesList[1].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[1].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[1].pay_total_price}</div>
-              </div>
-              <div class="bar">
-                <div class="title" style="font-weight:bold; color:#090909;">${bizSalesList[0].pay_time}</div>
-                <div class="value tooltips" data-original-title="${bizSalesList[0].pay_total_price}" data-toggle="tooltip" data-placement="top">${bizSalesList[0].pay_total_price}</div>
-              </div>
-            </div>
-            <!--custom chart end-->
-            <div class="row mt">
-              <!-- SERVER STATUS PANELS -->
-              <div class="col-md-4 col-sm-4 mb">
-                <div class="grey-panel pn donut-chart">
-                  <div class="grey-header">
-                    <h5>21년 1월 가입한 비즈파트너 수</h5>
-                  </div>
-                  <canvas id="serverstatus01" height="120" width="120"></canvas>
-                  <script>
-        			var countTotalBiz = ${countTotalBiz};
-        			// 목표치 20이라고치고
-                    var doughnutData = [{
-                        value: countTotalBiz,
-                        color: "#FFA618"
-                      },
-                      {
-                        value: 20-countTotalBiz,
-                        color: "#fdfdfd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                      <p><br/>달성률 :</p>
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-               <c:set var="bizTotal" value="20"/>
-               <c:set var="bizTotal" value="${countTotalBiz/bizTotal}"/>
-                      <h2><fmt:formatNumber value="${bizTotal}" type="percent"/></h2> 
-                    </div>
-                  </div>
-                </div>
-                <!-- /grey-panel -->
-              </div>
-              <!-- /col-md-4-->
-              <div class="col-md-4 col-sm-4 mb">
-                <div class="darkblue-panel pn">
-                  <div class="darkblue-header">
-                    <h5>21년 1월 가입한 회원 수</h5>
-                  </div>
-                  <canvas id="serverstatus02" height="120" width="120"></canvas>
-                  <script>
-                  var countTotalClient = ${countTotalClient};
-                    var doughnutData = [{
-                        value: countTotalClient,
-                        color: "#FFA618"
-                      },
-                      {
-                        value: 10-countTotalClient,
-                        color: "#fdfdfd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-               <c:set var="clientTotal" value="10"/>
-               <c:set var="clientTotal" value="${countTotalClient/clientTotal}"/>
-                  <p>January 18, 2021</p>
-                  <footer>
-                    <div class="pull-left">
-                      <h5><i class="fa fa-user-circle-o"></i> 목표 : 10명</h5>
-                    </div>
-                    <div class="pull-right">
-                      <h5>1월 가입 인원 : ${countTotalClient}명</h5>
-                    </div>
-                  </footer>
-                </div>
-                <!--  /darkblue panel -->
-              </div>
-              <!-- /col-md-4 -->
-              <div class="col-md-4 col-sm-4 mb">
-                <!-- REVENUE PANEL -->
-                <div class="green-panel pn">
-                  <div class="green-header">
-                    <h5>JABA 매출액 추이</h5>
-                  </div>
-                  <div class="chart mt">
-                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                    data-data="[111, 222, ${bizSalesList[5].pay_total_price}, ${bizSalesList[4].pay_total_price}, ${bizSalesList[3].pay_total_price}, ${bizSalesList[2].pay_total_price}, ${bizSalesList[1].pay_total_price}, ${bizSalesList[0].pay_total_price}]"></div>
-                  </div>
-                    <c:set var="total" value="0"/>
-                  <c:forEach items="${bizSalesList}" var="bizSalesList" varStatus="s">
-               <c:set var="total" value="${total + bizSalesList.pay_total_price}"/>
-            </c:forEach>
-                  <p class="mt"><b> <fmt:formatNumber value="${total}" pattern="#,###" />원</b><br/>Month Income</p>
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-            </div>
-          
-              <!-- /col-md-4 -->
-            </div>
-            <!-- /row -->
-          </div>
-          <!-- /col-lg-9 END SECTION MIDDLE -->
-          <!-- **********************************************************************************************************************************************************
-              RIGHT SIDEBAR CONTENT
-              *********************************************************************************************************************************************************** -->
-          <div class="col-lg-3 ds">
-            <!--COMPLETED ACTIONS DONUTS CHART-->
-<!--             <div class="donut-main">
-              <h4>COMPLETED ACTIONS & PROGRESS</h4>
-              <canvas id="newchart" height="130" width="130"></canvas>
-              <script>
-                var doughnutData = [{
-                    value: 70,
-                    color: "#4ECDC4"
-                  },
-                  {
-                    value: 30,
-                    color: "#fdfdfd"
-                  }
-                ];
-                var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
-              </script>
-            </div>
-            NEW EARNING STATS
-            <div class="panel terques-chart">
-              <div class="panel-body">
-                <div class="chart">
-                  <div class="centered">
-                    <span>TODAY EARNINGS</span>
-                    <strong>$ 890,00 | 15%</strong>
-                  </div>
-                  <br>
-                  <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
-                </div>
-              </div>
-            </div> -->
-            <!--new earning end-->
-           <!-- CALENDAR-->
-            <div id="calendar" class="mb">
-              <div class="panel green-panel no-margin">
-                <div class="panel-body">
-                  <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
-                    <div class="arrow"></div>
-                    <h3 class="popover-title" style="disadding: none;"></h3>
-                    <div id="date-popover-content" class="popover-content"></div>
-                  </div>
-                  <div id="my-calendar"></div>
-                </div>
-              </div>
-            </div>
-            <!-- / calendar -->
-<!-- USERS ONLINE SECTION -->
-            <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
-            <!-- First Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-divya.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">SEUNGTAE YOU</a><br/>
-                  <muted>https://github.com/yousth</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Second Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-sherman.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">YOONSUNG SEOL</a><br/>
-                  <muted>https://github.com/nerdyxxn</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Third Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-danro.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">MINSU KIM</a><br/>
-                  <muted>https://github.com/kms160526</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Fourth Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-zac.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">HYUNJU KIM</a><br/>
-                  <muted>https://github.com/zoey-pepper</muted>
-                </p>
-              </div>
-            </div>
-          </div>
+   <!--Qna List-->
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="trow">
+					<div class="col-lg-9 main-chart">
+						<!--CUSTOM CHART START -->
+						<div class="border-head">
+							<h3>Q&A 상세 페이지</h3>
+						</div>
+						<div class="qna-custom-bar-chart">
+							<div class="limiter">
+								<div class="container-table100">
+									<div class="wrap-table100">
+											<div class="table">
+												<div class="trow theader">
+													<div class="cell"></div>
+													<div class="cell">
+														${qnaDetail.qna_title }
+													</div>
+												</div>
+												<div class="trow">
+													<div class="cell" data-title="Full Name">
+														</div>
+													<div class="cell" data-title="Job Title">
+														${qnaDetail.qna_content }
+													</div>
+												</div>
+
+
+											</div>
+											<div class="btnContainer" style="float:right; padding:10px">
+												<input type="submit" value="수정" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/updateQnaDetail.do?qna_no=${qnaDetail.qna_no }'">
+												<input type="reset" value="삭제" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/deleteQna.do?qna_no=${qnaDetail.qna_no }'">
+												<input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+
           <!-- /col-lg-3 -->
         <!-- /row -->
       </section>
@@ -608,7 +426,21 @@
         },
         action_nav: function() {
           return myNavFunction(this.id);
-        }
+        },
+        ajax: {
+          url: "<%=ctxPath%>/resources/css/admin/show_data.php?action=1",
+          modal: true
+        },
+        legend: [{
+            type: "text",
+            label: "Special event",
+            badge: "00"
+          },
+          {
+            type: "block",
+            label: "Regular event",
+          }
+        ]
       });
     });
 
@@ -619,6 +451,8 @@
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
   </script>
+  
+  <script>
   <script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){

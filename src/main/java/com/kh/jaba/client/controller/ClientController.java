@@ -69,20 +69,23 @@ public class ClientController {
       out.close();
    }
 
-   @RequestMapping(value = "client/clientLogout.do", method = RequestMethod.GET)
-   @ResponseBody
-   public void clientLogout(HttpServletRequest request) {
-      // 만약 client 애트리뷰트가 있다면 client 애트리뷰트를 remove
-      if(request.getSession().getAttribute("client") != null) {
-         request.getSession().removeAttribute("client");
-         System.out.println("client 로그아웃");
-      }else if (request.getSession().getAttribute("biz")!=null){
-    	  request.getSession().removeAttribute("biz");
-    	  System.out.println("biz 로그아웃");
-      } else {
-      System.out.println("로그아웃할 계정이 없습니다.");
-   }
-   }
+	@RequestMapping(value = "client/clientLogout.do", method = RequestMethod.GET)
+	@ResponseBody
+	public void clientLogout(HttpServletRequest request) {
+		// 만약 client 애트리뷰트가 있다면 client 애트리뷰트를 remove
+		if (request.getSession().getAttribute("client") != null) {
+			request.getSession().removeAttribute("client");
+			System.out.println("client 로그아웃");
+		} else if (request.getSession().getAttribute("biz") != null) {
+			request.getSession().removeAttribute("biz");
+			System.out.println("biz 로그아웃");
+		} else if (request.getSession().getAttribute("admin") != null) {
+			request.getSession().removeAttribute("admin");
+			System.out.println("admin 로그아웃");
+		} else {
+			System.out.println("로그아웃할 계정이 없습니다.");
+		}
+	}
    // 회원가입
    @RequestMapping(value = "/client/clientRegister.do", method = RequestMethod.GET)
    @ResponseBody
