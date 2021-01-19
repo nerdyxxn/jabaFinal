@@ -41,21 +41,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
+   href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/animate/animate.css">
+   href="<%=ctxPath%>/resources/vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
+   href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+   href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/css/tableUtil.css">
+   href="<%=ctxPath%>/resources/css/tableUtil.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/css/tableMain.css">
+   href="<%=ctxPath%>/resources/css/tableMain.css">
 <!--===============================================================================================-->
 </head>
 
@@ -324,47 +324,72 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
    <!--Qna List-->
-		<section id="main-content">
-			<section class="wrapper">
-				<div class="trow">
-					<div class="col-lg-9 main-chart">
-						<!--CUSTOM CHART START -->
-						<div class="border-head">
-							<h3>Q&A 상세 페이지</h3>
-						</div>
-						<div class="qna-custom-bar-chart">
-							<div class="limiter">
-								<div class="container-table100">
-									<div class="wrap-table100">
-											<div class="table">
-												<div class="trow theader">
-													<div class="cell"></div>
-													<div class="cell">
-														${qnaDetail.qna_title }
-													</div>
-												</div>
-												<div class="trow">
-													<div class="cell" data-title="Full Name">
-														</div>
-													<div class="cell" data-title="Job Title">
-														${qnaDetail.qna_content }
-													</div>
-												</div>
+      <section id="main-content">
+         <section class="wrapper">
+            <div class="trow">
+               <div class="col-lg-9 main-chart">
+                  <!--CUSTOM CHART START -->
+                  <div class="border-head">
+                     <h3>CLIENT 상세 페이지</h3>
+                  </div>
+                  <div class="qna-custom-bar-chart">
+                     <div class="limiter">
+                        <div class="container-table100">
+                           <div class="wrap-table100">
+                                 <div class="table">
+                                    <div class="trow theader">
+                                       <div class="cell">
+                                       ID
+                                       </div>
+                                       <div class="cell">
+                                       NAME
+                                       </div>
+                                       <div class="cell">
+                                       PHONE
+                                       </div>
+                                       <div class="cell">
+                                       GENDER
+                                       </div>
+                                       <div class="cell">
+                                       BIRTH
+                                       </div>
+                                       <div class="cell">
+                                       STATUS
+                                       </div>
+                                    </div>
+                                    <div class="trow">
+                                       <div class="cell" data-title="Full Name">
+                                          ${clientDetail.client_id }
+                                          </div>
+                                       <div class="cell" data-title="Job Title">
+                                          ${clientDetail.client_name }
+                                       </div>
+                                       <div class="cell" data-title="Job Title">
+                                          ${clientDetail.client_phone }
+                                       </div>
+                                       <div class="cell" data-title="Job Title">
+                                          ${clientDetail.client_gender }
+                                       </div>
+                                       <div class="cell" data-title="Job Title">
+                                          ${clientDetail.client_birth }
+                                       </div>
+                                       <div class="cell" data-title="Job Title">
+                                          ${clientDetail.client_status }
+                                       </div>
+                                    </div>
 
 
-											</div>
-											<div class="btnContainer" style="float:right; padding:10px">
-												<input type="submit" value="수정" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/updateQnaDetail.do?qna_no=${qnaDetail.qna_no }'">
-												<input type="reset" value="삭제" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/deleteQna.do?qna_no=${qnaDetail.qna_no }'">
-												<input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                 </div>
+                                 <div class="btnContainer" style="float:right; padding:10px">
+                                    <input type="button" value="경고하기" onclick="javascript:location.href='<%=ctxPath%>/admin/updateClientStatus.do'" />
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
-			</section>
+         </section>
 
 
           <!-- /col-lg-3 -->

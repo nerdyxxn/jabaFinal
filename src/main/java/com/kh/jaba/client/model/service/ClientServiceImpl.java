@@ -1,5 +1,7 @@
 package com.kh.jaba.client.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +63,18 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public int updateClientStatus(Client c) {
 		return clientDao.updateClientStatus(c);
+	}
+
+	// 자바 전체 회원 조회
+	@Override
+	public List<Client> selectAllClient() {
+		return clientDao.selectAllClient();
+	}
+
+	// Client 리스트 중 하나를 선택해서 Detail 정보를 얻어옴
+	@Override
+	public Client selectClientDetail(String client_id) {
+		return clientDao.selectClientDetail(client_id);
 	}
 	
 }

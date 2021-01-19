@@ -9,6 +9,7 @@
       <result property="client_phone" column="client_phone" />
       <result property="client_gender" column="client_gender" />
       <result property="client_birth" column="client_birth" />
+      <result property="client_status" column="client_status" />
    </resultMap>
 
    <!-- 접속한 client_id 가 DB에 있는지 확인 -->
@@ -59,5 +60,14 @@
       where client_id=#{client_id}
    </update>  
    
+   <!-- 자바 전체 회원 조회 -->
+   	<select id="selectAllClient" resultType="arraylist" resultMap="resultClient">
+		select * from client
+	</select>
+	
+   <!-- client clientlist 중 하나를 클릭하면 ClientDetail을 select -->
+   <select id="selectClientDetail" parameterType="string" resultType="Client">
+   	  select * from client where client_id = #{client_id}
+   </select>
 
 </mapper>

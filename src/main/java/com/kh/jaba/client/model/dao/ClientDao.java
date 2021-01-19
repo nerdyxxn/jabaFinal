@@ -1,5 +1,7 @@
 package com.kh.jaba.client.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +45,17 @@ public class ClientDao {
 
 	// 회원 이용 제제
 	public int updateClientStatus(Client c) {
-		return sqlSession.update("Client.updateClientStatus",c);
+		return sqlSession.update("Client.updateClientStatus", c);
 	}
+	
+	// 자바 전체 회원 조회
+	public List<Client> selectAllClient(){
+		return sqlSession.selectList("Client.selectAllClient");
+	}
+	
+	// Client 리스트 중 하나를 선택해서 Detail 정보를 얻어옴
+	public Client selectClientDetail(String client_id) {
+		return sqlSession.selectOne("Client.selectClientDetail");
+	}
+	
 }

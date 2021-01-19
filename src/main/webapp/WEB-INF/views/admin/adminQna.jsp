@@ -398,32 +398,6 @@
         $(this).hide();
       });
 
-      $("#my-calendar").zabuto_calendar({
-        action: function() {
-          return myDateFunction(this.id, false);
-        },
-        action_nav: function() {
-          return myNavFunction(this.id);
-        },
-        ajax: {
-          url: "
-	<%=ctxPath%>
-		/resources/css/admin/show_data.php?action=1",
-          modal: true
-        },
-        legend: [{
-            type: "text",
-            label: "Special event",
-            badge: "00"
-          },
-          {
-            type: "block",
-            label: "Regular event",
-          }
-        ]
-      });
-    });
-
     function myNavFunction(id) {
       $("#date-popover").hide();
       var nav = $("#" + id).data("navigation");
@@ -437,8 +411,7 @@
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){
         $.ajax({
-           url:"<%=ctxPath%>
-		/client/clientLogout.do",
+           url:"<%=ctxPath%>/client/clientLogout.do",
 				data : {},
 				success : function() {
 					$("#logoutBtn").hide();
