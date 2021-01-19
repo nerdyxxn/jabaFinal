@@ -358,37 +358,48 @@
                                        </div>
                                     </div>
                                     <div class="trow">
-                                       <div class="cell" data-title="Full Name">
+                                       <div class="cell" data-title="id">
                                           ${clientDetail.client_id }
                                           </div>
-                                       <div class="cell" data-title="Job Title">
+                                       <div class="cell" data-title="name">
                                           ${clientDetail.client_name }
                                        </div>
-                                       <div class="cell" data-title="Job Title">
+                                       <div class="cell" data-title="phone">
                                           ${clientDetail.client_phone }
                                        </div>
-                                       <div class="cell" data-title="Job Title">
-                                          ${clientDetail.client_gender }
+                                       <div class="cell" data-title="gender">
+                                         <c:if test="${clientDetail.client_gender == 1 }">
+                                                male
+                                             </c:if>
+                                             <c:if test="${clientDetail.client_gender == 2 }">
+                                                female
+                                             </c:if>
                                        </div>
-                                       <div class="cell" data-title="Job Title">
+                                       <div class="cell" data-title="birth">
                                           ${clientDetail.client_birth }
                                        </div>
-                                       <div class="cell" data-title="Job Title">
-                                          ${clientDetail.client_status }
+                                       <div class="cell" data-title="status">
+                                          <c:if test="${clientDetail.client_status == 1 }">
+                                                정상
+                                             </c:if>
+                                             <c:if test="${clientDetail.client_status == 2 }">
+                                                제재
+                                             </c:if>
                                        </div>
                                     </div>
 
 
                                  </div>
                                  <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="경고하기" onclick="javascript:location.href='<%=ctxPath%>/admin/updateClientStatus.do'" />
+                                    <input type="button" value="상태변경" id="statusChangeBtn" />
+                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminClient.do'" />
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-
+</div>
          </section>
 
 
@@ -434,26 +445,7 @@
   <!--script for this page-->
   <script src="<%=ctxPath%>/resources/js/admin/lib/sparkline-chart.js"></script>
   <script src="<%=ctxPath%>/resources/js/admin/lib/zabuto_calendar.js"></script>
-  <script type="application/javascript">
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
 
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-  </script>
-  
-  <script>
   <script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){
@@ -466,6 +458,31 @@
            }
         });
         });
+  </script>
+  <script type="text/javascript">
+  //상태 변경시 ajax
+  $("#statusChangeBtn").on("click", function(){
+	  var client_id="${clientDetail.client_id}";
+  	  var client_status="${clientDetail.client_status}";
+  	  console.log(client_status);
+	  $.ajax({
+		 url:"<%=ctxPath%>/admin/updateClientStatus.do",
+		 method: "POST",
+		 data: {
+			 client_id : client_id,
+			 client_status : client_status
+		 },
+		 success: function(){
+			if(confirm("현재 회원의 상태를 변경하시겠습니까?")){
+			 	location.href="<%=ctxPath%>/admin/adminClientDetail.do?client_id="+client_id;
+				 
+			} 
+		 }
+	  
+	  });
+  });
+  
+  
   </script>
 </body>
 

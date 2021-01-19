@@ -256,7 +256,7 @@
                      class="fa fa-desktop"></i> <span>Client</span>
                </a>
                   <ul class="sub">
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">전체 회원 정보</a></li>
+                     <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
                      <li><a href="<%=ctxPath%>/admin/adminMain.do">회원 관리</a></li>
                   </ul></li>
                <li class="sub-menu"><a href="javascript:;"> <i
@@ -310,37 +310,38 @@
                                  <c:if test="${not empty clientList }">
                                     <c:forEach items="${clientList }" var="client">
                                        <div class="trow">
-                                          <div class="cell" data-title="Full Name">
-                                             ${client.client_id }
-                                          </div>
-                                          <a href="<%=ctxPath%>adminClientDetail?client_id=${client.client_id }">
-                                             <div class="cell" data-title="Job Title">${client.client_name }
-                                             </div>
+                                          <div class="cell" data-title="Full Name">${client.client_id }</div>
+                                          <a href="<%=ctxPath%>/admin/adminClientDetail.do?client_id=${client.client_id }">
+                                             <div class="cell" data-title="Job Title">${client.client_name }</div>
                                           </a>
-                                          <div class="cell" data-title="Full Name">
-                                             ${client.client_phone }
-                                          </div>
-                                          <div class="cell" data-title="Full Name">
-                                             ${client.client_status }
+                                          <div class="cell" data-title="PHONE">${client.client_phone }</div>
+
+                                          <div class="cell" data-title="STATUS">
+                                             <c:if test="${client.client_status == 1 }">
+                                                정상
+                                             </c:if>
+                                             <c:if test="${client.client_status == 2 }">
+                                                제재
+                                             </c:if>
                                           </div>
                                        </div>
                                     </c:forEach>
                                  </c:if>
 
                               </div>
-                           </div>                        
+                           </div>
                         </div>
-                        
+
                      </div>
                   </div>
                </div>
             </div>
-            
-      </div>
+
+            </div>
          </section>
-         
+
       </section>
-      
+
 
 
       <!-- /col-lg-3 -->
@@ -416,8 +417,7 @@
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){
         $.ajax({
-           url:"<%=ctxPath%>
-      /client/clientLogout.do",
+           url:"<%=ctxPath%>/client/clientLogout.do",
             data : {},
             success : function() {
                $("#logoutBtn").hide();

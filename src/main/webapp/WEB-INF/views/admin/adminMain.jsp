@@ -268,7 +268,7 @@
               <span>Client</span>
               </a>
             <ul class="sub">
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">전체 회원 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
               <li><a href="<%=ctxPath%>/admin/adminMain.do">회원 관리</a></li>
             </ul>
           </li>

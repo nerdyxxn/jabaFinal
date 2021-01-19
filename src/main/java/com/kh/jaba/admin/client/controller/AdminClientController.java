@@ -24,7 +24,7 @@ public class AdminClientController {
 	private Client client;
 	
 	// 관리자 클라이언트 관리 페이지 이동 
-	@RequestMapping(value = "admin/adminClient.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminClient.do", method = RequestMethod.GET)
 	public ModelAndView adminClient(ModelAndView mv, HttpServletRequest request) {
 		// 클라이언트 정보 리스트를 받아와서 세션에 담아 전달
 		List<Client> clientList = clientService.selectAllClient();
@@ -35,12 +35,13 @@ public class AdminClientController {
 	}
 	
 	// 관리자 클라이언트 관리 상세 페이지 이동 
-	@RequestMapping(value = "admin/adminClientDetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminClientDetail.do", method = RequestMethod.GET)
 	public ModelAndView adminClientDetail(ModelAndView mv, HttpServletRequest request) {
 		// 클라이언트 정보 리스트를 받아와서 세션에 담아 전달
 		String client_id = request.getParameter("client_id");
 		
 		Client clientDetail = clientService.selectClientDetail(client_id);
+		System.out.println(clientDetail);
 		request.getSession().setAttribute("clientDetail", clientDetail);
 
 		mv.setViewName("admin/adminClientDetail");

@@ -55,7 +55,7 @@ public class ClientDao {
 	
 	// Client 리스트 중 하나를 선택해서 Detail 정보를 얻어옴
 	public Client selectClientDetail(String client_id) {
-		return sqlSession.selectOne("Client.selectClientDetail");
+		return sqlSession.selectOne("Client.selectClientDetail", client_id);
 	}
 	
 }
