@@ -19,8 +19,7 @@ public class MenuServiceImpl implements MenuService{
 
 	@Override
 	public List<Menu> selectMenuList(String store_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return menuDao.selectMenuList(store_id);
 	}
 
 	@Override

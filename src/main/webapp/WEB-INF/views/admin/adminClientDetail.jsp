@@ -370,21 +370,21 @@
                                        <div class="cell" data-title="gender">
                                          <c:if test="${clientDetail.client_gender == 1 }">
                                                 male
-                                             </c:if>
-                                             <c:if test="${clientDetail.client_gender == 2 }">
+                                         </c:if>
+                                         <c:if test="${clientDetail.client_gender == 2 }">
                                                 female
-                                             </c:if>
+                                         </c:if>
                                        </div>
-                                       <div class="cell" data-title="birth">
-                                          ${clientDetail.client_birth }
+                                       <div class="cell" data-title="birth"> 
+                                          	    ${clientDetail.client_birth }
                                        </div>
                                        <div class="cell" data-title="status">
                                           <c:if test="${clientDetail.client_status == 1 }">
-                                                정상
-                                             </c:if>
-                                             <c:if test="${clientDetail.client_status == 2 }">
-                                                제재
-                                             </c:if>
+                                              	정상
+                                          </c:if>
+                                          <c:if test="${clientDetail.client_status == 2 }">
+                                             	제재
+                                          </c:if>
                                        </div>
                                     </div>
 

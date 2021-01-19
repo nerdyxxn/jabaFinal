@@ -41,4 +41,9 @@
    <select id="countTotalBiz" resultType="int">
       select count(*) from store
    </select>
+   
+<!-- admin store 진입 시 모든 store 출력 -->
+   <select id="selectAllStore" resultType="arraylist" resultMap="resultBiz">
+      select * from store
+   </select> 
 </mapper>

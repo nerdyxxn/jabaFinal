@@ -1,5 +1,7 @@
 package com.kh.jaba.biz.model.service;
 
+import java.util.List;
+
 import com.kh.jaba.biz.model.domain.Biz;
 
 public interface BizService {
@@ -18,4 +20,7 @@ public interface BizService {
 	
 	// 전체 매장 수 조회
 	public int countTotalBiz();
+	
+	// 전체 매장 조회
+	public List<Biz> selectAllStore();
 }

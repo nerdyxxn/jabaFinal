@@ -1,5 +1,7 @@
 package com.kh.jaba.biz.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,6 +35,11 @@ public class BizDao {
 	// 전체 매장 수 조회
 	public int countTotalBiz() {
 		return sqlSession.selectOne("Biz.countTotalBiz");
+	}
+	
+	// 전체 매장 조회
+	public List<Biz> selectAllStore(){
+		return sqlSession.selectList("Biz.selectAllStore");
 	}
 	
 }

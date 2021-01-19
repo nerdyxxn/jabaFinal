@@ -1,5 +1,7 @@
 package com.kh.jaba.biz.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,12 @@ public class BizServiceImpl implements BizService{
 	public int countTotalBiz() {
 		return bizDao.countTotalBiz();
 	}
-	
+
+	// 전체 매장 조회
+	@Override
+	public List<Biz> selectAllStore() {
+		// TODO Auto-generated method stub
+		return bizDao.selectAllStore();
+	}
 
 }

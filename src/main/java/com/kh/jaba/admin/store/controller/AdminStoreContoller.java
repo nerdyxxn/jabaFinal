@@ -1,5 +1,7 @@
 package com.kh.jaba.admin.store.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.jaba.biz.model.domain.Biz;
+import com.kh.jaba.biz.model.service.BizService;
 import com.kh.jaba.client.menu.model.domain.Menu;
 import com.kh.jaba.client.menu.model.service.MenuService;
 import com.kh.jaba.client.model.domain.Client;
@@ -19,6 +24,40 @@ public class AdminStoreContoller {
 
 	@Autowired
 	private Menu menu;
+	
+	@Autowired
+	private BizService bizService;
+	
+	@RequestMapping(value = "admin/store/selectAdminStore.do", method = RequestMethod.GET)
+	public ModelAndView selectAdminStore(ModelAndView mv, HttpServletRequest request) {
+		List<Biz> storeList = bizService.selectAllStore();
+		System.out.println(storeList.size() + "개의 Biz 정보 가져옴");
+		
+		request.getSession().setAttribute("storeList", storeList);
+		
+		mv.setViewName("admin/adminStore");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "admin/store/adminStoreDetail.do", method = RequestMethod.GET)
+	public ModelAndView adminStoreDetail(ModelAndView mv, HttpServletRequest request) {
+		String store_name = request.getParameter("store_name");
+		System.out.println(store_name);
+		// 스토어의 Detail 정보 
+		Biz storeDetail = bizService.selectStoreByName(store_name);
+		request.getSession().setAttribute("storeDetail", storeDetail);
+		System.out.println(storeDetail);
+		// 메뉴정보 List 
+		List<Menu> menuList = menuService.selectMenuList(storeDetail.getStore_id());
+			request.getSession().setAttribute("menuList", menuList);
+			System.out.println(menuList);
+		System.out.println(storeDetail.getStore_name() + "의 메뉴정보 " + menuList.size() + "개를 가져왔음");
+		mv.setViewName("admin/adminStoreDetail");
+		return mv;
+	}
+	
+	
 
 	// 메뉴 insert
 	@RequestMapping(value = "/admin/store/insertMenu.do", method = RequestMethod.POST)
