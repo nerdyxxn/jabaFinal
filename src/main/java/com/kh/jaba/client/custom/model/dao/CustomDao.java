@@ -33,8 +33,15 @@ public class CustomDao {
 		return sqlSession.selectList("Custom.selectListByMenuId", menu_id);
 	}
 	
-	 // custom 한개의 정보를 변경
-	   public int updateCustom(Custom c) {
-	      return sqlSession.update("Custom.updateCustom", c);
-	   }
+	// custom 한개의 정보를 변경
+	public int updateCustom(Custom c) {
+	    return sqlSession.update("Custom.updateCustom", c);
+	}
+	
+	// custom 추가
+	public int insertCustom(Custom c) {
+		return sqlSession.insert("Custom.insertCustom", c);
+	}
+	   
+	 
 }

@@ -48,5 +48,14 @@
    <update id="updateCustom" parameterType="Custom" >
       update custom set custom_name=#{custom_name},custom_price=#{custom_price},custom_category=#{custom_category} where custom_id=#{custom_id}
    </update>
+   
+   <!-- custom 추가 -->
+      <insert id="insertCustom" parameterType="Custom" flushCache="true"
+      statementType="PREPARED">
+      insert into Custom(custom_id, menu_id, custom_name,
+      custom_price, custom_category) values
+      (('C' || LPAD(CUSTOM_SEQ.nextval, 5, 0)), #{menu_id}, #{custom_name},
+      #{custom_price}, #{custom_category})
+   </insert>
 	
 </mapper>

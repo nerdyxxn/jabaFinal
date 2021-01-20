@@ -61,7 +61,7 @@
       statementType="PREPARED">
       insert into menu(menu_id, store_id, menu_name,
       menu_price, menu_img, menu_description, menu_category) values
-      (('M' || LPAD(ORDER_SEQ.nextval, 5, 0)), #{store_id}, #{menu_name},
+      (('M' || LPAD(MENU_SEQ.nextval, 5, 0)), #{store_id}, #{menu_name},
       #{menu_price}, #{menu_img}, #{menu_description}, #{menu_category})
    </insert>
    

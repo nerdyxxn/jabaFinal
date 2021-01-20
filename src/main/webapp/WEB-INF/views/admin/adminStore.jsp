@@ -1,75 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-   String ctxPath = request.getContextPath();
+	String ctxPath = request.getContextPath();
 %>
 <!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Dashboard">
-<meta name="keyword"
-   content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<title>Admin Main page</title>
+<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<title>Admin Store page</title>
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
 <!-- Bootstrap core CSS -->
-<link
-   href="<%=ctxPath%>/resources/js/admin/lib/bootstrap/css/bootstrap.css"
-   rel="stylesheet">
+<link href="<%=ctxPath%>/resources/js/admin/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link
-   href="<%=ctxPath%>/resources/js/admin/lib/font-awesome/css/font-awesome.css"
-   rel="stylesheet" />
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/css/admin/css/zabuto_calendar.css">
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/js/admin/lib/gritter/css/jquery.gritter.css" />
+<link href="<%=ctxPath%>/resources/js/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/admin/css/zabuto_calendar.css">
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/js/admin/lib/gritter/css/jquery.gritter.css" />
 <!-- Custom styles for this template -->
-<link href="<%=ctxPath%>/resources/css/admin/css/style.css"
-   rel="stylesheet">
-<link href="<%=ctxPath%>/resources/css/admin/css/style-responsive.css"
-   rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/admin/css/style.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/admin/css/style-responsive.css" rel="stylesheet">
 <script src="<%=ctxPath%>/resources/js/admin/lib/chart-master/Chart.js"></script>
 <!-- FONT -->
-<link
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-   rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/css/tableUtil.css">
-<link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/css/tableMain.css">
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/tableUtil.css">
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/adminStore.css">
 <!--===============================================================================================-->
 </head>
 
@@ -285,34 +252,28 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
       <!--Qna List-->
-      <section id="main-content">
-         <section class="wrapper">
-            <div class="trow">
-               <div class="col-lg-9 main-chart">
-                  <!--CUSTOM CHART START -->
-                  <div class="border-head">
-                     <h3>STORE</h3>
-                  </div>
-                  <div class="qna-custom-bar-chart">
-                     <div class="limiter">
-                        <div class="container-table100">
-                           <div class="wrap-table100">
-                              <div class="table">
-
-
-                                 <div class="trow theader">
-                                    <div class="cell">ID</div>
-                                    <div class="cell">NAME</div>
-                                    <div class="cell">ADDR</div>
-                                    <div class="cell">TIME</div>
-                                 </div>
-
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="col-lg-9 main-chart">
+					<!--CUSTOM CHART START -->
+					<div class="border-head">
+						<h3>STORE</h3>
+					</div>
+					<div class="qna-custom-bar-chart">
+						<div class="limiter">
+							<div class="container-table100">
+								<div class="wrap-table100">
+									<div class="table">
+										<div class="trow theader" id="theader">
+											<div class="cell">NAME</div>
+											<div class="cell">ADDR</div>
+											<div class="cell">TIME</div>
+										</div>
                                  <c:if test="${not empty storeList }">
                                     <c:forEach items="${storeList }" var="store">
                                        <div class="trow">
-                                          <div class="cell" data-title="Full Name">${store.store_id }</div>
                                           <a href="<%=ctxPath%>/admin/store/adminStoreDetail.do?store_name=${store.store_name }">
-                                             <div class="cell" data-title="Job Title">${store.store_name }</div>
+                                             <div class="cell" data-title="STORE NAME">${store.store_name }</div>
                                           </a>
                                           <div class="cell" data-title="ADDR">${store.store_addr }</div>
 
@@ -322,26 +283,18 @@
                                        </div>
                                     </c:forEach>
                                  </c:if>
+									</div>
+								</div>
 
-                              </div>
-                           </div>
-                        </div>
-
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            </div>
+							</div>
+						</div>
+					</div>
+				</div>
          </section>
-
       </section>
-
-
 
       <!-- /col-lg-3 -->
       <!-- /row -->
-   </section>
    </section>
    <!--main content end-->
    <!--footer start-->

@@ -380,8 +380,8 @@
                                  </div>
                                  <div class="btnContainer" style="float:right; padding:10px">
                                     <input type="button" value="메뉴 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/menuUpdateDetail.do'" />
-                                    <input type="button" value="커스텀 메뉴 추가" id="customAddBtn" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminStore.do'" />
+                                    <input type="button" value="커스텀 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/customWrite.do'" />
+                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStoreDetail.do?store_name=${storeDetail.store_name }'" />
                            </div>
                         </div>
                      </div>
@@ -411,7 +411,7 @@
                                        <div class="cell" data-title="id">
                                           ${customList.custom_id }
                                           </div>
-                                       <a href="<%=ctxPath%>/admin/store/customUpdateDetail.do?custom_id=${customList.custom_id }"><div class="cell" data-title="name">
+                                       <a href="<%=ctxPath%>/admin/store/customDetail.do?custom_id=${customList.custom_id}"><div class="cell" data-title="name">
                                           ${customList.custom_name }
                                        </div></a>
                                        <div class="cell" data-title="price">

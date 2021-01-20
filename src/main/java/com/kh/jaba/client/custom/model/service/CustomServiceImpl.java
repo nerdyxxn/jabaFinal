@@ -13,10 +13,10 @@ public class CustomServiceImpl implements CustomService {
 
 	@Autowired
 	private CustomDao customDao;
-	
+
 	@Autowired
 	private Custom custom;
-	
+
 	@Override
 	public List<Custom> selectCustomCategoryList(String menu_id) {
 		return customDao.selectCustomCategoryList(menu_id);
@@ -41,12 +41,16 @@ public class CustomServiceImpl implements CustomService {
 	public List<Custom> selectListByMenuId(String menu_id) {
 		return customDao.selectListByMenuId(menu_id);
 	}
-	
+
 	// custom 한개의 정보를 변경
-	   @Override
-	   public int updateCustom(Custom c) {
-	      return customDao.updateCustom(c);
-	   }
-	
-	
+	@Override
+	public int updateCustom(Custom c) {
+		return customDao.updateCustom(c);
+	}
+
+	@Override
+	public int insertCustom(Custom c) {
+		return customDao.insertCustom(c);
+	}
+
 }

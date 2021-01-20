@@ -89,7 +89,7 @@ input {
 }
 
 .trow .cell {
-	font-size: 15px;
+	font-size: 14px;
 	color: #666666;
 	line-height: 1.2;
 	padding-top: 20px;
@@ -98,7 +98,7 @@ input {
 }
 
 .trow.theader .cell {
-	font-size: 15px;
+	font-size: 14px;
 	color: #fff;
 	line-height: 1.2;
 	padding-top: 19px;
@@ -111,17 +111,13 @@ input {
 }
 
  .trow .cell:nth-child(2) {
-	width: 30%;
+	width: 50%;
 	padding-left: 40px;
 }
 
 .trow .cell:nth-child(3) {
-	width: 30%;
+	width: 20%;
 	padding-left: 40px;
-}
-
-.trow .cell:nth-child(4) {
-	width: 10%;
 }
 
 .table, .trow {
@@ -164,7 +160,7 @@ input {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	padding-left: 0;
-	font-size: 15px;
+	font-size: 14px;
 }
 
 #ctCell {
@@ -181,5 +177,5 @@ input {
     margin-top: 0;
     width: 600px;
     padding: 20px;
-	font-size: 15px;
+	font-size: 14px;
 }

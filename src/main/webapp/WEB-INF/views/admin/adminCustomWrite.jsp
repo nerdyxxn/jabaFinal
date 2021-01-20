@@ -330,7 +330,7 @@
 					<div class="col-lg-9 main-chart">
 						<!--CUSTOM CHART START -->
 						<div class="border-head">
-							<h3>MENU 수정</h3>
+							<h3>CUSTOM 추가</h3>
 						</div>
 						<div class="qna-custom-bar-chart">
 							<div class="limiter">
@@ -339,48 +339,29 @@
 											<div class="table">
 												<div class="trow theader">
                                        <div class="cell">
-                                       ID
-                                       </div>
-                                       <div class="cell">
                                        NAME
                                        </div>
                                        <div class="cell">
                                        PRICE
                                        </div>
                                        <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
                                        CATEGORY
                                        </div>
                                     </div>
                                     <div class="trow">
-                                       <div class="cell" data-title="id">
-										  ${menuDetail.menu_id }
-                                          </div>
                                        <div class="cell" data-title="name">
-                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_name" id="menu_name" value="${menuDetail.menu_name }"/>
+                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="custom_name" id="custom_name"/>
                                        </div>
                                        <div class="cell" data-title="price">
-                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_price" id="menu_price" value="${menuDetail.menu_price }"/>
-                                       </div>
-                                       <div class="cell" data-title="img">
-                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_img" id="menu_img" value="${menuDetail.menu_img }"/>
-                                       </div>
-                                       <div class="cell" data-title="description"> 
-                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_description" id="menu_description" value="${menuDetail.menu_description }"/>
+                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="custom_price" id="custom_price"/>
                                        </div>
                                        <div class="cell" data-title="category">
-                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_category" id="menu_category" value="${menuDetail.menu_category }"/>
+                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="custom_category" id="custom_category" />
                                        </div>
                                     </div>
-
 											</div>
 											<div class="btnContainer" style="float:right; padding:10px">
-												<input type="button" value="완료" id="updateMenuBtn"> <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id=${menuDetail.menu_id }'" />
+												<input type="button" value="완료" id="addCustomBtn"> <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id=${menuDetail.menu_id }'" />
 											</div>
 									</div>
 								</div>
@@ -435,25 +416,6 @@
   <!--script for this page-->
   <script src="<%=ctxPath%>/resources/js/admin/lib/sparkline-chart.js"></script>
   <script src="<%=ctxPath%>/resources/js/admin/lib/zabuto_calendar.js"></script>
-  <script type="application/javascript">
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
-
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-  </script>
-  
   <script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){
@@ -467,40 +429,35 @@
         });
         });
   </script>
-   <script type="text/javascript">
-  //상태 변경시 ajax
-  $("#updateMenuBtn").on("click", function(){
-	  var menu_id = "${menuDetail.menu_id}";
-	  var menu_name=$("#menu_name").val();
-	  var menu_price=$("#menu_price").val();
-	  var menu_img=$("#menu_img").val();
-	  var menu_description=$("#menu_description").val();
-	  var menu_category=$("#menu_category").val();
-
-  	  console.log(menu_name);
-  	if(confirm("현재 메뉴의 정보를 변경하시겠습니까?")){
-	  $.ajax({
-		 url:"<%=ctxPath%>/admin/store/updateMenu.do",
-		 method: "POST",
-		 data: {
-
-			 menu_name : menu_name,
-			 menu_price : menu_price,
-			 menu_img : menu_img,
-			 menu_description : menu_description,
-			 menu_category : menu_category
-		 },
-		 success: function(){
-			 
-		 		console.log("메뉴 변경 성공!");
-			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id;			 
-			} 
-		 });
-	  }
-  });
-  
-  
-  </script>
+ 
+  <script type="text/javascript">
+	// menu add btn
+	$("#addCustomBtn").on("click", function(){
+		var custom_name = $("#custom_name").val();
+		var custom_price = $("#custom_price").val();
+		var custom_category = $("#custom_category").val();
+		if(confirm("해당 커스텀을 추가하시겠습니까?")){
+			
+		$.ajax({
+			url:"<%=ctxPath%>/admin/store/customAdd.do", 
+			method : "POST",
+			data : {
+				custom_name : custom_name,
+				custom_price : custom_price,
+				custom_category : custom_category
+			}, 
+			success : function(){
+				console.log("커스텀 추가 성공!");
+			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id
+			}
+		});
+		
+		}
+	
+	});
+	
+	
+	</script>
   
 </body>
 

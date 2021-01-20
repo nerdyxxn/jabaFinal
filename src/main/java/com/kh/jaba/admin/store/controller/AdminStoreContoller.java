@@ -1,5 +1,7 @@
 package com.kh.jaba.admin.store.controller;
 
+import java.io.Console;
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.jaba.biz.model.domain.Biz;
@@ -17,7 +21,7 @@ import com.kh.jaba.client.custom.model.domain.Custom;
 import com.kh.jaba.client.custom.model.service.CustomService;
 import com.kh.jaba.client.menu.model.domain.Menu;
 import com.kh.jaba.client.menu.model.service.MenuService;
-import com.kh.jaba.client.model.domain.Client;
+
 
 @Controller
 public class AdminStoreContoller {
@@ -138,6 +142,13 @@ public class AdminStoreContoller {
       mv.setViewName("admin/adminMenuDetail");
       return mv;
    }
+   // 메뉴 추가 페이지로 이동
+   @RequestMapping(value = "/admin/store/menuWrite.do", method = RequestMethod.GET)
+   public ModelAndView menuWrite(ModelAndView mv, HttpServletRequest request) {
+      
+      mv.setViewName("admin/adminMenuWrite");
+      return mv;
+   }
    
    
    // 메뉴 Detail 정보 수정 페이지로 이동
@@ -207,37 +218,65 @@ public class AdminStoreContoller {
    // 메뉴 insert
    @RequestMapping(value = "/admin/store/insertMenu.do", method = RequestMethod.POST)
    @ResponseBody
-   public void insertMenuDo(HttpServletRequest request) {
-      String store_id = request.getParameter("store_id");
+   public ModelAndView insertMenuDo(HttpServletRequest request, @RequestParam(name = "upfile") MultipartFile report, ModelAndView mv) {
+	  Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
+      String store_id = storeDetail.getStore_id();
+      System.out.println(store_id);
       String menu_name = request.getParameter("menu_name");
       int menu_price = Integer.parseInt(request.getParameter("menu_price"));
-      String menu_img = request.getParameter("menu_img");
+
       String menu_description = request.getParameter("menu_description");
       String menu_category = request.getParameter("menu_category");
       int result = 0;
       // menu_name 중복 확인 해야함 
-      
-      // menu_img 가 null 이라면 기본값으로 셋팅해줘야함
-      if(menu_img.equals("") || (menu_img == null)) {
-         // 확인 필요
-         menu_img = null;
+      try {
+      // 첨부파일 저장
+   	  if (report != null && !report.equals("")) {
+   			saveFile(report, request);
+   		}
+   	  System.out.println(report.getOriginalFilename());
+   	  menu.setMenu_img(report.getOriginalFilename()); // 저장된 파일명을 vo에 set
+      }catch (Exception e) {
+    	  e.printStackTrace();
       }
+      
       menu.setStore_id(store_id);
       menu.setMenu_name(menu_name);
       menu.setMenu_price(menu_price);
-      menu.setMenu_img(menu_img);
+      
       menu.setMenu_description(menu_description);
       menu.setMenu_category(menu_category);
-
       result = menuService.insertMenu(menu);
       if(result == 1) {
          System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 완료");
       }else {
          System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 실패");
       }
+      //session에 store_name이 있으면 채워질지 안채워질지 고민
+
+      request.getSession().setAttribute("store_name", storeDetail.getStore_name());
+      mv.setViewName("redirect:selectAdminStore.do");
+      return mv;
 
    }
    // =====================================================CUSTOM=====================================================
+  // custom detail
+   @RequestMapping(value = "/admin/store/customDetail.do", method = RequestMethod.GET)
+   public ModelAndView customDetail(ModelAndView mv, HttpServletRequest request) {
+	   String custom_id = request.getParameter("custom_id");
+	      Custom customDetail = customService.selectOneCustomByCustomId(custom_id);
+	      if(customDetail == null) {
+	         System.out.println(custom_id + "의 커스텀 정보를 가져오지 못했습니다.");
+	      }else {
+	         request.getSession().setAttribute("customDetail", customDetail);
+	      }
+      mv.setViewName("admin/adminCustomDetail");
+      return mv;
+   }
+   
+   
+   
+   
    // custom 진입
    @RequestMapping(value = "/admin/store/customUpdateDetail.do", method = RequestMethod.GET)
    public ModelAndView updateCustomDetail(ModelAndView mv, HttpServletRequest request) {
@@ -292,5 +331,75 @@ public class AdminStoreContoller {
       }else {
          System.out.println("커스텀정보 업데이트 실패");
       }
-   }      
+   }
+   //custom write page 진입
+   // 메뉴 Detail 정보 수정 페이지로 이동
+   @RequestMapping(value = "/admin/store/customWrite.do", method = RequestMethod.GET)
+   public ModelAndView customWrite(ModelAndView mv, HttpServletRequest request) {
+      
+      mv.setViewName("admin/adminCustomWrite");
+      return mv;
+   }
+   
+   // insert custom
+   @RequestMapping(value = "/admin/store/customAdd.do", method = RequestMethod.POST)
+   @ResponseBody
+   public void customAdd(HttpServletRequest request) {
+	  Menu menuDetail = (Menu)request.getSession().getAttribute("menuDetail");
+	   String menu_id = menuDetail.getMenu_id();
+      String custom_name = request.getParameter("custom_name");
+      int custom_price = Integer.parseInt(request.getParameter("custom_price"));
+      String custom_category = request.getParameter("custom_category");
+
+      custom.setCustom_name(custom_name);
+      custom.setCustom_category(custom_category);
+      custom.setCustom_price(custom_price);
+      custom.setMenu_id(menu_id);
+      
+      int result = customService.insertCustom(custom);
+      
+      if(result == 1) {
+         System.out.println(custom.getCustom_id() + "의 커스텀 추가 완료");
+      }else {
+         System.out.println("커스텀 추가 실패");
+      }
+   }
+   
+   private void saveFile(MultipartFile report, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		File folder = new File(savePath);
+		if (!folder.exists()) {
+			folder.mkdirs(); // 폴더가 없다면 생성한다.
+		}
+		String filePath = null;
+		try {
+			// 파일 저장
+			System.out.println(report.getOriginalFilename() + "을 저장합니다.");
+			System.out.println("저장 경로 : " + savePath);
+
+			filePath = folder + "\\" + report.getOriginalFilename();
+			report.transferTo(new File(filePath)); // 파일을 저장한다
+			System.out.println("파일 명 : " + report.getOriginalFilename());
+			System.out.println("파일 경로 : " + filePath);
+			System.out.println("파일 전송이 완료되었습니다.");
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+	}
+
+	private void removeFile(String board_file, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		String filePath = savePath + "\\" + board_file;
+		try {
+			System.out.println(board_file + "을 삭제합니다.");
+			System.out.println("기존 저장 경로 : " + savePath);
+			File delFile = new File(filePath);
+			delFile.delete();
+			System.out.println("파일 삭제가 완료되었습니다.");
+		} catch (Exception e) {
+			System.out.println("파일 삭제 에러: " + e.getMessage());
+		}
+	}
 }
