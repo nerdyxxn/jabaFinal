@@ -30,4 +30,7 @@ public interface MenuService {
 	
 	// 메뉴 디테일 
 	public Menu selectOneMenuByMenuId(String menu_id);
+	
+	 // updateMenu
+	   public int updateMenu(Menu m);
 }

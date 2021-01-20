@@ -345,16 +345,16 @@
                                        NAME
                                        </div>
                                        <div class="cell">
-                                       PHONE
+                                       PRICE
                                        </div>
                                        <div class="cell">
-                                       GENDER
+                                       IMG
                                        </div>
                                        <div class="cell">
-                                       BIRTH
+                                       DESCRIPTION
                                        </div>
                                        <div class="cell">
-                                       STATUS
+                                       CATEGORY
                                        </div>
                                     </div>
                                     <div class="trow">
@@ -364,25 +364,22 @@
                                        <div class="cell" data-title="name">
                                           ${menuDetail.menu_name }
                                        </div>
-                                       <div class="cell" data-title="addr">
+                                       <div class="cell" data-title="price">
                                           ${menuDetail.menu_price }
                                        </div>
-                                       <div class="cell" data-title="time">
+                                       <div class="cell" data-title="img">
                                          ${menuDetail.menu_img}
                                        </div>
-                                       <div class="cell" data-title="img"> 
+                                       <div class="cell" data-title="description"> 
                                          ${menuDetail.menu_description }
                                        </div>
-                                       <div class="cell" data-title="description">
+                                       <div class="cell" data-title="category">
                                          ${menuDetail.menu_category}
-                                       </div>
-                                       <div class="cell" data-title="lat">
-                                         ${menuDetail.menu_available}
                                        </div>
                                     </div>
                                  </div>
                                  <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="메뉴 정보 변경" id="menuChangeBtn" />
+                                    <input type="button" value="메뉴 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/menuUpdateDetail.do'" />
                                     <input type="button" value="커스텀 메뉴 추가" id="customAddBtn" />
                                     <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminStore.do'" />
                            </div>
@@ -414,9 +411,9 @@
                                        <div class="cell" data-title="id">
                                           ${customList.custom_id }
                                           </div>
-                                       <div class="cell" data-title="name">
+                                       <a href="<%=ctxPath%>/admin/store/customUpdateDetail.do?custom_id=${customList.custom_id }"><div class="cell" data-title="name">
                                           ${customList.custom_name }
-                                       </div>
+                                       </div></a>
                                        <div class="cell" data-title="price">
                                           ${customList.custom_price }
                                        </div>

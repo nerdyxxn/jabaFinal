@@ -432,7 +432,7 @@
                   </div>
                   <div class="chart mt">
                     <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                    data-data="[111, 222, ${bizSalesList[5].pay_total_price}, ${bizSalesList[4].pay_total_price}, ${bizSalesList[3].pay_total_price}, ${bizSalesList[2].pay_total_price}, ${bizSalesList[1].pay_total_price}, ${bizSalesList[0].pay_total_price}]"></div>
+                    data-data="[${bizSalesList[7].pay_total_price}, ${bizSalesList[6].pay_total_price}, ${bizSalesList[5].pay_total_price}, ${bizSalesList[4].pay_total_price}, ${bizSalesList[3].pay_total_price}, ${bizSalesList[2].pay_total_price}, ${bizSalesList[1].pay_total_price}, ${bizSalesList[0].pay_total_price}]"></div>
                   </div>
                     <c:set var="total" value="0"/>
                   <c:forEach items="${bizSalesList}" var="bizSalesList" varStatus="s">

@@ -32,4 +32,9 @@ public class CustomDao {
 	public List<Custom> selectListByMenuId(String menu_id){
 		return sqlSession.selectList("Custom.selectListByMenuId", menu_id);
 	}
+	
+	 // custom 한개의 정보를 변경
+	   public int updateCustom(Custom c) {
+	      return sqlSession.update("Custom.updateCustom", c);
+	   }
 }

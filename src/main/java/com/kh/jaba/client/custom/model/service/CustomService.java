@@ -14,5 +14,8 @@ public interface CustomService {
 	public Custom selectOneCustomByCustomId(String custom_id);
 	
 	public List<Custom> selectListByMenuId(String menu_id);
+	
+	// custom 한개의 정보를 변경
+	   public int updateCustom(Custom c);
 
 }

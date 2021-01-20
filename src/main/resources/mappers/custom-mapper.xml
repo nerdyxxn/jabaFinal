@@ -44,4 +44,9 @@
 		order by custom_category
 	</select>	
 	
+	<!-- custom 한개의 정보를 변경 -->
+   <update id="updateCustom" parameterType="Custom" >
+      update custom set custom_name=#{custom_name},custom_price=#{custom_price},custom_category=#{custom_category} where custom_id=#{custom_id}
+   </update>
+	
 </mapper>

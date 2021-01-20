@@ -336,29 +336,43 @@
 							<div class="limiter">
 								<div class="container-table100">
 									<div class="wrap-table100">
-										<form action="<%=ctxPath%>/admin/qna/updateQna.do?qna_no=${qnaDetail.qna_no }"
-											method="POST">
 											<div class="table">
-												<div class="trow theader">
-													<div class="cell"></div>
-													<div class="cell">
-														TITLE &nbsp; <input style="background-color: #d6d9dc; color: #565656" type="text" name="title" id="title" value="${qnaDetail.qna_title }"/>
-													</div>
-												</div>
-												<div class="trow">
-													<div class="cell" data-title="Full Name">
-														</div>
-													<div class="cell" data-title="Job Title">
-														CONTENT &nbsp; <input style="background-color: #d6d9dc; color: #565656" type="text" value="${qnaDetail.qna_content }" name="content" id="content"/>
-													</div>
-												</div>
+													<div class="trow theader">
+                                       <div class="cell">
+                                       ID
+                                       </div>
+                                       <div class="cell">
+                                       NAME
+                                       </div>
+                                       <div class="cell">
+                                       PRICE
+                                       </div>
+                                       <div class="cell">
+                                       CATEGORY
+                                       </div>
+                                    </div>
+                                    <div class="trow">
+                                       <div class="cell" data-title="id">
+										  ${customDetail.custom_id }
+                                          </div>
+                                       <div class="cell" data-title="name">
+                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="custom_name" id="custom_name" value="${customDetail.custom_name }"/>
+                                       </div>
+                                       <div class="cell" data-title="price">
+                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="custom_price" id="custom_price" value="${customDetail.custom_price }"/>
+                                       </div>
+                                       <div class="cell" data-title="category">
+                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="custom_category" id="custom_category" value="${customDetail.custom_category }"/>
+                                       </div>
+                                    </div>
+
 
 
 											</div>
 											<div class="btnContainer" style="float:right; padding:10px">
-												<input type="submit" value="완료"> <input type="reset" value="취소"> <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
+												<input type="button" value="완료" id="updateCustomBtn"/>
+												<input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
 											</div>
-										</form>
 									</div>
 								</div>
 							</div>
@@ -443,6 +457,34 @@
            }
         });
         });
+  </script>
+   <script type="text/javascript">
+  //상태 변경시 ajax
+  $("#updateCustomBtn").on("click", function(){
+	  var custom_id = "${customDetail.custom_id}";
+	  var custom_name = $("#custom_name").val();
+	  var custom_price = $("#custom_price").val();
+	  var custom_category = $("#custom_category").val();
+	  var menu_id = "${customDetail.menu_id}";
+  	if(confirm("현재 커스텀의 정보를 변경하시겠습니까?")){
+	  $.ajax({
+		 url:"<%=ctxPath%>/admin/store/customUpdate.do",
+		 method: "POST",
+		 data: {
+			 custom_name : custom_name,
+			 custom_price : custom_price,
+			 custom_category : custom_category
+		 },
+		 success: function(){
+			 
+		 		console.log("커스텀 변경 성공!");
+			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id;			 
+			} 
+		 });
+	  }
+  });
+  
+  
   </script>
 </body>
 

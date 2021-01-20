@@ -42,5 +42,11 @@ public class CustomServiceImpl implements CustomService {
 		return customDao.selectListByMenuId(menu_id);
 	}
 	
+	// custom 한개의 정보를 변경
+	   @Override
+	   public int updateCustom(Custom c) {
+	      return customDao.updateCustom(c);
+	   }
+	
 	
 }

@@ -7,69 +7,36 @@
 	String ctxPath = request.getContextPath();
 %>
 <!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Dashboard">
-<meta name="keyword"
-	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<title>Admin Main page</title>
+<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<title>Admin Q & A page</title>
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
 <!-- Bootstrap core CSS -->
-<link
-	href="<%=ctxPath%>/resources/js/admin/lib/bootstrap/css/bootstrap.css"
-	rel="stylesheet">
+<link href="<%=ctxPath%>/resources/js/admin/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link
-	href="<%=ctxPath%>/resources/js/admin/lib/font-awesome/css/font-awesome.css"
-	rel="stylesheet" />
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/css/admin/css/zabuto_calendar.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/js/admin/lib/gritter/css/jquery.gritter.css" />
+<link href="<%=ctxPath%>/resources/js/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/admin/css/zabuto_calendar.css">
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/js/admin/lib/gritter/css/jquery.gritter.css" />
 <!-- Custom styles for this template -->
-<link href="<%=ctxPath%>/resources/css/admin/css/style.css"
-	rel="stylesheet">
-<link href="<%=ctxPath%>/resources/css/admin/css/style-responsive.css"
-	rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/admin/css/style.css" rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/admin/css/style-responsive.css" rel="stylesheet">
 <script src="<%=ctxPath%>/resources/js/admin/lib/chart-master/Chart.js"></script>
 <!-- FONT -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/css/tableUtil.css">
-<link rel="stylesheet" type="text/css"
-	href="<%=ctxPath%>/resources/css/tableMain.css">
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/tableUtil.css">
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/tableMain.css">
 <!--===============================================================================================-->
 </head>
 
@@ -287,59 +254,46 @@
 		<!--Qna List-->
 		<section id="main-content">
 			<section class="wrapper">
-				<div class="trow">
-					<div class="col-lg-9 main-chart">
-						<!--CUSTOM CHART START -->
-						<div class="border-head">
-							<h3>Q&A</h3>
-						</div>
-						<div class="qna-custom-bar-chart">
-							<div class="limiter">
-								<div class="container-table100">
-									<div class="wrap-table100">
-										<div class="table">
-
-
-											<div class="trow theader">
+				<div class="col-lg-9 main-chart">
+					<!--CUSTOM CHART START -->
+					<div class="border-head">
+						<h3>Q&A</h3>
+					</div>
+					<div class="qna-custom-bar-chart">
+						<div class="limiter">
+							<div class="container-table100">
+								<div class="wrap-table100">
+									<div class="table">
+											<div class="trow theader" id="theader">
 												<div class="cell">NO.</div>
-												<div class="cell">TITLE</div>
+												<div class="cell" id="theaderRow">TITLE</div>
 											</div>
-
 											<c:if test="${not empty qnaList }">
 												<c:forEach items="${qnaList }" var="qnaList">
 													<div class="trow">
 														<div class="cell" data-title="Full Name">
 															${qnaList.qna_no }</div>
-														<a
-															href="<%=ctxPath%>/admin/qna/qnaDetail.do?qna_no=${qnaList.qna_no }">
+														<a href="<%=ctxPath%>/admin/qna/qnaDetail.do?qna_no=${qnaList.qna_no }">
 															<div class="cell" data-title="Job Title">${qnaList.qna_title }
 															</div>
 														</a>
 													</div>
 												</c:forEach>
 											</c:if>
-
-										</div>
 									</div>
-									<div class="buttonContainer" style="width: 100%; clear:both" >
-							<a href="<%=ctxPath%>/admin/qna/writeQna.do" style="float:right;"><button class="writeQna">글 작성</button></a>
 								</div>
-								
+									<div class="buttonContainer" style="width: 100%; clear:both" >
+									<a href="<%=ctxPath%>/admin/qna/writeQna.do" style="float:right;">
+									<button class="writeQna">글 작성</button></a>
+							</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-		</div>
 			</section>
-			
 		</section>
-		
-
-
 		<!-- /col-lg-3 -->
 		<!-- /row -->
-	</section>
 	</section>
 	<!--main content end-->
 	<!--footer start-->
@@ -363,18 +317,14 @@
       </div>
     </footer> -->
 	<!--footer end-->
-	</section>
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="<%=ctxPath%>/resources/js/admin/lib/jquery/jquery.min.js"></script>
-
-	<script
-		src="<%=ctxPath%>/resources/js/admin/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="<%=ctxPath%>/resources/js/admin/lib/bootstrap/js/bootstrap.js"></script>
 	<script class="include" type="text/javascript"
 		src="<%=ctxPath%>/resources/js/admin/lib/jquery.dcjqaccordion.2.7.js"></script>
 	<script
 		src="<%=ctxPath%>/resources/js/admin/lib/jquery.scrollTo.min.js"></script>
-	<script src="<%=ctxPath%>/resources/js/admin/lib/jquery.nicescroll.js"
-		type="text/javascript"></script>
+	<script src="<%=ctxPath%>/resources/js/admin/lib/jquery.nicescroll.js" type="text/javascript"></script>
 	<script src="<%=ctxPath%>/resources/js/admin/lib/jquery.sparkline.js"></script>
 	<!--common script for all pages-->
 	<script src="<%=ctxPath%>/resources/js/admin/lib/common-scripts.js"></script>
@@ -420,5 +370,4 @@
 		});
 	</script>
 </body>
-
 </html>

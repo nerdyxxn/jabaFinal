@@ -330,35 +330,58 @@
 					<div class="col-lg-9 main-chart">
 						<!--CUSTOM CHART START -->
 						<div class="border-head">
-							<h3>Q&A 수정</h3>
+							<h3>MENU 수정</h3>
 						</div>
 						<div class="qna-custom-bar-chart">
 							<div class="limiter">
 								<div class="container-table100">
 									<div class="wrap-table100">
-										<form action="<%=ctxPath%>/admin/qna/updateQna.do?qna_no=${qnaDetail.qna_no }"
-											method="POST">
 											<div class="table">
 												<div class="trow theader">
-													<div class="cell"></div>
-													<div class="cell">
-														TITLE &nbsp; <input style="background-color: #d6d9dc; color: #565656" type="text" name="title" id="title" value="${qnaDetail.qna_title }"/>
-													</div>
-												</div>
-												<div class="trow">
-													<div class="cell" data-title="Full Name">
-														</div>
-													<div class="cell" data-title="Job Title">
-														CONTENT &nbsp; <input style="background-color: #d6d9dc; color: #565656" type="text" value="${qnaDetail.qna_content }" name="content" id="content"/>
-													</div>
-												</div>
-
+                                       <div class="cell">
+                                       ID
+                                       </div>
+                                       <div class="cell">
+                                       NAME
+                                       </div>
+                                       <div class="cell">
+                                       PRICE
+                                       </div>
+                                       <div class="cell">
+                                       IMG
+                                       </div>
+                                       <div class="cell">
+                                       DESCRIPTION
+                                       </div>
+                                       <div class="cell">
+                                       CATEGORY
+                                       </div>
+                                    </div>
+                                    <div class="trow">
+                                       <div class="cell" data-title="id">
+										  ${menuDetail.menu_id }
+                                          </div>
+                                       <div class="cell" data-title="name">
+                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_name" id="menu_name" value="${menuDetail.menu_name }"/>
+                                       </div>
+                                       <div class="cell" data-title="price">
+                                          <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_price" id="menu_price" value="${menuDetail.menu_price }"/>
+                                       </div>
+                                       <div class="cell" data-title="img">
+                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_img" id="menu_img" value="${menuDetail.menu_img }"/>
+                                       </div>
+                                       <div class="cell" data-title="description"> 
+                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_description" id="menu_description" value="${menuDetail.menu_description }"/>
+                                       </div>
+                                       <div class="cell" data-title="category">
+                                         <input style="background-color: #d6d9dc; color: #565656" type="text" name="menu_category" id="menu_category" value="${menuDetail.menu_category }"/>
+                                       </div>
+                                    </div>
 
 											</div>
 											<div class="btnContainer" style="float:right; padding:10px">
-												<input type="submit" value="완료"> <input type="reset" value="취소"> <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
+												<input type="button" value="완료" id="updateMenuBtb"> <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id=${menuDetail.menu_id }'" />
 											</div>
-										</form>
 									</div>
 								</div>
 							</div>
@@ -444,6 +467,41 @@
         });
         });
   </script>
+   <script type="text/javascript">
+  //상태 변경시 ajax
+  $("#updateMenuBtb").on("click", function(){
+	  var menu_id = "${menuDetail.menu_id}";
+	  var menu_name=$("#menu_name").val();
+	  var menu_price=$("#menu_price").val();
+	  var menu_img=$("#menu_img").val();
+	  var menu_description=$("#menu_description").val();
+	  var menu_category=$("#menu_category").val();
+
+  	  console.log(menu_name);
+  	if(confirm("현재 메뉴의 정보를 변경하시겠습니까?")){
+	  $.ajax({
+		 url:"<%=ctxPath%>/admin/store/updateMenu.do",
+		 method: "POST",
+		 data: {
+
+			 menu_name : menu_name,
+			 menu_price : menu_price,
+			 menu_img : menu_img,
+			 menu_description : menu_description,
+			 menu_category : menu_category
+		 },
+		 success: function(){
+			 
+		 		console.log("메뉴 변경 성공!");
+			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id;			 
+			} 
+		 });
+	  }
+  });
+  
+  
+  </script>
+  
 </body>
 
 </html>
