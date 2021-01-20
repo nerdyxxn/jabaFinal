@@ -41,21 +41,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
+	href="<%=ctxPath%>/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/animate/animate.css">
+	href="<%=ctxPath%>/resources/vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
+	href="<%=ctxPath%>/resources/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	href="<%=ctxPath%>/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/css/tableUtil.css">
+	href="<%=ctxPath%>/resources/css/tableUtil.css">
 <link rel="stylesheet" type="text/css"
-   href="<%=ctxPath%>/resources/css/tableMain.css">
+	href="<%=ctxPath%>/resources/css/tableMain.css">
 <!--===============================================================================================-->
 </head>
 
@@ -323,158 +323,53 @@
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-   <!--Qna List-->
-      <section id="main-content">
-         <section class="wrapper">
-            <div class="trow">
-               <div class="col-lg-9 main-chart">
-                  <!--CUSTOM CHART START -->
-                  <div class="border-head">
-                     <h3>STORE 상세 페이지</h3>
-                  </div>
-                  <div class="qna-custom-bar-chart">
-                     <div class="limiter">
-                        <div class="container-table100">
-                           <div class="wrap-table100">
-                                 <div class="table">
-                                    <div class="trow theader">
-                                       <div class="cell">
-                                       ID
-                                       </div>
-                                       <div class="cell">
-                                       NAME
-                                       </div>
-                                       <div class="cell">
-                                       ADDR
-                                       </div>
-                                       <div class="cell">
-                                       TIME
-                                       </div>
-                                       <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
-                                       LAT
-                                       </div>
-                                       <div class="cell">
-                                       LNG
-                                       </div>
-                                       <div class="cell">
-                                       STATUS
-                                       </div>
-                                    </div>
-                                    <div class="trow">
-                                       <div class="cell" data-title="id">
-                                          ${storeDetail.store_id }
-                                          </div>
-                                       <div class="cell" data-title="name">
-                                          ${storeDetail.store_name }
-                                       </div>
-                                       <div class="cell" data-title="addr">
-                                          ${storeDetail.store_addr }
-                                       </div>
-                                       <div class="cell" data-title="time">
-                                         ${storeDetail.store_time}
-                                       </div>
-                                       <div class="cell" data-title="img"> 
-                                         ${storeDetail.store_img }
-                                       </div>
-                                       <div class="cell" data-title="description">
-                                         ${storeDetail.store_description}
-                                       </div>
-                                       <div class="cell" data-title="lat">
-                                         ${storeDetail.store_lat}
-                                       </div>
-                                       <div class="cell" data-title="lng">
-                                         ${storeDetail.store_lng}
-                                       </div>
-                                       <div class="cell" data-title="status">
-                                         ${storeDetail.store_status}
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="매장 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/updateStoreDetail.do?store_id=${storeDetail.store_id }'" id="updateStoreDetailBtn" />
-                                    <input type="button" value="매장 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuInsert.do?store_id=${storeDetail.store_id }'" id="addMenuBtn" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStore.do'" />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  
-                  <div class="limiter">
-                        <div class="container-table100">
-                           <div class="wrap-table100">
-                                 <div class="table">
-                                    <div class="trow theader">
-                                       <div class="cell">
-                                       ID
-                                       </div>
-                                       <div class="cell">
-                                       NAME
-                                       </div>
-                                       <div class="cell">
-                                       PRICE
-                                       </div>
-                                       <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
-                                       CATEGORY
-                                       </div>
-                                       <div class="cell">
-                                       AVAILABLE
-                                       </div>
-                                    </div>
-                                    <div class="trow">
-                                   <c:if test= "${ not empty menuList}">
-                                    <c:forEach items="${menuList}" var="menuList">
-                                       <div class="cell" data-title="id">
-                                          ${menuList.menu_id }
-                                          </div>
-                                       <a href="<%=ctxPath %>/admin/store/adminMenuDetail.do?menu_id=${menuList.menu_id }"><div class="cell" data-title="name">
-                                          ${menuList.menu_name }
-                                       </div></a>
-                                       <div class="cell" data-title="price">
-                                          ${menuList.menu_price }
-                                       </div>
-                                       <div class="cell" data-title="img">
-                                         ${menuList.menu_img}
-                                       </div>
-                                       <div class="cell" data-title="description">
-                                         ${menuList.menu_description}
-                                       </div>
-                                       <div class="cell" data-title="category">
-                                         ${menuList.menu_category}
-                                       </div>
-                                       <div class="cell" data-title="available">
-                                         ${menuList.menu_available}
-                                       </div>
-                                    </c:forEach>
-                                    </c:if>
-                                    </div>
-                                 </div>
-                                 <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="상태변경" id="statusChangeBtn" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminClient.do'" />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  
-                  
-               </div>
-            </div>
-</div>
-         </section>
+    <!--Qna List-->
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="trow">
+					<div class="col-lg-9 main-chart">
+						<!--CUSTOM CHART START -->
+						<div class="border-head">
+							<h3>Q&A 수정</h3>
+						</div>
+						<div class="qna-custom-bar-chart">
+							<div class="limiter">
+								<div class="container-table100">
+									<div class="wrap-table100">
+										<form action="<%=ctxPath%>/admin/qna/updateQna.do?qna_no=${qnaDetail.qna_no }"
+											method="POST">
+											<div class="table">
+												<div class="trow theader">
+													<div class="cell"></div>
+													<div class="cell">
+														TITLE &nbsp; <input style="background-color: #d6d9dc; color: #565656" type="text" name="title" id="title" value="${qnaDetail.qna_title }"/>
+													</div>
+												</div>
+												<div class="trow">
+													<div class="cell" data-title="Full Name">
+														</div>
+													<div class="cell" data-title="Job Title">
+														CONTENT &nbsp; <input style="background-color: #d6d9dc; color: #565656" type="text" value="${qnaDetail.qna_content }" name="content" id="content"/>
+													</div>
+												</div>
 
 
+											</div>
+											<div class="btnContainer" style="float:right; padding:10px">
+												<input type="submit" value="완료"> <input type="reset" value="취소"> <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+    
+    
+   
           <!-- /col-lg-3 -->
         <!-- /row -->
       </section>
@@ -517,7 +412,25 @@
   <!--script for this page-->
   <script src="<%=ctxPath%>/resources/js/admin/lib/sparkline-chart.js"></script>
   <script src="<%=ctxPath%>/resources/js/admin/lib/zabuto_calendar.js"></script>
+  <script type="application/javascript">
+    $(document).ready(function() {
+      $("#date-popover").popover({
+        html: true,
+        trigger: "manual"
+      });
+      $("#date-popover").hide();
+      $("#date-popover").click(function(e) {
+        $(this).hide();
+      });
 
+    function myNavFunction(id) {
+      $("#date-popover").hide();
+      var nav = $("#" + id).data("navigation");
+      var to = $("#" + id).data("to");
+      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+    }
+  </script>
+  
   <script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){
@@ -530,31 +443,6 @@
            }
         });
         });
-  </script>
-  <script type="text/javascript">
-  //상태 변경시 ajax
-  $("#statusChangeBtn").on("click", function(){
-	  var client_id="${clientDetail.client_id}";
-  	  var client_status="${clientDetail.client_status}";
-  	  console.log(client_status);
-	  $.ajax({
-		 url:"<%=ctxPath%>/admin/updateClientStatus.do",
-		 method: "POST",
-		 data: {
-			 client_id : client_id,
-			 client_status : client_status
-		 },
-		 success: function(){
-			if(confirm("현재 회원의 상태를 변경하시겠습니까?")){
-			 	location.href="<%=ctxPath%>/admin/adminClientDetail.do?client_id="+client_id;
-				 
-			} 
-		 }
-	  
-	  });
-  });
-  
-  
   </script>
 </body>
 

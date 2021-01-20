@@ -64,5 +64,11 @@
 		(('M' || LPAD(ORDER_SEQ.nextval, 5, 0)), #{store_id}, #{menu_name},
 		#{menu_price}, #{menu_img}, #{menu_description}, #{menu_category})
 	</insert>
-
+	
+	<!-- 메뉴 디테일 정보 얻어오기 -->
+	<select id="selectOneMenuByMenuId" parameterType="String"
+		resultType="Menu">
+		select * from menu where menu_id=#{menu_id}
+	</select>
+	
 </mapper>

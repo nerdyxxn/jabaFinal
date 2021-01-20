@@ -42,4 +42,9 @@ public class BizDao {
 		return sqlSession.selectList("Biz.selectAllStore");
 	}
 	
+	// 매장 Detail 정보 수정
+	public int updateStoreDetail(Biz b) {
+		return sqlSession.update("Biz.updateStoreDetail", b);
+	}
+	
 }

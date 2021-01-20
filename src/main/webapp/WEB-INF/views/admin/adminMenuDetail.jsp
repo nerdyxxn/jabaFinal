@@ -345,22 +345,13 @@
                                        NAME
                                        </div>
                                        <div class="cell">
-                                       ADDR
+                                       PHONE
                                        </div>
                                        <div class="cell">
-                                       TIME
+                                       GENDER
                                        </div>
                                        <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
-                                       LAT
-                                       </div>
-                                       <div class="cell">
-                                       LNG
+                                       BIRTH
                                        </div>
                                        <div class="cell">
                                        STATUS
@@ -368,38 +359,32 @@
                                     </div>
                                     <div class="trow">
                                        <div class="cell" data-title="id">
-                                          ${storeDetail.store_id }
+                                          ${menuDetail.menu_id }
                                           </div>
                                        <div class="cell" data-title="name">
-                                          ${storeDetail.store_name }
+                                          ${menuDetail.menu_name }
                                        </div>
                                        <div class="cell" data-title="addr">
-                                          ${storeDetail.store_addr }
+                                          ${menuDetail.menu_price }
                                        </div>
                                        <div class="cell" data-title="time">
-                                         ${storeDetail.store_time}
+                                         ${menuDetail.menu_img}
                                        </div>
                                        <div class="cell" data-title="img"> 
-                                         ${storeDetail.store_img }
+                                         ${menuDetail.menu_description }
                                        </div>
                                        <div class="cell" data-title="description">
-                                         ${storeDetail.store_description}
+                                         ${menuDetail.menu_category}
                                        </div>
                                        <div class="cell" data-title="lat">
-                                         ${storeDetail.store_lat}
-                                       </div>
-                                       <div class="cell" data-title="lng">
-                                         ${storeDetail.store_lng}
-                                       </div>
-                                       <div class="cell" data-title="status">
-                                         ${storeDetail.store_status}
+                                         ${menuDetail.menu_available}
                                        </div>
                                     </div>
                                  </div>
                                  <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="매장 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/updateStoreDetail.do?store_id=${storeDetail.store_id }'" id="updateStoreDetailBtn" />
-                                    <input type="button" value="매장 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuInsert.do?store_id=${storeDetail.store_id }'" id="addMenuBtn" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStore.do'" />
+                                    <input type="button" value="메뉴 정보 변경" id="menuChangeBtn" />
+                                    <input type="button" value="커스텀 메뉴 추가" id="customAddBtn" />
+                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminStore.do'" />
                            </div>
                         </div>
                      </div>
@@ -420,50 +405,29 @@
                                        PRICE
                                        </div>
                                        <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
                                        CATEGORY
-                                       </div>
-                                       <div class="cell">
-                                       AVAILABLE
                                        </div>
                                     </div>
                                     <div class="trow">
-                                   <c:if test= "${ not empty menuList}">
-                                    <c:forEach items="${menuList}" var="menuList">
+                                   <c:if test= "${ not empty customList}">
+                                    <c:forEach items="${customList}" var="customList">
                                        <div class="cell" data-title="id">
-                                          ${menuList.menu_id }
+                                          ${customList.custom_id }
                                           </div>
-                                       <a href="<%=ctxPath %>/admin/store/adminMenuDetail.do?menu_id=${menuList.menu_id }"><div class="cell" data-title="name">
-                                          ${menuList.menu_name }
-                                       </div></a>
+                                       <div class="cell" data-title="name">
+                                          ${customList.custom_name }
+                                       </div>
                                        <div class="cell" data-title="price">
-                                          ${menuList.menu_price }
-                                       </div>
-                                       <div class="cell" data-title="img">
-                                         ${menuList.menu_img}
-                                       </div>
-                                       <div class="cell" data-title="description">
-                                         ${menuList.menu_description}
+                                          ${customList.custom_price }
                                        </div>
                                        <div class="cell" data-title="category">
-                                         ${menuList.menu_category}
-                                       </div>
-                                       <div class="cell" data-title="available">
-                                         ${menuList.menu_available}
+                                         ${customList.custom_category}
                                        </div>
                                     </c:forEach>
                                     </c:if>
                                     </div>
                                  </div>
-                                 <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="상태변경" id="statusChangeBtn" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminClient.do'" />
-                           </div>
+                               
                         </div>
                      </div>
                   </div>

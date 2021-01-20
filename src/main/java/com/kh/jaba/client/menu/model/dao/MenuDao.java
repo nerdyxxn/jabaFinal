@@ -81,4 +81,9 @@ public class MenuDao {
 		return sqlSession.insert("Menu.updateMenuAvailable", m);
 	}
 	
+	// 메뉴 디테일 
+	public Menu selectOneMenuByMenuId(String menu_id) {
+		return sqlSession.selectOne("Menu.selectOneMenuByMenuId", menu_id);
+	}
+	
 }

@@ -37,4 +37,11 @@
 		select * from custom where custom_id = #{custom_id}
 	</select>
 
+	<!-- 해당 메뉴의 모든 커스텀 목록들을 출력 -->
+	<select id="selectListByMenuId" parameterType="String"
+		resultType="arraylist" resultMap="resultCustom">
+		select * from custom where menu_id=#{menu_id}
+		order by custom_category
+	</select>	
+	
 </mapper>

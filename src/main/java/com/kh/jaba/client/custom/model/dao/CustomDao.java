@@ -28,4 +28,8 @@ public class CustomDao {
 	public Custom selectOneCustomByCustomId(String custom_id) {
 		return sqlSession.selectOne("Custom.selectOneCustomByCustomId", custom_id);
 	}
+	
+	public List<Custom> selectListByMenuId(String menu_id){
+		return sqlSession.selectList("Custom.selectListByMenuId", menu_id);
+	}
 }

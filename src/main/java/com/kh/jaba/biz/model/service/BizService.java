@@ -23,4 +23,7 @@ public interface BizService {
 	
 	// 전체 매장 조회
 	public List<Biz> selectAllStore();
+	
+	// 매장 Detail 정보 수정
+	public int updateStoreDetail(Biz b);
 }

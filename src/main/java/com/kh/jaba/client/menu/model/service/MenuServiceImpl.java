@@ -57,4 +57,10 @@ public class MenuServiceImpl implements MenuService{
 		return menuDao.insertMenu(m);
 	}
 
+	// 메뉴 디테일 
+	@Override
+	public Menu selectOneMenuByMenuId(String menu_id) {
+		return menuDao.selectOneMenuByMenuId(menu_id);
+	}
+	
 }

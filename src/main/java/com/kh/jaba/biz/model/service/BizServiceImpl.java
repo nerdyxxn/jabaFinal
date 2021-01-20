@@ -57,4 +57,10 @@ public class BizServiceImpl implements BizService{
 		return bizDao.selectAllStore();
 	}
 
+	// 매장 Detail 정보 수정
+	@Override
+	public int updateStoreDetail(Biz b) {
+		return bizDao.updateStoreDetail(b);
+	}
+
 }

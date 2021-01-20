@@ -27,4 +27,7 @@ public interface MenuService {
 
 	// insertMenu
 	public int insertMenu(Menu m);
+	
+	// 메뉴 디테일 
+	public Menu selectOneMenuByMenuId(String menu_id);
 }

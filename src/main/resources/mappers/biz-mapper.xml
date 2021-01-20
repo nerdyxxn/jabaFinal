@@ -42,8 +42,15 @@
       select count(*) from store
    </select>
    
-<!-- admin store 진입 시 모든 store 출력 -->
+	<!-- admin store 진입 시 모든 store 출력 -->
    <select id="selectAllStore" resultType="arraylist" resultMap="resultBiz">
       select * from store
    </select> 
+   
+	<!-- 매장 정보 변경 -->
+	<update id="updateStoreDetail" parameterType="Biz"
+		flushCache="true" statementType="PREPARED">
+		update store set store_time=#{store_time}, store_img=#{store_img}, store_description=#{store_description} where store_id=#{store_id}
+	</update>   
+   
 </mapper>

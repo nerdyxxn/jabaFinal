@@ -337,79 +337,7 @@
                         <div class="container-table100">
                            <div class="wrap-table100">
                                  <div class="table">
-                                    <div class="trow theader">
-                                       <div class="cell">
-                                       ID
-                                       </div>
-                                       <div class="cell">
-                                       NAME
-                                       </div>
-                                       <div class="cell">
-                                       ADDR
-                                       </div>
-                                       <div class="cell">
-                                       TIME
-                                       </div>
-                                       <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
-                                       LAT
-                                       </div>
-                                       <div class="cell">
-                                       LNG
-                                       </div>
-                                       <div class="cell">
-                                       STATUS
-                                       </div>
-                                    </div>
-                                    <div class="trow">
-                                       <div class="cell" data-title="id">
-                                          ${storeDetail.store_id }
-                                          </div>
-                                       <div class="cell" data-title="name">
-                                          ${storeDetail.store_name }
-                                       </div>
-                                       <div class="cell" data-title="addr">
-                                          ${storeDetail.store_addr }
-                                       </div>
-                                       <div class="cell" data-title="time">
-                                         ${storeDetail.store_time}
-                                       </div>
-                                       <div class="cell" data-title="img"> 
-                                         ${storeDetail.store_img }
-                                       </div>
-                                       <div class="cell" data-title="description">
-                                         ${storeDetail.store_description}
-                                       </div>
-                                       <div class="cell" data-title="lat">
-                                         ${storeDetail.store_lat}
-                                       </div>
-                                       <div class="cell" data-title="lng">
-                                         ${storeDetail.store_lng}
-                                       </div>
-                                       <div class="cell" data-title="status">
-                                         ${storeDetail.store_status}
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="매장 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/updateStoreDetail.do?store_id=${storeDetail.store_id }'" id="updateStoreDetailBtn" />
-                                    <input type="button" value="매장 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuInsert.do?store_id=${storeDetail.store_id }'" id="addMenuBtn" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStore.do'" />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  
-                  <div class="limiter">
-                        <div class="container-table100">
-                           <div class="wrap-table100">
-                                 <div class="table">
-                                    <div class="trow theader">
+                                   <div class="trow theader">
                                        <div class="cell">
                                        ID
                                        </div>
@@ -433,42 +361,37 @@
                                        </div>
                                     </div>
                                     <div class="trow">
-                                   <c:if test= "${ not empty menuList}">
-                                    <c:forEach items="${menuList}" var="menuList">
                                        <div class="cell" data-title="id">
-                                          ${menuList.menu_id }
-                                          </div>
-                                       <a href="<%=ctxPath %>/admin/store/adminMenuDetail.do?menu_id=${menuList.menu_id }"><div class="cell" data-title="name">
-                                          ${menuList.menu_name }
-                                       </div></a>
+                                          <input style="background-color: #d6d9dc;" type="text" name="id" id="id" />
+                                       </div>
+                                       <div class="cell" data-title="name">
+                                          <input style="background-color: #d6d9dc;" type="text" name="name" id="name" />
+                                       </div>
                                        <div class="cell" data-title="price">
-                                          ${menuList.menu_price }
+                                          <input style="background-color: #d6d9dc;" type="text" name="price" id="price" />
                                        </div>
                                        <div class="cell" data-title="img">
-                                         ${menuList.menu_img}
+                                         <input style="background-color: #d6d9dc;" type="text" name="img" id="img" />
                                        </div>
                                        <div class="cell" data-title="description">
-                                         ${menuList.menu_description}
+                                         <input style="background-color: #d6d9dc;" type="text" name="description" id="description" />
                                        </div>
                                        <div class="cell" data-title="category">
-                                         ${menuList.menu_category}
+                                         <input style="background-color: #d6d9dc;" type="text" name="category" id="category" />
                                        </div>
                                        <div class="cell" data-title="available">
-                                         ${menuList.menu_available}
+                                         <input style="background-color: #d6d9dc;" type="text" name="available" id="available" />
                                        </div>
-                                    </c:forEach>
-                                    </c:if>
                                     </div>
                                  </div>
                                  <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="상태변경" id="statusChangeBtn" />
+                                    <input type="button" value="추가하기" id="menuAddBtn" />
                                     <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/adminClient.do'" />
                            </div>
                         </div>
                      </div>
                   </div>
-                  
-                  
+
                </div>
             </div>
 </div>
@@ -532,17 +455,28 @@
         });
   </script>
   <script type="text/javascript">
-  //상태 변경시 ajax
-  $("#statusChangeBtn").on("click", function(){
-	  var client_id="${clientDetail.client_id}";
-  	  var client_status="${clientDetail.client_status}";
+  //메뉴 추가 ajax
+  $("#menuAddBtn").on("click", function(){
+	  var menu_id=$("#id").val();
+	  var menu_name=$("#name").val();
+	  var menu_price=$("#price").val();
+	  var menu_img=$("#img").val();
+	  var menu_description=$("#description").val();
+	  var menu_category=$("#category").val();
+	  var menu_available=$("#available").val();
+
   	  console.log(client_status);
 	  $.ajax({
-		 url:"<%=ctxPath%>/admin/updateClientStatus.do",
+		 url:"<%=ctxPath%>/admin/addMenu.do",
 		 method: "POST",
 		 data: {
-			 client_id : client_id,
-			 client_status : client_status
+			 menu_id : menu_id,
+			 menu_name : menu_name,
+			 menu_price : menu_price,
+			 menu_img : menu_img,
+			 menu_description : menu_description,
+			 menu_category : menu_category,
+			 menu_available : menu_available,
 		 },
 		 success: function(){
 			if(confirm("현재 회원의 상태를 변경하시겠습니까?")){

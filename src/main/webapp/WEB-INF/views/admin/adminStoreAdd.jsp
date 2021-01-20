@@ -342,25 +342,19 @@
                                        ID
                                        </div>
                                        <div class="cell">
+                                       PASSWORD
+                                       </div>
+                                       <div class="cell">
                                        NAME
                                        </div>
                                        <div class="cell">
-                                       ADDR
+                                       PHONE
                                        </div>
                                        <div class="cell">
-                                       TIME
+                                       GENDER
                                        </div>
                                        <div class="cell">
-                                       IMG
-                                       </div>
-                                       <div class="cell">
-                                       DESCRIPTION
-                                       </div>
-                                       <div class="cell">
-                                       LAT
-                                       </div>
-                                       <div class="cell">
-                                       LNG
+                                       BIRTH
                                        </div>
                                        <div class="cell">
                                        STATUS
@@ -368,37 +362,40 @@
                                     </div>
                                     <div class="trow">
                                        <div class="cell" data-title="id">
-                                          ${storeDetail.store_id }
-                                          </div>
+                                          <input style="background-color: #d6d9dc;" type="text" name="id" id="id" />
+                                       </div>
+                                       <div class="cell" data-title="pw">
+                                          <input style="background-color: #d6d9dc;" type="password" name="pw" id="pw" />
+                                       </div>
                                        <div class="cell" data-title="name">
-                                          ${storeDetail.store_name }
+                                          <input style="background-color: #d6d9dc;" type="text" name="name" id="name" />
                                        </div>
                                        <div class="cell" data-title="addr">
-                                          ${storeDetail.store_addr }
+                                          <input style="background-color: #d6d9dc;" type="text" name="addr" id="addr" />
                                        </div>
                                        <div class="cell" data-title="time">
-                                         ${storeDetail.store_time}
+                                         <input style="background-color: #d6d9dc;" type="text" name="time" id="time" />
                                        </div>
                                        <div class="cell" data-title="img"> 
-                                         ${storeDetail.store_img }
+                                         <input style="background-color: #d6d9dc;" type="text" name="img" id="img" />
                                        </div>
                                        <div class="cell" data-title="description">
-                                         ${storeDetail.store_description}
+                                         <input style="background-color: #d6d9dc;" type="text" name="description" id="description" />
                                        </div>
                                        <div class="cell" data-title="lat">
-                                         ${storeDetail.store_lat}
+                                         <input style="background-color: #d6d9dc;" type="text" name="lat" id="lat" />
                                        </div>
                                        <div class="cell" data-title="lng">
-                                         ${storeDetail.store_lng}
+                                         <input style="background-color: #d6d9dc;" type="text" name="lng" id="lng" />
                                        </div>
                                        <div class="cell" data-title="status">
-                                         ${storeDetail.store_status}
+                                         <input style="background-color: #d6d9dc;" type="text" name="status" id="status" />
                                        </div>
                                     </div>
                                  </div>
                                  <div class="btnContainer" style="float:right; padding:10px">
-                                    <input type="button" value="매장 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/updateStoreDetail.do?store_id=${storeDetail.store_id }'" id="updateStoreDetailBtn" />
-                                    <input type="button" value="매장 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuInsert.do?store_id=${storeDetail.store_id }'" id="addMenuBtn" />
+                                    <input type="button" value="매장 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStoreUpdate.do?store_id=${storeDetail.store_id }'" id="statusChangeBtn" />
+                                    <input type="button" value="매장 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuInsert.do?store_id=${storeDetail.store_id }'" id="statusChangeBtn" />
                                     <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStore.do'" />
                            </div>
                         </div>
@@ -438,7 +435,7 @@
                                        <div class="cell" data-title="id">
                                           ${menuList.menu_id }
                                           </div>
-                                       <a href="<%=ctxPath %>/admin/store/adminMenuDetail.do?menu_id=${menuList.menu_id }"><div class="cell" data-title="name">
+                                       <a href="<%=ctxPath %>/admin/store/adminMenuDetail.do?menu_name=${menuList.menu_name }"><div class="cell" data-title="name">
                                           ${menuList.menu_name }
                                        </div></a>
                                        <div class="cell" data-title="price">

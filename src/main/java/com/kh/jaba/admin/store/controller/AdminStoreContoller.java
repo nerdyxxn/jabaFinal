@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.jaba.biz.model.domain.Biz;
 import com.kh.jaba.biz.model.service.BizService;
+import com.kh.jaba.client.custom.model.domain.Custom;
+import com.kh.jaba.client.custom.model.service.CustomService;
 import com.kh.jaba.client.menu.model.domain.Menu;
 import com.kh.jaba.client.menu.model.service.MenuService;
 import com.kh.jaba.client.model.domain.Client;
@@ -27,6 +29,12 @@ public class AdminStoreContoller {
 	
 	@Autowired
 	private BizService bizService;
+	
+	@Autowired
+	private Biz biz;
+	
+	@Autowired
+	private CustomService customService;
 	
 	@RequestMapping(value = "admin/store/selectAdminStore.do", method = RequestMethod.GET)
 	public ModelAndView selectAdminStore(ModelAndView mv, HttpServletRequest request) {
@@ -57,8 +65,78 @@ public class AdminStoreContoller {
 		return mv;
 	}
 	
+	// 매장 Detail 정보 수정 페이지로 이동
+		@RequestMapping(value = "/admin/store/updateStoreDetail.do", method = RequestMethod.GET)
+		public ModelAndView updateStoreDetail(ModelAndView mv, HttpServletRequest request) {
+			
+			mv.setViewName("admin/adminStoreUpdate");
+			return mv;
+		}
 	
+	
+	// 매장 Detail 정보 수정
+	@RequestMapping(value = "/admin/store/updateStore.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateStore(HttpServletRequest request) {
+		Biz storeDetail = (Biz)request.getSession().getAttribute("storeDetail");
+		String store_id = storeDetail.getStore_id();
+		String store_time = null;
+		String store_description = null;
+		String store_img = null;
+		
+		// store_time 이 받아온 값이 있으면 받아온 값을 넣어주고 아니면 기존 값을 사용
+		if(request.getParameter("store_time") != null) {
+			store_time = request.getParameter("store_time");
+		}else {
+			store_time = storeDetail.getStore_time();
+		}
+		
+		if(request.getParameter("store_description") != null) {
+			store_description = request.getParameter("store_description");
+		}else {
+			store_description = storeDetail.getStore_description();
+		}
+		
+		if(request.getParameter("store_img") != null) {
+			store_img = request.getParameter("store_img");
+		}else {
+			store_img = storeDetail.getStore_img();
+		}
+		
+		biz.setStore_id(store_id);
+		biz.setStore_description(store_description);
+		biz.setStore_time(store_time);
+		biz.setStore_img(store_img);
+		
+		bizService.updateStoreDetail(biz);
 
+	}
+	
+	// 매장 Detail 정보 수정
+	@RequestMapping(value = "/admin/store/adminMenuDetail.do", method = RequestMethod.GET)
+	public ModelAndView adminMenuDetail(ModelAndView mv, HttpServletRequest request) {
+		// 메뉴 디테일 정보를 얻어옴 
+		String menu_id = null;
+		if(request.getParameter("menu_id")!=null) {
+			menu_id = request.getParameter("menu_id");
+			// 메뉴 디테일 정보를 세션에 담기
+			Menu menuDetail = menuService.selectOneMenuByMenuId(menu_id);
+			request.getSession().setAttribute("menuDetail", menuDetail);
+			
+			// 해당 메뉴의 커스텀 리스트들을 세션에 담기
+			List<Custom> customList = customService.selectListByMenuId(menu_id);
+			System.out.println(customList.size() + " 개의 커스텀 목록을 가져왔습니다." );
+			
+			request.getSession().setAttribute("customList", customList);
+		}else {
+			System.out.println("메뉴 정보를 얻어올 수 없습니다.");
+		}
+		
+		mv.setViewName("admin/adminMenuDetail");
+		return mv;
+	}
+	
+	
 	// 메뉴 insert
 	@RequestMapping(value = "/admin/store/insertMenu.do", method = RequestMethod.POST)
 	@ResponseBody

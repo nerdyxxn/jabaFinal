@@ -322,8 +322,7 @@
 										</div>
 									</div>
 									<div class="buttonContainer" style="width: 100%; clear:both" >
-							<a href="<%=ctxPath%>/admin/qna/writeQna.do" style="float:right;"><button
-									class="writeQna">글 작성</button></a>
+							<a href="<%=ctxPath%>/admin/qna/writeQna.do" style="float:right;"><button class="writeQna">글 작성</button></a>
 								</div>
 								
 							</div>
