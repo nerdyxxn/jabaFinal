@@ -215,25 +215,28 @@
                   <img src="<%=ctxPath%>/resources/images/clogo1.png" width="80">
                </p>
                <h5 class="centered">admin</h5>
-               <li class="mt"><a class="active"
-                  href="<%=ctxPath%>/admin/adminMain.do"> <i
-                     class="fa fa-dashboard"></i> <span>Main</span>
+               <li class="mt"><a href="<%=ctxPath%>/admin/adminMain.do">
+               		<i class="fa fa-dashboard"></i> <span>Main</span>
                </a></li>
-               <li class="sub-menu"><a href="javascript:;"> <i
+               <li class="sub-menu"><a class="active" href="javascript:;"> <i
                      class="fa fa-desktop"></i> <span>Client</span>
                </a>
-                  <ul class="sub">
-                     <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">회원 관리</a></li>
-                  </ul></li>
-               <li class="sub-menu"><a href="javascript:;"> <i
-                     class="fa fa-cogs"></i> <span>Biz Store</span>
-               </a>
-                  <ul class="sub">
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 정보</a></li>
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 선택</a></li>
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 관리</a></li>
-                  </ul></li>
+            <ul class="sub">
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">회원 관리</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Biz Store</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 선택</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 관리</a></li>
+            </ul>
+          </li>
                <li class="sub-menu"><a href="javascript:;"> <i
                      class="fa fa-book"></i> <span>Q & A</span>
                </a>
@@ -273,9 +276,9 @@
 										<c:if test="${not empty clientList }">
 											<c:forEach items="${clientList }" var="client">
 												<div class="trow">
-													<div class="cell">${client.client_id }</div>
+													<div class="cell" data-title="ID">${client.client_id }</div>
 													<a href="<%=ctxPath%>/admin/adminClientDetail.do?client_id=${client.client_id }">
-														<div class="cell">${client.client_name }</div>
+														<div class="cell" data-title="NAME">${client.client_name }</div>
 													</a>
 													<div class="cell" data-title="PHONE">${client.client_phone }</div>
 													<div class="cell" data-title="STATUS">

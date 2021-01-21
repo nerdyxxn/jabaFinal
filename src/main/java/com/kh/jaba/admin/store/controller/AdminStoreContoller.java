@@ -219,7 +219,7 @@ public class AdminStoreContoller {
    @RequestMapping(value = "/admin/store/insertMenu.do", method = RequestMethod.POST)
    @ResponseBody
    public ModelAndView insertMenuDo(HttpServletRequest request, @RequestParam(name = "upfile") MultipartFile report, ModelAndView mv) {
-	  Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
+     Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
       String store_id = storeDetail.getStore_id();
       System.out.println(store_id);
       String menu_name = request.getParameter("menu_name");
@@ -231,13 +231,13 @@ public class AdminStoreContoller {
       // menu_name 중복 확인 해야함 
       try {
       // 첨부파일 저장
-   	  if (report != null && !report.equals("")) {
-   			saveFile(report, request);
-   		}
-   	  System.out.println(report.getOriginalFilename());
-   	  menu.setMenu_img(report.getOriginalFilename()); // 저장된 파일명을 vo에 set
+        if (report != null && !report.equals("")) {
+            saveFile(report, request);
+         }
+        System.out.println(report.getOriginalFilename());
+        menu.setMenu_img(report.getOriginalFilename()); // 저장된 파일명을 vo에 set
       }catch (Exception e) {
-    	  e.printStackTrace();
+         e.printStackTrace();
       }
       
       menu.setStore_id(store_id);
@@ -263,13 +263,13 @@ public class AdminStoreContoller {
   // custom detail
    @RequestMapping(value = "/admin/store/customDetail.do", method = RequestMethod.GET)
    public ModelAndView customDetail(ModelAndView mv, HttpServletRequest request) {
-	   String custom_id = request.getParameter("custom_id");
-	      Custom customDetail = customService.selectOneCustomByCustomId(custom_id);
-	      if(customDetail == null) {
-	         System.out.println(custom_id + "의 커스텀 정보를 가져오지 못했습니다.");
-	      }else {
-	         request.getSession().setAttribute("customDetail", customDetail);
-	      }
+      String custom_id = request.getParameter("custom_id");
+         Custom customDetail = customService.selectOneCustomByCustomId(custom_id);
+         if(customDetail == null) {
+            System.out.println(custom_id + "의 커스텀 정보를 가져오지 못했습니다.");
+         }else {
+            request.getSession().setAttribute("customDetail", customDetail);
+         }
       mv.setViewName("admin/adminCustomDetail");
       return mv;
    }
@@ -345,8 +345,8 @@ public class AdminStoreContoller {
    @RequestMapping(value = "/admin/store/customAdd.do", method = RequestMethod.POST)
    @ResponseBody
    public void customAdd(HttpServletRequest request) {
-	  Menu menuDetail = (Menu)request.getSession().getAttribute("menuDetail");
-	   String menu_id = menuDetail.getMenu_id();
+     Menu menuDetail = (Menu)request.getSession().getAttribute("menuDetail");
+     String menu_id = menuDetail.getMenu_id();
       String custom_name = request.getParameter("custom_name");
       int custom_price = Integer.parseInt(request.getParameter("custom_price"));
       String custom_category = request.getParameter("custom_category");
@@ -359,47 +359,49 @@ public class AdminStoreContoller {
       int result = customService.insertCustom(custom);
       
       if(result == 1) {
-         System.out.println(custom.getCustom_id() + "의 커스텀 추가 완료");
+         System.out.println(custom.getCustom_name() + "의 커스텀 추가 완료");
       }else {
          System.out.println("커스텀 추가 실패");
       }
    }
    
    private void saveFile(MultipartFile report, HttpServletRequest request) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\uploadFiles";
-		File folder = new File(savePath);
-		if (!folder.exists()) {
-			folder.mkdirs(); // 폴더가 없다면 생성한다.
-		}
-		String filePath = null;
-		try {
-			// 파일 저장
-			System.out.println(report.getOriginalFilename() + "을 저장합니다.");
-			System.out.println("저장 경로 : " + savePath);
+      String root = request.getSession().getServletContext().getRealPath("resources");
+      Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
+      String savePath = root + "\\" + storeDetail.getStore_name();
+      File folder = new File(savePath);
+      if (!folder.exists()) {
+         folder.mkdirs(); // 폴더가 없다면 생성한다.
+      }
+      String filePath = null;
+      try {
+         // 파일 저장
+         System.out.println(report.getOriginalFilename() + "을 저장합니다.");
+         System.out.println("저장 경로 : " + savePath);
 
-			filePath = folder + "\\" + report.getOriginalFilename();
-			report.transferTo(new File(filePath)); // 파일을 저장한다
-			System.out.println("파일 명 : " + report.getOriginalFilename());
-			System.out.println("파일 경로 : " + filePath);
-			System.out.println("파일 전송이 완료되었습니다.");
-		} catch (Exception e) {
-			System.out.println("파일 전송 에러 : " + e.getMessage());
-		}
-	}
+         filePath = folder + "\\" + report.getOriginalFilename();
+         report.transferTo(new File(filePath)); // 파일을 저장한다
+         System.out.println("파일 명 : " + report.getOriginalFilename());
+         System.out.println("파일 경로 : " + filePath);
+         System.out.println("파일 전송이 완료되었습니다.");
+      } catch (Exception e) {
+         System.out.println("파일 전송 에러 : " + e.getMessage());
+      }
+   }
 
-	private void removeFile(String board_file, HttpServletRequest request) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\uploadFiles";
-		String filePath = savePath + "\\" + board_file;
-		try {
-			System.out.println(board_file + "을 삭제합니다.");
-			System.out.println("기존 저장 경로 : " + savePath);
-			File delFile = new File(filePath);
-			delFile.delete();
-			System.out.println("파일 삭제가 완료되었습니다.");
-		} catch (Exception e) {
-			System.out.println("파일 삭제 에러: " + e.getMessage());
-		}
-	}
+   private void removeFile(String board_file, HttpServletRequest request) {
+      String root = request.getSession().getServletContext().getRealPath("resources");
+      Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
+      String savePath = root + "\\" + storeDetail.getStore_name();
+      String filePath = savePath + "\\" + board_file;
+      try {
+         System.out.println(board_file + "을 삭제합니다.");
+         System.out.println("기존 저장 경로 : " + savePath);
+         File delFile = new File(filePath);
+         delFile.delete();
+         System.out.println("파일 삭제가 완료되었습니다.");
+      } catch (Exception e) {
+         System.out.println("파일 삭제 에러: " + e.getMessage());
+      }
+   }
 }

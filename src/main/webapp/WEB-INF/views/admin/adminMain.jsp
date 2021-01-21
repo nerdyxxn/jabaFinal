@@ -269,7 +269,7 @@
               </a>
             <ul class="sub">
               <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">회원 관리</a></li>
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">회원 관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -279,8 +279,8 @@
               </a>
             <ul class="sub">
               <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 정보</a></li>
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 선택</a></li>
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 관리</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 선택</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -503,48 +503,48 @@
             <!-- First Member -->
             <div class="desc">
               <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-divya.jpg" width="35px" height="35px" align="">
+                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ys.png" width="35px" height="35px" align="">
               </div>
               <div class="details">
                 <p>
                   <a href="#">SEUNGTAE YOU</a><br/>
-                  <muted>https://github.com/yousth</muted>
+                  <muted>github.com/yousth</muted>
                 </p>
               </div>
             </div>
             <!-- Second Member -->
             <div class="desc">
               <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-sherman.jpg" width="35px" height="35px" align="">
+                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/yoon.png" width="35px" height="35px" align="">
               </div>
               <div class="details">
                 <p>
                   <a href="#">YOONSUNG SEOL</a><br/>
-                  <muted>https://github.com/nerdyxxn</muted>
+                  <muted>github.com/nerdyxxn</muted>
                 </p>
               </div>
             </div>
             <!-- Third Member -->
             <div class="desc">
               <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-danro.jpg" width="35px" height="35px" align="">
+                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/min.png" width="35px" height="35px" align="">
               </div>
               <div class="details">
                 <p>
                   <a href="#">MINSU KIM</a><br/>
-                  <muted>https://github.com/kms160526</muted>
+                  <muted>github.com/kms160526</muted>
                 </p>
               </div>
             </div>
             <!-- Fourth Member -->
             <div class="desc">
               <div class="thumb">
-                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/ui-zac.jpg" width="35px" height="35px" align="">
+                <img class="img-circle" src="<%=ctxPath%>/resources/images/admin/img/hj.png" width="35px" height="35px" align="">
               </div>
               <div class="details">
                 <p>
                   <a href="#">HYUNJU KIM</a><br/>
-                  <muted>https://github.com/zoey-pepper</muted>
+                  <muted>github.com/zoey-pepper</muted>
                 </p>
               </div>
             </div>

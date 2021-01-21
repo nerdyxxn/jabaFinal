@@ -255,7 +255,7 @@
            <p class="centered"><img src="<%=ctxPath %>/resources/images/clogo1.png" width="80"></p>
           <h5 class="centered">admin</h5>
           <li class="mt">
-            <a class="active" href="<%=ctxPath%>/admin/adminMain.do">
+            <a href="<%=ctxPath%>/admin/adminMain.do">
               <i class="fa fa-dashboard"></i>
               <span>Main</span>
               </a>
@@ -266,19 +266,19 @@
               <span>Client</span>
               </a>
             <ul class="sub">
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">전체 회원 정보</a></li>
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">회원 관리</a></li>
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">회원 관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a class="active" href="javascript:;">
               <i class="fa fa-cogs"></i>
               <span>Biz Store</span>
               </a>
             <ul class="sub">
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 정보</a></li>
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 선택</a></li>
-              <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 관리</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 선택</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -338,7 +338,7 @@
 								<div class="btnContainer" style="padding: 10px;">
                                     <input type="button" value="매장 정보 변경" onclick="javascript:location.href='<%=ctxPath%>/admin/store/updateStoreDetail.do?store_id=${storeDetail.store_id }'" id="updateStoreDetailBtn" />
                                     <input type="button" value="매장 메뉴 추가" onclick="javascript:location.href='<%=ctxPath%>/admin/store/menuWrite.do'" />
-                                    <input type="button" value="돌아기기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/selectAdminStore.do'" />
+                                    <input type="button" value="돌아가기" onclick="javascript:location.href='<%=ctxPath%>/admin/store/selectAdminStore.do'" />
 								</div>
 							</div>
 						</div>

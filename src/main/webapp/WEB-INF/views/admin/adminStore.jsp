@@ -207,46 +207,58 @@
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
-      <aside>
-         <div id="sidebar" class="nav-collapse ">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-               <p class="centered">
-                  <img src="<%=ctxPath%>/resources/images/clogo1.png" width="80">
-               </p>
-               <h5 class="centered">admin</h5>
-               <li class="mt"><a class="active"
-                  href="<%=ctxPath%>/admin/adminMain.do"> <i
-                     class="fa fa-dashboard"></i> <span>Main</span>
-               </a></li>
-               <li class="sub-menu"><a href="javascript:;"> <i
-                     class="fa fa-desktop"></i> <span>Client</span>
-               </a>
-                  <ul class="sub">
-                     <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">회원 관리</a></li>
-                  </ul></li>
-               <li class="sub-menu"><a href="javascript:;"> <i
-                     class="fa fa-cogs"></i> <span>Biz Store</span>
-               </a>
-                  <ul class="sub">
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 정보</a></li>
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 선택</a></li>
-                     <li><a href="<%=ctxPath%>/admin/adminMain.do">매장 관리</a></li>
-                  </ul></li>
-               <li class="sub-menu"><a href="javascript:;"> <i
-                     class="fa fa-book"></i> <span>Q & A</span>
-               </a>
-                  <ul class="sub">
-                     <li><a href="<%=ctxPath%>/admin/qna/qnaList.do">Q&A 관리</a></li>
-                  </ul></li>
-               <li><a href="https://www.google.com/maps"> <i
-                     class="fa fa-map-marker"></i> <span>Google Maps </span>
-               </a></li>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+           <p class="centered"><img src="<%=ctxPath %>/resources/images/clogo1.png" width="80"></p>
+          <h5 class="centered">admin</h5>
+          <li class="mt">
+            <a href="<%=ctxPath%>/admin/adminMain.do">
+              <i class="fa fa-dashboard"></i>
+              <span>Main</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Client</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">전체 회원 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/adminClient.do">회원 관리</a></li>
             </ul>
-            <!-- sidebar menu end-->
-         </div>
-      </aside>
+          </li>
+          <li class="sub-menu">
+            <a class="active" href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Biz Store</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 정보</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 선택</a></li>
+              <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 관리</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-book"></i>
+              <span>Q & A</span>
+              </a>
+            <ul class="sub">
+              <li><a href="<%=ctxPath%>/admin/qna/qnaList.do">Q&A 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://www.google.com/maps">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+              </a>
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
       <!--sidebar end-->
       <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
