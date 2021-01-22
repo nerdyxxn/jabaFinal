@@ -237,11 +237,11 @@
               <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 관리</a></li>
             </ul>
           </li>
-               <li class="sub-menu"><a href="javascript:;"> <i
+               <li class="sub-menu"><a class="active" href="javascript:;"> <i
                      class="fa fa-book"></i> <span>Q & A</span>
                </a>
                   <ul class="sub">
-                     <li><a class="active" href="<%=ctxPath%>/admin/qna/qnaList.do">Q&A 관리</a></li>
+                     <li><a href="<%=ctxPath%>/admin/qna/qnaList.do">Q&A 관리</a></li>
                   </ul></li>
                <li><a href="https://www.google.com/maps"> <i
                      class="fa fa-map-marker"></i> <span>Google Maps </span>
@@ -338,39 +338,18 @@
 	<!--script for this page-->
 	<script src="<%=ctxPath%>/resources/js/admin/lib/sparkline-chart.js"></script>
 	<script src="<%=ctxPath%>/resources/js/admin/lib/zabuto_calendar.js"></script>
-	<script type="application/javascript">
-		
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
-
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-  
-	</script>
-
-	<script type="text/javascript" id="rendered-js">
+  <script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
     $("#logoutBtn").on("click",function(){
         $.ajax({
            url:"<%=ctxPath%>/client/clientLogout.do",
-				data : {},
-				success : function() {
-					$("#logoutBtn").hide();
-					location.href = "../";
-				}
-			});
-		});
-	</script>
+            data : {},
+            success : function() {
+               $("#logoutBtn").hide();
+               location.href = "../../";
+            }
+         });
+      });
+   </script>
 </body>
 </html>

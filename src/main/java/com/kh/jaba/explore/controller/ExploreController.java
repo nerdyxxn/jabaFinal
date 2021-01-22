@@ -100,6 +100,46 @@ public class ExploreController {
 		mv.setViewName("explore/explore");
 		return mv;
 	}
+	// 주소 검색 시 해당 주소에 속한 store list 출력
+		@RequestMapping(value = "/explore/searchLoc.do", method = RequestMethod.POST)
+		public ModelAndView searchLoc(ModelAndView mv, HttpServletRequest request) {
+			logger.info("----- Loc 검색 진입 -----");
+			//값을 잘 들고 들어오나 log 확인
+			String lat2Str = request.getParameter("lat2");
+			String lon2Str = request.getParameter("lon2");
+			System.out.println("현재위치 : " + lat2Str);
+			System.out.println("현재위치 : " + lon2Str);
+			double lat2 = Double.parseDouble(lat2Str);
+			double lon2 = Double.parseDouble(lon2Str);
+
+			System.out.println("storeList--explore 연결  : 모든 store list 출력");
+			List<Search> searchBrandList = searchService.searchLoc();
+				
+			for (int i = 0; i < searchBrandList.size(); i++) {
+					Search vo = searchBrandList.get(i);
+					double lat1 = Double.parseDouble(vo.getStore_lat());
+					double lon1 = Double.parseDouble(vo.getStore_lng());
+					double d = Math.round(getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) * 10) / 10.0;
+					vo.setStore_distance(d);
+					// dList.add(d);
+			}
+				
+			System.out.println("aaa:" + searchBrandList);
+			Collections.sort(searchBrandList); // 오름차순 정리
+			System.out.println("bbb:" + searchBrandList);
+			// 모든 store 정보들이 searchBrandList에 담겨있다.
+			System.out.println(searchBrandList.size());
+			//뒤에서부터 21번째까지 제거
+			for (int j = searchBrandList.size()-1; j > 20; j--) {
+				searchBrandList.remove(j);
+			}
+			
+			System.out.println(searchBrandList.size());
+			request.getSession().setAttribute("storeList", searchBrandList); // StoreList를 세션으로 넘김
+				
+			mv.setViewName("explore/explore");
+			return mv;
+		}
 
 	private double deg2rad(double deg) {
 		return deg * (Math.PI / 180);

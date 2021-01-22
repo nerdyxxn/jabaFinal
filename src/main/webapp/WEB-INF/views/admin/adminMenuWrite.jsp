@@ -274,6 +274,7 @@
 					<div class="qna-custom-bar-chart">
 						<div class="limiter">
 							<div class="container-table100">
+							<form method="post" enctype="multipart/form-data" action="<%=ctxPath%>/admin/store/insertMenu.do">
 								<div class="wrap-table100">
 									<div class="table">
 										<div class="trow theader" id="theader">
@@ -314,11 +315,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="btnContainer" style="float: right; padding: 10px">
-									<input type="submit" value="완료" id="menuAddBtn">
-									<input type="button" value="돌아가기"
-										onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStoreDetail.do?store_name=${storeDetail.store_name }'" />
-								</div>
+								 <div class="btnContainer" style="float: right; padding: 10px">
+                           <input type="submit" value="완료" id="menuAddBtn">
+                           <input type="button" value="돌아가기"
+                              onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminStoreDetail.do?store_name=${storeDetail.store_name }'" />
+                        </div>
+                              </form>
 							</div>
 						</div>
 					</div>
@@ -371,24 +373,6 @@
 	<script src="<%=ctxPath%>/resources/js/admin/lib/sparkline-chart.js"></script>
 	<script src="<%=ctxPath%>/resources/js/admin/lib/zabuto_calendar.js"></script>
 	<script type="application/javascript">
-		
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
-
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-	</script>
 
 	<script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
@@ -398,7 +382,7 @@
 				data : {},
 				success : function() {
 					$("#logoutBtn").hide();
-					location.href = "../";
+					location.href = "../../";
 				}
 			});
 		});

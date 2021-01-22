@@ -14,4 +14,7 @@ public interface SearchService {
 	
 	// 주소 검색 시 store array list
 	public List<Search> searchAddr(String store_addr);
+	
+	// 모든 store array list
+	public List<Search> searchLoc();
 }

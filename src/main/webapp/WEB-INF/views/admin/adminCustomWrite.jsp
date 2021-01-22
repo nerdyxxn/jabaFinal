@@ -323,19 +323,19 @@
 										</div>
 										<div class="trow">
 											<div class="cell" data-title="NAME">NAME</div>
-											<div class="cell"><input type="text" name="menu_name" id="menu_name" />
+											<div class="cell"><input type="text" name="custom_name" id="custom_name" />
 											</div>
 										</div>
 										<div class="trow">
 											<div class="cell" data-title="PRICE">PRICE</div>
 											<div class="cell">
-												<input type="text" name="menu_price" id="menu_price" />
+												<input type="text" name="custom_price" id="custom_price" />
 											</div>
 										</div>
 										<div class="trow">
 											<div class="cell" data-title="CATEGORY">CATEGORY</div>
 											<div class="cell">
-												<input type="text" name="menu_category" id="menu_category" />
+												<input type="text" name="custom_category" id="custom_category" />
 											</div>
 										</div>
 									</div>
@@ -399,7 +399,7 @@
            data:   {},
            success: function(){
               $("#logoutBtn").hide();
-              location.href="../";
+              location.href = "../../";
            }
         });
         });
@@ -411,6 +411,7 @@
 		var custom_name = $("#custom_name").val();
 		var custom_price = $("#custom_price").val();
 		var custom_category = $("#custom_category").val();
+		var menu_id = "${menuDetail.menu_id}";
 		if(confirm("해당 커스텀을 추가하시겠습니까?")){
 			
 		$.ajax({
@@ -423,7 +424,7 @@
 			}, 
 			success : function(){
 				console.log("커스텀 추가 성공!");
-			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id
+			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id;
 			}
 		});
 		}

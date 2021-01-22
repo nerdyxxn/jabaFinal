@@ -28,5 +28,10 @@ public class SearchDao {
 		return sqlSession.selectList("selectStoresByAddr", store_addr);
 	}
 	
+	// 모든 storelist 출력
+	public List<Search> searchLoc(){
+		return sqlSession.selectList("selectStoresByLoc");
+	}
+	
 	
 }

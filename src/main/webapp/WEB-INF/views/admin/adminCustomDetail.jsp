@@ -396,7 +396,7 @@
            data:   {},
            success: function(){
               $("#logoutBtn").hide();
-              location.href="../";
+              location.href = "../../";
            }
         });
         });

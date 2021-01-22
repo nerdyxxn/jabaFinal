@@ -308,7 +308,7 @@ $(function(){
                         </c:forEach>
                        
                      </c:if>
-                     <li class="addr_store_addr">현재 위치로 검색하기</li>
+                     <li class="addr_store_addr"><a href="javascript:bTag();" id="loc_store_anchor">현재 위치로 검색하기</a></li>
                   </ul>
                </div>
                
@@ -385,42 +385,42 @@ $(function(){
          <div data-index="0" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 종로구 종로">JongRo</a>
+                  <a class="city_name" id="서울시 종로구">Eulji-ro</a>
                </div>
             </div>
          </div>
          <div data-index="1" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 종로구 청진동">CheongJin</a>
+                  <a class="city_name" id="서울시 영등포구">YeoUi-do</a>
                </div>
             </div>
          </div>
          <div data-index="2" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 종로구 관철동">GuanCheol</a>
+                  <a class="city_name" id="서울시 마포구">HapJeong</a>
                </div>
             </div>
          </div>
          <div data-index="3" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="강남구청">GangNam</a>
+                  <a class="city_name" id="서울시 성동구">SeongSu</a>
                </div>
             </div>
          </div>
          <div data-index="4" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="양천로55길 55">GangSeo</a>
+                  <a class="city_name" id="서울시 송파구">JamSil</a>
                </div>
             </div>
          </div>
          <div data-index="5" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="인천시청">Incheon</a>
+                  <a class="city_name" id="서울시 강남구 신사동">Garosu-gil</a>
                </div>
             </div>
          </div>
@@ -662,7 +662,28 @@ var frm = document.frm;
         frm.action="<%=ctxPath%>/explore/searchAddr.do?addr="+getId;
         frm.method="post";
         frm.submit();
-    })
+    });
+
+    
+    });
+}
+function bTag(){
+var frm = document.frm;
+// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+     navigator.geolocation.getCurrentPosition(function(position) {
+    lat2 = position.coords.latitude, // 현재 위치의 위도
+    lon2 = position.coords.longitude; // 현재 위치의 경도
+    console.log(frm.lat2.value);
+    console.log(frm.lon2.value);
+    frm.lat2.value = lat2;
+    frm.lon2.value = lon2;
+    console.log(frm.lat2.value);
+    console.log(frm.lon2.value);
+    $("#loc_store_anchor").on("click", function(){
+    	frm.action="<%=ctxPath%>/explore/searchLoc.do";
+    	frm.method="post";
+    	frm.submit();
+    });
     
     });
 }

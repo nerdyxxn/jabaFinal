@@ -57,8 +57,16 @@ public class AdminStoreContoller {
    
    @RequestMapping(value = "admin/store/adminStoreDetail.do", method = RequestMethod.GET)
    public ModelAndView adminStoreDetail(ModelAndView mv, HttpServletRequest request) {
-      String store_name = request.getParameter("store_name");
-      System.out.println(store_name);
+      String store_name = null;
+	   if(request.getParameter("store_name")==null) {
+		   Biz storeDetailTemp = (Biz) request.getSession().getAttribute("storeDetail");
+		   store_name = storeDetailTemp.getStore_name();
+		   System.out.println("세션에 담긴 store_name: "+store_name);
+	   } else {
+		   store_name = request.getParameter("store_name");
+		   System.out.println(store_name);		   
+		   System.out.println("parameter에 담긴 store_name: "+store_name);
+	   }
       // 스토어의 Detail 정보 
       Biz storeDetail = bizService.selectStoreByName(store_name);
       request.getSession().setAttribute("storeDetail", storeDetail);
@@ -227,6 +235,8 @@ public class AdminStoreContoller {
 
       String menu_description = request.getParameter("menu_description");
       String menu_category = request.getParameter("menu_category");
+      String store_name = storeDetail.getStore_name();
+      System.out.println(store_name);
       int result = 0;
       // menu_name 중복 확인 해야함 
       try {
@@ -253,9 +263,8 @@ public class AdminStoreContoller {
          System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 실패");
       }
       //session에 store_name이 있으면 채워질지 안채워질지 고민
-
-      request.getSession().setAttribute("store_name", storeDetail.getStore_name());
-      mv.setViewName("redirect:selectAdminStore.do");
+      request.getSession().setAttribute("storeDetail", storeDetail);
+      mv.setViewName("redirect:adminStoreDetail.do");
       return mv;
 
    }

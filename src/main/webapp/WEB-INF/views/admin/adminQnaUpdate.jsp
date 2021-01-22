@@ -316,12 +316,12 @@
 													<div class="cell" id="ctCell"><input type="text" value="${qnaDetail.qna_content }" name="content" id="content"/></div>
 												</div>
 											</div>
-									</form>		
-									</div>
 											<div class="btnContainer" style="padding:10px;">
 												<input type="submit" value="완료">
 												<input type="button" value="취소" onclick="javascript:location.href='<%=ctxPath%>/admin/qna/qnaList.do'" />
 											</div>
+									</form>		
+									</div>
 								</div>
 							</div>
 						</div>
@@ -368,24 +368,7 @@
   <!--script for this page-->
   <script src="<%=ctxPath%>/resources/js/admin/lib/sparkline-chart.js"></script>
   <script src="<%=ctxPath%>/resources/js/admin/lib/zabuto_calendar.js"></script>
-  <script type="application/javascript">
-    $(document).ready(function() {
-      $("#date-popover").popover({
-        html: true,
-        trigger: "manual"
-      });
-      $("#date-popover").hide();
-      $("#date-popover").click(function(e) {
-        $(this).hide();
-      });
 
-    function myNavFunction(id) {
-      $("#date-popover").hide();
-      var nav = $("#" + id).data("navigation");
-      var to = $("#" + id).data("to");
-      console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-    }
-  </script>
   
   <script type="text/javascript" id="rendered-js">
   // 로그아웃 버튼 눌렀을때 버튼 hide 와 로그아웃 동작
@@ -395,7 +378,7 @@
            data:   {},
            success: function(){
               $("#logoutBtn").hide();
-              location.href="../";
+              location.href = "../../";
            }
         });
         });

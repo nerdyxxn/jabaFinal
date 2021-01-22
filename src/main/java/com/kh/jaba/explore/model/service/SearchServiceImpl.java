@@ -32,5 +32,9 @@ public class SearchServiceImpl implements SearchService{
 		
 		return searchDao.checkAddr(store_addr);
 	}
+	@Override
+	public List<Search> searchLoc() {
+		return searchDao.searchLoc();
+	}
 
 }

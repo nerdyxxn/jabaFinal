@@ -26,6 +26,11 @@
 		select * from store where store_addr LIKE '%'||#{store_addr}||'%'
 	</select>
 	
+	<!-- 현재위치 기반 List<Store> 출력 -->
+	<select id="selectStoresByLoc" resultType="arraylist" resultMap="resultSearch">
+		select * from store
+	</select>
+	
 	<!--  dropdown으로 뽑아낼 간소화된 주소 출력 -->
 	<!--  null 값이 들어오는데, nvl 이런 걸로 처리해버리면 되지 않을까? 싶습니다. -->
 	<!--  db세팅에 addr not null로 -->
