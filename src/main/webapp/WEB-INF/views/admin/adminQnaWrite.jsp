@@ -235,11 +235,11 @@
               <li><a href="<%=ctxPath%>/admin/store/selectAdminStore.do">매장 관리</a></li>
             </ul>
           </li>
-               <li class="sub-menu"><a href="javascript:;"> <i
+               <li class="sub-menu"><a class="active" href="javascript:;"> <i
                      class="fa fa-book"></i> <span>Q & A</span>
                </a>
                   <ul class="sub">
-                     <li><a class="active" href="<%=ctxPath%>/admin/qna/qnaList.do">Q&A 관리</a></li>
+                     <li><a href="<%=ctxPath%>/admin/qna/qnaList.do">Q&A 관리</a></li>
                   </ul></li>
                <li><a href="https://www.google.com/maps"> <i
                      class="fa fa-map-marker"></i> <span>Google Maps </span>

@@ -343,6 +343,7 @@
 								</div>
 								<div class="btnContainer" style="padding: 10px">
 									<input type="button" value="완료" id="updateCustomBtn" />
+									<input type="button" value="삭제" id="deleteCustomBtn" />
 									<input type="button" value="돌아가기"
 										onclick="javascript:location.href='<%=ctxPath%>/admin/store/customDetail.do?custom_id=${customDetail.custom_id }'" />
 								</div>
@@ -444,6 +445,23 @@
 		 success: function(){
 			 
 		 		console.log("커스텀 변경 성공!");
+			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id;			 
+			} 
+		 });
+	  }
+  });
+  
+  // 커스텀 삭제 ajax 
+  $("#deleteCustomBtn").on("click", function(){
+	var menu_id = "${customDetail.menu_id}";
+  	if(confirm("현재 커스텀의 정보를 삭제하시겠습니까?")){
+	  $.ajax({
+		 url:"<%=ctxPath%>/admin/store/customDelete.do",
+		 method: "POST",
+		 data: {
+		 },
+		 success: function(){
+		 		console.log("커스텀 삭제 성공!");
 			 	location.href="<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id="+menu_id;			 
 			} 
 		 });

@@ -11,6 +11,7 @@
       <result property="menu_description" column="menu_description" />
       <result property="menu_category" column="menu_category" />
       <result property="menu_available" column="menu_available" />
+      <result property="menu_status" column="menu_status" />
    </resultMap>
    
    <!-- 매장의 메뉴 전체 출력 -->
@@ -18,14 +19,14 @@
    <!-- store_name을 통해 store_id를 뽑아내는 과정이 필요 -->
    <select id="selectMenuList" parameterType="string"
       resultType="arraylist" resultMap="resultMenu">
-      select * from menu where store_id=#{store_id}
+      select * from menu where store_id=#{store_id} and menu_status=1
    </select>
 
    <!-- distinct를 통해 메뉴 카테고리의 중복을 제거하고, 카테고리 개수와 이름을 출력 -->
    <!-- 왠지 오류가 날것같은 resultMap="resultMenu" 을 일단 빼봄 -->
    <select id="selectCategoryList" parameterType="string"
       resultType="arraylist" resultMap="resultMenu">
-      select distinct menu_category, store_id from menu where store_id=#{store_id}
+      select distinct menu_category, store_id from menu where store_id=#{store_id} and menu_status=1
       order by menu_category asc
    </select>
 
@@ -33,7 +34,7 @@
    <select id="selectListByCategory" parameterType="Menu"
       resultType="arraylist" resultMap="resultMenu">
       select * from menu where store_id=#{store_id} and
-      menu_category=#{menu_category}
+      menu_category=#{menu_category} and menu_status=1
    </select>
 
    <!-- store_id과 menu_name을 통해 menu '하나'를 출력 -->
@@ -77,4 +78,12 @@
       update menu set
       menu_name=#{menu_name},menu_img=#{menu_img},menu_category=#{menu_category},menu_description=#{menu_description},menu_price=#{menu_price} where menu_id=#{menu_id}
    </update>   
+   
+    <!-- menu_status 를 2로 변경하여 메뉴삭제 처리 -->
+   <update id="updateMenuStatus" parameterType="String" >
+      update menu set menu_status=2 where menu_id=#{menu_id}
+   </update>   
+   
+
+     
 </mapper>

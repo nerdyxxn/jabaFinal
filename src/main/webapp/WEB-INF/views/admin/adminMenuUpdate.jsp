@@ -345,6 +345,7 @@
 								</div>
 								<div class="btnContainer" style="padding: 10px">
 									<input type="button" value="완료" id="updateMenuBtn">
+									<input type="button" value="삭제" id="deleteMenuBtn">
 									<input type="button" value="돌아가기"
 										onclick="javascript:location.href='<%=ctxPath%>/admin/store/adminMenuDetail.do?menu_id=${menuDetail.menu_id }'" />
 								</div>
@@ -458,6 +459,26 @@
 		 });
 	  }
   });
+  
+  // 메뉴 삭제
+  $("#deleteMenuBtn").on("click", function(){
+	  var menu_id = "${menuDetail.menu_id}";
+	  var store_name = "${storeDetail.store_name}";
+
+  	if(confirm("현재 메뉴의 정보를 삭제하시겠습니까?")){
+	  $.ajax({
+		 url:"<%=ctxPath%>/admin/store/menuDelete.do",
+		 method: "POST",
+		 data: {
+		 },
+		 success: function(){
+		 		console.log("메뉴 삭제 성공!");
+			 	location.href="<%=ctxPath%>/admin/store/adminStoreDetail.do?store_name=" + store_name;			 
+			} 
+		 });
+	  }
+  });
+  
   
   
   </script>

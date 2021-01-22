@@ -53,4 +53,15 @@ public class CustomServiceImpl implements CustomService {
 		return customDao.insertCustom(c);
 	}
 
+	@Override
+	public int updateCustomStatus(String custom_id) {
+		return customDao.updateCustomStatus(custom_id);
+	}
+
+	// menu_id 를 통해서 custom_status 를 2로 변경하여 삭제처리
+	@Override
+	public int updateCustomStatusByMenuId(String menu_id) {
+		return customDao.updateCustomStatusByMenuId(menu_id);
+	}
+
 }

@@ -12,13 +12,14 @@ public class Menu {
 	private String menu_description;
 	private String menu_category;
 	private int menu_available;
+	private int menu_status;
 	
 	public Menu() {
 		
 	}
 
 	public Menu(String menu_id, String store_id, String menu_name, int menu_price, String menu_img,
-			String menu_description, String menu_category, int menu_available) {
+			String menu_description, String menu_category, int menu_available, int menu_status) {
 		super();
 		this.menu_id = menu_id;
 		this.store_id = store_id;
@@ -28,13 +29,14 @@ public class Menu {
 		this.menu_description = menu_description;
 		this.menu_category = menu_category;
 		this.menu_available = menu_available;
+		this.menu_status = menu_status;
 	}
 
 	@Override
 	public String toString() {
 		return "Menu [menu_id=" + menu_id + ", store_id=" + store_id + ", menu_name=" + menu_name + ", menu_price="
 				+ menu_price + ", menu_img=" + menu_img + ", menu_description=" + menu_description + ", menu_category="
-				+ menu_category + ", menu_available=" + menu_available + "]";
+				+ menu_category + ", menu_available=" + menu_available + ", menu_status=" + menu_status + "]";
 	}
 
 	public String getMenu_id() {
@@ -100,6 +102,15 @@ public class Menu {
 	public void setMenu_available(int menu_available) {
 		this.menu_available = menu_available;
 	}
+
+	public int getMenu_status() {
+		return menu_status;
+	}
+
+	public void setMenu_status(int menu_status) {
+		this.menu_status = menu_status;
+	}
+
 	
 	
 }

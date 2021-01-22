@@ -9,11 +9,11 @@ import com.kh.jaba.client.menu.model.dao.MenuDao;
 import com.kh.jaba.client.menu.model.domain.Menu;
 
 @Service("menuService")
-public class MenuServiceImpl implements MenuService{
-	
+public class MenuServiceImpl implements MenuService {
+
 	@Autowired
 	private MenuDao menuDao;
-	
+
 	@Autowired
 	private Menu menu;
 
@@ -27,7 +27,7 @@ public class MenuServiceImpl implements MenuService{
 		return menuDao.selectCategoryList(store_id);
 	}
 
-	// 카테고리 이름이 똑같은 메뉴들끼리 List를 만드는 메소드 
+	// 카테고리 이름이 똑같은 메뉴들끼리 List를 만드는 메소드
 	@Override
 	public List<Menu> selectListByCategory(Menu m) {
 		return menuDao.selectListByCategory(m);
@@ -57,15 +57,20 @@ public class MenuServiceImpl implements MenuService{
 		return menuDao.insertMenu(m);
 	}
 
-	// 메뉴 디테일 
+	// 메뉴 디테일
 	@Override
 	public Menu selectOneMenuByMenuId(String menu_id) {
 		return menuDao.selectOneMenuByMenuId(menu_id);
 	}
-	
-	 // updateMenu
-	   @Override
-	   public int updateMenu(Menu m) {
-	      return menuDao.updateMenu(m);
-	   }
+
+	// updateMenu
+	@Override
+	public int updateMenu(Menu m) {
+		return menuDao.updateMenu(m);
+	}
+
+	@Override
+	public int deleteMenu(String menu_id) {
+		return menuDao.deleteMenu(menu_id);
+	}
 }

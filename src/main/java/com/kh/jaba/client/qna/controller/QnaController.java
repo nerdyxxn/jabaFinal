@@ -95,7 +95,6 @@ public class QnaController {
 	 }
 	// Q&A update 페이지
 	@RequestMapping(value = "admin/qna/updateQna.do", method = RequestMethod.POST)
-	@ResponseBody
 	public ModelAndView updateQna(HttpServletRequest request, Qna q, ModelAndView mv) {
 		Qna qnaDetail = (Qna) request.getSession().getAttribute("qnaDetail");
 		System.out.println(qnaDetail);

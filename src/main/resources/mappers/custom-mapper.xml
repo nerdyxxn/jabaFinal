@@ -8,30 +8,36 @@
 		<result property="custom_name" column="custom_name" />
 		<result property="custom_price" column="custom_price" />
 		<result property="custom_category" column="custom_category" />
+		<result property="custom_status" column="custom_status" />
 	</resultMap>
 
 	<!-- distinct를 통해 메뉴 카테고리의 중복을 제거하고, 카테고리 개수와 이름을 출력 -->
 	<!-- 왠지 오류가 날것같은 resultMap="resultMenu" 을 일단 빼봄 -->
 	<select id="selectCustomCategoryList" parameterType="string"
 		resultType="arraylist" resultMap="resultCustom">
-		select distinct custom_category, menu_id from custom WHERE
-		menu_id=#{menu_id} order by custom_category asc
+		select distinct custom_category,
+		menu_id from custom WHERE
+		menu_id=#{menu_id} and custom_status=1 order
+		by custom_category asc
 	</select>
 
 	<!-- menu_id와 CUSTOM_CATEGORY를 통해 menu list를 출력 -->
 	<select id="selectListByCustomCategory" parameterType="Custom"
 		resultType="arraylist" resultMap="resultCustom">
-		select * from custom where menu_id=#{menu_id} and
-		custom_category=#{custom_category}
+		select * from custom where
+		menu_id=#{menu_id} and
+		custom_category=#{custom_category} and
+		custom_status=1
 	</select>
 
 	<select id="selectOneCustom" parameterType="Custom"
 		resultType="Custom">
-		select * from custom where menu_id=#{menu_id} and custom_name=#{custom_name}
+		select * from custom where menu_id=#{menu_id} and
+		custom_name=#{custom_name}
 	</select>
 
-	<!--  custom_id 를 통해서 custom 을하나 구해옴 -->
-	<!--  Cart List 를 출력하는데 사용  -->
+	<!-- custom_id 를 통해서 custom 을하나 구해옴 -->
+	<!-- Cart List 를 출력하는데 사용 -->
 	<select id="selectOneCustomByCustomId" parameterType="String"
 		resultType="Custom">
 		select * from custom where custom_id = #{custom_id}
@@ -40,22 +46,34 @@
 	<!-- 해당 메뉴의 모든 커스텀 목록들을 출력 -->
 	<select id="selectListByMenuId" parameterType="String"
 		resultType="arraylist" resultMap="resultCustom">
-		select * from custom where menu_id=#{menu_id}
+		select * from custom where
+		menu_id=#{menu_id} and custom_status=1
 		order by custom_category
-	</select>	
-	
+	</select>
+
 	<!-- custom 한개의 정보를 변경 -->
-   <update id="updateCustom" parameterType="Custom" >
-      update custom set custom_name=#{custom_name},custom_price=#{custom_price},custom_category=#{custom_category} where custom_id=#{custom_id}
-   </update>
-   
-   <!-- custom 추가 -->
-      <insert id="insertCustom" parameterType="Custom" flushCache="true"
-      statementType="PREPARED">
-      insert into Custom(custom_id, menu_id, custom_name,
-      custom_price, custom_category) values
-      (('C' || LPAD(CUSTOM_SEQ.nextval, 5, 0)), #{menu_id}, #{custom_name},
-      #{custom_price}, #{custom_category})
-   </insert>
-	
+	<update id="updateCustom" parameterType="Custom">
+		update custom set
+		custom_name=#{custom_name},custom_price=#{custom_price},custom_category=#{custom_category}
+		where custom_id=#{custom_id}
+	</update>
+
+	<!-- custom 추가 -->
+	<insert id="insertCustom" parameterType="Custom"
+		flushCache="true" statementType="PREPARED">
+		insert into Custom(custom_id, menu_id, custom_name,
+		custom_price, custom_category) values
+		(('C' || LPAD(CUSTOM_SEQ.nextval, 5, 0)), #{menu_id}, #{custom_name},
+		#{custom_price}, #{custom_category})
+	</insert>
+
+	<!-- custom_status 를 2로 변경하여 메뉴삭제 처리 -->
+	<update id="updateCustomStatus" parameterType="String">
+		update custom set custom_status=2 where custom_id=#{custom_id}
+	</update>
+
+	<!-- 삭제한 menu_id 의 커스텀들도 custom_status=2로 바꿔서 삭제처리 -->
+	<update id="updateCustomStatusByMenuId" parameterType="String">
+		update custom set custom_status=2 where menu_id=#{menu_id}
+	</update>
 </mapper>
