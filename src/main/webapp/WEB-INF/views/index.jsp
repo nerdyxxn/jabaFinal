@@ -328,7 +328,7 @@ $(function(){
          <div>
             <h2>Browse By Brand</h2>
          </div>
-         <div class="brand-badge-list">
+         <div class="store_list_grid" id="store_grid">
          <div data-index="0" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge">
@@ -374,53 +374,52 @@ $(function(){
          </div>
       </div>
    </section>
-
 <!--  도시 명 검색 시, searchAddr와 마찬가지로, 해당 도시 명이 들어간 주소로 검색하는 기능 -->
    <section id="cities">
       <div class="container">
          <div>
             <h2>Browse By City</h2>
          </div>
-         <div class="city-badge-list">
+         <div class="store_list_grid" id="store_grid">
          <div data-index="0" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 종로구">Eulji-ro</a>
+                  <a class="city_name" id="서울특별시 종로구">Eulji-ro</a>
                </div>
             </div>
          </div>
          <div data-index="1" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 영등포구">YeoUi-do</a>
+                  <a class="city_name" id="서울특별시 영등포구">YeoUi-do</a>
                </div>
             </div>
          </div>
          <div data-index="2" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 마포구">HapJeong</a>
+                  <a class="city_name" id="서울특별시 마포구">HapJeong</a>
                </div>
             </div>
          </div>
          <div data-index="3" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 성동구">SeongSu</a>
+                  <a class="city_name" id="서울특별시 성동구">SeongSu</a>
                </div>
             </div>
          </div>
          <div data-index="4" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 송파구">JamSil</a>
+                  <a class="city_name" id="서울특별시 송파구">JamSil</a>
                </div>
             </div>
          </div>
          <div data-index="5" class="cities" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="city-badge">
-                  <a class="city_name" id="서울시 강남구 신사동">Garosu-gil</a>
+                  <a class="city_name" id="서울특별시 강남구 신사동">Garosu-gil</a>
                </div>
             </div>
          </div>
@@ -501,7 +500,7 @@ function displayMarker(locPosition, message) {
 
    <!-- FOOTER -->
    <footer>
-      <div class="container">
+      <div class="container" id="footer_container">
          <div class="row">
             <div class="footer_logo">
                <img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;">

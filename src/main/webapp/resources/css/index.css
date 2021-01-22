@@ -22,8 +22,15 @@ a {
    font-size: 14px;
    font-weight: normal;
 }
+h1 {
+	font-size: 48px;
+}
 
 
+h2 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
 
 /* HEADER */
 /* dropdown 메뉴 세팅 */
@@ -215,6 +222,11 @@ main {
    filter: grayscale(0%);
 }
 
+section .container .store_list_grid {
+ 	display: flex;
+ 	justify-content: space-between;
+}
+
 #searchBtn {
    border-radius: 6px;
    padding: 15px 40px;
@@ -369,4 +381,40 @@ main {
 
 .city_name{
 	font-size: 16px;
+}
+
+
+@media screen and ( max-width : 992px) {
+	#home {
+		background-size: contain;
+		height: 400px;
+	}
+	#home .container {
+    	color: white;
+    	text-align: center;
+    	margin-top: 60px;
+	}
+	section .container .store_list_grid {
+		width: 519px;
+		display: flex;
+ 		flex-wrap: wrap; 
+ 		margin: 0 auto;
+	}
+	h2 {
+		width: 519px;	
+		margin: 0 auto;
+	    margin-bottom: 15px;
+	    font-weight: 600;
+	}
+	h1 {
+		font-size: 4vw;
+	}
+	#addr_search {
+		width: 222px;
+	}
+	#searchBtn{
+		border-radius: 6px;
+    	padding: 15px 30px;
+    	font-size: 12px;
+	}
 }

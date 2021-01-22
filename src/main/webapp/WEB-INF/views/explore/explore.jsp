@@ -10,9 +10,13 @@ if (brandName == null) {
 %>
 <%
    String avenue = request.getParameter("addr");
-if (avenue == null) {
-   avenue = request.getParameter("brand");
-}
+if(avenue==null){
+    if(request.getParameter("brand")!= null){
+       avenue = request.getParameter("brand");
+    }else{
+       avenue = "현재 위치로 검색";
+    }
+ }
 %>
 <!DOCTYPE html>
 <html>
@@ -125,10 +129,10 @@ $(document).ready(function() {
             <div class="time">
                <button>Pick up, ASAP</button>
             </div>
-            <div class="search_loc">
-               <button id="avenue"><%=avenue%></button>
-            </div>
-            <div class="searchBar">
+					<div class="search_loc">
+						<button id="avenue"><%=avenue%></button>
+					</div>
+				<div class="searchBar">
                <form action="" onsubmit="return false;">
                   <input type="text" name="keyword" id="keyword"><i
                      class="fa fa-search align-self-center"></i>
@@ -171,7 +175,7 @@ $(document).ready(function() {
                            </div>
                            <div class="store_card_info_addr">
                               <span class="distance"> ${storeVO.store_distance} km, </span>
-                              <span>OPEN TIME</span>
+                              <span>${storeVO.store_time}</span>
                            </div>
                         </div>
                      </div>

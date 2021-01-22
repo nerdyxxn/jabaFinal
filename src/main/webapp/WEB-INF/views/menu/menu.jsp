@@ -62,8 +62,9 @@
    })
    
    // sold-out 버튼 기본값 hide로 세팅
-   $(document).ready(function () {
-       $('.sold_out_btn').hide();
+   $(document).ready(function(){
+	$(".sold_out_btn").parent().parent().parent().parent().css("opacity","0.3");
+	$(".sold_out_btn").parent().parent().parent().parent().css("pointer-events","none");
    });
    
    // 메뉴 카드 클릭 시 모달창 오픈
@@ -194,7 +195,10 @@
                                  <div class="product_name">
                                     <p>
                                        <span>${menuVo.menu_name}</span>&nbsp;&nbsp;
+			                        <c:if test="${menuVo.menu_available == 2 }">
+			                           <!-- sold out 됐을때 -->
                                        <button class="sold_out_btn">Sold out</button>
+			                        </c:if>
                                     </p>
                                  </div>
                                  <div class="product_desc">${menuVo.menu_description}</div>
