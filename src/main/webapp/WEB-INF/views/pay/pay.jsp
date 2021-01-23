@@ -80,18 +80,6 @@
 
 	<!-- SECTION -->
 	<section id="home">
-		<div class="container" style="text-align: left; padding: 0px 20px;">
-			<div class="checkout_title">
-				<p style="font-size: 35px; color: white; margin-top: 30px;">
-					CHECKOUT</p>
-				<p>Your order from ${storeVo.store_name}</p>
-			</div>
-
-			<div class="checkout_info">
-				<p>${storeVo.store_time}</p>
-				<P>${storeVo.store_addr}</p>
-			</div>
-		</div>
 	</section>
 
 	<!-- SECTION -->
@@ -102,8 +90,7 @@
 					<div class="category">
 						<p>
 							<span class="profile"
-								style="text-decoration: none; color: grey; width: 50px;">Order
-								Summary</span>
+								style="text-decoration: none; color: grey; width: 50px;">Check out</span>
 						</p>
 					</div>
 					<div class="left_part" id="left">
@@ -157,7 +144,7 @@
 												<p>
 													<span class="item_total">${cartViewVoList.order_quantity }&nbsp;X</span>
 													<span class="item_name">&nbsp;${cartViewVoList.menu_name }</span><span
-														class="item_price" style="float: right">&#8361;${cartViewVoList.cart_total_price }</span><br>
+														class="item_price" style="float: right">&#8361;<fmt:formatNumber value="${cartViewVoList.cart_total_price }" pattern="#,###" /></span><br>
 												<div class="item_details_group">
 													<c:forEach items="${cartViewList[s.count-1]}" var="cartViewList" varStatus="s1">
 														<span class="item_details">${cartViewList }</span>
@@ -171,7 +158,7 @@
 								</div>
 								<div class="total_price">
 									<p class="total_title">
-										TOTAL <span class="price_all_total" style="float: right">${total_price }</span>&#8361;
+										TOTAL <span class="price_all_total" style="float: right">&#8361;<fmt:formatNumber value="${total_price }" pattern="#,###" /></span>
 									</p>
 								</div>
 							</div>
@@ -259,9 +246,9 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="footer_logo">
-					<img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:53px; height:41px;">
-				</div>
+            <div class="footer_logo">
+               <img src="<%=ctxPath%>/resources/images/clogo1.png" style="width:30px; height:30px;">
+            </div>
 				<div class="footer_links">
 					<ul>
 						<li class="links_head">JABA for YOUNG&nbsp;RICH</li>
