@@ -101,6 +101,9 @@ public class IndexController {
 				System.out.println(checkAddr.get(i).getStore_addr());
 			}
 		}
+		for(int i = checkAddr.size()-1; i > 5; i--) {
+	         checkAddr.remove(i);
+	      }
 		request.getSession().setAttribute("getAddrList", checkAddr);
 	}
 
