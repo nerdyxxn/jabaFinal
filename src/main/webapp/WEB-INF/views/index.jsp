@@ -353,7 +353,7 @@ $(function(){
          <div data-index="3" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_ant.png" class="active brand_img" id="앤드러사이트">
+                  <img src="<%=ctxPath%>/resources/images/logo_ant.png" class="active brand_img" id="앤트러사이트">
                </div>
             </div>
          </div>
