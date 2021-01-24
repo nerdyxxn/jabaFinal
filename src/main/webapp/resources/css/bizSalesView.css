@@ -87,6 +87,7 @@ a {
 #store_info h1 {
 	font-size: 1.4rem;
 	font-weight: 700;
+	margin-bottom: 18px;
 }
 
 #sth {
@@ -1598,7 +1599,6 @@ nav {
 	/* 하위 아이템들 가로축 가운데정렬 */
 	align-items: center;
 	/* 하위 아이템들 세로축 가운데정렬 */
-	border-bottom: 1px solid rgb(225, 229, 235);
 }
 
 #container_nav #bizBtnWrap .nav_btn {

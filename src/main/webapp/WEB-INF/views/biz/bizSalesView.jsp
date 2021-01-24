@@ -14,21 +14,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biz Partner 판매액 조회</title>
 <!-- Bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- RESET -->
 <link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
 <!-- FONT -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- HEADER CSS -->
 <link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
@@ -36,8 +29,7 @@
 <!-- FOOTER CSS -->
 <link href="<%=ctxPath%>/resources/css/footer.css" rel="stylesheet">
 <!-- bizSalesView CSS -->
-<link href="<%=ctxPath%>/resources/css/bizSalesView.css"
-	rel="stylesheet">
+<link href="<%=ctxPath%>/resources/css/bizSalesView.css" rel="stylesheet">
 <!-- 체크박스 라디오버튼 CSS -->
 <link href="<%=ctxPath%>/resources/css/icheck-material.css"
 	rel="stylesheet" type="text/css">
@@ -50,11 +42,8 @@
 <link rel="stylesheet" href="<%=ctxPath%>/resources/css/switchery.css" />
 <script src="<%=ctxPath%>/resources/js/switchery.js"></script>
 <!-- 아이콘 폰트-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
-
-
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/bizSalesViewTable.css">
 <!--===============================================================================================-->
@@ -146,14 +135,14 @@
 			<div class="wrap-table100">
 				<div class="table">
 					<div class="trow theader" id="theader">
-						<div class="cell">NO.</div>
-						<div class="cell" id="theaderRow">TITLE</div>
+						<div class="cell">DATE</div>
+						<div class="cell" id="theaderRow">PRICE</div>
 					</div>
 					<c:if test="${not empty bizSalesList}">
 						<c:forEach items="${bizSalesList}" var="bizSalesList" varStatus="s">
 							<div class="trow">
-								<div class="cell" data-title="Full Name">${bizSalesList.pay_time}</div>
-								<div class="cell" data-title="Job Title">${bizSalesList.pay_total_price}</div>
+								<div class="cell" data-title="DATE">${bizSalesList.pay_time}</div>
+								<div class="cell" data-title="PRICE"><fmt:formatNumber value="${bizSalesList.pay_total_price}" pattern="#,###" />원</div>
 							</div>
 						</c:forEach>
 					</c:if>
@@ -491,15 +480,18 @@ $(document).ready(function(){
 	   var day5 = "${bizSalesList[4].pay_time}";
 	   var day5_total = ${bizSalesList[4].pay_total_price};
 	   
+	   var day6 = "${bizSalesList[5].pay_time}";
+	   var day6_total = ${bizSalesList[5].pay_total_price};
+	   
 	   // 데이터 쌓이면 추가 필요 
    		
       var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: ['aaa', day5, day4, day3, day2, day1],
+              labels: [day6, day5, day4, day3, day2, day1],
               datasets: [{
                   label: '판매액 조회',
-                  data: [10000, day5_total, day4_total, day3_total, day2_total, day1_total],
+                  data: [day6_total, day5_total, day4_total, day3_total, day2_total, day1_total],
                   backgroundColor: [
                       'rgba(54, 162, 235, 0.2)',
                       'rgba(255, 99, 132, 0.2)',

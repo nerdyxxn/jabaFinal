@@ -14,21 +14,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biz Partner 주문조회</title>
 <!-- Bootstrap -->
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- RESET -->
 <link href="<%=ctxPath%>/resources/css/html5_reset.css" rel="stylesheet">
 <!-- FONT -->
-<link
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
-   rel="stylesheet">
-<link
-   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-   rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- HEADER CSS -->
 <link href="<%=ctxPath%>/resources/css/header.css" rel="stylesheet">
 <!-- SECTION CSS -->
@@ -44,9 +37,11 @@
 <link rel="stylesheet" href="<%=ctxPath%>/resources/css/switchery.css" />
 <script src="<%=ctxPath%>/resources/js/switchery.js"></script>
 <!-- 아이콘 폰트-->
-<link rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src='https://code.jquery.com/jquery-3.4.0.js'></script>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="<%=ctxPath%>/resources/css/bizOrderViewTable.css">
+<!--===============================================================================================-->
 </head>
 
 <body>
@@ -61,8 +56,7 @@
          </div>
          <div class="menu">
             <button id="logoutBtn">LOGOUT</button>
-            <button
-               class="MuiButtonBase-root MuiButton-root jss154 cart-select-button false MuiButton-text"
+            <button class="MuiButtonBase-root MuiButton-root jss154 cart-select-button false MuiButton-text"
                tabindex="0" type="button" id="cart-selector">
                <span class="MuiButton-label"><svg width="20" height="24"
                      viewBox="0 0 22 26" fill="none">
@@ -128,53 +122,73 @@
          </div>
       </c:if>
    </div>
-   
-   <!-- SECTION -->
-   <div class="container" id="container_menu_info">
-      <div id="product_card_wrap">
-      <!--  본문 -->
-         <c:if test="${not empty bizOrderList }">
-               <c:forEach items="${bizOrderList}" var="bizOrderList" varStatus="c">
-                  <div class="product_card">
-                     <div class="product_card_detail">
-                        <div class="orderPay orderItemsWrap">
-                           <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">${bizOrderList.pay_time }</div>
-                           <div class="orderPayItems" style="font-weight:700; margin-bottom:10px;">주문번호 : ${bizOrderList.pay_id }</div>
-                           <div class="orderPayItems">${bizOrderList.store_name }</div>
-                           <div class="orderPayItems">${bizOrderList.pickup_time }</div>
-                           <div class="orderPayItems" style="margin-bottom:20px;">${bizOrderList.pay_request }</div>
-                        </div>
-                        <hr>
-                        <div class="orderMenu">   
-                           <c:forEach items="${bizOrderList.menuCollection}" var="menu"
-                              varStatus="m">
-                              <div class="product_name">
-                                 <!-- 여기는 menu_name -->
-                                 <div class="orderMenuItems">
-                                 <span style="font-size:16px; font-weight:700;">${menu.menu_name}</span>
-                                 <span style="font-size:16px; font-weight:700;">&times;${menu.order_quantity }</span>
-                                 <c:forEach items="${menu.customCollection}" var="custom" varStatus="c">
-                                    <!-- 여기가 custom_name -->
-                                    <span class="orderCustomItems" style="font-size:16px; font-weight:700;">+&nbsp;${custom.custom_name}</span>
-                                 </c:forEach>
-                                 </div>
-                           </div>
-                        </c:forEach>
-                        </div>
-                        <hr>
-                         <div class="orderPrice orderItemsWrap" style="font-size:16px; font-weight:700;"><fmt:formatNumber value="${bizOrderList.pay_total_price }" pattern="#,###" />원</div>
-                        <div class="orderItemsWrap">
-                           <button class="menuReady">메뉴준비완료</button>
-                            <input type="hidden" id="${bizOrderList.pay_id}">
-                        </div>
-                     </div>
-                  </div>
-         </c:forEach>
-            </c:if>
-      </div>
-   </div>
-   
-   <!-- Modal Basic -->
+
+	<!-- SECTION -->
+	<div class="container" id="container_menu_info">
+		<!--  본문 -->
+		<c:if test="${not empty bizOrderList }">
+			<c:forEach items="${bizOrderList}" var="bizOrderList" varStatus="c">
+				<div class="limiter">
+					<div class="container-table100">
+						<div class="wrap-table100">
+							<div class="table">
+								<div class="trow theader" id="theader">
+									<div class="cell" id="theaderRow">${bizOrderList.pay_time }</div>
+								</div>
+								<div class="trow">
+									<div class="cell" data-title="PRICE">
+										<div class="orderPayItems"
+											style="font-weight: 700; margin-bottom: 10px;">주문번호 :
+											${bizOrderList.pay_id }</div>
+										<div class="orderPayItems">${bizOrderList.store_name }</div>
+										<div class="orderPayItems">${bizOrderList.pickup_time }</div>
+										<div class="orderPayItems" style="margin-bottom: 20px;">${bizOrderList.pay_request }</div>
+									</div>
+								</div>
+								<div class="trow">
+									<div class="cell" data-title="PRICE">
+										<c:forEach items="${bizOrderList.menuCollection}" var="menu"
+											varStatus="m">
+											<div class="product_name">
+												<!-- 여기는 menu_name -->
+												<div class="orderMenuItems">
+													<span style="font-size: 16px; font-weight: 700;">${menu.menu_name}</span>
+													<span style="font-size: 16px; font-weight: 700;">&times;${menu.order_quantity }</span>
+													<c:forEach items="${menu.customCollection}" var="custom"
+														varStatus="c">
+														<!-- 여기가 custom_name -->
+														<span class="orderCustomItems"
+															style="font-size: 16px; font-weight: 700;">+&nbsp;${custom.custom_name}</span>
+													</c:forEach>
+												</div>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+								<div class="trow">
+									<div class="cell" data-title="PRICE">
+									
+										<div class="orderItemsWrap">
+										<div class="orderPrice" style="font-size: 16px; font-weight: 700;">
+											<fmt:formatNumber value="${bizOrderList.pay_total_price }" pattern="#,###" />원
+										</div>
+										<div class="orderPrice">
+											<button class="menuReady">메뉴준비완료</button>
+											<input type="hidden" id="${bizOrderList.pay_id}">
+										</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
+	</div>
+
+	<!-- Modal Basic -->
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-size" role="document">
@@ -542,7 +556,7 @@ $(document).ready(function(){
                       console.log(pay_id + " 메뉴 준비완료");
                    }
                });
-              $(this).parent().parent().parent().remove();
+               $(this).parent().parent().parent().parent().parent().parent().parent().remove();
              }
       });
    </script>

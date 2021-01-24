@@ -139,8 +139,6 @@
    </header>
    <!-- SECTION -->
    <section id="home">
-      <img>
-
    </section>
 	<!-- SECTION 2 -->
 	<section id="search" class="mini">
@@ -362,7 +360,7 @@
                                  <li>${cartViewList }</li>
                               </c:forEach>
                            </ul>
-                           <div class="price">${cartViewVoList.cart_total_price }</div>
+                           <div class="price"><fmt:formatNumber value="${cartViewVoList.cart_total_price }" pattern="#,###" />원</div>
                         </div>
                      </div>
                      <button id="${cartViewVoList.order_id}"
@@ -385,7 +383,7 @@
          <div class="order-actions">
             <div class="order-actions__totals">
                <div class="total">
-                  <span>Total</span><span id="cart_total">${total_price }원</span>
+                  <span>Total</span><span id="cart_total"><fmt:formatNumber value="${total_price }" pattern="#,###" />원</span>
                </div>
             </div>
             <button

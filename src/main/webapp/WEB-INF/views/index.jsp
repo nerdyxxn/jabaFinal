@@ -367,7 +367,7 @@ $(function(){
          <div data-index="5" class="brands" tabindex="-1" aria-hidden="false" style="outline: none; width: 130px;">
             <div>
                <div class="brand-badge ">
-                  <img src="<%=ctxPath%>/resources/images/logo_hollys.png" class="active brand_img">
+                  <img src="<%=ctxPath%>/resources/images/logo_hollys.png" class="active brand_img" id="할리스">
                </div>
             </div>
          </div>

@@ -144,7 +144,7 @@
 												<p>
 													<span class="item_total">${cartViewVoList.order_quantity }&nbsp;X</span>
 													<span class="item_name">&nbsp;${cartViewVoList.menu_name }</span><span
-														class="item_price" style="float: right">&#8361;<fmt:formatNumber value="${cartViewVoList.cart_total_price }" pattern="#,###" /></span><br>
+														class="item_price" style="float: right">${cartViewVoList.cart_total_price }</span><br>
 												<div class="item_details_group">
 													<c:forEach items="${cartViewList[s.count-1]}" var="cartViewList" varStatus="s1">
 														<span class="item_details">${cartViewList }</span>
@@ -158,7 +158,7 @@
 								</div>
 								<div class="total_price">
 									<p class="total_title">
-										TOTAL <span class="price_all_total" style="float: right">&#8361;<fmt:formatNumber value="${total_price }" pattern="#,###" /></span>
+										TOTAL&#8361;<span class="price_all_total" style="float: right">${total_price }</span>
 									</p>
 								</div>
 							</div>

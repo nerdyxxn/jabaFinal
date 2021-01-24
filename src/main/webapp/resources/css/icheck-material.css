@@ -277,16 +277,16 @@
   background-color: #00bcd4; }
 
 .icheck-material-teal > input:first-child {
-  background-color: #36727C; }
+  background-color: #112732; }
   .icheck-material-teal > input:first-child::-ms-check {
-    background-color: #36727C; }
+    background-color: #112732; }
   .icheck-material-teal > input:first-child:not(:checked):not(:disabled):hover + label::before,
   .icheck-material-teal > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
-    border-color: #36727C; }
+    border-color: #112732; }
   .icheck-material-teal > input:first-child:checked + label::before,
   .icheck-material-teal > input:first-child:checked + input[type="hidden"] + label::before {
-    background-color: #36727C;
-    border-color: #36727C; }
+    background-color: #112732;
+    border-color: #112732; }
   .icheck-material-teal > input:first-child:checked + label::after,
   .icheck-material-teal > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
@@ -294,7 +294,7 @@
 
 .icheck-material-teal > input[type="radio"]:first-child:checked + label::after,
 .icheck-material-teal > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
-  background-color: #36727C; }
+  background-color: #112732; }
 
 .icheck-material-green > input:first-child {
   background-color: #4caf50; }
