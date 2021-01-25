@@ -7,19 +7,19 @@ import com.kh.jaba.admin.model.dao.AdminDao;
 import com.kh.jaba.admin.model.domain.Admin;
 
 @Service("adminService")
-public class AdminServiceImpl  implements AdminService{
+public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDao adminDao;
-	
+
 	@Autowired
 	private Admin admin;
-	
+
 	// Admin 로그인
 	@Override
 	public Admin loginAdmin(String admin_id, String admin_pw) {
 		admin.setAdmin_id(admin_id);
 		admin.setAdmin_pw(admin_pw);
-		
+
 		return adminDao.loginAdmin(admin);
 	}
 

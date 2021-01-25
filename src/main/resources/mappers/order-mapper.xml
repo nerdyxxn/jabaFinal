@@ -26,5 +26,4 @@
 		resultType="Order">
 		select * from menu_order where order_id = #{order_id}
 	</select>
-
 </mapper>

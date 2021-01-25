@@ -69,5 +69,4 @@
    <select id="selectClientDetail" parameterType="string" resultType="Client">
    	  select * from client where client_id = #{client_id}
    </select>
-
 </mapper>

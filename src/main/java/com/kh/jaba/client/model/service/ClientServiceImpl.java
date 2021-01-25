@@ -29,8 +29,6 @@ public class ClientServiceImpl implements ClientService {
 	// client 회원가입
 	@Override
 	public int insertClient(Client c) {
-		// return이 꼭필요한가 싶기도함.. 굳이?
-		// 기존에 jdbc를 사용했을때는 int값으로 1 혹은 0 이 return 되었음
 		return clientDao.insertClient(c);
 	}
 
@@ -76,5 +74,5 @@ public class ClientServiceImpl implements ClientService {
 	public Client selectClientDetail(String client_id) {
 		return clientDao.selectClientDetail(client_id);
 	}
-	
+
 }

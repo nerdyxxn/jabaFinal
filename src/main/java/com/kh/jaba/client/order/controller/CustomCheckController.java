@@ -35,7 +35,7 @@ public class CustomCheckController {
 		int result = 0;
 		String menu_id = null;
 		String order_id = null;
-		
+
 		String custom_name = request.getParameter("customCheckName");
 		Menu menu = (Menu) request.getSession().getAttribute("menuVo");
 		Order order = (Order) request.getSession().getAttribute("orderVo");
@@ -47,7 +47,7 @@ public class CustomCheckController {
 			custom.setCustom_name(custom_name);
 			System.out.println("선택된 custom_name : " + custom_name);
 			custom = customService.selectOneCustom(custom);
-			
+
 			customCheck.setCustom_id(custom.getCustom_id());
 			customCheck.setOrder_id(order_id);
 

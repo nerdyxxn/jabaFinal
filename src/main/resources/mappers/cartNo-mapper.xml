@@ -19,6 +19,4 @@
       resultType="CartNo">
       select * from cartNo where cartno_id = #{cartno_id}
    </select>
-
-
 </mapper>

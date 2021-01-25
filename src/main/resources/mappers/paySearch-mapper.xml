@@ -16,11 +16,8 @@
       <result property="order_id" column="order_id" />
    </resultMap>
    
-   <!-- 현재 필요한 column : pickup_time,  -->
-   
    <!-- 각 클라이언트의 paySearch 테이블 조회  -->
    <select id="selectPaySearch" parameterType="String" resultType="arraylist" resultMap="resultPaySearch" >
       select * from paysearch where client_id=#{client_id} order by pay_id
    </select>
-   
 </mapper>

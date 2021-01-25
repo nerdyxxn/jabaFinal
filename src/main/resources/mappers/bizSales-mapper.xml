@@ -26,5 +26,4 @@
 		store_name, pay_total_price from PaySearchCollection)
 		group by pay_time ORDER BY pay_time desc
 	</select>
-
 </mapper>

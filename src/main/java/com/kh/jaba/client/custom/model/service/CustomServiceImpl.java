@@ -14,9 +14,6 @@ public class CustomServiceImpl implements CustomService {
 	@Autowired
 	private CustomDao customDao;
 
-	@Autowired
-	private Custom custom;
-
 	@Override
 	public List<Custom> selectCustomCategoryList(String menu_id) {
 		return customDao.selectCustomCategoryList(menu_id);

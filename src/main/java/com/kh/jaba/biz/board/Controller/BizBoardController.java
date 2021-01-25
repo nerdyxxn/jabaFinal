@@ -2,9 +2,6 @@ package com.kh.jaba.biz.board.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,18 +17,14 @@ import com.kh.jaba.biz.model.domain.Biz;
 
 @Controller
 public class BizBoardController {
-	
+
 	@Autowired
 	private BizBoardService bizBoardService;
-	
+
 	@Autowired
 	private BizBoard bb;
-	
-	@Autowired
-	private Biz biz;
-	
-	
-	@RequestMapping(value="/biz/board/insertBizBoard.do", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/biz/board/insertBizBoard.do", method = RequestMethod.POST)
 	public void insertBizBoard(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int result = 0;
 		PrintWriter out = response.getWriter();
@@ -40,43 +33,41 @@ public class BizBoardController {
 		Biz biz = (Biz) request.getSession().getAttribute("biz");
 		String store_id = biz.getStore_id();
 		bb.setStore_id(store_id);
-		if(bb != null) {
+		if (bb != null) {
 			result = bizBoardService.insertBizBoard(bb);
 		}
-		if(result == 1) {
+		if (result == 1) {
 			System.out.println("board 삽입 성공");
 			out.print("insertSuccess");
 		} else {
 			System.out.println("board 삽입 실패");
 			out.print("insertFail");
 		}
-		
+
 		out.flush();
 		out.close();
 
 	}
-	
-	@RequestMapping(value="/biz/board/deleteBizBoard.do", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/biz/board/deleteBizBoard.do", method = RequestMethod.POST)
 	public void deleteBizBoard(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String board_no = null;
 		int result = 0;
 		PrintWriter out = response.getWriter();
 		board_no = request.getParameter("board_no");
-		if(board_no != null) {
+		if (board_no != null) {
 			result = bizBoardService.deleteBizBoard(board_no);
 		}
-		if(result == 1) {
+		if (result == 1) {
 			System.out.println("board 삭제 성공");
 			out.print("deleteSuccess");
 		} else {
 			System.out.println("board 삭제 실패");
 			out.print("deleteFail");
 		}
-		
-		
-	
-	out.flush();
-	out.close();
+
+		out.flush();
+		out.close();
 	}
 
 }

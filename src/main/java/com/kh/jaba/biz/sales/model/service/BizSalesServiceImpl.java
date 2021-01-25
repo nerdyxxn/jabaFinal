@@ -10,10 +10,10 @@ import com.kh.jaba.biz.sales.model.domain.BizSales;
 
 @Service("bizSalesService")
 public class BizSalesServiceImpl implements BizSalesService {
-	
+
 	@Autowired
 	private BizSalesDao bizSalesDao;
-	
+
 	@Override
 	public List<BizSales> getBizSales(BizSales bs) {
 		return bizSalesDao.getBizSales(bs);

@@ -52,5 +52,4 @@
 		flushCache="true" statementType="PREPARED">
 		update store set store_time=#{store_time}, store_img=#{store_img}, store_description=#{store_description} where store_id=#{store_id}
 	</update>   
-   
 </mapper>

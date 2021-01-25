@@ -8,16 +8,16 @@ import com.kh.jaba.client.payment.model.domain.Pay;
 
 @Repository("payDao")
 public class PayDao {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
-	// payment 테이블에 insert 
+
+	// payment 테이블에 insert
 	public int insertPayment(Pay p) {
 		return sqlSession.insert("Pay.insertPayment", p);
 	}
-	
-	// paystatus 상태 변경 
+
+	// paystatus 상태 변경
 	public int updatePayStatus(Pay p) {
 		return sqlSession.update("Pay.updatePayStatus", p);
 	}

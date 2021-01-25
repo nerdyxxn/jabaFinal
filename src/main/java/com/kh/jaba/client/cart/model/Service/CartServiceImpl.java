@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.kh.jaba.client.cart.model.dao.CartDao;
 import com.kh.jaba.client.cart.model.domain.Cart;
-import com.kh.jaba.client.order.model.domain.CustomCheck;
 
 @Service("cartService")
 public class CartServiceImpl implements CartService {
-	
+
 	@Autowired
 	private CartDao cartDao;
-	
+
 	@Override
 	public int insertCart(Cart c) {
 		return cartDao.insertCart(c);
@@ -26,11 +25,10 @@ public class CartServiceImpl implements CartService {
 		return cartDao.selectCartList(cartno_id);
 	}
 
-	//  x 버튼 클릭하면 cart_check를 2로 update 하여 카트목록에서 안보이게함
+	// x 버튼 클릭하면 cart_check를 2로 update 하여 카트목록에서 안보이게함
 	@Override
 	public int updateCartCheck(String order_id) {
 		return cartDao.updateCartCheck(order_id);
 	}
-	
-	
+
 }

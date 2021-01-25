@@ -14,9 +14,6 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	private MenuDao menuDao;
 
-	@Autowired
-	private Menu menu;
-
 	@Override
 	public List<Menu> selectMenuList(String store_id) {
 		return menuDao.selectMenuList(store_id);

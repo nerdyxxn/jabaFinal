@@ -13,12 +13,11 @@ public class Pay {
 	private String pay_request;
 	private String pickup_time;
 	private int pay_status;
-	
+
 	public Pay() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Pay(String pay_id, String cartno_id, int pay_total_price, Date pay_time, String pay_request,
 			String pickup_time, int pay_status) {
 		super();
@@ -93,6 +92,5 @@ public class Pay {
 	public void setPickup_time(String pickup_time) {
 		this.pickup_time = pickup_time;
 	}
-	
 
 }

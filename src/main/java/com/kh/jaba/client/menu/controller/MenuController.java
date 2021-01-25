@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.jaba.biz.board.model.domain.BizBoard;
@@ -33,19 +32,18 @@ public class MenuController {
 
 	@Autowired
 	private MenuService menuService;
-	
+
 	@Autowired
 	private CustomService customService;
 
 	@Autowired
 	private Menu menu;
-	
+
 	@Autowired
 	private Custom custom;
-	
+
 	@Autowired
 	private BizBoardService bizBoardService;
-	
 
 	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 
@@ -71,66 +69,60 @@ public class MenuController {
 		// List<List<MenuVO>> sortList = mService.selectmenuListList(store_id);
 
 		// 매장 게시판 관련
-				
-				List<BizBoard> boardList = new ArrayList<BizBoard>();
-				boardList = bizBoardService.selectBizBoardList(biz.getStore_id());
-				System.out.println("현재 공지사항 글 개수 : "+boardList.size());
-				
-				request.getSession().setAttribute("boardList", boardList);
+
+		List<BizBoard> boardList = new ArrayList<BizBoard>();
+		boardList = bizBoardService.selectBizBoardList(biz.getStore_id());
+		System.out.println("현재 공지사항 글 개수 : " + boardList.size());
+
+		request.getSession().setAttribute("boardList", boardList);
 
 		mv.setViewName("menu/menu");
 		return mv;
-		// ----- index 진입 ----- 이 계속나옴 why?
 	}
-	
-	
-	@RequestMapping(value="/menu/selectMenu.do")
-	public void selectMenuDo(HttpServletRequest request, HttpServletResponse response) throws IOException {	
-		PrintWriter out = response.getWriter();//요거 써서 @ResponseBody안쓰는 거거든
-		
+
+	@RequestMapping(value = "/menu/selectMenu.do")
+	public void selectMenuDo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();// 요거 써서 @ResponseBody안쓰는 거거든
+
 		String menu_name = request.getParameter("menu_name");
-		Biz biz = (Biz)request.getSession().getAttribute("storeVo");
-		
+		Biz biz = (Biz) request.getSession().getAttribute("storeVo");
+
 		menu.setMenu_name(menu_name);
 		menu.setStore_id(biz.getStore_id());
-		
+
 		menu = menuService.selectOneMenu(menu);
 		request.getSession().setAttribute("menuVo", menu);
-		
+
 		out.print(menu.getMenu_price());
-		
+
 		// menu_id에 해당하는 커스텀카테고리리스트
 		List<Custom> customCategoryList = customService.selectCustomCategoryList(menu.getMenu_id());
-		
+
 		// sortCustomList 객체 생성
 		List<List<Custom>> sortCustomList = new ArrayList<List<Custom>>();
 
-		for(int i=0; i<customCategoryList.size(); i++) {
+		for (int i = 0; i < customCategoryList.size(); i++) {
 			custom.setCustom_category(customCategoryList.get(i).getCustom_category());
 			custom.setMenu_id(customCategoryList.get(i).getMenu_id());
-			
+
 			List<Custom> list = customService.selectListByCustomCategory(custom); // 여기서 param 을 m으로 보내줘야하는데
 			sortCustomList.add(list);
 		}
-		
+
 		request.getSession().setAttribute("sortCustomList", sortCustomList);
-		
+
 		out.flush();
 		out.close();
 	}
-	
 
 	public List<List<Menu>> selectMenuListList(String store_id) {
 		List<List<Menu>> sortList = null;
-
 		List<Menu> categoryList = menuService.selectCategoryList(store_id);
-		// 카테고리 로딩이 계속됨 why? 
-		
+
 		// sortList 객체 생성
 		sortList = new ArrayList<List<Menu>>();
 		// 사이즈 categoryList 만큼 반복
 		for (int i = 0; i < categoryList.size(); i++) {
-			// menu autowired
 			menu.setMenu_category(categoryList.get(i).getMenu_category());
 			menu.setStore_id(categoryList.get(i).getStore_id());
 			List<Menu> list = menuService.selectListByCategory(menu); // 여기서 param 을 m으로 보내줘야하는데

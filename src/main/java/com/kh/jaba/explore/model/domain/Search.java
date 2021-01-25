@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 //STORE_DISTANCE             NUMBER(38)  
 
 @Component
-public class Search implements Comparable<Search>{
+public class Search implements Comparable<Search> {
 	private String store_id;
 	private String store_pw;
 	private String store_addr;
@@ -27,8 +27,9 @@ public class Search implements Comparable<Search>{
 	private String store_lng;
 	private double store_distance;
 	private int store_status;
-	
-	public Search() {}
+
+	public Search() {
+	}
 
 	public Search(String store_id, String store_pw, String store_addr, String store_name, String store_time,
 			String store_img, String store_description, String store_lat, String store_lng, double store_distance,
@@ -134,7 +135,7 @@ public class Search implements Comparable<Search>{
 	public void setStore_distance(double store_distance) {
 		this.store_distance = store_distance;
 	}
-	
+
 	public int getStore_status() {
 		return store_status;
 	}
@@ -142,14 +143,14 @@ public class Search implements Comparable<Search>{
 	public void setStore_status(int store_status) {
 		this.store_status = store_status;
 	}
-	
-	@Override 
+
+	@Override
 	public int compareTo(Search arg0) {
-		if(this.store_distance > arg0.store_distance) 
-			return 1; //좌측값이 큰 경우
-		else if (this.store_distance < arg0.store_distance) 
-			return -1; //우측값이 큰 경우
+		if (this.store_distance > arg0.store_distance)
+			return 1; // 좌측값이 큰 경우
+		else if (this.store_distance < arg0.store_distance)
+			return -1; // 우측값이 큰 경우
 		else
-			return 0; //일치하는 경우
+			return 0; // 일치하는 경우
 	}
 }

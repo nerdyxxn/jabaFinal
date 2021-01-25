@@ -128,7 +128,6 @@ public class CartController {
 		} else {
 			System.out.println("장바구니가 생성되지 않았거나 cartno_id를 불러오지 못했습니다.");
 		}
-//		System.out.println(cartList.get(0).getCartno_id());
 		// cartList가 null 이 아니라면
 		if (cartList != null) {
 			System.out.println("카트에 들어있는 카트리스트");
@@ -156,7 +155,6 @@ public class CartController {
 					total_price += cartViewList.get(i).getCart_total_price();
 				}
 				request.getSession().setAttribute("total_price", total_price);
-
 				// cartViewList 세션에 저장
 				request.getSession().setAttribute("cartViewList", cartViewCustomList);
 			}
@@ -167,20 +165,17 @@ public class CartController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/cart/deleteCart.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void updateCartCheckDo(HttpServletRequest request) {
-		// order_id 를 어떻게 찾아올건가 .. ? 
+		// order_id 를 어떻게 찾아올건가 .. ?
 		String order_id = request.getParameter("orderId");
 		// order_id를 찾아서 cart 테이블의 cart_check 를 2로 바꾼다.
 		cartService.updateCartCheck(order_id);
 		System.out.println(order_id + "의 주문을 cart에서 삭제했습니다.");
 		// updateCartCheckDo
 	}
-	
-	
-	
 
 	// cartList 를 참고하여 cartViewList 를 만드는 메소드
 	public List<CartView> cartViewList(List<Cart> cartList) {
@@ -193,7 +188,7 @@ public class CartController {
 			System.out.println((i + 1) + "번째 order의 cart");
 			order_id = cartList.get(i).getOrder_id();
 			cart_total_price = cartList.get(i).getCart_total_price();
-			
+
 //			CartView cartView = new CartView();	// autowired 를 쓰면 이상하게 나오는 오류 해결해야함
 			cartView = new CartView();
 			cartView.setCart_total_price(cart_total_price);
@@ -205,12 +200,12 @@ public class CartController {
 			cartView.setOrder_id(order.getOrder_id());
 			// menu_id를 가지고 menu_name을 뽑아내는 메소드
 			String menu_name = menuService.selectMenuName(order.getMenu_id());
-			System.out.println("메뉴이름 : " +  menu_name);
+			System.out.println("메뉴이름 : " + menu_name);
 			cartView.setMenu_name(menu_name);
 
 			cartViewList.add(cartView);
 		}
-		
+
 		return cartViewList;
 	}
 
@@ -223,7 +218,8 @@ public class CartController {
 		for (int i = 0; i < cartViewList.size(); i++) {
 			List<String> customNameList = new ArrayList<String>();
 			// order_id를 통해서 custom_check 테이블을 조회한 다음에 List<Custom> 형식인 custom_id를 뽑아내야해요
-			List<CustomCheck> customCheckList = customCheckService.selectCustomCheckListByOrderId(cartList.get(i).getOrder_id());
+			List<CustomCheck> customCheckList = customCheckService
+					.selectCustomCheckListByOrderId(cartList.get(i).getOrder_id());
 			for (int j = 0; j < customCheckList.size(); j++) {
 				// custom id를 통해서 custom name을 뽑아냄
 				custom = customService.selectOneCustomByCustomId(customCheckList.get(j).getCustom_id());

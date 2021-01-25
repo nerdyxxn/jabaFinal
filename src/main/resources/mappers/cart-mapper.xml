@@ -28,6 +28,4 @@
 		statementType="PREPARED">
 		update cart set cart_check=2 where order_id=#{order_id}
 	</update>
-
-
 </mapper>

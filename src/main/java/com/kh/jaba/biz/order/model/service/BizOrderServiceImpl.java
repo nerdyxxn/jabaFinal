@@ -9,11 +9,11 @@ import com.kh.jaba.biz.order.dao.BizOrderDao;
 import com.kh.jaba.biz.order.domain.BizOrder;
 
 @Service("bizOrderService")
-public class BizOrderServiceImpl implements BizOrderService{
+public class BizOrderServiceImpl implements BizOrderService {
 
 	@Autowired
 	private BizOrderDao bizOrderDao;
-	
+
 	// orderview 조회
 	@Override
 	public List<BizOrder> orderViewList(String store_name) {

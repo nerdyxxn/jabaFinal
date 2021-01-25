@@ -8,7 +8,7 @@ public interface BizBoardService {
 	public List<BizBoard> selectBizBoardList(String store_id);
 
 	public int insertBizBoard(BizBoard bb);
-	
+
 	public int deleteBizBoard(String board_no);
-	
+
 }

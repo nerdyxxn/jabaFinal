@@ -13,7 +13,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Autowired
 	private QnaDao qnaDao;
-	
+
 	@Override
 	public List<Qna> selectQnaList() {
 		return qnaDao.selectQnaList();

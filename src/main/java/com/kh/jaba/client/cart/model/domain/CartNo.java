@@ -5,11 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CartNo {
 	private String cartno_id;
-	
-	
+
 	public CartNo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,6 +22,5 @@ public class CartNo {
 	public void setCartno_id(String cartno_id) {
 		this.cartno_id = cartno_id;
 	}
-	
-	
+
 }

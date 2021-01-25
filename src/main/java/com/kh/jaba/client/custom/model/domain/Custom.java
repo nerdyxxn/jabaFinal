@@ -10,7 +10,7 @@ public class Custom {
 	private String custom_category;
 	private int custom_price;
 	private int custom_status;
-	
+
 	public Custom() {
 	}
 

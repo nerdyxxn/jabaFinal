@@ -15,9 +15,9 @@ import com.kh.jaba.client.paysearch.model.domain.PaySearchCollection;
 public class PaySearchServiceImpl implements PaySearchService {
 	@Autowired
 	private PaySearchDao paySearchDao;
-	
+
 	@Override
-	public List<PaySearch> selectPaySearch(String client_id) {	
+	public List<PaySearch> selectPaySearch(String client_id) {
 		return paySearchDao.selectPaySearch(client_id);
 	}
 
@@ -39,8 +39,6 @@ public class PaySearchServiceImpl implements PaySearchService {
 	@Override
 	public List<PaySearchCollection> getSalesList(String store_name) {
 		return paySearchDao.getSalesList(store_name);
-	}	
-	
-	
+	}
 
 }

@@ -5,14 +5,13 @@ import org.springframework.stereotype.Service;
 
 import com.kh.jaba.client.cart.model.dao.CartNoDao;
 import com.kh.jaba.client.cart.model.domain.CartNo;
-import com.kh.jaba.client.order.model.domain.Order;
 
 @Service("cartNoService")
 public class CartNoServiceImpl implements CartNoService {
 
 	@Autowired
 	private CartNoDao cartNoDao;
-	
+
 	@Override
 	public int insertCartNo() {
 		return cartNoDao.insertCartNo();

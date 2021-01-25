@@ -13,9 +13,9 @@ public class Menu {
 	private String menu_category;
 	private int menu_available;
 	private int menu_status;
-	
+
 	public Menu() {
-		
+
 	}
 
 	public Menu(String menu_id, String store_id, String menu_name, int menu_price, String menu_img,
@@ -111,6 +111,4 @@ public class Menu {
 		this.menu_status = menu_status;
 	}
 
-	
-	
 }

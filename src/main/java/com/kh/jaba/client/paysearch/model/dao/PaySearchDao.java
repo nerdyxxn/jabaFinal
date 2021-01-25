@@ -13,28 +13,28 @@ import com.kh.jaba.client.paysearch.model.domain.PaySearchCollection;
 
 @Repository("paySearchDao")
 public class PaySearchDao {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
-	public List<PaySearch> selectPaySearch(String client_id){
+
+	public List<PaySearch> selectPaySearch(String client_id) {
 		return sqlSession.selectList("PaySearch.selectPaySearch", client_id);
 	}
-	
-	public List<PaySearchCollection> getPaySearchList(String client_id){
+
+	public List<PaySearchCollection> getPaySearchList(String client_id) {
 		return sqlSession.selectList("PaySearchCollection.getPaySearchList", client_id);
 	}
-	
-	public List<PaySearchCollection> getSalesList(String store_name){
+
+	public List<PaySearchCollection> getSalesList(String store_name) {
 		return sqlSession.selectList("PaySearchCollection.getPaySearchList", store_name);
 	}
-	
-	public List<MenuCollection> getMenuList(String pay_id){
+
+	public List<MenuCollection> getMenuList(String pay_id) {
 		return sqlSession.selectList("PaySearchCollection.getMenuList", pay_id);
 	}
-	
-	public List<Custom> getCustomList(String order_id){
+
+	public List<Custom> getCustomList(String order_id) {
 		return sqlSession.selectList("PaySearchCollection.getCustomList", order_id);
 	}
-	
+
 }

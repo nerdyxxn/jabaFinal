@@ -11,7 +11,7 @@ public class Qna {
 	private String qna_title;
 	private String qna_content;
 	private Date qna_time;
-	
+
 	@Override
 	public String toString() {
 		return "Qna [qna_no=" + qna_no + ", admin_id=" + admin_id + ", qna_title=" + qna_title + ", qna_content="
@@ -57,6 +57,5 @@ public class Qna {
 	public void setQna_time(Date qna_time) {
 		this.qna_time = qna_time;
 	}
-	
-	
+
 }

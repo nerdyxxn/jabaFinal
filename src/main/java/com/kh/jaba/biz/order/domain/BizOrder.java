@@ -18,8 +18,9 @@ public class BizOrder {
 	private String pay_total_price;
 	private int pay_status;
 	private List<MenuCollection> menuCollection;
-	
-	public BizOrder() {}
+
+	public BizOrder() {
+	}
 
 	public BizOrder(String pay_id, String client_id, Date pay_time, String store_name, String pickup_time,
 			String pay_request, String pay_total_price, int pay_status, List<MenuCollection> menuCollection) {

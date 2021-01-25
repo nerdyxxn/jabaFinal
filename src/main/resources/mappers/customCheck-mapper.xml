@@ -8,7 +8,6 @@
 		<result property="order_id" column="order_id" />
 	</resultMap>
 
-
 	<insert id="insertCustomCheck" parameterType="CustomCheck"
 		flushCache="true" statementType="PREPARED">
 		insert into Custom_check (custom_check_id, custom_id, order_id) values (('K'
@@ -21,5 +20,4 @@
 		resultMap="resultCustomCheck">
 		select * from Custom_check where order_id=#{order_id}
 	</select>
-
 </mapper>

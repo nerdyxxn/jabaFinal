@@ -6,7 +6,7 @@ import com.kh.jaba.client.order.model.domain.CustomCheck;
 
 public interface CustomCheckService {
 	public int insertCustomCheck(CustomCheck cc);
-	
+
 	public List<CustomCheck> selectCustomCheckListByOrderId(String order_id);
 
 }

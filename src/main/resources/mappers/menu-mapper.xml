@@ -83,7 +83,4 @@
    <update id="updateMenuStatus" parameterType="String" >
       update menu set menu_status=2 where menu_id=#{menu_id}
    </update>   
-   
-
-     
 </mapper>

@@ -39,19 +39,19 @@ public class PayController {
 		int result = 0;
 
 		if ((pay_request != null) && (cartno_id != null) && (pay_total_price != 0) && (pickup_time != null)) {
-			System.out.println("cart_id : " +  cartno_id);
+			System.out.println("cart_id : " + cartno_id);
 			System.out.println("총가격 : " + pay_total_price);
 			System.out.println("요청사항 : " + pay_request);
 			System.out.println("Pickup Time : " + pickup_time);
-			
+
 			pay.setCartno_id(cartno_id);
 			pay.setPay_request(pay_request);
 			pay.setPay_total_price(pay_total_price);
 			pay.setPickup_time(pickup_time);
 			result = payService.insertPayment(pay);
-			if(result == 1) {
+			if (result == 1) {
 				System.out.println(cartno_id + "의 결제가 완료되었습니다.");
-			}else {
+			} else {
 				System.out.println(cartno_id + "의 결제가 실패되었습니다.");
 			}
 			// cartId, total_price,storeVo,cartViewList,cartList,cartViewVoList REMOVE
@@ -61,7 +61,7 @@ public class PayController {
 			request.getSession().removeAttribute("cartViewList");
 			request.getSession().removeAttribute("cartList");
 			request.getSession().removeAttribute("cartViewVoList");
-		}else {
+		} else {
 			System.out.println("필요한 값이 세션에 없습니다.");
 		}
 

@@ -14,9 +14,6 @@ public class BizBoardServiceImpl implements BizBoardService {
 	@Autowired
 	private BizBoardDao bizBoardDao;
 	
-	@Autowired
-	private BizBoard bb;
-	
 	@Override
 	public List<BizBoard> selectBizBoardList(String store_id) {
 		return bizBoardDao.selectBizBoardList(store_id);

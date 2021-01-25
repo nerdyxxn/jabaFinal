@@ -53,7 +53,6 @@ public class BizServiceImpl implements BizService{
 	// 전체 매장 조회
 	@Override
 	public List<Biz> selectAllStore() {
-		// TODO Auto-generated method stub
 		return bizDao.selectAllStore();
 	}
 

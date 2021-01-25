@@ -1,6 +1,5 @@
 package com.kh.jaba.admin.store.controller;
 
-import java.io.Console;
 import java.io.File;
 import java.util.List;
 
@@ -53,31 +52,30 @@ public class AdminStoreContoller {
 		return mv;
 	}
 
-   @RequestMapping(value = "admin/store/adminStoreDetail.do", method = RequestMethod.GET)
-   public ModelAndView adminStoreDetail(ModelAndView mv, HttpServletRequest request) {
-      String store_name = null;
-	   if(request.getParameter("store_name")==null) {
-		   Biz storeDetailTemp = (Biz) request.getSession().getAttribute("storeDetail");
-		   store_name = storeDetailTemp.getStore_name();
-		   System.out.println("세션에 담긴 store_name: "+store_name);
-	   } else {
-		   store_name = request.getParameter("store_name");
-		   System.out.println(store_name);		   
-		   System.out.println("parameter에 담긴 store_name: "+store_name);
-	   }
-      // 스토어의 Detail 정보 
-      Biz storeDetail = bizService.selectStoreByName(store_name);
-      request.getSession().setAttribute("storeDetail", storeDetail);
-      System.out.println(storeDetail);
-      // 메뉴정보 List 
-      List<Menu> menuList = menuService.selectMenuList(storeDetail.getStore_id());
-         request.getSession().setAttribute("menuList", menuList);
-         System.out.println(menuList);
-      System.out.println(storeDetail.getStore_name() + "의 메뉴정보 " + menuList.size() + "개를 가져왔음");
-      mv.setViewName("admin/adminStoreDetail");
-      return mv;
-   }
-
+	@RequestMapping(value = "admin/store/adminStoreDetail.do", method = RequestMethod.GET)
+	public ModelAndView adminStoreDetail(ModelAndView mv, HttpServletRequest request) {
+		String store_name = null;
+		if (request.getParameter("store_name") == null) {
+			Biz storeDetailTemp = (Biz) request.getSession().getAttribute("storeDetail");
+			store_name = storeDetailTemp.getStore_name();
+			System.out.println("세션에 담긴 store_name: " + store_name);
+		} else {
+			store_name = request.getParameter("store_name");
+			System.out.println(store_name);
+			System.out.println("parameter에 담긴 store_name: " + store_name);
+		}
+		// 스토어의 Detail 정보
+		Biz storeDetail = bizService.selectStoreByName(store_name);
+		request.getSession().setAttribute("storeDetail", storeDetail);
+		System.out.println(storeDetail);
+		// 메뉴정보 List
+		List<Menu> menuList = menuService.selectMenuList(storeDetail.getStore_id());
+		request.getSession().setAttribute("menuList", menuList);
+		System.out.println(menuList);
+		System.out.println(storeDetail.getStore_name() + "의 메뉴정보 " + menuList.size() + "개를 가져왔음");
+		mv.setViewName("admin/adminStoreDetail");
+		return mv;
+	}
 
 	// 매장 Detail 정보 수정 페이지로 이동
 	@RequestMapping(value = "/admin/store/updateStoreDetail.do", method = RequestMethod.GET)
@@ -221,79 +219,80 @@ public class AdminStoreContoller {
 		}
 	}
 
-   // 메뉴 insert
-   @RequestMapping(value = "/admin/store/insertMenu.do", method = RequestMethod.POST)
-   @ResponseBody
-   public ModelAndView insertMenuDo(HttpServletRequest request, @RequestParam(name = "upfile") MultipartFile report, ModelAndView mv) {
-     Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
-      String store_id = storeDetail.getStore_id();
-      System.out.println(store_id);
-      String menu_name = request.getParameter("menu_name");
-      int menu_price = Integer.parseInt(request.getParameter("menu_price"));
+	// 메뉴 insert
+	@RequestMapping(value = "/admin/store/insertMenu.do", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView insertMenuDo(HttpServletRequest request, @RequestParam(name = "upfile") MultipartFile report,
+			ModelAndView mv) {
+		Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
+		String store_id = storeDetail.getStore_id();
+		System.out.println(store_id);
+		String menu_name = request.getParameter("menu_name");
+		int menu_price = Integer.parseInt(request.getParameter("menu_price"));
 
-      String menu_description = request.getParameter("menu_description");
-      String menu_category = request.getParameter("menu_category");
-      String store_name = storeDetail.getStore_name();
-      System.out.println(store_name);
-      int result = 0;
-      // menu_name 중복 확인 해야함 
-      try {
-      // 첨부파일 저장
-        if (report != null && !report.equals("")) {
-            saveFile(report, request);
-         }
-        System.out.println(report.getOriginalFilename());
-        menu.setMenu_img(report.getOriginalFilename()); // 저장된 파일명을 vo에 set
-      }catch (Exception e) {
-         e.printStackTrace();
-      }
-      
-      menu.setStore_id(store_id);
-      menu.setMenu_name(menu_name);
-      menu.setMenu_price(menu_price);
-      
-      menu.setMenu_description(menu_description);
-      menu.setMenu_category(menu_category);
-      result = menuService.insertMenu(menu);
-      if(result == 1) {
-         System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 완료");
-      }else {
-         System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 실패");
-      }
-      //session에 store_name이 있으면 채워질지 안채워질지 고민
-      request.getSession().setAttribute("storeDetail", storeDetail);
-      mv.setViewName("redirect:adminStoreDetail.do");
-      return mv;
+		String menu_description = request.getParameter("menu_description");
+		String menu_category = request.getParameter("menu_category");
+		String store_name = storeDetail.getStore_name();
+		System.out.println(store_name);
+		int result = 0;
+		// menu_name 중복 확인 해야함
+		try {
+			// 첨부파일 저장
+			if (report != null && !report.equals("")) {
+				saveFile(report, request);
+			}
+			System.out.println(report.getOriginalFilename());
+			menu.setMenu_img(report.getOriginalFilename()); // 저장된 파일명을 vo에 set
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-   }
+		menu.setStore_id(store_id);
+		menu.setMenu_name(menu_name);
+		menu.setMenu_price(menu_price);
 
+		menu.setMenu_description(menu_description);
+		menu.setMenu_category(menu_category);
+		result = menuService.insertMenu(menu);
+		if (result == 1) {
+			System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 완료");
+		} else {
+			System.out.println(store_id + "의 메뉴 " + menu_name + " 추가 실패");
+		}
+		// session에 store_name이 있으면 채워질지 안채워질지 고민
+		request.getSession().setAttribute("storeDetail", storeDetail);
+		mv.setViewName("redirect:adminStoreDetail.do");
+		return mv;
+
+	}
 
 	// 메뉴 삭제 메소드
-	@RequestMapping(value ="admin/store/menuDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/store/menuDelete.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void deleteMenu(HttpServletRequest request) {
-		Menu menuDetail = (Menu)request.getSession().getAttribute("menuDetail");
+		Menu menuDetail = (Menu) request.getSession().getAttribute("menuDetail");
 		String menu_id = menuDetail.getMenu_id();
 		int result = 0;
 		int customUpdateResult = 0;
-		
+
 		System.out.println("삭제할 현재 menu_id : " + menu_id);
-		
+
 		result = menuService.deleteMenu(menu_id);
-		if(result == 1) {
+		if (result == 1) {
 			System.out.println(menu_id + " 메뉴 삭제 완료");
-		}else {
+		} else {
 			System.out.println(menu_id + " 메뉴 삭제 실패");
 		}
-		
-		// 삭제한 메뉴의 커스텀 정보들도 전부 바꿔줘야함 
+
+		// 삭제한 메뉴의 커스텀 정보들도 전부 바꿔줘야함
 		customUpdateResult = customService.updateCustomStatusByMenuId(menu_id);
-		if(customUpdateResult != 0) {
+		if (customUpdateResult != 0) {
 			System.out.println(customUpdateResult + " 개의 커스텀을 삭제했습니다.");
-		}else {
+		} else {
 			System.out.println("메뉴 삭제시 연관된 커스텀을 삭제하지 못했습니다.");
 		}
 	}
+
 	// =====================================================CUSTOM=====================================================
 	// custom detail
 	@RequestMapping(value = "/admin/store/customDetail.do", method = RequestMethod.GET)
@@ -397,21 +396,21 @@ public class AdminStoreContoller {
 			System.out.println("커스텀 추가 실패");
 		}
 	}
-	
+
 	// 커스텀 삭제 메소드
-	@RequestMapping(value ="admin/store/customDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/store/customDelete.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void deleteCustom(HttpServletRequest request) {
-		Custom customDetail = (Custom)request.getSession().getAttribute("customDetail");
+		Custom customDetail = (Custom) request.getSession().getAttribute("customDetail");
 		String custom_id = customDetail.getCustom_id();
 		int result = 0;
-		
+
 		System.out.println("삭제할 현재 custom_id : " + custom_id);
-		
+
 		result = customService.updateCustomStatus(custom_id);
-		if(result == 1) {
+		if (result == 1) {
 			System.out.println(custom_id + " 커스텀 삭제 완료");
-		}else {
+		} else {
 			System.out.println(custom_id + " 커스텀 삭제 실패");
 		}
 	}
@@ -438,22 +437,6 @@ public class AdminStoreContoller {
 			System.out.println("파일 전송이 완료되었습니다.");
 		} catch (Exception e) {
 			System.out.println("파일 전송 에러 : " + e.getMessage());
-		}
-	}
-
-	private void removeFile(String board_file, HttpServletRequest request) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		Biz storeDetail = (Biz) request.getSession().getAttribute("storeDetail");
-		String savePath = root + "\\" + storeDetail.getStore_name();
-		String filePath = savePath + "\\" + board_file;
-		try {
-			System.out.println(board_file + "을 삭제합니다.");
-			System.out.println("기존 저장 경로 : " + savePath);
-			File delFile = new File(filePath);
-			delFile.delete();
-			System.out.println("파일 삭제가 완료되었습니다.");
-		} catch (Exception e) {
-			System.out.println("파일 삭제 에러: " + e.getMessage());
 		}
 	}
 }

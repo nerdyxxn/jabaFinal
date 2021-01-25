@@ -17,13 +17,13 @@ public interface CustomService {
 
 	// custom 한개의 정보를 변경
 	public int updateCustom(Custom c);
-	
-	//custom 추가
+
+	// custom 추가
 	public int insertCustom(Custom c);
 
 	// custom_status 를 2로 변경하여 삭제처리
 	public int updateCustomStatus(String custom_id);
-	
+
 	// menu_id 를 통해서 custom_status 를 2로 변경하여 삭제처리
 	public int updateCustomStatusByMenuId(String menu_id);
 }

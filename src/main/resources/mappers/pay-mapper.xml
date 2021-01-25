@@ -23,6 +23,5 @@
 		update payment set
 		pay_status = #{pay_status} where pay_id = #{pay_id}
 	</update>
-
 </mapper>
 	

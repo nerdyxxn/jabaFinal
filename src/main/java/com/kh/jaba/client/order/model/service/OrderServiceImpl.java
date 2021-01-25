@@ -30,6 +30,5 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDao.selectOneOrder(order_id);
 	}
-	
 
 }

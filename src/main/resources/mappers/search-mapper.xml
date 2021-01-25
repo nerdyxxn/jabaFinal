@@ -32,7 +32,6 @@
 	</select>
 	
 	<!--  dropdown으로 뽑아낼 간소화된 주소 출력 -->
-	<!--  null 값이 들어오는데, nvl 이런 걸로 처리해버리면 되지 않을까? 싶습니다. -->
 	<!--  db세팅에 addr not null로 -->
 	<select id="checkAddr" parameterType="string" resultType="arraylist" resultMap="resultSearch">
 		select  distinct nvl(substr(store_addr, 1, instr(store_addr, ' ', 1, 3)),'오류') as store_addr from store where store_addr like '%'||#{store_addr}||'%'

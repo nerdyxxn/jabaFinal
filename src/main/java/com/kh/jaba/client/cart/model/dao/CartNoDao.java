@@ -5,23 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.jaba.client.cart.model.domain.CartNo;
-import com.kh.jaba.client.order.model.domain.Order;
 
 @Repository("cartNoDao")
 public class CartNoDao {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	public int insertCartNo() {
 		return sqlSession.insert("CartNo.insertCartNo");
 	};
-	
+
 	public CartNo currentCartId() {
 		return sqlSession.selectOne("CartNo.currentCartId");
 	}
-	
-	public CartNo selectOneCartNo(String cartno_id){
+
+	public CartNo selectOneCartNo(String cartno_id) {
 		return sqlSession.selectOne("CartNo.selectOneCartNo", cartno_id);
 	}
 

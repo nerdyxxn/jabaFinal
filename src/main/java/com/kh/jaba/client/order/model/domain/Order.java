@@ -8,11 +8,9 @@ public class Order {
 	private String client_id;
 	private String menu_id;
 	private int order_quantity;
-	
-	
+
 	public Order() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Order(String order_id, String client_id, String menu_id, int order_quantity) {
@@ -60,7 +58,5 @@ public class Order {
 	public void setOrder_quantity(int order_quantity) {
 		this.order_quantity = order_quantity;
 	}
-	
-	
 
 }

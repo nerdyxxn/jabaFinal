@@ -47,15 +47,15 @@ public class ClientDao {
 	public int updateClientStatus(Client c) {
 		return sqlSession.update("Client.updateClientStatus", c);
 	}
-	
+
 	// 자바 전체 회원 조회
-	public List<Client> selectAllClient(){
+	public List<Client> selectAllClient() {
 		return sqlSession.selectList("Client.selectAllClient");
 	}
-	
+
 	// Client 리스트 중 하나를 선택해서 Detail 정보를 얻어옴
 	public Client selectClientDetail(String client_id) {
 		return sqlSession.selectOne("Client.selectClientDetail", client_id);
 	}
-	
+
 }

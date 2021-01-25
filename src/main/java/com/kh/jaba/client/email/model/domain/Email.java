@@ -7,7 +7,7 @@ public class Email {
 	private String subject;
 	private String content;
 	private String receiver;
-	
+
 	@Override
 	public String toString() {
 		return "Email [subject=" + subject + ", content=" + content + ", receiver=" + receiver + "]";
@@ -36,7 +36,5 @@ public class Email {
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	
-	
 
 }
