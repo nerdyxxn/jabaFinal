@@ -55,7 +55,7 @@
       <!--logo start-->
       <a href="<%=ctxPath%>/admin/adminMain.do" class="logo"><b>JABA</b></a>
       <!--logo end-->
-      <div class="nav notify-row" id="top_menu">
+<%--       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
@@ -238,7 +238,7 @@
           </li>
         </ul>
         <!--  notification end -->
-      </div>
+      </div> --%>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><button class="logout" id="logoutBtn">Logout</button></li>
