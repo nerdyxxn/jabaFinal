@@ -1,5 +1,5 @@
 # JABA, 내 손 안의 카페
-<img width="1200" alt="Jaba_main" src="https://user-images.githubusercontent.com/66562887/106995536-76d63c00-67c2-11eb-83f6-2f13fa9a03bf.png"></img>
+<img width="1200" alt="Jaba_main" src="https://user-images.githubusercontent.com/66936285/107166925-d0c14680-69fa-11eb-9e11-b12688e21592.png"></img>
 ___
 ## 목차
 1. [개요](#개요)
