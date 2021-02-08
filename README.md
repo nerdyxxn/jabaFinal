@@ -1,4 +1,4 @@
-# 내 손 안의 카페, 잡아(JABA)
+# JABA, 내 손 안의 카페
 <img width="1200" alt="Jaba_main" src="https://user-images.githubusercontent.com/66562887/106995536-76d63c00-67c2-11eb-83f6-2f13fa9a03bf.png"></img>
 ___
 ## 목차
@@ -9,7 +9,7 @@ ___
 5. [Document](#document)
 ___
 ## 개요
-* 내 손 안에 카페란 컨셉으로, 미리 주문 후 픽업 할 수 있는 서비스 개발
+* 내 손 안의 카페란 컨셉으로, 미리 주문 후 픽업 할 수 있는 서비스 개발
 * 최근 코로나로 인한 사회적 거리두기로 비대면 소비문화가 확산되는 추세 반영
 * 대면 없이 미리 음료를 주문해 매장에서 곧바로 픽업하는 방식으로 사용자의 편의성 증가
 ___
@@ -24,15 +24,17 @@ ___
 * **javax.mail** 라이브러리를 사용해 유저의 비밀번호 찾기 기능 구현
 ___
 ## 개발 환경
-1. FrontEnd - HTML5, JS, CSS3, jQuery
-2. BackEnd - Java(JDK 1.8), Servlet, Spring, Mybatis
-3. OS - Windows, macOS (Amazon Linux 2 - aws)
-4. Library&API - Kakaomap, BootStrap(v3.3.7), OJDBC(v6), COS, JavaMail API, JSON(v1.2), JSTL, I'mport, Websocket
-5. IDE - Spring Tool Suite 3 (3.9.12.RELEASE)
-6. Server - Tomcat(v8.5)
-7. Document - Google Drive, diagrams.net
-8. CI - git(v2.28.0.windows.1), Github
-9. DataBase - Oracle DataBase 11g
+|Category|Detail|
+|:--:|:--:|
+|FrontEnd|HTML5, JS, CSS3, JQuery|
+|BackEnd|Java(JDK 1.8), Servlet, Spring(4.2.4), Mybatis|
+|OS|Windows 10, MacOS|
+|Libray&API|OJDBC(v6), JSON(v1.2), JSTL, BootStrap(v3.3.7), Chart.js, iamport API, Apache Commons FileUpload, JavaMail Library, Kakaomap, Websocket|
+|IDE|STS(3.9.12.RELEASE), VisualStudio|
+|Server|Tomcat(v8.5)|
+|Document|Google Drive, ERDCloud, diagrams.net|
+|CI|Github|
+|DateBase|Oracle DataBase 11g|
 ___
 ## 주요 기능
 * client page
@@ -43,7 +45,7 @@ ___
 
 * admin page
 <img width="1200" alt="admin" src="https://user-images.githubusercontent.com/66562887/106884192-4fc92d00-6724-11eb-9d3b-c98c60ebd87c.png">
-___
+
 ## Document
 
 1. 기능 정의서
